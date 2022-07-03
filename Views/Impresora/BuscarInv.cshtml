@@ -1,0 +1,23 @@
+﻿@model Impresora
+@{
+    ViewData["Title"] = "Impresora";
+}
+
+<h2>Buscar Impresora</h2>
+
+<h3>Ingrese el numero de inventario de la impresora</h3>
+<div>
+    <form method="post">
+    <div>
+        <label asp-for="NumInvId" class="form-label"></label>
+        <input asp-for="NumInvId"  required placeholder="Ejemplo: 34563" class="form-control"/>
+    </div>
+  
+
+    <input type="submit" value = "Buscar"/>
+</form>
+    
+
+
+
+</div>

@@ -1,0 +1,20 @@
+<div class="list-group">
+  <a asp-controller="Computadora" asp-action="Create" class="list-group-item-action list-group-item-info">Crear</a>
+  <a asp-controller="Computadora" asp-action="Edit" class="list-group-item-action list-group-item-info">Editar</a>
+  <a asp-controller="Computadora" asp-action="Delete" class="list-group-item-action list-group-item-info">Borrar</a>
+  <a asp-controller="Computadora" asp-action="BuscarInv" class="list-group-item-action list-group-item-info">Filtrar por inv</a>
+  <a asp-controller="Computadora" asp-action="BuscarUeb" class="list-group-item-action list-group-item-info">Filtrar por Nombre o Area</a>
+  <a asp-controller="Computadora" asp-action="BuscarDep" class="list-group-item-action list-group-item-info">Filtrar por Departamento</a>
+  <a asp-controller="Computadora" asp-action="BuscarUser" class="list-group-item-action list-group-item-info">Filtrar por Nombre de usuario</a>
+  <a asp-controller="Computadora" asp-action="BuscarEst" class="list-group-item-action list-group-item-info">Filtrar por Estado de la pc</a>
+  </div>
+
+  <div class="list-group">
+  <a asp-controller="Computadora" asp-action="Create" class="btn-info btn-sm">Crear</a>
+  <a asp-controller="Computadora" asp-action="Edit" class="btn-info btn-sm">Editar</a>
+  <a asp-controller="Computadora" asp-action="Delete" class="btn-info btn-sm">Borrar</a>
+  <a asp-controller="Computadora" asp-action="BuscarInv" class="btn-info btn-sm">Filtrar por inv</a>
+  <a asp-controller="Computadora" asp-action="BuscarUeb" class="btn-info btn-sm">Filtrar por Nombre o Area</a>
+  <a asp-controller="Computadora" asp-action="BuscarDep" class="btn-info btn-sm">Filtrar por Departamento</a>
+  <a asp-controller="Computadora" asp-action="BuscarEst" class="btn-info btn-sm">Filtrar por Estado</a>
+</div>

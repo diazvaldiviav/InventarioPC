@@ -1,0 +1,23 @@
+﻿@model DiscoDuro
+@{
+    ViewData["Title"] = "Disco Duro";
+}
+
+<h2>Buscar disco</h2>
+
+<h3>Ingrese la capacidad del disco que desea buscar</h3>
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="Capacidad" class="form-label"></label>
+            <input asp-for="Capacidad" required placeholder="Ejemplo:500" class="form-control" />
+        </div>
+
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+
+
+
+</div>

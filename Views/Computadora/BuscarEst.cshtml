@@ -1,0 +1,27 @@
+﻿@model Computadora
+@{
+    ViewData["Title"] = "Computadora";
+}
+
+
+<h3>Vas a buscar una Pc</h3>
+<div>
+    <h4>Ingresa el nombre departamento de la PC</h4>
+    <form method="post">
+       <div class="mb-3">
+        <label asp-for="estado" class="form-label"></label>
+        
+        @Html.DropDownList(
+            "estado", Html.GetEnumSelectList<Estado>(),
+            "Seleccione un estado"
+    
+        )
+    </div>
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+
+    
+
+</div>
