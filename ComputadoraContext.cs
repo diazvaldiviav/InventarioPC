@@ -58,8 +58,8 @@ public class ComputadoraContext : DbContext
         });
 
         List<Display> DisplayInit = new List<Display>();
-        DisplayInit.Add(new Display() { NumInvId = "7843", NumSerie = "7h7g8f8fke9gtr54t6yac52", Marca = "Acer" });
-        DisplayInit.Add(new Display() { NumInvId = "4321", NumSerie = "7h7g8f8fke956rf67uuj43ed", Marca = "Samsung" });
+        DisplayInit.Add(new Display() { NumInvId = "7843", NumSerie = "7h7g8f8fke9gtr54t6yac52", Marca = "Acer", estado = Estado.activo});
+        DisplayInit.Add(new Display() { NumInvId = "4321", NumSerie = "7h7g8f8fke956rf67uuj43ed", Marca = "Samsung", estado = Estado.activo});
 
         modelBuilder.Entity<Display>(display =>
         {
@@ -67,6 +67,7 @@ public class ComputadoraContext : DbContext
             display.HasKey(p => p.NumInvId);
             display.Property(p => p.Marca).IsRequired();
             display.Property(p => p.NumSerie).IsRequired();
+             display.Property(p => p.estado).IsRequired();
 
             display.HasData(DisplayInit);
         });
