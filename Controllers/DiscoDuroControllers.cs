@@ -32,19 +32,26 @@ public class DiscoDuroController : Controller
 
 
     [HttpPost]
-    public IActionResult Crear(DiscoDuro discoDuro)
+    public IActionResult Crear(String NumSerieId, string Marca , string TipoConexion, string Capacidad, Estado estado)
     {
-        try
-        {
-            context.DiscosDuro.Add(discoDuro);
-            context.SaveChanges();
-            return View("Index", discoDuro);
-        }
-        catch (Exception ex)
-        {
+         try
+         {
 
-            return View(new ErrorViewModel() { });
-        }
+           List<DiscoDuro>NuevoDisco= new List<DiscoDuro>();
+           NuevoDisco.Add(new DiscoDuro(){NumSerieId = NumSerieId.ToUpper(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado});
+             
+           context.DiscosDuro.AddRange(NuevoDisco);
+           context.SaveChanges();
+
+           return View("Index", NuevoDisco.FirstOrDefault());
+
+            
+         }
+         catch (Exception ex)
+         {
+
+             return View(new ErrorViewModel() { });
+         }
 
 
     }

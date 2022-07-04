@@ -43,6 +43,7 @@ public class ComputadoraController : Controller
     {
         try
         {
+            
             context.Computadoras.Add(computadora);
             context.SaveChanges();
             return View("Index", computadora);
