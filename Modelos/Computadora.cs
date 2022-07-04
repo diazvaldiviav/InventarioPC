@@ -3,15 +3,22 @@ namespace ProyectoInventario.Modelos
 {
     public class Computadora
     {
-        public String NumInvId { get; set; }
-        public String NombreDepartamento { get; set; }
-        public String NombreArea { get; set; }
-        public String MemoriaRamId { get; set; }
-        public String DiscoDuroId { get; set; }
-        public String MicroProcesadorId { get; set; }
-        public String MotherBoardId { get; set; }
-        public String MonitorId { get; set; }
-        public String TecladoId { get; set; }
+        public string NumInvId { get; set; }
+        public string NombreDepartamento { get; set; }
+        public string NombreArea { get; set; }
+        public string Nombre { get; set; }
+        public string MemoriaRamId { get; set; }
+        public string Mac { get; set; }
+
+        public string NumIp { get; set; }
+
+        public string ImpresoraId { get; set; }
+        public string NombreUsuarioId { get; set; }
+        public string DiscoDuroId { get; set; }
+        public string MicroProcesadorId { get; set; }
+        public string MotherBoardId { get; set; }
+        public string MonitorId { get; set; }
+        public string TecladoId { get; set; }
 
         public virtual DiscoDuro DiscoDuro { get; set; }
         public virtual MemoriaRam MemoriaRam { get; set; }
@@ -19,6 +26,9 @@ namespace ProyectoInventario.Modelos
         public virtual Display Display { get; set; }
         public virtual Teclado Teclado { get; set; }
         public virtual MotherBoard MotherBoard { get; set; }
+        public virtual Impresora Impresora { get; set; }
+
+        public virtual Usuario Usuario { get; set; } 
 
 
     }

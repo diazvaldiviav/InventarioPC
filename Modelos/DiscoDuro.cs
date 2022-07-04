@@ -6,7 +6,6 @@ namespace ProyectoInventario.Modelos
         public String NumSerieId { get; set; }
         public String Marca { get; set; }
         public String TipoConexion { get; set; }
-
         public String Capacidad {get; set;}
 
         [JsonIgnore]

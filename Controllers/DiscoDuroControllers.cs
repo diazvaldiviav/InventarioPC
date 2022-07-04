@@ -20,8 +20,7 @@ public class DiscoDuroController: ControllerBase
 
   public IActionResult Get()
   {
-    discoDuroService.Get();
-    return Ok();
+    return Ok(discoDuroService.Get());
   }
 
   [HttpPost]

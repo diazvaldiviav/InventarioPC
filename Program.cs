@@ -17,6 +17,8 @@ builder.Services.AddScoped<IMicroService, MicroService>();
 builder.Services.AddScoped<IMotherBoardService, MotherboardService>();
 builder.Services.AddScoped<ITecladoService, TecladoService>();
 builder.Services.AddScoped<IComputadoraService, ComputadoraService>();
+builder.Services.AddScoped<IImpresoraService, ImpresoraService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

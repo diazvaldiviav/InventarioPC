@@ -36,6 +36,8 @@ public class ComputadoraService : IComputadoraService
             pc.MicroProcesadorId = pc.MicroProcesadorId;
             pc.TecladoId = pc.TecladoId;
             pc.MonitorId = pc.MonitorId;
+            pc.Mac = pc.Mac;
+            pc.NumIp = pc.NumIp;
 
             await context.SaveChangesAsync();
         }

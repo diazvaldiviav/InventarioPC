@@ -31,6 +31,7 @@ public class MemoriaRamService : IMemoriaRamService
       {
         memoriaRamActual.Marca = memoriaRam.Marca;
         memoriaRam.Tecnologia = memoriaRam.Tecnologia;
+        memoriaRam.Capacidad = memoriaRam.Capacidad;
 
         await context.SaveChangesAsync();
       }

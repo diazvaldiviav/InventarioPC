@@ -5,12 +5,10 @@ namespace ProyectoInventario.Modelos
 {
     public class MemoriaRam
     {
-        public String NumSerieId { get; set; }
-
-        public String Marca { get; set; }
-
-
-        public String Tecnologia { get; set; }
+        public string NumSerieId { get; set; }
+        public string Marca { get; set; }
+        public string Capacidad { get; set; }
+        public string Tecnologia { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }
