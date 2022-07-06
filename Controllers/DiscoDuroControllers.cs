@@ -38,7 +38,7 @@ public class DiscoDuroController : Controller
          {
 
            List<DiscoDuro>NuevoDisco= new List<DiscoDuro>();
-           NuevoDisco.Add(new DiscoDuro(){NumSerieId = NumSerieId.ToUpper(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado});
+           NuevoDisco.Add(new DiscoDuro(){NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado});
              
            context.DiscosDuro.AddRange(NuevoDisco);
            context.SaveChanges();

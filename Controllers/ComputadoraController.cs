@@ -39,21 +39,59 @@ public class ComputadoraController : Controller
 
 
     [HttpPost]
-    public IActionResult Create(Computadora computadora)
+    public IActionResult Create(string NumInvId,
+                                  string NombreDepartamento,
+                                  string NombreArea,
+                                  string Nombre,
+                                  Estado estado,
+                                  string MemoriaRamId,
+                                  string NumIp,
+                                  string Mac,
+                                  string NombreUsuarioId,
+                                  string ImpresoraId,
+                                  string DiscoDuroId,
+                                  string MicroProcesadorId,
+                                  string MotherBoardId,
+                                  string MonitorId,
+                                  string TecladoId)
+
+
+
     {
-        try
-        {
-            
-            context.Computadoras.Add(computadora);
+         try
+         {
+
+            List<Computadora> NuevaPC = new List<Computadora>();
+            NuevaPC.Add(new Computadora()
+            {
+                NumInvId = NumInvId,
+                NombreDepartamento = NombreDepartamento.ToUpper(),
+                NombreArea = NombreArea.ToUpper(),
+                Nombre = Nombre.ToUpper(),
+                estado = estado,
+                MemoriaRamId = MemoriaRamId.ToLower(),
+                Mac = Mac.ToLower(),
+                NumIp = NumIp,
+                ImpresoraId = ImpresoraId.ToLower(),
+                NombreUsuarioId = NombreUsuarioId.ToLower(),
+                DiscoDuroId = DiscoDuroId.ToLower(),
+                MicroProcesadorId = MicroProcesadorId.ToLower(),
+                MotherBoardId = MotherBoardId.ToLower(),
+                MonitorId = MonitorId,
+                TecladoId = TecladoId
+            });
+
+
+
+            context.Computadoras.AddRange(NuevaPC);
             context.SaveChanges();
-            return View("Index", computadora);
+            return View("Index", NuevaPC.FirstOrDefault());
 
-        }
-
-        catch (Exception ex)
-        {
-            return View(new ErrorViewModel() { });
-        }
+         }
+         catch (Exception ex)
+         {
+             return View(new ErrorViewModel() { });
+         }
 
     }
 
@@ -215,15 +253,16 @@ public class ComputadoraController : Controller
 
             return View("TodasComputadoras", buscarPcinact.ToList());
 
-        }else
+        }
+        else
         {
 
-             IEnumerable<Computadora> buscarPcinact = from pc in context.Computadoras
+            IEnumerable<Computadora> buscarPcinact = from pc in context.Computadoras
                                                      where pc.estado == Estado.activo
                                                      select pc;
 
             return View("TodasComputadoras", buscarPcinact.ToList());
-            
+
         }
 
     }

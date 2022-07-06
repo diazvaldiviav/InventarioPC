@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JwoQqGX4me5edvU/PyPb31H/8TWb1Y6O76sPRROH35o=",
+  "Hash": "daiY/THezTm3aJqqN4EnO1AFrb254MSsTz8TRymc5tU=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -68,6 +68,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\buscar.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\computadorab.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/computadorab.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\computadorab.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\Computer.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -102,6 +119,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\DiscoDuro.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\discodurob.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/discodurob.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\discodurob.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\impresora.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -117,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\impresora.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\impresorab.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/impresorab.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\impresorab.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\keyboard.png",
@@ -204,6 +255,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\monitor.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\monitorb.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/monitorb.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\monitorb.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\motherboard.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -219,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\motherboard.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\tecladob.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/tecladob.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\tecladob.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\User.png",

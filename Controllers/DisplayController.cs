@@ -28,13 +28,15 @@ public class DisplayController : Controller
     }
 
     [HttpPost]
-    public IActionResult Crear(Display display)
+    public IActionResult Crear(String NumInvId, String NumSerie, String Marca, Estado estado)
     {
         try
         {
-            context.Displays.Add(display);
+            List<Display> NuevoMonitor = new List<Display>();
+            NuevoMonitor.Add(new Display() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), estado = estado });
+            context.Displays.AddRange(NuevoMonitor);
             context.SaveChanges();
-            return View("Index", display);
+            return View("Index", NuevoMonitor.FirstOrDefault());
         }
         catch (Exception ex)
         {

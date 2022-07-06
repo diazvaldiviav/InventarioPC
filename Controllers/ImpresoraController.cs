@@ -31,13 +31,15 @@ public class ImpresoraController : Controller
 
 
     [HttpPost]
-    public IActionResult Crear(Impresora impresora)
+    public IActionResult Crear(string NumInvId, string NumSerie, string Marca, Estado estado)
     {
         try
         {
-            context.Impresoras.Add(impresora);
+            List<Impresora> NuevaImp = new List<Impresora>();
+            NuevaImp.Add(new Impresora(){NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper()});
+            context.Impresoras.AddRange(NuevaImp);
             context.SaveChanges();
-            return View("Index", impresora);
+            return View("Index", NuevaImp.FirstOrDefault());
 
         }
 
