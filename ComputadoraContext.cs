@@ -74,8 +74,8 @@ public class ComputadoraContext : DbContext
 
 
         List<MemoriaRam> MemoriaRamInit = new List<MemoriaRam>();
-        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "7h7g8f8fke9gtr54t6yac52", Marca = "Kingston", Tecnologia = "DD4", Capacidad = "4gb" });
-        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "67tun7588nd7y7y4t6yac78", Marca = "HyperX", Tecnologia = "DD3", Capacidad = "2gb" });
+        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "7h7g8f8fke9gtr54t6yac52", Marca = "Kingston", Tecnologia = "DD4", Capacidad = "4", estado = Estado.activo });
+        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "67tun7588nd7y7y4t6yac78", Marca = "HyperX", Tecnologia = "DD3", Capacidad = "2" , estado = Estado.activo});
 
         modelBuilder.Entity<MemoriaRam>(memoria =>
         {
@@ -85,7 +85,7 @@ public class ComputadoraContext : DbContext
             memoria.Property(p => p.Tecnologia).IsRequired();
             memoria.Property(p => p.Marca).IsRequired();
             memoria.Property(p => p.Capacidad).IsRequired();
-
+            memoria.Property(p => p.estado).IsRequired();
             memoria.HasData(MemoriaRamInit);
         });
 

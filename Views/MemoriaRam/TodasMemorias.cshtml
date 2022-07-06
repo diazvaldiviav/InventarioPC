@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MemoriaRam>
+@{
+    ViewData["Title"] = "Memorias Ram";
+}
+
+<h1>Todas las memorias ram</h1>
+
+<div class = "table-responsive-sm">
+  <a asp-controller="MemoriaRam" asp-action="Crear" class= "btn-info btn-sm">Crear</a>
+  <a asp-controller="MemoriaRam" asp-action="Editar" class="btn-info btn-sm">Editar</a>
+  <a asp-controller="MemoriaRam" asp-action="Borrar" class="btn-info btn-sm">Borrar</a>
+  <a asp-controller="MemoriaRam" asp-action="BuscarSerie" class="btn-info btn-sm">Buscar por numero de serie</a>
+  <a asp-controller="MemoriaRam" asp-action="BuscarCap" class="btn-info btn-sm">Buscar por capacidad</a>
+  <a asp-controller="MemoriaRam" asp-action="BuscarMarca" class="btn-info btn-sm">Buscar por Marca</a>
+<table class="table table-bordered table-info" >
+  <thead>
+    <tr>
+      <th scope="col">Numero de serie</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Capacidad</th>
+      <th scope="col">Tecnologia</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (var obj in Model)
+    {
+      <tr>
+        <td>@obj.NumSerieId</td>
+        <td>@obj.Marca</td>
+        <td>@obj.Capacidad</td>
+        <td>@obj.Tecnologia</td> 
+        <td>@obj.estado</td> 
+      </tr>
+    }
+
+  </tbody>
+</table>
+</div>

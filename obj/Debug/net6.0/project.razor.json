@@ -16298,6 +16298,11 @@
   "RootNamespace": "ProyectoInventarioASP",
   "Documents": [
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\Crear.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarUser.cshtml",
       "TargetPath": "Views\\Computadora\\BuscarUser.cshtml",
       "FileKind": "mvc"
@@ -16338,6 +16343,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\Privacy.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarUeb.cshtml",
       "TargetPath": "Views\\Computadora\\BuscarUeb.cshtml",
       "FileKind": "mvc"
@@ -16358,6 +16368,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\BuscarCap.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\BuscarCap.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarInv.cshtml",
       "TargetPath": "Views\\Computadora\\BuscarInv.cshtml",
       "FileKind": "mvc"
@@ -16368,13 +16383,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\Borrar.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\TodasComputadoras.cshtml",
       "TargetPath": "Views\\Computadora\\TodasComputadoras.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Editar.cshtml",
       "TargetPath": "Views\\Display\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\TodasMemorias.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\TodasMemorias.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16385,6 +16415,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Index.cshtml",
       "TargetPath": "Views\\Computadora\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\Editar.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\Editar.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16473,6 +16508,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\Index.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\BuscarMarca.cshtml",
       "TargetPath": "Views\\Impresora\\BuscarMarca.cshtml",
       "FileKind": "mvc"
@@ -16515,6 +16555,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Borrar.cshtml",
       "TargetPath": "Views\\DiscoDuro\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro copy\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\DiscoDuro copy\\BuscarSerie.cshtml",
       "FileKind": "mvc"
     },
     {
