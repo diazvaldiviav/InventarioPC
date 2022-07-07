@@ -96,29 +96,19 @@ public class DiscoDuroController : Controller
     {
         try
         {
-            IEnumerable<DiscoDuro> BuscarDisco = from disco in context.DiscosDuro
-                                                 where disco.NumSerieId == NumSerieId
-                                                 select disco;
 
+            List<DiscoDuro> BuscarDisco = new List<DiscoDuro>(); 
 
-            BuscarDisco.Marca = Marca;
-            BuscarDisco.TipoConexion = TipoConexion;
-            BuscarDisco.Capacidad = Capacidad;
-            BuscarDisco.estado = estado;
+            BuscarDisco.Add(new DiscoDuro() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Capacidad = Capacidad, TipoConexion = TipoConexion.ToUpper(), estado = estado});
 
-            IEnumerable<DiscoDuro> NuevoDisco = new IEnumerable<DisoDuro>();
-            NuevoDisco.AddRange(BuscarDisco);
-
-            context.DiscosDuro.UpdateRange(NuevoDisco);
+            context.DiscosDuro.UpdateRange(BuscarDisco);
             context.SaveChanges();
             return View("TodosDiscosDuros", context.DiscosDuro);
         }
         catch (Exception ex)
         {
-
             return View(ex.Message);
         }
-
     }
 
     public IActionResult BuscarSerie()

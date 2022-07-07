@@ -79,11 +79,13 @@ public class TecladoController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(Teclado teclado)
+    public IActionResult Editar(String NumInvId, String NumSerie, String Marca, string TipoConexion, Estado estado)
     {
         try
         {
-            context.Teclados.UpdateRange(teclado);
+             List<Teclado> NuevoTeclado = new List<Teclado>();
+            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion, estado = estado });
+            context.Teclados.UpdateRange(NuevoTeclado);
             context.SaveChanges();
             return View("TodosTeclados", context.Teclados);
         }

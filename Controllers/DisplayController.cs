@@ -78,18 +78,20 @@ public class DisplayController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(Display display)
+    public IActionResult Editar(String NumInvId, String NumSerie, String Marca, Estado estado)
     {
         try
         {
-            context.Displays.UpdateRange(display);
+            List<Display> NuevoMonitor = new List<Display>();
+            NuevoMonitor.Add(new Display() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), estado = estado });
+            context.Displays.UpdateRange(NuevoMonitor);
             context.SaveChanges();
             return View("TodosMonitores", context.Displays);
         }
         catch (Exception ex)
         {
 
-            return View(new ErrorViewModel { });
+            return View(ex.Message);
         }
 
     }

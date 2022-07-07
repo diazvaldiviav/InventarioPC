@@ -58,8 +58,8 @@ public class ComputadoraController : Controller
 
 
     {
-         try
-         {
+        try
+        {
 
             List<Computadora> NuevaPC = new List<Computadora>();
             NuevaPC.Add(new Computadora()
@@ -87,11 +87,11 @@ public class ComputadoraController : Controller
             context.SaveChanges();
             return View("Index", NuevaPC.FirstOrDefault());
 
-         }
-         catch (Exception ex)
-         {
-             return View(new ErrorViewModel() { });
-         }
+        }
+        catch (Exception ex)
+        {
+            return View(new ErrorViewModel() { });
+        }
 
     }
 
@@ -137,18 +137,51 @@ public class ComputadoraController : Controller
 
 
     [HttpPost]
-    public IActionResult Edit(Computadora PC)
+    public IActionResult Edit(string NumInvId,
+                                  string NombreDepartamento,
+                                  string NombreArea,
+                                  string Nombre,
+                                  Estado estado,
+                                  string MemoriaRamId,
+                                  string NumIp,
+                                  string Mac,
+                                  string NombreUsuarioId,
+                                  string ImpresoraId,
+                                  string DiscoDuroId,
+                                  string MicroProcesadorId,
+                                  string MotherBoardId,
+                                  string MonitorId,
+                                  string TecladoId)
     {
         try
         {
-            context.Computadoras.UpdateRange(PC);
+            List<Computadora> BuscarPc = new List<Computadora>(); 
+            BuscarPc.Add(new Computadora()
+            {
+                NumInvId = NumInvId,
+                NombreDepartamento = NombreDepartamento.ToUpper(),
+                NombreArea = NombreArea.ToUpper(),
+                Nombre = Nombre.ToUpper(),
+                estado = estado,
+                MemoriaRamId = MemoriaRamId.ToLower(),
+                Mac = Mac.ToLower(),
+                NumIp = NumIp,
+                ImpresoraId = ImpresoraId.ToLower(),
+                NombreUsuarioId = NombreUsuarioId.ToLower(),
+                DiscoDuroId = DiscoDuroId.ToLower(),
+                MicroProcesadorId = MicroProcesadorId.ToLower(),
+                MotherBoardId = MotherBoardId.ToLower(),
+                MonitorId = MonitorId,
+                TecladoId = TecladoId
+            });
+            context.Computadoras.UpdateRange(BuscarPc);
             context.SaveChanges();
             return View("TodasComputadoras", context.Computadoras);
         }
         catch (Exception ex)
         {
 
-            return View(new ErrorViewModel { });
+            return View(ex.Message);
         }
 
     }

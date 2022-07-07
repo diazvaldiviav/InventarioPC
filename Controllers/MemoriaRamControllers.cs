@@ -63,11 +63,13 @@ public class MemoriaRamController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(MemoriaRam memoria)
+    public IActionResult Editar(String NumSerieId, string Marca, string Tecnologia, string Capacidad, Estado estado)
     {
         try
         {
-            context.MemoriasRam.UpdateRange(memoria);
+            List<MemoriaRam> NuevaMemoria = new List<MemoriaRam>();
+            NuevaMemoria.Add(new MemoriaRam() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado });
+            context.MemoriasRam.UpdateRange(NuevaMemoria);
             context.SaveChanges();
             return View("TodasMemorias", context.MemoriasRam);
         }

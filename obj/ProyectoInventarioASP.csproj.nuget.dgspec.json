@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "I:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj": {}
+    "G:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj": {}
   },
   "projects": {
-    "I:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj": {
+    "G:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj",
+        "projectUniqueName": "G:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj",
         "projectName": "ProyectoInventarioASP",
-        "projectPath": "I:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj",
-        "packagesPath": "C:\\Users\\victor.diaz\\.nuget\\packages\\",
-        "outputPath": "I:\\ProyectoInventarioASP\\obj\\",
+        "projectPath": "G:\\ProyectoInventarioASP\\ProyectoInventarioASP.csproj",
+        "packagesPath": "C:\\Users\\Victor\\.nuget\\packages\\",
+        "outputPath": "G:\\ProyectoInventarioASP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\victor.diaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
