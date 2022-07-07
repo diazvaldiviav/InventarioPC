@@ -1,0 +1,27 @@
+﻿@model Teclado
+@{
+    ViewData["Title"] = "Teclado";
+}
+
+
+<h3>Vas a buscar un teclado</h3>
+<div>
+    <h4>Ingresa el estado del teclado</h4>
+    <form method="post">
+       <div class="mb-3">
+        <label asp-for="estado" class="form-label"></label>
+        
+        @Html.DropDownList(
+            "estado", Html.GetEnumSelectList<Estado>(),
+            "Seleccione un estado"
+    
+        )
+    </div>
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+
+    
+
+</div>

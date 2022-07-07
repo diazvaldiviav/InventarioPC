@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Teclado>
+@{
+    ViewData["Title"] = "Teclado";
+}
+
+<h1>Teclado</h1>
+<div class = "table-responsive-sm">
+  <a asp-controller="Display" asp-action="Crear" class= "btn-info btn-sm">Crear</a>
+  <a asp-controller="Display" asp-action="Editar" class="btn-info btn-sm">Editar</a>
+  <a asp-controller="Display" asp-action="Borrar" class="btn-info btn-sm">Borrar</a>
+  <a asp-controller="Display" asp-action="BuscarSerie" class="btn-info btn-sm">Buscar por numero de serie</a>
+  <a asp-controller="Display" asp-action="BuscarEst" class="btn-info btn-sm">Buscar por estado</a>
+  <a asp-controller="Display" asp-action="BuscarMarca" class="btn-info btn-sm">Buscar por Marca</a>
+  <a asp-controller="Display" asp-action="BuscarInv" class="btn-info btn-sm">Buscar por inventario</a>
+<table class="table table-bordered table-info" >
+  <thead>
+    <tr>
+      <th scope="col">Numero de inventario</th>
+      <th scope="col">Numero de serie</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Tipo de conexion</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (var obj in Model)
+    {
+      <tr>
+        <td>@obj.NumInvId</td>
+        <td>@obj.NumSerie</td>
+        <td>@obj.Marca</td>
+        <td>@obj.TipoConexion</td>
+        <td>@obj.estado</td> 
+      </tr>
+    }
+
+  </tbody>
+</table>
+</div>

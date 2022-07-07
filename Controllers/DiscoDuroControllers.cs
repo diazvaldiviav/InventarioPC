@@ -32,26 +32,26 @@ public class DiscoDuroController : Controller
 
 
     [HttpPost]
-    public IActionResult Crear(String NumSerieId, string Marca , string TipoConexion, string Capacidad, Estado estado)
+    public IActionResult Crear(String NumSerieId, string Marca, string TipoConexion, string Capacidad, Estado estado)
     {
-         try
-         {
+        try
+        {
 
-           List<DiscoDuro>NuevoDisco= new List<DiscoDuro>();
-           NuevoDisco.Add(new DiscoDuro(){NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado});
-             
-           context.DiscosDuro.AddRange(NuevoDisco);
-           context.SaveChanges();
+            List<DiscoDuro> NuevoDisco = new List<DiscoDuro>();
+            NuevoDisco.Add(new DiscoDuro() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado });
 
-           return View("Index", NuevoDisco.FirstOrDefault());
+            context.DiscosDuro.AddRange(NuevoDisco);
+            context.SaveChanges();
 
-            
-         }
-         catch (Exception ex)
-         {
+            return View("Index", NuevoDisco.FirstOrDefault());
 
-             return View(new ErrorViewModel() { });
-         }
+
+        }
+        catch (Exception ex)
+        {
+
+            return View(new ErrorViewModel() { });
+        }
 
 
     }
@@ -92,18 +92,31 @@ public class DiscoDuroController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(DiscoDuro discoDuro)
+    public IActionResult Editar(String NumSerieId, string Marca, string TipoConexion, string Capacidad, Estado estado)
     {
         try
         {
-            context.DiscosDuro.UpdateRange(discoDuro);
+            IEnumerable<DiscoDuro> BuscarDisco = from disco in context.DiscosDuro
+                                                 where disco.NumSerieId == NumSerieId
+                                                 select disco;
+
+
+            BuscarDisco.Marca = Marca;
+            BuscarDisco.TipoConexion = TipoConexion;
+            BuscarDisco.Capacidad = Capacidad;
+            BuscarDisco.estado = estado;
+
+            IEnumerable<DiscoDuro> NuevoDisco = new IEnumerable<DisoDuro>();
+            NuevoDisco.AddRange(BuscarDisco);
+
+            context.DiscosDuro.UpdateRange(NuevoDisco);
             context.SaveChanges();
             return View("TodosDiscosDuros", context.DiscosDuro);
         }
         catch (Exception ex)
         {
 
-            return View(new ErrorViewModel { });
+            return View(ex.Message);
         }
 
     }
@@ -167,7 +180,7 @@ public class DiscoDuroController : Controller
     }
 
 
-     public IActionResult BuscarMarca()
+    public IActionResult BuscarMarca()
     {
         return View();
     }
@@ -181,7 +194,7 @@ public class DiscoDuroController : Controller
         try
         {
             IEnumerable<DiscoDuro> buscardisco = from disco in context.DiscosDuro
-                                                 where disco.Marca.Substring(0,3).ToUpper() == marca.Substring(0,3).ToUpper()
+                                                 where disco.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                  select disco;
 
             return View("TodosDiscosDuros", buscardisco.ToList());
