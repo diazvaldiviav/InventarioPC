@@ -33,7 +33,7 @@ public class TecladoController : Controller
         try
         {
             List<Teclado> NuevoTeclado = new List<Teclado>();
-            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion, estado = estado });
+            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToLower(), estado = estado });
             context.Teclados.AddRange(NuevoTeclado);
             context.SaveChanges();
             return View("Index", NuevoTeclado.FirstOrDefault());
@@ -84,7 +84,7 @@ public class TecladoController : Controller
         try
         {
              List<Teclado> NuevoTeclado = new List<Teclado>();
-            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion, estado = estado });
+            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToLower(), estado = estado });
             context.Teclados.UpdateRange(NuevoTeclado);
             context.SaveChanges();
             return View("TodosTeclados", context.Teclados);
@@ -138,7 +138,7 @@ public class TecladoController : Controller
                                                  where tecl.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                  select tecl;
 
-            return View("TodoosTeclados", BuscarTeclado.ToList());
+            return View("TodosTeclados", BuscarTeclado.ToList());
         }
         catch (Exception ex)
         {
