@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "daiY/THezTm3aJqqN4EnO1AFrb254MSsTz8TRymc5tU=",
+  "Hash": "ATOe/0II3CSj8Ly0aOs34N7SpTaY3aghzId8An8ZOWw=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -338,6 +338,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\css\\style.min.css",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "css/style.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.min.css"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\favicon.ico",
