@@ -42,7 +42,7 @@ public class MicroController : Controller
             context.MicroProcesadores.AddRange(NuevoMicro);
             context.SaveChanges();
 
-            return View("Index", NuevaMemoria.FirstOrDefault());
+            return View("Index", NuevoMicro.FirstOrDefault());
 
 
         }
@@ -73,7 +73,7 @@ public class MicroController : Controller
             context.MicroProcesadores.UpdateRange(NuevoMicro);
             context.SaveChanges();
 
-            return View("TodosMicros", NuevaMemoria.FirstOrDefault());
+            return View("TodosMicros", NuevoMicro);
 
 
         }
@@ -104,7 +104,7 @@ public class MicroController : Controller
 
             return View("TodosMicros", context.MicroProcesadores);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
 
             return View(ex.Message);
@@ -120,20 +120,16 @@ public class MicroController : Controller
     }
 
     [HttpPost]
-    public IActionResult BuscarSerie(MicroProcesador micro)
+    public IActionResult BuscarSerie(string NumSerieId)
     {
 
         try
         {
-            List<MicroProcesador> buscadorMicro = new List<MicroProcesador>();
+            IEnumerable<MicroProcesador>BuscarMicro = from micro in context.MicroProcesadores
+                                                      where micro.NumSerieId == NumSerieId
+                                                      select micro;
 
-            var buscarMicro = from micro in context.MicroProcesadores
-                              where micro == micro
-                              select micro;
-
-            buscadorMicro.AddRange(BuscarMicro);
-
-            return View("Index", buscadorMicro.FirstOrDefault());
+            return View("Index", BuscarMicro.FirstOrDefault());
         }
         catch (Exception ex)
         {
@@ -157,7 +153,7 @@ public class MicroController : Controller
 
         try
         {
-            IEnumerable<MemoriaRam> buscarMicro = from micro in context.MicroProcesadores
+            IEnumerable<MicroProcesador> buscarMicro = from micro in context.MicroProcesadores
                                                   where micro.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                   select micro;
 

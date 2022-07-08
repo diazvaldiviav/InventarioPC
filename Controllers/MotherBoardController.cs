@@ -36,7 +36,7 @@ public class MotherBoardController : Controller
         {
 
             List<MotherBoard> NuevaBoard = new List<MotherBoard>();
-            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), estado = estado });
+            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
 
             context.MotherBoards.AddRange(NuevaBoard);
             context.SaveChanges();
@@ -68,12 +68,12 @@ public class MotherBoardController : Controller
         {
 
             List<MotherBoard> NuevaBoard = new List<MotherBoard>();
-            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), estado = estado });
+            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
 
             context.MotherBoards.UpdateRange(NuevaBoard);
             context.SaveChanges();
 
-            return View("TodasBoard", NuevaBoard.FirstOrDefault());
+            return View("TodasBoard", NuevaBoard);
 
 
         }
@@ -104,7 +104,7 @@ public class MotherBoardController : Controller
 
             return View("TodasBoard", context.MotherBoards);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
 
             return View(ex.Message);
@@ -120,7 +120,7 @@ public class MotherBoardController : Controller
     }
 
     [HttpPost]
-    public IActionResult BuscarSerie(MotherBoard board)
+    public IActionResult BuscarSerie(MotherBoard boardp)
     {
 
         try
@@ -128,7 +128,7 @@ public class MotherBoardController : Controller
             List<MotherBoard> buscadorBoard = new List<MotherBoard>();
 
             var buscarBoard = from board in context.MotherBoards
-                              where board == board
+                              where board == boardp
                               select board;
 
             buscadorBoard.AddRange(buscarBoard);
@@ -157,7 +157,7 @@ public class MotherBoardController : Controller
 
         try
         {
-            IEnumerable<MemoriaRam> buscarBoard = from board in context.MotherBoards
+            IEnumerable<MotherBoard> buscarBoard = from board in context.MotherBoards
                                                   where board.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                   select board;
 

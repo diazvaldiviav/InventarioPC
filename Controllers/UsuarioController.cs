@@ -64,7 +64,7 @@ public class UsuarioController : Controller
 
             return View("TodosUsuarios", context.Usuarios);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
 
             return View(ex.Message);
@@ -88,7 +88,7 @@ public class UsuarioController : Controller
             NuevoUsuario.Add(new Usuario() { NombreUsuarioId = NombreUsuarioId.ToLower(), NombreCompleto = NombreCompleto.ToUpper(), NombreDepartamento = NombreDepartamento.ToUpper(), NombreArea = NombreArea.ToUpper() });
             context.Usuarios.UpdateRange(NuevoUsuario);
             context.SaveChanges();
-            return View("Index", context.Usuarios());
+            return View("Index", context.Usuarios.FirstOrDefault());
         }
         catch (Exception ex)
         {
