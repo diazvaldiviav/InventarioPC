@@ -1,0 +1,21 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Usuario";
+}
+
+<h2>Buscar usuario</h2>
+
+<h3>Ingrese el nombre de usuario que desea buscar</h3>
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="NombreUsuarioId" class="form-label"></label>
+            <input asp-for="NombreUsuarioId" required placeholder="Ejemplo: juan.perez" class="form-control" />
+        </div>
+
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+
+</div>

@@ -1,0 +1,20 @@
+﻿@model Usuario
+@{
+    ViewData["Title"] = "Usuario";
+}
+
+<h2>Buscar usuario por departamento</h2>
+
+<h3>Ingrese el nombre del area que desea buscar</h3>
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="NombreArea" class="form-label"></label>
+            <input asp-for="NombreArea" required placeholder="Ejemplo: Direccion economica" class="form-control" />
+        </div>
+
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+</div>
