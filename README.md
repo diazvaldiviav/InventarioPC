@@ -1,3 +1,3 @@
 # InventarioPC
 
-##Proyecto para llevar un sistema de inventario de computadoras
+## Proyecto para llevar un sistema de inventario de computadoras
