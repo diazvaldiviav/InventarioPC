@@ -207,8 +207,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtb3JpYVJhbVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/MemoriaRam/TodasMemorias.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtb3JpYVJhbVxUb2Rhc01lbW9yaWFzLmNzaHRtbA==
+[G:/ProyectoInventarioASP/Views/MemoriaRam/TodasMemoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtb3JpYVJhbVxUb2Rhc01lbW9yaWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Micro/Borrar.cshtml]
