@@ -1,0 +1,25 @@
+﻿@model MicroProcesador
+@{
+    ViewData["Title"] = "Micro";
+}
+
+
+
+<h2>Buscar micro</h2>
+
+<h3>Ingrese el numero de serie del micro que desea buscar</h3>
+<div>
+    <form method="post">
+    <div>
+        <label asp-for="NumSerieId" class="form-label"></label>
+        <input asp-for="NumSerieId"  required placeholder="Ejemplo: 6f77xhx7x7x3ed" class="form-control"/>
+    </div>
+  
+
+    <input type="submit" value = "Buscar"/>
+</form>
+    
+
+
+
+</div>

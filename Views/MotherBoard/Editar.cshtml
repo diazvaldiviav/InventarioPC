@@ -1,0 +1,26 @@
+﻿@model MotherBoard
+@{
+    ViewData["Title"] = "Board";
+}
+
+
+<h1>Inserta los datos de la board a editar</h1>
+<Form method="post">
+  <div class="mb-3">
+    <label asp-for="NumSerieId" class="form-label"></label>
+    <input asp-for="NumSerieId" type="text" required placeholder="Ejemplo: 6r6f6f784uj8" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Marca" class="form-label"></label>
+    <input asp-for="Marca" type="text" required placeholder="Ejemplo: Asus" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="estado" class="form-label"></label>
+
+    @Html.DropDownList(
+    "estado", Html.GetEnumSelectList<Estado>(),
+    "Seleccione un estado"
+    )
+  </div>
+  <input type="submit" value="Crear">
+</Form>
