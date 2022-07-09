@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace ProyectoInventarioASP.Models.Models.net.Controllers;
 
 
+
 public class ComputadoraController : Controller
 {
 
@@ -15,20 +16,20 @@ public class ComputadoraController : Controller
     }
 
 
-//Vista principal de la busqueda
+    //Vista principal de la busqueda
     public IActionResult Index()
     {
         return View(context.Computadoras.FirstOrDefault());
     }
 
-//Interaccion con el formulario de busqueda a travez del metodo post
+    //Interaccion con el formulario de busqueda a travez del metodo post
     [HttpPost]
-                             //pasamos el inv primero como parametro
+    //pasamos el inv primero como parametro
     public IActionResult Index(string NumInvId)
     {
         //aqui buscamos el id a traves del contexto
         var validacion = context.Computadoras.Find(NumInvId);
-//valido el dato que me pasaron como parametro es null si no es null pues lo que nos entraron fue el id
+        //valido el dato que me pasaron como parametro es null si no es null pues lo que nos entraron fue el id
         if (validacion != null)
         {
             //si no es null hacemos la consulta a la base de datos buscando el id
@@ -36,11 +37,12 @@ public class ComputadoraController : Controller
                              where pc.NumInvId == NumInvId
                              select pc;
 
-          //aqui devolvemos nuestro resultado a la vista
+            //aqui devolvemos nuestro resultado a la vista
             return View(buscadorPC.FirstOrDefault());
         }
         else
         {
+            //validacion del nombre
             IEnumerable<Computadora> BuscarPc = from pc in context.Computadoras
                                                 where pc.Nombre.ToUpper() == NumInvId.ToUpper()
                                                 select pc;
@@ -53,6 +55,7 @@ public class ComputadoraController : Controller
             }
             else
             {
+                //validacion del nombre del departamento
                 IEnumerable<Computadora> BuscarNomDep = from pc in context.Computadoras
                                                         where pc.NombreDepartamento.ToUpper() == NumInvId.ToUpper()
                                                         select pc;
@@ -65,6 +68,7 @@ public class ComputadoraController : Controller
                 }
                 else
                 {
+                    //validacion del nombre area
                     IEnumerable<Computadora> BuscarNomArea = from pc in context.Computadoras
                                                              where pc.NombreArea.ToUpper() == NumInvId.ToUpper()
                                                              select pc;
@@ -78,6 +82,7 @@ public class ComputadoraController : Controller
 
                     else
                     {
+                        //validacion del nombre del usuario
                         IEnumerable<Computadora> BuscarNomUsuario = from pc in context.Computadoras
                                                                     where pc.NombreUsuarioId.ToLower() == NumInvId.ToLower()
                                                                     select pc;
@@ -87,6 +92,62 @@ public class ComputadoraController : Controller
                         if (validacionNomUsua.Length != 0)
                         {
                             return View(BuscarNomUsuario.FirstOrDefault());
+                        }
+                        else
+                        {
+                            var BuscarMem = from mem in context.MemoriasRam
+                                            where mem.Capacidad == NumInvId
+                                            select mem.NumSerieId;
+
+
+                            var RamString = BuscarMem.ToArray();
+
+                            if (RamString.Length != 0)
+                            {
+                                List<Computadora> NuevaLista = new List<Computadora>();
+
+                                for (int i = 0; i < RamString.Length; i++)
+                                {
+                                    var JoinPcRam = from pc in context.Computadoras
+                                                    join ram in context.MemoriasRam
+                                                    on pc.MemoriaRamId equals ram.NumSerieId
+                                                    where pc.MemoriaRamId == RamString[i]
+                                                    select pc;
+
+                                    NuevaLista.AddRange(JoinPcRam);
+                                }
+
+                                return View("TodasComputadoras", NuevaLista);
+
+
+                            }
+                            else
+                            {
+                                var BuscarMemTec = from mem in context.MemoriasRam
+                                                   where mem.Tecnologia.ToUpper() == NumInvId.ToUpper()
+                                                   select mem.NumSerieId;
+
+                                var RamStringTec = BuscarMemTec.ToArray();
+
+                                if(RamStringTec.Length != 0)
+                                {
+                                    List<Computadora> NuevaListaTec = new List<Computadora>();
+
+                                    for (int i = 0; i < RamStringTec.Length; i++)
+                                    {
+                                        var JoinPcRamTec = from pc in context.Computadoras
+                                                           join ram in context.MemoriasRam
+                                                           on pc.MemoriaRamId equals ram.NumSerieId
+                                                           where pc.MemoriaRamId == RamStringTec[i]
+                                                           select pc;
+
+                                        NuevaListaTec.AddRange(JoinPcRamTec);
+                                    }
+
+                                    return View("TodasComputadoras", NuevaListaTec);
+
+                                }
+                            }
                         }
                     }
 
@@ -265,86 +326,8 @@ public class ComputadoraController : Controller
     }
 
 
-    public IActionResult BuscarInv()
-    {
-        return View();
-    }
 
 
-    [HttpPost]
-    public IActionResult BuscarInv(Computadora PC)
-    {
-        try
-        {
-            List<Computadora> buscadorPC = new List<Computadora>();
-
-            var BuscarPC = from pc in context.Computadoras
-                           where pc == PC
-                           select pc;
-
-            buscadorPC.AddRange(BuscarPC);
-
-            return View("Index", buscadorPC.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
-        }
-
-    }
-
-    public IActionResult BuscarUeb()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarUeb(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.Nombre.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
-
-
-    public IActionResult BuscarDep()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarDep(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.NombreDepartamento.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
-
-
-    public IActionResult BuscarUser()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarUser(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.NombreUsuarioId.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
 
     public IActionResult BuscarEst()
     {
@@ -377,9 +360,6 @@ public class ComputadoraController : Controller
         }
 
     }
-
-
-
 
 }
 

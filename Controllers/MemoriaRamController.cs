@@ -20,9 +20,9 @@ public class MemoriaRamController : Controller
         return View(context.MemoriasRam.FirstOrDefault());
     }
 
-    public IActionResult TodasMemorias()
+    public IActionResult TodasMemoria()
     {
-        return View("TodasMemorias", context.MemoriasRam);
+        return View("TodasMemoria", context.MemoriasRam);
     }
 
     public IActionResult Crear()
