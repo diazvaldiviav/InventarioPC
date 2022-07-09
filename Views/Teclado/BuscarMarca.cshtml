@@ -1,0 +1,24 @@
+﻿@model Teclado
+@{
+    ViewData["Title"] = "Teclado";
+}
+
+
+<h2>Buscar teclado</h2>
+
+<h3>Ingrese la marca del teclado que desea buscar</h3>
+<div>
+    <form method="post">
+        <div>
+            <label asp-for="Marca" class="form-label"></label>
+            <input asp-for="Marca" required placeholder="Ejemplo:Acer" class="form-control" />
+        </div>
+
+
+        <input type="submit" value="Buscar" />
+    </form>
+
+
+
+
+</div>

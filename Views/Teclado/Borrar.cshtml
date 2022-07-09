@@ -1,0 +1,23 @@
+﻿@model Teclado
+@{
+    ViewData["Title"] = "Teclado";
+}
+
+<h2>Borrar Teclado</h2>
+
+<h3>Estas Seguro que quieres borrar esto</h3>
+<div>
+    <h4>Ingresa el numero de inventario</h4>
+   <form method="post">
+    <div>
+        <label asp-for="NumInvId" class="form-label"></label>
+        <input asp-for="NumInvId"  required placeholder="Ejemplo: 56884" class="form-control"/>
+    </div>
+  
+
+    <input type="submit" value = "Borrar"/>
+</form>
+
+
+   
+</div>

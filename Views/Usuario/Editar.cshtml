@@ -1,0 +1,27 @@
+﻿@model Usuario
+@{
+  ViewData["Title"] = "Usuario";
+}
+
+<h1>Inserta<strong>el nombre del usuario que desea editar</strong></h1>
+<Form method="post">
+  <div class="mb-3">
+    <label asp-for="NombreUsuarioId" class="form-label"></label>
+    <input asp-for="NombreUsuarioId" type="text" required placeholder="Ejemplo: juan.perez" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="NombreCompleto" class="form-label"></label>
+    <input asp-for="NombreCompleto" type="text" required placeholder="Ejemplo: Juan Perez" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="NombreDepartamento" class="form-label"></label>
+    <input asp-for="NombreDepartamento" type="text" required placeholder="Ejemplo: Finanzas" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="NombreArea" class="form-label"></label>
+    <input asp-for="NombreArea" type="text" required placeholder="Ejemplo: Direccion economica" class="form-control">
+  </div>
+  <input type="submit" value="Editar">
+</Form>

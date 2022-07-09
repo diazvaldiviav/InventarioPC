@@ -44,8 +44,8 @@ public class ComputadoraContext : DbContext
         });
 
         List<MicroProcesador> MicroProcesadorInit = new List<MicroProcesador>();
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c90ac52", Marca = "Intel", Tecnologia = "Core-I-5" });
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c9034rt", Marca = "AMD", Tecnologia = "Core-I-20" });
+        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c90ac52", Marca = "Intel", Tecnologia = "Core-I-5", estado = Estado.activo });
+        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c9034rt", Marca = "AMD", Tecnologia = "Core-I-20", estado = Estado.activo });
 
         modelBuilder.Entity<MicroProcesador>(micro =>
         {
@@ -53,13 +53,14 @@ public class ComputadoraContext : DbContext
             micro.HasKey(p => p.NumSerieId);
             micro.Property(p => p.Marca).IsRequired();
             micro.Property(p => p.Tecnologia).IsRequired();
+            micro.Property(p => p.estado).IsRequired();
 
             micro.HasData(MicroProcesadorInit);
         });
 
         List<Display> DisplayInit = new List<Display>();
-        DisplayInit.Add(new Display() { NumInvId = "7843", NumSerie = "7h7g8f8fke9gtr54t6yac52", Marca = "Acer" });
-        DisplayInit.Add(new Display() { NumInvId = "4321", NumSerie = "7h7g8f8fke956rf67uuj43ed", Marca = "Samsung" });
+        DisplayInit.Add(new Display() { NumInvId = "7843", NumSerie = "7h7g8f8fke9gtr54t6yac52", Marca = "Acer", estado = Estado.activo});
+        DisplayInit.Add(new Display() { NumInvId = "4321", NumSerie = "7h7g8f8fke956rf67uuj43ed", Marca = "Samsung", estado = Estado.activo});
 
         modelBuilder.Entity<Display>(display =>
         {
@@ -67,14 +68,15 @@ public class ComputadoraContext : DbContext
             display.HasKey(p => p.NumInvId);
             display.Property(p => p.Marca).IsRequired();
             display.Property(p => p.NumSerie).IsRequired();
+            display.Property(p => p.estado).IsRequired();
 
             display.HasData(DisplayInit);
         });
 
 
         List<MemoriaRam> MemoriaRamInit = new List<MemoriaRam>();
-        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "7h7g8f8fke9gtr54t6yac52", Marca = "Kingston", Tecnologia = "DD4", Capacidad = "4gb" });
-        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "67tun7588nd7y7y4t6yac78", Marca = "HyperX", Tecnologia = "DD3", Capacidad = "2gb" });
+        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "7h7g8f8fke9gtr54t6yac52", Marca = "Kingston", Tecnologia = "DD4", Capacidad = "4", estado = Estado.activo });
+        MemoriaRamInit.Add(new MemoriaRam() { NumSerieId = "67tun7588nd7y7y4t6yac78", Marca = "HyperX", Tecnologia = "DD3", Capacidad = "2" , estado = Estado.activo});
 
         modelBuilder.Entity<MemoriaRam>(memoria =>
         {
@@ -84,13 +86,13 @@ public class ComputadoraContext : DbContext
             memoria.Property(p => p.Tecnologia).IsRequired();
             memoria.Property(p => p.Marca).IsRequired();
             memoria.Property(p => p.Capacidad).IsRequired();
-
+            memoria.Property(p => p.estado).IsRequired();
             memoria.HasData(MemoriaRamInit);
         });
 
         List<MotherBoard> MotherBoardInit = new List<MotherBoard>();
-        MotherBoardInit.Add(new MotherBoard() { NumSerieId = "7h7g8f8fke964744t6yac12", Marca = "Asus" });
-        MotherBoardInit.Add(new MotherBoard() { NumSerieId = "67tun7588nd7y7y4t6yrf54", Marca = "DELL" });
+        MotherBoardInit.Add(new MotherBoard() { NumSerieId = "7h7g8f8fke964744t6yac12", Marca = "Asus", estado = Estado.activo });
+        MotherBoardInit.Add(new MotherBoard() { NumSerieId = "67tun7588nd7y7y4t6yrf54", Marca = "DELL", estado = Estado.activo });
 
         modelBuilder.Entity<MotherBoard>(board =>
         {
@@ -98,14 +100,15 @@ public class ComputadoraContext : DbContext
 
             board.HasKey(p => p.NumSerieId);
             board.Property(p => p.Marca).IsRequired();
+            board.Property(p => p.estado).IsRequired();
 
             board.HasData(MotherBoardInit);
         });
 
 
         List<Teclado> TecladoInit = new List<Teclado>();
-        TecladoInit.Add(new Teclado() { NumInvId = "6731", NumSerie = "7h7g8f8fke9gtr54t6y67uyh", Marca = "DELL", TipoConexion = "usb" });
-        TecladoInit.Add(new Teclado() { NumInvId = "67344", NumSerie = "67tun7588nd7y7y4t6y45rtg", Marca = "Delton", TipoConexion = "usb" });
+        TecladoInit.Add(new Teclado() { NumInvId = "6731", NumSerie = "7h7g8f8fke9gtr54t6y67uyh", Marca = "DELL", TipoConexion = "usb", estado = Estado.activo });
+        TecladoInit.Add(new Teclado() { NumInvId = "67344", NumSerie = "67tun7588nd7y7y4t6y45rtg", Marca = "Delton", TipoConexion = "usb", estado = Estado.activo });
 
         modelBuilder.Entity<Teclado>(teclado =>
         {
@@ -114,6 +117,7 @@ public class ComputadoraContext : DbContext
             teclado.Property(p => p.NumSerie).IsRequired();
             teclado.Property(p => p.Marca).IsRequired();
             teclado.Property(p => p.TipoConexion).IsRequired();
+            teclado.Property(p => p.estado).IsRequired();
             teclado.HasData(TecladoInit);
         });
 
@@ -155,8 +159,6 @@ public class ComputadoraContext : DbContext
             Mac = "3c4f004f4d43d3",
             NumIp = "172.19.229.111",
             estado = Estado.activo
-
-
 
         });
 

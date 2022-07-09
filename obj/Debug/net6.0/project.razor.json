@@ -16298,13 +16298,73 @@
   "RootNamespace": "ProyectoInventarioASP",
   "Documents": [
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Editar.cshtml",
+      "TargetPath": "Views\\Usuario\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\Micro\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Crear.cshtml",
+      "TargetPath": "Views\\Usuario\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarEst.cshtml",
       "TargetPath": "Views\\Computadora\\BuscarEst.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\TodasBoard.cshtml",
+      "TargetPath": "Views\\MotherBoard\\TodasBoard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Borrar.cshtml",
+      "TargetPath": "Views\\Usuario\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\BuscarArea.cshtml",
+      "TargetPath": "Views\\Usuario\\BuscarArea.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\TodosMicros.cshtml",
+      "TargetPath": "Views\\Micro\\TodosMicros.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\Teclado\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Borrar.cshtml",
+      "TargetPath": "Views\\Micro\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Editar.cshtml",
+      "TargetPath": "Views\\Display\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Privacy.cshtml",
       "TargetPath": "Views\\Computadora\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Privacy.cshtml",
+      "TargetPath": "Views\\Usuario\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\Micro\\BuscarSerie.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16318,6 +16378,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Editar.cshtml",
+      "TargetPath": "Views\\Micro\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Index.cshtml",
       "TargetPath": "Views\\Computadora\\Index.cshtml",
       "FileKind": "mvc"
@@ -16328,8 +16393,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\MotherBoard\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Editar.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Index.cshtml",
+      "TargetPath": "Views\\Teclado\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\TodosTeclados.cshtml",
+      "TargetPath": "Views\\Teclado\\TodosTeclados.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16343,8 +16428,48 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\TodosMonitores.cshtml",
+      "TargetPath": "Views\\Display\\TodosMonitores.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\BuscarNom.cshtml",
+      "TargetPath": "Views\\Usuario\\BuscarNom.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Borrar.cshtml",
+      "TargetPath": "Views\\MotherBoard\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Index.cshtml",
+      "TargetPath": "Views\\Usuario\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\BuscarSerie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Shared\\ListaObjetoComputadora.cshtml",
       "TargetPath": "Views\\Shared\\ListaObjetoComputadora.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Crear.cshtml",
+      "TargetPath": "Views\\MotherBoard\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Privacy.cshtml",
+      "TargetPath": "Views\\Micro\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16353,8 +16478,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Crear.cshtml",
+      "TargetPath": "Views\\Micro\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\Index.cshtml",
       "TargetPath": "Views\\Impresora\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Borrar.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Borrar.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16368,8 +16503,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Privacy.cshtml",
+      "TargetPath": "Views\\MotherBoard\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\Editar.cshtml",
       "TargetPath": "Views\\Impresora\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Editar.cshtml",
+      "TargetPath": "Views\\MotherBoard\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Borrar.cshtml",
+      "TargetPath": "Views\\Display\\Borrar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Borrar.cshtml",
+      "TargetPath": "Views\\Teclado\\Borrar.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16398,8 +16553,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarInv.cshtml",
-      "TargetPath": "Views\\Computadora\\BuscarInv.cshtml",
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\MotherBoard\\BuscarSerie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Crear.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Crear.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16413,13 +16573,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\BuscarEst.cshtml",
+      "TargetPath": "Views\\Display\\BuscarEst.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Delete.cshtml",
       "TargetPath": "Views\\Computadora\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Index.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarInv.cshtml",
+      "TargetPath": "Views\\Teclado\\BuscarInv.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16433,8 +16608,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarUeb.cshtml",
-      "TargetPath": "Views\\Computadora\\BuscarUeb.cshtml",
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\Teclado\\BuscarSerie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Crear.cshtml",
+      "TargetPath": "Views\\Teclado\\Crear.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16448,8 +16628,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarUser.cshtml",
-      "TargetPath": "Views\\Computadora\\BuscarUser.cshtml",
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Index.cshtml",
+      "TargetPath": "Views\\MotherBoard\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\BuscarDep.cshtml",
+      "TargetPath": "Views\\Usuario\\BuscarDep.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16458,8 +16643,53 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\BuscarDep.cshtml",
-      "TargetPath": "Views\\Computadora\\BuscarDep.cshtml",
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Privacy.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarCap.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\BuscarCap.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Privacy.cshtml",
+      "TargetPath": "Views\\Display\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Crear.cshtml",
+      "TargetPath": "Views\\Display\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\BuscarMarca.cshtml",
+      "TargetPath": "Views\\Display\\BuscarMarca.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarEst.cshtml",
+      "TargetPath": "Views\\Teclado\\BuscarEst.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\BuscarInv.cshtml",
+      "TargetPath": "Views\\Display\\BuscarInv.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Editar.cshtml",
+      "TargetPath": "Views\\Teclado\\Editar.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\BuscarSerie.cshtml",
+      "TargetPath": "Views\\Display\\BuscarSerie.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Privacy.cshtml",
+      "TargetPath": "Views\\Teclado\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16468,13 +16698,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\TodosUsuarios.cshtml",
+      "TargetPath": "Views\\Usuario\\TodosUsuarios.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Index.cshtml",
       "TargetPath": "Views\\DiscoDuro\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\TodasMemoria.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\TodasMemoria.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Index.cshtml",
+      "TargetPath": "Views\\Micro\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Index.cshtml",
+      "TargetPath": "Views\\Display\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

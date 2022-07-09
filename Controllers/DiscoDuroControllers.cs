@@ -32,13 +32,20 @@ public class DiscoDuroController : Controller
 
 
     [HttpPost]
-    public IActionResult Crear(DiscoDuro discoDuro)
+    public IActionResult Crear(String NumSerieId, string Marca, string TipoConexion, string Capacidad, Estado estado)
     {
         try
         {
-            context.DiscosDuro.Add(discoDuro);
+
+            List<DiscoDuro> NuevoDisco = new List<DiscoDuro>();
+            NuevoDisco.Add(new DiscoDuro() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado });
+
+            context.DiscosDuro.AddRange(NuevoDisco);
             context.SaveChanges();
-            return View("Index", discoDuro);
+
+            return View("Index", NuevoDisco.FirstOrDefault());
+
+
         }
         catch (Exception ex)
         {
@@ -85,20 +92,23 @@ public class DiscoDuroController : Controller
     }
 
     [HttpPost]
-    public IActionResult Editar(DiscoDuro discoDuro)
+    public IActionResult Editar(String NumSerieId, string Marca, string TipoConexion, string Capacidad, Estado estado)
     {
         try
         {
-            context.DiscosDuro.UpdateRange(discoDuro);
+
+            List<DiscoDuro> BuscarDisco = new List<DiscoDuro>(); 
+
+            BuscarDisco.Add(new DiscoDuro() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Capacidad = Capacidad, TipoConexion = TipoConexion.ToUpper(), estado = estado});
+
+            context.DiscosDuro.UpdateRange(BuscarDisco);
             context.SaveChanges();
             return View("TodosDiscosDuros", context.DiscosDuro);
         }
         catch (Exception ex)
         {
-
-            return View(new ErrorViewModel { });
+            return View(ex.Message);
         }
-
     }
 
     public IActionResult BuscarSerie()
@@ -160,7 +170,7 @@ public class DiscoDuroController : Controller
     }
 
 
-     public IActionResult BuscarMarca()
+    public IActionResult BuscarMarca()
     {
         return View();
     }
@@ -174,7 +184,7 @@ public class DiscoDuroController : Controller
         try
         {
             IEnumerable<DiscoDuro> buscardisco = from disco in context.DiscosDuro
-                                                 where disco.Marca.Substring(0,3).ToUpper() == marca.Substring(0,3).ToUpper()
+                                                 where disco.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                  select disco;
 
             return View("TodosDiscosDuros", buscardisco.ToList());
@@ -186,7 +196,6 @@ public class DiscoDuroController : Controller
         }
 
     }
-
 
 
 }

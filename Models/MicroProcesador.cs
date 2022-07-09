@@ -9,6 +9,7 @@ namespace ProyectoInventarioASP.Models
         public String NumSerieId { get; set; }
         public String Marca { get; set; }
         public String Tecnologia { get; set; }
+        public Estado estado { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }

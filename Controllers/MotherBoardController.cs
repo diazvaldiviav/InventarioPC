@@ -18,4 +18,160 @@ public class MotherBoardController : Controller
         return View(context.MotherBoards);
     }
 
+     public IActionResult TodasBoard()
+    {
+        return View("TodasBoard", context.MotherBoards);
+    }
+
+
+     public IActionResult Crear()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult Crear(String NumSerieId, string Marca, Estado estado)
+    {
+        try
+        {
+
+            List<MotherBoard> NuevaBoard = new List<MotherBoard>();
+            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
+
+            context.MotherBoards.AddRange(NuevaBoard);
+            context.SaveChanges();
+
+            return View("Index", NuevaBoard.FirstOrDefault());
+
+
+        }
+        catch (Exception ex)
+        {
+
+            return View(ex.Message);
+        }
+
+
+    }
+
+    public IActionResult Editar()
+    {
+
+        return View();
+    }
+
+
+     [HttpPost]
+    public IActionResult Editar(String NumSerieId, string Marca, Estado estado)
+    {
+        try
+        {
+
+            List<MotherBoard> NuevaBoard = new List<MotherBoard>();
+            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
+
+            context.MotherBoards.UpdateRange(NuevaBoard);
+            context.SaveChanges();
+
+            return View("TodasBoard", NuevaBoard);
+
+
+        }
+        catch (Exception ex)
+        {
+
+            return View(ex.Message);
+        }
+
+
+    }
+
+     public IActionResult Borrar()
+    {
+
+        return View();
+    }
+
+
+    [HttpPost]
+    public IActionResult Borrar(MotherBoard board)
+    {
+        try
+        {
+            context.MotherBoards.Remove(board);
+
+            context.SaveChanges();
+
+            return View("TodasBoard", context.MotherBoards);
+        }
+        catch (Exception ex)
+        {
+
+            return View(ex.Message);
+        }
+
+
+    }
+
+
+    public IActionResult BuscarSerie()
+    {
+        return View("BuscarSerie");
+    }
+
+    [HttpPost]
+    public IActionResult BuscarSerie(MotherBoard boardp)
+    {
+
+        try
+        {
+            List<MotherBoard> buscadorBoard = new List<MotherBoard>();
+
+            var buscarBoard = from board in context.MotherBoards
+                              where board == boardp
+                              select board;
+
+            buscadorBoard.AddRange(buscarBoard);
+
+            return View("Index", buscadorBoard.FirstOrDefault());
+        }
+        catch (Exception ex)
+        {
+
+            return View(ex.Message);
+        }
+
+    }
+
+
+    public IActionResult BuscarMarca()
+    {
+        return View();
+    }
+
+
+
+    [HttpPost]
+    public IActionResult BuscarMarca(string marca)
+    {
+
+        try
+        {
+            IEnumerable<MotherBoard> buscarBoard = from board in context.MotherBoards
+                                                  where board.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
+                                                  select board;
+
+            return View("TodasBoard", buscarBoard.ToList());
+        }
+        catch (Exception ex)
+        {
+
+            return View(ex.Message);
+        }
+
+    }
+
+
+
+
 }

@@ -1,0 +1,23 @@
+﻿@model MotherBoard
+@{
+    ViewData["Title"] = "Board";
+}
+
+<h2>Borrar Board</h2>
+
+<h3>Estas Seguro que quieres borrar esto</h3>
+<div>
+    <h4>Ingresa el numero de serie de la motherboard</h4>
+   <form method="post">
+    <div>
+        <label asp-for="NumSerieId" class="form-label"></label>
+        <input asp-for="NumSerieId"  required placeholder="Ejemplo: 6f77xhx7x7x3ed" class="form-control"/>
+    </div>
+  
+
+    <input type="submit" value = "Borrar"/>
+</form>
+
+
+   
+</div>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Usuario>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>Usuarios</h1>
+<div class = "table-responsive-sm">
+  <a asp-controller="Usuario" asp-action="Crear" class= "btn-info btn-sm">Crear</a>
+  <a asp-controller="Usuario" asp-action="Editar" class="btn-info btn-sm">Editar</a>
+  <a asp-controller="Usuario" asp-action="Borrar" class="btn-info btn-sm">Borrar</a>
+  <a asp-controller="Usuario" asp-action="BuscarNom" class="btn-info btn-sm">Filtrar por nombre de usuario</a>
+  <a asp-controller="Usuario" asp-action="BuscarDep" class="btn-info btn-sm">Filtrar por departamento</a>
+  <a asp-controller="Usuario" asp-action="BuscarArea" class="btn-info btn-sm">Buscar por Area</a>
+<table class="table table-bordered table-info" >
+  <thead>
+    <tr>
+      <th scope="col">Nombre del usuario</th>
+      <th scope="col">Nombre Completo</th>
+      <th scope="col">Nombre del departamento</th>
+      <th scope="col">Nombre del area</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (var obj in Model)
+    {
+      <tr>
+        <td>@obj.NombreUsuarioId</td>
+        <td>@obj.NombreCompleto</td>
+        <td>@obj.NombreDepartamento</td>
+        <td>@obj.NombreArea</td> 
+      </tr>
+    }
+
+  </tbody>
+</table>
+</div>

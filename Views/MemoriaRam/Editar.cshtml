@@ -1,0 +1,35 @@
+﻿@model MemoriaRam
+@{
+    ViewData["Title"] = "Memoria Ram";
+}
+
+
+<h1>Inserta los datos de la nueva memoria ram</h1>
+<Form method="post">
+  <div class="mb-3">
+    <label asp-for="NumSerieId" class="form-label"></label>
+    <input asp-for="NumSerieId" type="text" required placeholder="Ejemplo: 6r6f6f784uj8" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Marca" class="form-label"></label>
+    <input asp-for="Marca" type="text" required placeholder="Ejemplo: KINGSTON" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Tecnologia" class="form-label"></label>
+    <input asp-for="Tecnologia" type="text" required placeholder="Ejemplo: DD4" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Capacidad" class="form-label"></label>
+    <input asp-for="Capacidad" type="text" required placeholder="Ejemplo: 4" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="estado" class="form-label"></label>
+
+    @Html.DropDownList(
+    "estado", Html.GetEnumSelectList<Estado>(),
+    "Seleccione un estado"
+    )
+  </div>
+  <input type="submit" value="Crear">
+</Form>

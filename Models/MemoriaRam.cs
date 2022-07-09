@@ -10,6 +10,7 @@ namespace ProyectoInventarioASP.Models
         public string Capacidad { get; set; }
         public string Tecnologia { get; set; }
 
+        public Estado estado { get; set; }
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }
 
