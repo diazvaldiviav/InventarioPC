@@ -15,24 +15,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = G:\ProyectoInventarioASP
 build_property._RazorSourceGeneratorDebug = 
 
-[G:/ProyectoInventarioASP/Views/Computadora/BuscarDep.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQnVzY2FyRGVwLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/ProyectoInventarioASP/Views/Computadora/BuscarEst.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQnVzY2FyRXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Computadora/BuscarInv.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQnVzY2FySW52LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Computadora/BuscarUeb.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQnVzY2FyVWViLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Computadora/BuscarUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQnVzY2FyVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Computadora/Create.cshtml]

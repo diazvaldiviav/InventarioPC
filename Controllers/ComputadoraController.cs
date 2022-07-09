@@ -15,9 +15,87 @@ public class ComputadoraController : Controller
     }
 
 
+//Vista principal de la busqueda
     public IActionResult Index()
     {
         return View(context.Computadoras.FirstOrDefault());
+    }
+
+//Interaccion con el formulario de busqueda a travez del metodo post
+    [HttpPost]
+                             //pasamos el inv primero como parametro
+    public IActionResult Index(string NumInvId)
+    {
+        //aqui buscamos el id a traves del contexto
+        var validacion = context.Computadoras.Find(NumInvId);
+//valido el dato que me pasaron como parametro es null si no es null pues lo que nos entraron fue el id
+        if (validacion != null)
+        {
+            //si no es null hacemos la consulta a la base de datos buscando el id
+            var buscadorPC = from pc in context.Computadoras
+                             where pc.NumInvId == NumInvId
+                             select pc;
+
+          //aqui devolvemos nuestro resultado a la vista
+            return View(buscadorPC.FirstOrDefault());
+        }
+        else
+        {
+            IEnumerable<Computadora> BuscarPc = from pc in context.Computadoras
+                                                where pc.Nombre.ToUpper() == NumInvId.ToUpper()
+                                                select pc;
+
+            var validacionNombre = BuscarPc.ToArray();
+
+            if (validacionNombre.Length != 0)
+            {
+                return View(BuscarPc.FirstOrDefault());
+            }
+            else
+            {
+                IEnumerable<Computadora> BuscarNomDep = from pc in context.Computadoras
+                                                        where pc.NombreDepartamento.ToUpper() == NumInvId.ToUpper()
+                                                        select pc;
+
+                var validacionNomDep = BuscarNomDep.ToArray();
+
+                if (validacionNomDep.Length != 0)
+                {
+                    return View("TodasComputadoras", BuscarNomDep.ToList());
+                }
+                else
+                {
+                    IEnumerable<Computadora> BuscarNomArea = from pc in context.Computadoras
+                                                             where pc.NombreArea.ToUpper() == NumInvId.ToUpper()
+                                                             select pc;
+
+                    var validacionNomArea = BuscarNomArea.ToArray();
+
+                    if (validacionNomArea.Length != 0)
+                    {
+                        return View("TodasComputadoras", BuscarNomArea.ToList());
+                    }
+
+                    else
+                    {
+                        IEnumerable<Computadora> BuscarNomUsuario = from pc in context.Computadoras
+                                                                    where pc.NombreUsuarioId.ToLower() == NumInvId.ToLower()
+                                                                    select pc;
+
+                        var validacionNomUsua = BuscarNomUsuario.ToArray();
+
+                        if (validacionNomUsua.Length != 0)
+                        {
+                            return View(BuscarNomUsuario.FirstOrDefault());
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+        return View();
     }
 
 
@@ -155,7 +233,7 @@ public class ComputadoraController : Controller
     {
         try
         {
-            List<Computadora> BuscarPc = new List<Computadora>(); 
+            List<Computadora> BuscarPc = new List<Computadora>();
             BuscarPc.Add(new Computadora()
             {
                 NumInvId = NumInvId,
