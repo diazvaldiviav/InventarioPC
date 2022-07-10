@@ -97,19 +97,25 @@ public class ComputadoraController : Controller
                             {
                                 return View(BuscarNomUsuario.FirstOrDefault());
                             }
+                            //Aqui comienzo a filtrar a travez de las relaciones de otras tablas
+                            //Comienzo validando la memoria Ram a travez del id y la tecnologia
                             else
                             {
+                                //Comienzo por la capacidad
+                                //Selecciono el id a travez de la Capacidad
                                 var BuscarMem = from mem in context.MemoriasRam
                                                 where mem.Capacidad == NumInvId
                                                 select mem.NumSerieId;
 
-
+                                //Paso el id o los ids que obtengo a un array
                                 var RamString = BuscarMem.ToArray();
 
+                                //valido que el array tenga algo
                                 if (RamString.Length != 0)
                                 {
+                                    
                                     List<Computadora> NuevaLista = new List<Computadora>();
-
+                                     //si el array tiene algun objeto lo recorro para iterar por cada objeto 
                                     for (int i = 0; i < RamString.Length; i++)
                                     {
                                         var JoinPcRam = from pc in context.Computadoras
@@ -117,10 +123,10 @@ public class ComputadoraController : Controller
                                                         on pc.MemoriaRamId equals ram.NumSerieId
                                                         where pc.MemoriaRamId == RamString[i]
                                                         select pc;
-
+                                    //guardamos los objetos en una lista creada anteriormente
                                         NuevaLista.AddRange(JoinPcRam);
                                     }
-
+                                    //aqui le muestro el resultado de la lista a la vista
                                     return View("TodasComputadoras", NuevaLista);
 
 
@@ -151,6 +157,13 @@ public class ComputadoraController : Controller
                                         return View("TodasComputadoras", NuevaListaTec);
 
                                     }
+                                    //A partir de aqui comenzare a validar por disco duro
+                                    //por capacidad y tecnologia al igual que la Ram 
+                                    else
+                                    {
+                                        
+                                        
+                                    }
                                 }
                             }
                         }
@@ -163,7 +176,7 @@ public class ComputadoraController : Controller
         }
         catch (Exception ex)
         {
-           return View(); 
+            return View();
         }
 
         return View();
