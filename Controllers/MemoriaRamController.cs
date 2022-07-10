@@ -71,7 +71,7 @@ public class MemoriaRamController : Controller
             NuevaMemoria.Add(new MemoriaRam() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), Capacidad = Capacidad.ToUpper(), estado = estado });
             context.MemoriasRam.UpdateRange(NuevaMemoria);
             context.SaveChanges();
-            return View("TodasMemorias", context.MemoriasRam);
+            return View("TodasMemoria", context.MemoriasRam);
         }
         catch (Exception ex)
         {
@@ -99,7 +99,7 @@ public class MemoriaRamController : Controller
 
             context.SaveChanges();
 
-            return View("TodasMemorias", context.MemoriasRam);
+            return View("TodasMemoria", context.MemoriasRam);
         }
         catch (Exception)
         {
@@ -159,7 +159,7 @@ public class MemoriaRamController : Controller
                                                     where memory.Capacidad == capacidad
                                                     select memory;
 
-            return View("TodasMemorias", buscarMemoria.ToList());
+            return View("TodasMemoria", buscarMemoria.ToList());
         }
         catch (Exception ex)
         {
@@ -187,7 +187,7 @@ public class MemoriaRamController : Controller
                                                     where memory.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
                                                     select memory;
 
-            return View("TodasMemorias", buscarMemoria.ToList());
+            return View("TodasMemoria", buscarMemoria.ToList());
         }
         catch (Exception ex)
         {
