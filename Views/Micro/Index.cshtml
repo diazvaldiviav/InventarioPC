@@ -1,13 +1,49 @@
-﻿@model MicroProcesador
+@model IEnumerable<ProyectoInventarioASP.Models.MicroProcesador>
+
 @{
-    ViewData["Title"] = "Microprocesador";
+    ViewData["Title"] = "Index";
 }
 
-<h1>MicroProcesador</h1>
+<h1>Index</h1>
 
-<p>Numero de serie: @Model.NumSerieId</p>
-<p>Marca: @Model.Marca</p>
-<p>Tecnologia: @Model.Tecnologia</p>
-<p>Estado: @Model.estado</p>
-
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tecnologia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tecnologia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NumSerieId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NumSerieId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NumSerieId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

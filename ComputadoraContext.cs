@@ -44,8 +44,8 @@ public class ComputadoraContext : DbContext
         });
 
         List<MicroProcesador> MicroProcesadorInit = new List<MicroProcesador>();
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c90ac52", Marca = "Intel", Tecnologia = "Core-I-5", estado = Estado.activo });
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c9034rt", Marca = "AMD", Tecnologia = "Core-I-20", estado = Estado.activo });
+        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c90ac52", Marca = "Intel", Tecnologia = "CoreI3-9", estado = Estado.activo });
+        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c9034rt", Marca = "AMD", Tecnologia = "coreI5-4", estado = Estado.activo });
 
         modelBuilder.Entity<MicroProcesador>(micro =>
         {

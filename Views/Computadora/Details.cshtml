@@ -1,12 +1,11 @@
 @model ProyectoInventarioASP.Models.Computadora
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Delete</h1>
+<h1>Details</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Computadora</h4>
     <hr />
@@ -96,10 +95,8 @@
             @Html.DisplayFor(model => model.Usuario.NombreUsuarioId)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="NumInvId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.NumInvId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>

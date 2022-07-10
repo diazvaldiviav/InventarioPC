@@ -1,79 +1,98 @@
-﻿@model Computadora
+@model ProyectoInventarioASP.Models.Computadora
+
 @{
-    ViewData["Title"] = "Computadora";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Inserta los datos de la nueva PC</h1>
-<Form method="post">
-    <div class="mb-3">
-      <label asp-for="NumInvId" class="form-label"></label>
-      <input asp-for="NumInvId" type="text" required placeholder="Ejemplo: 4567" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="NombreDepartamento" class="form-label"></label>
-      <input asp-for="NombreDepartamento" type="text" required placeholder="Ejemplo: Economia" class="form-control" >
-    </div>
-    <div class="mb-3">
-      <label asp-for="NombreArea" class="form-label"></label>
-      <input asp-for="NombreArea" type="text" required placeholder="Ejemplo: UEB Taguasco" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="Nombre" class="form-label"></label>
-      <input asp-for="Nombre" type="text" required placeholder="Ejemplo: TAG-ECO-CONT" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="MemoriaRamId" class="form-label"></label>
-      <input asp-for="MemoriaRamId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="Mac" class="form-label"></label>
-      <input asp-for="Mac" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="NumIp"></label>
-      <input asp-for="NumIp" type="text" required placeholder="Ejemplo: 172.19.228.10" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="ImpresoraId" class="form-label"></label>
-      <input asp-for="ImpresoraId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="NombreUsuarioId" class="form-label"></label>
-      <input asp-for="NombreUsuarioId" type="text" required placeholder="Ejemplo: juan.perez" class="form-control">
-    </div>
-    <div class="mb-3"> 
-      <label asp-for="DiscoDuroId" class="form-label"></label>
-      <input asp-for="DiscoDuroId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="MicroProcesadorId" class="form-label"></label>
-      <input asp-for="MicroProcesadorId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="MotherBoardId" class="form-label"></label>
-      <input asp-for="MotherBoardId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="MonitorId" class="form-label"></label>
-      <input asp-for="MonitorId" type="text" required placeholder="Ejemplo: d5d5d5373d773j555" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label asp-for="TecladoId" class="form-label"></label>
-      <input asp-for="TecladoId" type="text" required placeholder="Ejemplo: 4574" class="form-control">
-    </div>
+<h1>Create</h1>
 
-     <div class="mb-3">
-        <label asp-for="estado" class="form-label"></label>
-        
-        @Html.DropDownList(
-            "estado", Html.GetEnumSelectList<Estado>(),
-            "Seleccione un estado"
-    
-        )
+<h4>Computadora</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumInvId" class="control-label"></label>
+                <input asp-for="NumInvId" class="form-control" />
+                <span asp-validation-for="NumInvId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreDepartamento" class="control-label"></label>
+                <input asp-for="NombreDepartamento" class="form-control" />
+                <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreArea" class="control-label"></label>
+                <input asp-for="NombreArea" class="form-control" />
+                <span asp-validation-for="NombreArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="estado" class="form-label"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado"
+                )
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemoriaRamId" class="control-label"></label>
+                <select asp-for="MemoriaRamId" class ="form-control" asp-items="ViewBag.MemoriaRamId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mac" class="control-label"></label>
+                <input asp-for="Mac" class="form-control" />
+                <span asp-validation-for="Mac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumIp" class="control-label"></label>
+                <input asp-for="NumIp" class="form-control" />
+                <span asp-validation-for="NumIp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImpresoraId" class="control-label"></label>
+                <select asp-for="ImpresoraId" class ="form-control" asp-items="ViewBag.ImpresoraId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreUsuarioId" class="control-label"></label>
+                <select asp-for="NombreUsuarioId" class ="form-control" asp-items="ViewBag.NombreUsuarioId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscoDuroId" class="control-label"></label>
+                <select asp-for="DiscoDuroId" class ="form-control" asp-items="ViewBag.DiscoDuroId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MicroProcesadorId" class="control-label"></label>
+                <select asp-for="MicroProcesadorId" class ="form-control" asp-items="ViewBag.MicroProcesadorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotherBoardId" class="control-label"></label>
+                <select asp-for="MotherBoardId" class ="form-control" asp-items="ViewBag.MotherBoardId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonitorId" class="control-label"></label>
+                <select asp-for="MonitorId" class ="form-control" asp-items="ViewBag.MonitorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TecladoId" class="control-label"></label>
+                <select asp-for="TecladoId" class ="form-control" asp-items="ViewBag.TecladoId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <input type="submit" value = "Crear" >
-</Form>
+</div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
