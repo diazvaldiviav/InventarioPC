@@ -257,12 +257,12 @@ namespace ProyectoInventarioASP.Controllers
                                                                             join mon in _context.Displays
                                                                             on pc.MonitorId equals mon.NumInvId
                                                                             where pc.MonitorId == ArrayMon[0]
-                                                                            select pc.MonitorId;
+                                                                            select pc;
 
-                                                            return View("Index", JoinMonPc);
+                                                            return View("Index", JoinMonPc.ToList());
                                                         }
-                                                        
-                                                                              
+
+
                                                     }
                                                 }
                                             }
