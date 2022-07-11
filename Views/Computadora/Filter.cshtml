@@ -1,0 +1,24 @@
+﻿@model Computadora
+@{
+    ViewData["Title"] = "Computadora";
+}
+
+
+<h3>Vas a buscar una Pc</h3>
+<div>
+    <h4>Ingresa el estado de la PC</h4>
+    <form method="post">
+      <div class="form-group">
+                <label asp-for="NumInvId" class="control-label"></label>
+                <input asp-for="NumInvId" class="form-control" />
+                <span asp-validation-for="NumInvId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Filtrar" class="btn btn-primary" />
+            </div>
+    </form>
+
+
+    
+
+</div>
