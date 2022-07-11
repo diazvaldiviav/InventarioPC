@@ -25,13 +25,13 @@ public class MemoriaRamController : Controller
         return View("TodasMemoria", context.MemoriasRam);
     }
 
-    public IActionResult Crear()
+    public IActionResult Create()
     {
         return View();
     }
 
     [HttpPost]
-    public IActionResult Crear(String NumSerieId, string Marca, string Tecnologia, string Capacidad, Estado estado)
+    public IActionResult Create(String NumSerieId, string Marca, string Tecnologia, string Capacidad, Estado estado)
     {
         try
         {
@@ -83,7 +83,7 @@ public class MemoriaRamController : Controller
 
 
 
-    public IActionResult Borrar()
+    public IActionResult Delete()
     {
 
         return View();
@@ -91,7 +91,7 @@ public class MemoriaRamController : Controller
 
 
     [HttpPost]
-    public IActionResult Borrar(MemoriaRam memoria)
+    public IActionResult Delete(MemoriaRam memoria)
     {
         try
         {

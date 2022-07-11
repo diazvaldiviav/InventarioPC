@@ -1,4 +1,4 @@
-@model IEnumerable<ProyectoInventarioASP.Models.Computadora>
+﻿@model IEnumerable<ProyectoInventarioASP.Models.Computadora>
 
 @{
     ViewData["Title"] = "Index";
@@ -62,7 +62,7 @@
                     <td><a asp-controller="MotherBoard" asp-action="TodasBoard"
                         style="text-decoration:none;">@obj.MotherBoardId</a></td>
 
-                    <td><a asp-controller="Micro" asp-action="TodosMicros"
+                    <td><a asp-controller="Micro" asp-action="Index"
                         style="text-decoration:none;">@obj.MicroProcesadorId</a></td>
 
                     <td><a asp-controller="Display" asp-action="TodosMonitores"
