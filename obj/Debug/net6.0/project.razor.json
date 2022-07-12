@@ -16673,11 +16673,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Home\\Index copy.cshtml",
-      "TargetPath": "Views\\Home\\Index copy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarSerie.cshtml",
       "TargetPath": "Views\\Teclado\\BuscarSerie.cshtml",
       "FileKind": "mvc"
@@ -16695,6 +16690,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

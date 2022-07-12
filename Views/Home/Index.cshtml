@@ -1,0 +1,32 @@
+﻿@{
+  ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+  <h1 class="display-4">Welcome</h1>
+</div>
+<div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="~/Assets/Computer.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Computadoras</h5>
+      <p class="card-text">Base de datos de las Pc</p>
+      <a asp-controller="Computadora" asp-action="TodasComputadoras" class="btn btn-primary">Click Aqui</a>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="~/Assets/DiscoDuro.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Discos Duros</h5>
+      <p class="card-text">Base de datos de los discos</p>
+      <a asp-controller="DiscoDuro" asp-action="TodosDiscosDuros" class="btn btn-primary">Click Aqui</a>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="~/Assets/impresora.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Impresoras</h5>
+      <p class="card-text">Base de datos de las impresoras</p>
+      <a asp-controller="Impresora" asp-action="TodasImpresoras" class="btn btn-primary">Click Aqui</a>
+    </div>
+  </div>
+</div>
