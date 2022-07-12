@@ -10,101 +10,101 @@ using ProyectoInventarioASP.Models;
 
 namespace ProyectoInventarioASP.Controllers
 {
-    public class MicroController : Controller
+    public class DiscoDuroController : Controller
     {
         private readonly ComputadoraContext _context;
 
-        public MicroController(ComputadoraContext context)
+        public DiscoDuroController(ComputadoraContext context)
         {
             _context = context;
         }
 
-        // GET: Micro
+        // GET: DiscoDuro
         public async Task<IActionResult> Index()
         {
-              return _context.MicroProcesadores != null ? 
-                          View(await _context.MicroProcesadores.ToListAsync()) :
-                          Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
+              return _context.DiscosDuro != null ? 
+                          View(await _context.DiscosDuro.ToListAsync()) :
+                          Problem("Entity set 'ComputadoraContext.DiscosDuro'  is null.");
         }
 
-        // GET: Micro/Details/5
+        // GET: DiscoDuro/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.MicroProcesadores == null)
+            if (id == null || _context.DiscosDuro == null)
             {
                 return NotFound();
             }
 
-            var microProcesador = await _context.MicroProcesadores
+            var discoDuro = await _context.DiscosDuro
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
-            if (microProcesador == null)
+            if (discoDuro == null)
             {
                 return NotFound();
             }
 
-            return View(microProcesador);
+            return View(discoDuro);
         }
 
-        // GET: Micro/Create
+        // GET: DiscoDuro/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Micro/Create
+        // POST: DiscoDuro/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
+        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,estado")] DiscoDuro discoDuro)
         {
-            if (microProcesador != null)
+            if (discoDuro != null)
             {
-                _context.Add(microProcesador);
+                _context.Add(discoDuro);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(microProcesador);
+            return View(discoDuro);
         }
 
-        // GET: Micro/Edit/5
+        // GET: DiscoDuro/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null || _context.MicroProcesadores == null)
+            if (id == null || _context.DiscosDuro == null)
             {
                 return NotFound();
             }
 
-            var microProcesador = await _context.MicroProcesadores.FindAsync(id);
-            if (microProcesador == null)
+            var discoDuro = await _context.DiscosDuro.FindAsync(id);
+            if (discoDuro == null)
             {
                 return NotFound();
             }
-            return View(microProcesador);
+            return View(discoDuro);
         }
 
-        // POST: Micro/Edit/5
+        // POST: DiscoDuro/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
+        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,TipoConexion,Capacidad,estado")] DiscoDuro discoDuro)
         {
-            if (id != microProcesador.NumSerieId)
+            if (id != discoDuro.NumSerieId)
             {
                 return NotFound();
             }
 
-            if (microProcesador != null)
+            if (discoDuro != null)
             {
                 try
                 {
-                    _context.Update(microProcesador);
+                    _context.Update(discoDuro);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MicroProcesadorExists(microProcesador.NumSerieId))
+                    if (!DiscoDuroExists(discoDuro.NumSerieId))
                     {
                         return NotFound();
                     }
@@ -115,49 +115,49 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(microProcesador);
+            return View(discoDuro);
         }
 
-        // GET: Micro/Delete/5
+        // GET: DiscoDuro/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.MicroProcesadores == null)
+            if (id == null || _context.DiscosDuro == null)
             {
                 return NotFound();
             }
 
-            var microProcesador = await _context.MicroProcesadores
+            var discoDuro = await _context.DiscosDuro
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
-            if (microProcesador == null)
+            if (discoDuro == null)
             {
                 return NotFound();
             }
 
-            return View(microProcesador);
+            return View(discoDuro);
         }
 
-        // POST: Micro/Delete/5
+        // POST: DiscoDuro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.MicroProcesadores == null)
+            if (_context.DiscosDuro == null)
             {
-                return Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
+                return Problem("Entity set 'ComputadoraContext.DiscosDuro'  is null.");
             }
-            var microProcesador = await _context.MicroProcesadores.FindAsync(id);
-            if (microProcesador != null)
+            var discoDuro = await _context.DiscosDuro.FindAsync(id);
+            if (discoDuro != null)
             {
-                _context.MicroProcesadores.Remove(microProcesador);
+                _context.DiscosDuro.Remove(discoDuro);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MicroProcesadorExists(string id)
+        private bool DiscoDuroExists(string id)
         {
-          return (_context.MicroProcesadores?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+          return (_context.DiscosDuro?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
         }
     }
 }

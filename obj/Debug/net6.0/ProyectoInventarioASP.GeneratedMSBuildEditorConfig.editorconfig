@@ -43,32 +43,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/ProyectoInventarioASP/Views/Computadora/TodasComputadoras.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcVG9kYXNDb21wdXRhZG9yYXMuY3NodG1s
+[g:/ProyectoInventarioASP/Views/DiscoDuro/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXGNyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/ProyectoInventarioASP/Views/DiscoDuro/Borrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEJvcnJhci5jc2h0bWw=
+[g:/ProyectoInventarioASP/Views/DiscoDuro/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/ProyectoInventarioASP/Views/DiscoDuro/BuscarCap.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEJ1c2NhckNhcC5jc2h0bWw=
+[g:/ProyectoInventarioASP/Views/DiscoDuro/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/ProyectoInventarioASP/Views/DiscoDuro/BuscarMarca.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEJ1c2Nhck1hcmNhLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/DiscoDuro/BuscarSerie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEJ1c2NhclNlcmllLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/DiscoDuro/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXENyZWFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/DiscoDuro/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEVkaXRhci5jc2h0bWw=
+[g:/ProyectoInventarioASP/Views/DiscoDuro/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [g:/ProyectoInventarioASP/Views/DiscoDuro/Index.cshtml]
@@ -77,10 +65,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [g:/ProyectoInventarioASP/Views/DiscoDuro/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXFByaXZhY3kuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/DiscoDuro/TodosDiscosDuros.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXFRvZG9zRGlzY29zRHVyb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [g:/ProyectoInventarioASP/Views/Display/Borrar.cshtml]
@@ -199,14 +183,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVtb3JpYVJhbVxUb2Rhc01lbW9yaWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[g:/ProyectoInventarioASP/Views/Micro/BuscarMarca.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cQnVzY2FyTWFyY2EuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/Micro/BuscarSerie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cQnVzY2FyU2VyaWUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [g:/ProyectoInventarioASP/Views/Micro/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -229,10 +205,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [g:/ProyectoInventarioASP/Views/Micro/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cUHJpdmFjeS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[g:/ProyectoInventarioASP/Views/Micro/TodosMicros.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cVG9kb3NNaWNyb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [g:/ProyectoInventarioASP/Views/MotherBoard/Borrar.cshtml]

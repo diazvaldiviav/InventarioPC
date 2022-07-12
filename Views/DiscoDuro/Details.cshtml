@@ -1,13 +1,13 @@
-@model ProyectoInventarioASP.Models.MicroProcesador
+@model ProyectoInventarioASP.Models.DiscoDuro
 
 @{
     ViewData["Title"] = "Details";
 }
 <div class="container_center">
-<h1>Details</h1>
+<h1>Detatalles</h1>
 
 <div>
-    <h4>MicroProcesador</h4>
+    <h4>DiscoDuro</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,10 +17,16 @@
             @Html.DisplayFor(model => model.Marca)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tecnologia)
+            Conexion
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tecnologia)
+            @Html.DisplayFor(model => model.TipoConexion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Capacidad)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.estado)
