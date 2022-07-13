@@ -1,18 +1,24 @@
-@model ProyectoInventarioASP.Models.DiscoDuro
+@model ProyectoInventarioASP.Models.Teclado
 
 @{
     ViewData["Title"] = "Edit";
 }
+
 <div class="margin">
 <h1>Edit</h1>
 
-<h4>DiscoDuro</h4>
+<h4>Teclado</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NumSerieId" />
+            <input type="hidden" asp-for="NumInvId" />
+            <div class="form-group">
+                <label asp-for="NumSerie" class="control-label"></label>
+                <input asp-for="NumSerie" class="form-control" />
+                <span asp-validation-for="NumSerie" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
                 <input asp-for="Marca" class="form-control" />
@@ -24,11 +30,6 @@
                 <span asp-validation-for="TipoConexion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Capacidad" class="control-label"></label>
-                <input asp-for="Capacidad" class="form-control" />
-                <span asp-validation-for="Capacidad" class="text-danger"></span>
-            </div>
-             <div class="form-group">
                 <label asp-for="estado" class="form-label"></label>
                 @Html.DropDownList(
                 "estado", Html.GetEnumSelectList<Estado>(),

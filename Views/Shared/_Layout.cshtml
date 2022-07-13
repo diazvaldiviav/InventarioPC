@@ -43,11 +43,11 @@
         <div class="sidebar-body">
             <ul class="sidebar-body-menu">
                 <li>
-                    <a class="active" asp-controller="Computadora" asp-action="Index"><span class="icon home" aria-hidden="true"></span>Pc</a>
+                    <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png" class="icon home">Pc</a>
                 </li>
                 <li>
                     <a class="show-cat-btn" asp-controller="Display" asp-action="Index">
-                        <span class="icon document" aria-hidden="true"></span>Monitor
+                        <img src="~/Assets/monitor.png" class="icon home">Monitor
                         @* <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -64,7 +64,7 @@
                 </li>
                 <li>
                     <a  asp-controller="Micro" asp-action="Index">
-                        <span class="icon folder" aria-hidden="true"></span>Micros
+                        <img src="~/Assets/Micro.png" class="icon home"></span>Micros
                         @* <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -78,7 +78,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" asp-controller="MemoriaRam" asp-action="Index">
-                        <span class="icon image" aria-hidden="true"></span>Memoria
+                       <img src="~/Assets/memoryram.png" class="icon home">Memoria
                         @* <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -94,8 +94,8 @@
                     </ul> *@
                 </li>
                 <li>
-                    <a class="show-cat-btn" asp-controller="Teclado" asp-action="Index">
-                        <span class="icon paper" aria-hidden="true"></span>Teclado
+                    <a  asp-controller="Teclado" asp-action="Index">
+                        <img src="~/Assets/keyboard.png" class="icon home">Teclado
                         @* <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -112,8 +112,14 @@
                 </li>
                 <li>
                     <a asp-controller="DiscoDuro" asp-action="Index">
-                        <span class="icon message" aria-hidden="true"></span>
+                        <img src="~/Assets/DiscoDuro.png" class="icon home">
                         Discos
+                    </a>
+                </li>
+                <li>
+                    <a  asp-controller="Usuario" asp-action="index">
+                        <span class="icon user-3" aria-hidden="true"></span>Users
+                        
                     </a>
                 </li>
             </ul>
