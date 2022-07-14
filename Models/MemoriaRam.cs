@@ -9,10 +9,11 @@ namespace ProyectoInventarioASP.Models
         public string Marca { get; set; }
         public string Capacidad { get; set; }
         public string Tecnologia { get; set; }
-
+        
+        public string ComputadoraId {get; set;} 
         public Estado estado { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<Computadora> Computadora { get; set; }
+
+         public virtual Computadora Computadora{ get; set; }
 
     }
 }

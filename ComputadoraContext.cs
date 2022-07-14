@@ -87,6 +87,7 @@ public class ComputadoraContext : DbContext
             memoria.Property(p => p.Marca).IsRequired();
             memoria.Property(p => p.Capacidad).IsRequired();
             memoria.Property(p => p.estado).IsRequired();
+            memoria.HasOne(p => p.Computadora).WithMany(p => p.Memorias).HasForeignKey(p => p.ComputadoraId);
             memoria.HasData(MemoriaRamInit);
         });
 
@@ -175,7 +176,6 @@ public class ComputadoraContext : DbContext
             PC.Property(p => p.estado).IsRequired();
             PC.HasOne(p => p.DiscoDuro).WithMany(p => p.Computadora).HasForeignKey(p => p.DiscoDuroId);
             PC.HasOne(p => p.Display).WithMany(p => p.Computadora).HasForeignKey(p => p.MonitorId);
-            PC.HasOne(p => p.MemoriaRam).WithMany(p => p.Computadora).HasForeignKey(p => p.MemoriaRamId);
             PC.HasOne(p => p.MicroProcesador).WithMany(p => p.Computadora).HasForeignKey(p => p.MicroProcesadorId);
             PC.HasOne(p => p.Teclado).WithMany(p => p.Computadora).HasForeignKey(p => p.TecladoId);
             PC.HasOne(p => p.Usuario).WithMany(p => p.Computadora).HasForeignKey(p => p.NombreUsuarioId);

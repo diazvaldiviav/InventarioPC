@@ -22,7 +22,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.Computadoras.Include(c => c.DiscoDuro).Include(c => c.Display).Include(c => c.Impresora).Include(c => c.MemoriaRam).Include(c => c.MicroProcesador).Include(c => c.MotherBoard).Include(c => c.Teclado).Include(c => c.Usuario);
+            var computadoraContext = _context.Computadoras.Include(c => c.DiscoDuro).Include(c => c.Display).Include(c => c.Impresora).Include(c => c.MicroProcesador).Include(c => c.MotherBoard).Include(c => c.Teclado).Include(c => c.Usuario);
             return View(await computadoraContext.ToListAsync());
         }
 
@@ -261,7 +261,48 @@ namespace ProyectoInventarioASP.Controllers
 
                                                             return View("Index", JoinMonPc.ToList());
                                                         }
+                                                        else
+                                                        {
+                                                            var buscarimp = from imp in _context.Impresoras
+                                                                            where imp.NumInvId == NumInvId
+                                                                            select imp.NumInvId;
 
+                                                            var ArrayImp = buscarimp.ToArray();
+                                                            if (ArrayImp.Length != 0)
+                                                            {
+                                                                List<Computadora> ListPCImp = new List<Computadora>();
+
+
+                                                                var JoinImpPc = from pc in _context.Computadoras
+                                                                                join imp in _context.Impresoras
+                                                                                on pc.ImpresoraId equals imp.NumInvId
+                                                                                where pc.ImpresoraId == ArrayImp[0]
+                                                                                select pc;
+
+                                                                ListPCImp.AddRange(JoinImpPc);
+
+                                                                return View("Index", ListPCImp);
+                                                            }
+                                                            else
+                                                            {
+
+                                                                List<Computadora> ListTecl = new List<Computadora>();
+                                                                var buscartecl = from tecl in _context.Computadoras
+                                                                                 where tecl.TecladoId == NumInvId
+                                                                                 select tecl;
+
+
+                                                                var ArrTecl = buscartecl.ToArray();
+
+                                                                if (ArrTecl.Length != 0)
+                                                                {
+                                                                    ListTecl.AddRange(buscartecl);
+                                                                    return View("Index", ListTecl);
+                                                                }
+
+
+                                                            }
+                                                        }
 
                                                     }
                                                 }
