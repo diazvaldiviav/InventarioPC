@@ -1,14 +1,42 @@
-﻿@model MemoriaRam
+@model IEnumerable<ProyectoInventarioASP.Models.MemoriaRam>
+
 @{
-    ViewData["Title"] = "Memoria Ram";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Memoria Ram</h1>
+<div class="margin">
+<h1>Memorias Ram</h1>
 
-<p>Numero de serie: @Model.NumSerieId</p>
-<p>Marca: @Model.Marca</p>
-<p>Capacidad:@Model.Capacidad</p>
-<p>Tecnologia: @Model.Tecnologia</p>
-<p>Estado: @Model.estado</p>
-
-
+<p>
+    <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Numero de serie</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Capacidad</th>
+            <th scope="col">Tecnologia</th>
+            <th scope="col">Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.NumSerieId</td>
+                <td>@obj.Marca</td>
+                <td>@obj.Capacidad</td>
+                <td>@obj.Tecnologia</td>
+                <td>@obj.estado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@obj.NumSerieId" class="btn btn-primary btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@obj.NumSerieId" class="btn btn-primary btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@obj.NumSerieId" class="btn btn-danger btn-sm">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

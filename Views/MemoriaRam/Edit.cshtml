@@ -1,35 +1,53 @@
-﻿@model MemoriaRam
+@model ProyectoInventarioASP.Models.MemoriaRam
+
 @{
-    ViewData["Title"] = "Memoria Ram";
+    ViewData["Title"] = "Edit";
 }
+<div class="margin">
+<h1>Editar</h1>
 
+<h4>MemoriaRam</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NumSerieId" />
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidad" class="control-label"></label>
+                <input asp-for="Capacidad" class="form-control" />
+                <span asp-validation-for="Capacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tecnologia" class="control-label"></label>
+                <input asp-for="Tecnologia" class="form-control" />
+                <span asp-validation-for="Tecnologia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado" class="form-label"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado"
+                )
+                <span asp-validation-for="estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
-<h1>Inserta los datos de la nueva memoria ram</h1>
-<Form method="post">
-  <div class="mb-3">
-    <label asp-for="NumSerieId" class="form-label"></label>
-    <input asp-for="NumSerieId" type="text" required placeholder="Ejemplo: 6r6f6f784uj8" class="form-control">
-  </div>
-  <div class="mb-3">
-    <label asp-for="Marca" class="form-label"></label>
-    <input asp-for="Marca" type="text" required placeholder="Ejemplo: KINGSTON" class="form-control">
-  </div>
-  <div class="mb-3">
-    <label asp-for="Tecnologia" class="form-label"></label>
-    <input asp-for="Tecnologia" type="text" required placeholder="Ejemplo: DD4" class="form-control">
-  </div>
-  <div class="mb-3">
-    <label asp-for="Capacidad" class="form-label"></label>
-    <input asp-for="Capacidad" type="text" required placeholder="Ejemplo: 4" class="form-control">
-  </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-  <div class="mb-3">
-    <label asp-for="estado" class="form-label"></label>
-
-    @Html.DropDownList(
-    "estado", Html.GetEnumSelectList<Estado>(),
-    "Seleccione un estado"
-    )
-  </div>
-  <input type="submit" value="Crear">
-</Form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</div>
