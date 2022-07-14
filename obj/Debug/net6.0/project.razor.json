@@ -16403,11 +16403,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarSerie.cshtml",
-      "TargetPath": "Views\\MemoriaRam\\BuscarSerie.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Index.cshtml",
       "TargetPath": "Views\\MotherBoard\\Index.cshtml",
       "FileKind": "mvc"
@@ -16643,11 +16638,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarMarca.cshtml",
-      "TargetPath": "Views\\MemoriaRam\\BuscarMarca.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Delete.cshtml",
       "TargetPath": "Views\\MemoriaRam\\Delete.cshtml",
       "FileKind": "mvc"
@@ -16655,11 +16645,6 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\BuscarDep.cshtml",
       "TargetPath": "Views\\Usuario\\BuscarDep.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\TodasMemoria.cshtml",
-      "TargetPath": "Views\\MemoriaRam\\TodasMemoria.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16678,8 +16663,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\BuscarCap.cshtml",
-      "TargetPath": "Views\\MemoriaRam\\BuscarCap.cshtml",
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Details.cshtml",
+      "TargetPath": "Views\\MemoriaRam\\Details.cshtml",
       "FileKind": "mvc"
     },
     {

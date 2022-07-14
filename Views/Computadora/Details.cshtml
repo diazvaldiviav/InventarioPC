@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div class="margin">
+
 <h1>Details</h1>
 
 <div>
@@ -11,7 +11,7 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-           Departamento
+            @Html.DisplayNameFor(model => model.NombreDepartamento)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NombreDepartamento)
@@ -33,6 +33,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.estado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemoriaRamId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemoriaRamId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Mac)
@@ -59,7 +65,7 @@
             @Html.DisplayFor(model => model.MicroProcesador.NumSerieId)
         </dd>
         <dt class = "col-sm-2">
-            Monitor:
+            @Html.DisplayNameFor(model => model.Display)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Display.NumInvId)
@@ -93,5 +99,4 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.NumInvId">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
 </div>
