@@ -340,7 +340,6 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.DiscoDuro)
                 .Include(c => c.Display)
                 .Include(c => c.Impresora)
-                .Include(c => c.MemoriaRam)
                 .Include(c => c.MicroProcesador)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
