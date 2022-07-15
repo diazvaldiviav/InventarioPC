@@ -195,24 +195,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWljcm9cUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/MotherBoard/Borrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcQm9ycmFyLmNzaHRtbA==
+[G:/ProyectoInventarioASP/Views/MotherBoard/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/MotherBoard/BuscarMarca.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcQnVzY2FyTWFyY2EuY3NodG1s
+[G:/ProyectoInventarioASP/Views/MotherBoard/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/MotherBoard/BuscarSerie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcQnVzY2FyU2VyaWUuY3NodG1s
+[G:/ProyectoInventarioASP/Views/MotherBoard/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/MotherBoard/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcQ3JlYXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/MotherBoard/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcRWRpdGFyLmNzaHRtbA==
+[G:/ProyectoInventarioASP/Views/MotherBoard/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/MotherBoard/Index.cshtml]
@@ -221,10 +217,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/ProyectoInventarioASP/Views/MotherBoard/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcUHJpdmFjeS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/MotherBoard/TodasBoard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyQm9hcmRcVG9kYXNCb2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Shared/Error.cshtml]

@@ -12,102 +12,45 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreDepartamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreArea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MemoriaRamId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mac)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumIp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiscoDuro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MicroProcesador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Display)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Teclado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotherBoard)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Impresora)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
+            <th>Numero de inventario</th>
+            <th>Nombre Area</th>
+            <th>Nombre</th>
+            <th>Mac</th>
+            <th>Numero Ip</th>
+            <th>Numero inv teclado</th>
+            <th>MotherBoardId</th>
+            <th>ImpresoraId</th>
+            <th>UsuarioId</th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreDepartamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreArea)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemoriaRamId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mac)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumIp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiscoDuro.NumSerieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MicroProcesador.NumSerieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Display.NumInvId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Teclado.NumInvId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Impresora.NumInvId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usuario.NombreUsuarioId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NumInvId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NumInvId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NumInvId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumInvId</td>
+                <td>@item.NombreArea</td>
+                <td>@item.Nombre</td>
+                <td>@item.Mac</td>
+                <td>@item.NumIp</td>
+                <td>@item.TecladoId</td>
+                <td>@item.MotherBoardId</td>
+                <td>@item.ImpresoraId</td>
+                <td>@item.NombreUsuarioId</td>
+                <td>@item.estado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.NumInvId">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.NumInvId">Details</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.NumInvId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+

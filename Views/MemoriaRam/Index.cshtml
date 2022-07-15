@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.estado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Computadora)
+                @Html.DisplayNameFor(model => model.MotherBoard)
             </th>
             <th></th>
         </tr>
@@ -46,12 +46,12 @@
                 @Html.DisplayFor(modelItem => item.estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Computadora.NumInvId)
+                @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NumSerieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NumSerieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NumSerieId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.KayNumSerieId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.KayNumSerieId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.KayNumSerieId">Delete</a>
             </td>
         </tr>
 }

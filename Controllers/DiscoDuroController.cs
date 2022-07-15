@@ -22,9 +22,8 @@ namespace ProyectoInventarioASP.Controllers
         // GET: DiscoDuro
         public async Task<IActionResult> Index()
         {
-              return _context.DiscosDuro != null ? 
-                          View(await _context.DiscosDuro.ToListAsync()) :
-                          Problem("Entity set 'ComputadoraContext.DiscosDuro'  is null.");
+            var computadoraContext = _context.DiscosDuro.Include(d => d.motherBoard);
+            return View(await computadoraContext.ToListAsync());
         }
 
         // GET: DiscoDuro/Details/5
@@ -36,6 +35,7 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var discoDuro = await _context.DiscosDuro
+                .Include(d => d.motherBoard)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
             if (discoDuro == null)
             {
@@ -48,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: DiscoDuro/Create
         public IActionResult Create()
         {
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
             return View();
         }
 
@@ -56,14 +57,15 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,estado")] DiscoDuro discoDuro)
+        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
         {
-            if (discoDuro != null)
+            if (ModelState.IsValid)
             {
                 _context.Add(discoDuro);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
             return View(discoDuro);
         }
 
@@ -80,6 +82,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
             return View(discoDuro);
         }
 
@@ -88,14 +91,14 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,TipoConexion,Capacidad,estado")] DiscoDuro discoDuro)
+        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
         {
             if (id != discoDuro.NumSerieId)
             {
                 return NotFound();
             }
 
-            if (discoDuro != null)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -115,6 +118,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
             return View(discoDuro);
         }
 
@@ -127,6 +131,7 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var discoDuro = await _context.DiscosDuro
+                .Include(d => d.motherBoard)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
             if (discoDuro == null)
             {

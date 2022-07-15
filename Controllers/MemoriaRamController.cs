@@ -22,7 +22,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: MemoriaRam
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.MemoriasRam.Include(m => m.Computadora);
+            var computadoraContext = _context.MemoriasRam.Include(m => m.MotherBoard);
             return View(await computadoraContext.ToListAsync());
         }
 
@@ -35,8 +35,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var memoriaRam = await _context.MemoriasRam
-                .Include(m => m.Computadora)
-                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+                .Include(m => m.MotherBoard)
+                .FirstOrDefaultAsync(m => m.KayNumSerieId == id);
             if (memoriaRam == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: MemoriaRam/Create
         public IActionResult Create()
         {
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "NumInvId", "NumInvId");
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,Capacidad,Tecnologia,ComputadoraId,estado")] MemoriaRam memoriaRam)
+        public async Task<IActionResult> Create([Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
         {
             if (memoriaRam != null)
             {
@@ -65,7 +65,7 @@ namespace ProyectoInventarioASP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "NumInvId", "NumInvId", memoriaRam.ComputadoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
             return View(memoriaRam);
         }
 
@@ -82,7 +82,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "NumInvId", "NumInvId", memoriaRam.ComputadoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
             return View(memoriaRam);
         }
 
@@ -91,9 +91,9 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,Capacidad,Tecnologia,ComputadoraId,estado")] MemoriaRam memoriaRam)
+        public async Task<IActionResult> Edit(string id, [Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
         {
-            if (id != memoriaRam.NumSerieId)
+            if (id != memoriaRam.KayNumSerieId)
             {
                 return NotFound();
             }
@@ -107,7 +107,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MemoriaRamExists(memoriaRam.NumSerieId))
+                    if (!MemoriaRamExists(memoriaRam.KayNumSerieId))
                     {
                         return NotFound();
                     }
@@ -118,7 +118,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "NumInvId", "NumInvId", memoriaRam.ComputadoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
             return View(memoriaRam);
         }
 
@@ -131,8 +131,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var memoriaRam = await _context.MemoriasRam
-                .Include(m => m.Computadora)
-                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+                .Include(m => m.MotherBoard)
+                .FirstOrDefaultAsync(m => m.KayNumSerieId == id);
             if (memoriaRam == null)
             {
                 return NotFound();
@@ -162,7 +162,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool MemoriaRamExists(string id)
         {
-          return (_context.MemoriasRam?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+          return (_context.MemoriasRam?.Any(e => e.KayNumSerieId == id)).GetValueOrDefault();
         }
     }
 }

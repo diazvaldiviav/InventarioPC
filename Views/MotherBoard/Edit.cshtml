@@ -1,4 +1,4 @@
-@model ProyectoInventarioASP.Models.MemoriaRam
+@model ProyectoInventarioASP.Models.MotherBoard
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,32 +6,22 @@
 
 <h1>Edit</h1>
 
-<h4>MemoriaRam</h4>
+<h4>MotherBoard</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="KayNumSerieId" />
+            <input type="hidden" asp-for="NumSerieId" />
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
                 <input asp-for="Marca" class="form-control" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Capacidad" class="control-label"></label>
-                <input asp-for="Capacidad" class="form-control" />
-                <span asp-validation-for="Capacidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tecnologia" class="control-label"></label>
-                <input asp-for="Tecnologia" class="form-control" />
-                <span asp-validation-for="Tecnologia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MotherBoardId" class="control-label"></label>
-                <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
-                <span asp-validation-for="MotherBoardId" class="text-danger"></span>
+                <label asp-for="MicroProcesadorId" class="control-label"></label>
+                <select asp-for="MicroProcesadorId" class="form-control" asp-items="ViewBag.MicroProcesadorId"></select>
+                <span asp-validation-for="MicroProcesadorId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="estado" class="control-label"></label>

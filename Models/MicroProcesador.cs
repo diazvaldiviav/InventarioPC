@@ -12,6 +12,6 @@ namespace ProyectoInventarioASP.Models
         public Estado estado { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Computadora> Computadora { get; set; }
+        public virtual ICollection<MotherBoard> MotherBoard { get; set; }
     }
 }

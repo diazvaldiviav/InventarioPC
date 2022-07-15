@@ -1,177 +1,168 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-
-public class MotherBoardController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-  ComputadoraContext context;
-
-    public MotherBoardController(ComputadoraContext context)
+    public class MotherBoardController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-    public IActionResult Index()
-    {
-        return View(context.MotherBoards);
-    }
-
-     public IActionResult TodasBoard()
-    {
-        return View("TodasBoard", context.MotherBoards);
-    }
-
-
-     public IActionResult Crear()
-    {
-      return View();
-    }
-
-    [HttpPost]
-    public IActionResult Crear(String NumSerieId, string Marca, Estado estado)
-    {
-        try
+        public MotherBoardController(ComputadoraContext context)
         {
-
-            List<MotherBoard> NuevaBoard = new List<MotherBoard>();
-            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
-
-            context.MotherBoards.AddRange(NuevaBoard);
-            context.SaveChanges();
-
-            return View("Index", NuevaBoard.FirstOrDefault());
-
-
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            _context = context;
         }
 
-
-    }
-
-    public IActionResult Editar()
-    {
-
-        return View();
-    }
-
-
-     [HttpPost]
-    public IActionResult Editar(String NumSerieId, string Marca, Estado estado)
-    {
-        try
+        // GET: MotherBoard
+        public async Task<IActionResult> Index()
         {
-
-            List<MotherBoard> NuevaBoard = new List<MotherBoard>();
-            NuevaBoard.Add(new MotherBoard() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), estado = estado });
-
-            context.MotherBoards.UpdateRange(NuevaBoard);
-            context.SaveChanges();
-
-            return View("TodasBoard", NuevaBoard);
-
-
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            var computadoraContext = _context.MotherBoards.Include(m => m.Micro);
+            return View(await computadoraContext.ToListAsync());
         }
 
-
-    }
-
-     public IActionResult Borrar()
-    {
-
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Borrar(MotherBoard board)
-    {
-        try
+        // GET: MotherBoard/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-            context.MotherBoards.Remove(board);
+            if (id == null || _context.MotherBoards == null)
+            {
+                return NotFound();
+            }
 
-            context.SaveChanges();
+            var motherBoard = await _context.MotherBoards
+                .Include(m => m.Micro)
+                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            if (motherBoard == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodasBoard", context.MotherBoards);
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            return View(motherBoard);
         }
 
-
-    }
-
-
-    public IActionResult BuscarSerie()
-    {
-        return View("BuscarSerie");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarSerie(MotherBoard boardp)
-    {
-
-        try
+        // GET: MotherBoard/Create
+        public IActionResult Create()
         {
-            List<MotherBoard> buscadorBoard = new List<MotherBoard>();
-
-            var buscarBoard = from board in context.MotherBoards
-                              where board == boardp
-                              select board;
-
-            buscadorBoard.AddRange(buscarBoard);
-
-            return View("Index", buscadorBoard.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId");
+            return View();
         }
 
-    }
-
-
-    public IActionResult BuscarMarca()
-    {
-        return View();
-    }
-
-
-
-    [HttpPost]
-    public IActionResult BuscarMarca(string marca)
-    {
-
-        try
+        // POST: MotherBoard/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
         {
-            IEnumerable<MotherBoard> buscarBoard = from board in context.MotherBoards
-                                                  where board.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
-                                                  select board;
-
-            return View("TodasBoard", buscarBoard.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            if (motherBoard != null)
+            {
+                _context.Add(motherBoard);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
+            return View(motherBoard);
         }
 
+        // GET: MotherBoard/Edit/5
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null || _context.MotherBoards == null)
+            {
+                return NotFound();
+            }
+
+            var motherBoard = await _context.MotherBoards.FindAsync(id);
+            if (motherBoard == null)
+            {
+                return NotFound();
+            }
+            ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
+            return View(motherBoard);
+        }
+
+        // POST: MotherBoard/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
+        {
+            if (id != motherBoard.NumSerieId)
+            {
+                return NotFound();
+            }
+
+            if (motherBoard != null)
+            {
+                try
+                {
+                    _context.Update(motherBoard);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MotherBoardExists(motherBoard.NumSerieId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
+            return View(motherBoard);
+        }
+
+        // GET: MotherBoard/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.MotherBoards == null)
+            {
+                return NotFound();
+            }
+
+            var motherBoard = await _context.MotherBoards
+                .Include(m => m.Micro)
+                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            if (motherBoard == null)
+            {
+                return NotFound();
+            }
+
+            return View(motherBoard);
+        }
+
+        // POST: MotherBoard/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.MotherBoards == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.MotherBoards'  is null.");
+            }
+            var motherBoard = await _context.MotherBoards.FindAsync(id);
+            if (motherBoard != null)
+            {
+                _context.MotherBoards.Remove(motherBoard);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool MotherBoardExists(string id)
+        {
+          return (_context.MotherBoards?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+        }
     }
-
-
-
-
 }

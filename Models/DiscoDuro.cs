@@ -3,15 +3,14 @@ namespace ProyectoInventarioASP.Models;
 
     public class DiscoDuro
     {
-        public String NumSerieId { get; set; }
-        public String Marca { get; set; }
-        public String TipoConexion { get; set; }
-        public String Capacidad { get; set; }
+        public string NumSerieId { get; set; }
+        public string Marca { get; set; }
+        public string TipoConexion { get; set; }
+        public string Capacidad { get; set; }
+        public string MotherBoardId {get; set;}
         public Estado estado { get; set; }
-
-
-        [JsonIgnore]
-        public virtual ICollection<Computadora> Computadora { get; set; }
+         
+        public virtual MotherBoard motherBoard{ get; set; }
     }
 
 

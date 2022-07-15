@@ -58,7 +58,7 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
         {
-            if (microProcesador != null)
+            if (ModelState.IsValid)
             {
                 _context.Add(microProcesador);
                 await _context.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            if (microProcesador != null)
+            if (ModelState.IsValid)
             {
                 try
                 {
