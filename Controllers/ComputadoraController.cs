@@ -22,7 +22,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.Computadoras.Include(c => c.Impresora).Include(c => c.MotherBoard).Include(c => c.Teclado).Include(c => c.Usuario);
+            var computadoraContext = _context.Computadoras.Include(c => c.Impresora).Include(c => c.MotherBoard).Include(c => c.Teclado);
             return View(await computadoraContext.ToListAsync());
         }
 
@@ -38,8 +38,7 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
-                .Include(c => c.Usuario)
-                .FirstOrDefaultAsync(m => m.NumInvId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (computadora == null)
             {
                 return NotFound();
@@ -51,10 +50,9 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora/Create
         public IActionResult Create()
         {
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "NumInvId", "NumInvId");
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "NumInvId", "NumInvId");
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "NombreUsuarioId", "NombreUsuarioId");
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
             return View();
         }
 
@@ -63,18 +61,17 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumInvId,NombreDepartamento,NombreArea,Nombre,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId")] Computadora computadora)
+        public async Task<IActionResult> Create([Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
-            if (ModelState.IsValid)
+            if (computadora != null)
             {
                 _context.Add(computadora);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "NumInvId", "NumInvId", computadora.ImpresoraId);
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "NumInvId", "NumInvId", computadora.TecladoId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "NombreUsuarioId", "NombreUsuarioId", computadora.NombreUsuarioId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
             return View(computadora);
         }
 
@@ -91,10 +88,9 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "NumInvId", "NumInvId", computadora.ImpresoraId);
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "NumInvId", "NumInvId", computadora.TecladoId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "NombreUsuarioId", "NombreUsuarioId", computadora.NombreUsuarioId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
             return View(computadora);
         }
 
@@ -103,14 +99,14 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumInvId,NombreDepartamento,NombreArea,Nombre,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId")] Computadora computadora)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
-            if (id != computadora.NumInvId)
+            if (id != computadora.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (computadora != null)
             {
                 try
                 {
@@ -119,7 +115,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ComputadoraExists(computadora.NumInvId))
+                    if (!ComputadoraExists(computadora.Id))
                     {
                         return NotFound();
                     }
@@ -130,10 +126,9 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "NumInvId", "NumInvId", computadora.ImpresoraId);
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "NumInvId", "NumInvId", computadora.TecladoId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "NombreUsuarioId", "NombreUsuarioId", computadora.NombreUsuarioId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
             return View(computadora);
         }
 
@@ -149,8 +144,7 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
-                .Include(c => c.Usuario)
-                .FirstOrDefaultAsync(m => m.NumInvId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (computadora == null)
             {
                 return NotFound();
@@ -180,7 +174,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool ComputadoraExists(string id)
         {
-          return (_context.Computadoras?.Any(e => e.NumInvId == id)).GetValueOrDefault();
+          return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -3,54 +3,117 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="margin">
+    <h1>Computadoras</h1>
 
-<h1>Index</h1>
+    <p>
+        <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-hover table-border">
+            <thead>
+                <tr>
+                    <th>Numero de inventario</th>
+                    <th>Departamento</th>
+                    <th>Area</th>
+                    <th>Nombre Pc</th>
+                    <th>Sist Operativo</th>
+                    <th>Estado</th>
+                    <th>Mac</th>
+                    <th>Ip</th>
+                    <th>Usuario No</th>
+                    <th>Inventario Impresora</th>
+                    <th>Inventario Teclado</th>
+                    <th>Nombre de usuario</th>
+                    <th>Marca de Board</th>
+                    <th>Capacidad de disco</th>
+                    <th>Conexion de disco</th>
+                    <th>Capacidad de memoria</th>
+                    <th>Tecnologia de memoria</th>
+                    <th>Tecnologia de micro</th>
+                    <th>Teclado No</th>
+                    <th>MotherBoard No</th>
+                    <th>Impresora No</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumInv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreDepartamento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreArea)
+                        </td>
+                        <td id="prueba">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SO)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mac)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumIp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreUsuarioId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImprNumInv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeclNumInv)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MotherBoardMarca)
+                        </td>
+                        <td>
+                            <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
+                            item.DiscoDuroCap)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemoriaRamCap)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MemoriaRamTec)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MicroTecn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Teclado.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Impresora.Id)
+                        </td>
+                        <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
+                        <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Numero de inventario</th>
-            <th>Nombre Area</th>
-            <th>Nombre</th>
-            <th>Mac</th>
-            <th>Numero Ip</th>
-            <th>Numero inv teclado</th>
-            <th>MotherBoardId</th>
-            <th>ImpresoraId</th>
-            <th>UsuarioId</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.NumInvId</td>
-                <td>@item.NombreArea</td>
-                <td>@item.Nombre</td>
-                <td>@item.Mac</td>
-                <td>@item.NumIp</td>
-                <td>@item.TecladoId</td>
-                <td>@item.MotherBoardId</td>
-                <td>@item.ImpresoraId</td>
-                <td>@item.NombreUsuarioId</td>
-                <td>@item.estado</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.NumInvId">Edit</a>
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.NumInvId">Details</a>
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.NumInvId">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

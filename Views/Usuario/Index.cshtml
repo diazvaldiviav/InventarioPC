@@ -1,15 +1,53 @@
-﻿@model Usuario
+@model IEnumerable<ProyectoInventarioASP.Models.Usuario>
+
 @{
-    ViewData["Title"] = "Usuario";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Usuario</h1>
+<h1>Usuarios</h1>
 
-
-<p>Numero de inventario: @Model.NombreUsuarioId</p>
-<p>Nombre completo: @Model.NombreCompleto</p>
-<p>Nombre del departamento: @Model.NombreDepartamento</p>
-<p>Estado: @Model.NombreArea</p>
-
-
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreArea)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreArea)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

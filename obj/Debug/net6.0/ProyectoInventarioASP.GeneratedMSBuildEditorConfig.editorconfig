@@ -31,20 +31,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Computadora/Filter.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcRmlsdGVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/ProyectoInventarioASP/Views/Computadora/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Computadora/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcUHJpdmFjeS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/DiscoDuro/create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXGNyZWF0ZS5jc2h0bWw=
+[G:/ProyectoInventarioASP/Views/DiscoDuro/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/DiscoDuro/Delete.cshtml]
@@ -67,32 +59,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Display/Borrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxCb3JyYXIuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Display/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Display/BuscarEst.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxCdXNjYXJFc3QuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Display/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Display/BuscarInv.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxCdXNjYXJJbnYuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Display/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Display/BuscarMarca.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxCdXNjYXJNYXJjYS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Display/BuscarSerie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxCdXNjYXJTZXJpZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Display/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxDcmVhci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Display/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxFZGl0YXIuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Display/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Display/Index.cshtml]
@@ -103,10 +83,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Display/TodosMonitores.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcGxheVxUb2Rvc01vbml0b3Jlcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/ProyectoInventarioASP/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -115,36 +91,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Impresora/Borrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEJvcnJhci5jc2h0bWw=
+[G:/ProyectoInventarioASP/Views/Impresora/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Impresora/BuscarInv.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEJ1c2Nhckludi5jc2h0bWw=
+[G:/ProyectoInventarioASP/Views/Impresora/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Impresora/BuscarMarca.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEJ1c2Nhck1hcmNhLmNzaHRtbA==
+[G:/ProyectoInventarioASP/Views/Impresora/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Impresora/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXENyZWFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Impresora/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEVkaXRhci5jc2h0bWw=
+[G:/ProyectoInventarioASP/Views/Impresora/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Impresora/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Impresora/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXFByaXZhY3kuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Impresora/TodasImpresoras.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcmVzb3JhXFRvZGFzSW1wcmVzb3Jhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/MemoriaRam/Create.cshtml]
@@ -263,40 +227,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjbGFkb1xQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Usuario/Borrar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xCb3JyYXIuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Usuario/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Usuario/BuscarArea.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xCdXNjYXJBcmVhLmNzaHRtbA==
+[G:/ProyectoInventarioASP/Views/Usuario/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Usuario/BuscarDep.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xCdXNjYXJEZXAuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Usuario/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/Usuario/BuscarNom.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xCdXNjYXJOb20uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Usuario/Crear.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Usuario/Editar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXIuY3NodG1s
+[G:/ProyectoInventarioASP/Views/Usuario/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Usuario/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Usuario/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/Usuario/TodosUsuarios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xUb2Rvc1VzdWFyaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/_ViewImports.cshtml]

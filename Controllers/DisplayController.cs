@@ -1,212 +1,168 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-public class DisplayController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-    ComputadoraContext context;
-
-    public DisplayController(ComputadoraContext context)
+    public class DisplayController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-    public IActionResult Index()
-    {
-        return View(context.Displays.FirstOrDefault());
-    }
-
-    public IActionResult TodosMonitores()
-    {
-        return View("TodosMonitores", context.Displays);
-    }
-
-    public IActionResult Crear()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Crear(String NumInvId, String NumSerie, String Marca, Estado estado)
-    {
-        try
+        public DisplayController(ComputadoraContext context)
         {
-            List<Display> NuevoMonitor = new List<Display>();
-            NuevoMonitor.Add(new Display() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), estado = estado });
-            context.Displays.AddRange(NuevoMonitor);
-            context.SaveChanges();
-            return View("Index", NuevoMonitor.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel() { });
+            _context = context;
         }
 
-    }
-
-    public IActionResult Borrar()
-    {
-
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Borrar(Display display)
-    {
-        try
+        // GET: Display
+        public async Task<IActionResult> Index()
         {
-            context.Displays.Remove(display);
-
-            context.SaveChanges();
-
-            return View("TodosMonitores", context.Displays);
-        }
-        catch (Exception)
-        {
-
-            return View(new ErrorViewModel() { });
+            var computadoraContext = _context.Displays.Include(d => d.Computadora);
+            return View(await computadoraContext.ToListAsync());
         }
 
-    }
-
-    public IActionResult Editar()
-    {
-
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Editar(String NumInvId, String NumSerie, String Marca, Estado estado)
-    {
-        try
+        // GET: Display/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-            List<Display> NuevoMonitor = new List<Display>();
-            NuevoMonitor.Add(new Display() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), estado = estado });
-            context.Displays.UpdateRange(NuevoMonitor);
-            context.SaveChanges();
-            return View("TodosMonitores", context.Displays);
-        }
-        catch (Exception ex)
-        {
+            if (id == null || _context.Displays == null)
+            {
+                return NotFound();
+            }
 
-            return View(ex.Message);
+            var display = await _context.Displays
+                .Include(d => d.Computadora)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (display == null)
+            {
+                return NotFound();
+            }
+
+            return View(display);
         }
 
-    }
-
-    public IActionResult BuscarSerie()
-    {
-        return View("BuscarSerie");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarSerie(string numSerie)
-    {
-
-        try
+        // GET: Display/Create
+        public IActionResult Create()
         {
-            IEnumerable<Display> BuscarMonitor = from mon in context.Displays
-                                                 where mon.NumSerie == numSerie
-                                                 select mon;
-
-
-            return View("Index", BuscarMonitor.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id");
+            return View();
         }
 
-    }
-
-    public IActionResult BuscarMarca()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult BuscarMarca(string marca)
-    {
-
-        try
+        // POST: Display/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
         {
-            IEnumerable<Display> buscarMonitor = from mon in context.Displays
-                                                 where mon.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
-                                                 select mon;
-
-            return View("TodosMonitores", buscarMonitor.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            if (display != null)
+            {
+                _context.Add(display);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+            return View(display);
         }
 
-    }
-
-
-    public IActionResult BuscarInv()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult BuscarInv(Display display)
-    {
-        try
+        // GET: Display/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            List<Display> buscadorMonitor = new List<Display>();
+            if (id == null || _context.Displays == null)
+            {
+                return NotFound();
+            }
 
-            var BuscarMon = from mon in context.Displays
-                            where mon == display
-                            select mon;
-
-            buscadorMonitor.AddRange(BuscarMon);
-
-            return View("Index", buscadorMonitor.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            var display = await _context.Displays.FindAsync(id);
+            if (display == null)
+            {
+                return NotFound();
+            }
+            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+            return View(display);
         }
 
-    }
-
-    public IActionResult BuscarEst()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarEst(Estado estado)
-    {
-        var estadito = Convert.ToInt16(estado);
-        if (estadito == 1)
+        // POST: Display/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
         {
-            IEnumerable<Display> buscarPcinact = from mon in context.Displays
-                                                 where mon.estado == Estado.inactivo
-                                                 select mon;
+            if (id != display.Id)
+            {
+                return NotFound();
+            }
 
-            return View("TodosMonitores", buscarPcinact.ToList());
-
+            if (display != null)
+            {
+                try
+                {
+                    _context.Update(display);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DisplayExists(display.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+            return View(display);
         }
-        else
+
+        // GET: Display/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
+            if (id == null || _context.Displays == null)
+            {
+                return NotFound();
+            }
 
-            IEnumerable<Display> buscarPcinact = from mon in context.Displays
-                                                 where mon.estado == Estado.activo
-                                                 select mon;
+            var display = await _context.Displays
+                .Include(d => d.Computadora)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (display == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodosMonitores", buscarPcinact.ToList());
-
+            return View(display);
         }
 
+        // POST: Display/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Displays == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.Displays'  is null.");
+            }
+            var display = await _context.Displays.FindAsync(id);
+            if (display != null)
+            {
+                _context.Displays.Remove(display);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool DisplayExists(string id)
+        {
+          return (_context.Displays?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
-
-
 }

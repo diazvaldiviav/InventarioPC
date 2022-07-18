@@ -4,13 +4,20 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="margin">
+<h1>Eliminar</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Estas seguro que desea borrar esto?.Puede Ocacionar problemas futuros</h3>
 <div>
     <h4>Computadora</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumInv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumInv)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.NombreDepartamento)
         </dt>
@@ -28,6 +35,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SO)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SO)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.estado)
@@ -48,10 +61,70 @@
             @Html.DisplayFor(model => model.NumIp)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreUsuarioId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreUsuarioId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImprNumInv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImprNumInv)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeclNumInv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TeclNumInv)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MotherBoardMarca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MotherBoardMarca)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DiscoDuroCap)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DiscoDuroCap)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DiscoDuroTipoCon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DiscoDuroTipoCon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemoriaRamCap)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemoriaRamCap)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemoriaRamTec)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemoriaRamTec)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MicroTecn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MicroTecn)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Teclado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Teclado.NumInvId)
+            @Html.DisplayFor(model => model.Teclado.Id)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.MotherBoard)
@@ -63,19 +136,14 @@
             @Html.DisplayNameFor(model => model.Impresora)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Impresora.NumInvId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario.NombreUsuarioId)
+            @Html.DisplayFor(model => model.Impresora.Id)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="NumInvId" />
+        <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
+</div>
 </div>

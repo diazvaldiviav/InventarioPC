@@ -7,10 +7,14 @@ namespace ProyectoInventarioASP.Models;
 public class MotherBoard
 {
 
+    [Key]
     public string NumSerieId { get; set; }
+    [Required]
     public string Marca { get; set; }
-    public string MicroProcesadorId { get; set; }
-
+    [Required]
+    public string MicroProcesadorId { get; set; }   
+     
+    [Required]
     public Estado estado { get; set; }
 
     public virtual MicroProcesador Micro { get; set; }

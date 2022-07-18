@@ -46,7 +46,7 @@
                     <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png" class="icon home">Pc</a>
                 </li>
                 <li>
-                    <a class="show-cat-btn" asp-controller="Display" asp-action="Index">
+                    <a  asp-controller="Display" asp-action="Index">
                         <img src="~/Assets/monitor.png" class="icon home">Monitor
                         @* <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
@@ -118,7 +118,7 @@
                 </li>
                 <li>
                     <a  asp-controller="Usuario" asp-action="index">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
+                         <img src="~/Assets/User.png" class="icon home">Users
                         
                     </a>
                 </li>
@@ -128,6 +128,13 @@
                         Boards
                     </a>
                 </li>
+                 <li>
+                    <a asp-controller="Impresora" asp-action="Index">
+                        <img src="~/Assets/impresora.png" class="icon home">
+                        Impresoras
+                    </a>
+                </li>
+                
             </ul>
             <span class="system-menu__title">system</span>
             <ul class="sidebar-body-menu">
@@ -193,7 +200,7 @@
     <div class="main-nav-start">
       <div class="search-wrapper">
         <i data-feather="search" aria-hidden="true"></i>
-        <input type="text" placeholder="Enter keywords ..." required>
+        <input type="text" id="search" placeholder="Enter keywords ..." required>
       </div>
     </div>
     <div class="main-nav-end">
@@ -714,6 +721,7 @@
 <script src="~/plugins/feather.min.js"></script>
 <!-- Custom scripts -->
 <script src="~/js/script.js"></script>
+<script src="~/js/filter.js"></script>
  @await RenderSectionAsync("Scripts", required: false)
 </body>
 

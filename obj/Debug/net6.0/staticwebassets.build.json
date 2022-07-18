@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vBAVbRI6ped7YUTdkz2Vgl6TwdeatqZV4eW8ii6lKiA=",
+  "Hash": "ZlhB17Nmngy+eiArdL8hsOo/o5J2kMaiIOvQ/5qwxO4=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -3126,6 +3126,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\svg\\thumbnail.svg"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\filter.js",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "js/filter.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\filter.js"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\script.js",

@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
+<div class="margin">
+<h1>Modificar</h1>
 
 <h4>Computadora</h4>
 <hr />
@@ -12,7 +12,12 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NumInvId" />
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumInv" class="control-label"></label>
+                <input asp-for="NumInv" class="form-control" />
+                <span asp-validation-for="NumInv" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="NombreDepartamento" class="control-label"></label>
                 <input asp-for="NombreDepartamento" class="form-control" />
@@ -29,10 +34,18 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="estado" class="control-label"></label>
-                <select asp-for="estado" class="form-control"></select>
-                <span asp-validation-for="estado" class="text-danger"></span>
+                <label asp-for="SO" class="control-label"></label>
+                <input asp-for="SO" class="form-control" />
+                <span asp-validation-for="SO" class="text-danger"></span>
             </div>
+            <div class = "form-group">
+             <label asp-for="estado"></label>
+              @Html.DropDownList(
+              "Estado", Html.GetEnumSelectList<Estado>(),
+              "Seleccione un estado",
+              new{@class = "form-control"}
+              )
+              </div>
             <div class="form-group">
                 <label asp-for="Mac" class="control-label"></label>
                 <input asp-for="Mac" class="form-control" />
@@ -50,7 +63,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="NombreUsuarioId" class="control-label"></label>
-                <select asp-for="NombreUsuarioId" class="form-control" asp-items="ViewBag.NombreUsuarioId"></select>
+                <input asp-for="NombreUsuarioId" class="form-control" />
                 <span asp-validation-for="NombreUsuarioId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,6 +75,51 @@
                 <label asp-for="TecladoId" class="control-label"></label>
                 <select asp-for="TecladoId" class="form-control" asp-items="ViewBag.TecladoId"></select>
                 <span asp-validation-for="TecladoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImprNumInv" class="control-label"></label>
+                <input asp-for="ImprNumInv" class="form-control" />
+                <span asp-validation-for="ImprNumInv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeclNumInv" class="control-label"></label>
+                <input asp-for="TeclNumInv" class="form-control" />
+                <span asp-validation-for="TeclNumInv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotherBoardMarca" class="control-label"></label>
+                <input asp-for="MotherBoardMarca" class="form-control" />
+                <span asp-validation-for="MotherBoardMarca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscoDuroCap" class="control-label"></label>
+                <input asp-for="DiscoDuroCap" class="form-control" />
+                <span asp-validation-for="DiscoDuroCap" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscoDuroTipoCon" class="control-label"></label>
+                <input asp-for="DiscoDuroTipoCon" class="form-control" />
+                <span asp-validation-for="DiscoDuroTipoCon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemoriaRamCap" class="control-label"></label>
+                <input asp-for="MemoriaRamCap" class="form-control" />
+                <span asp-validation-for="MemoriaRamCap" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemoriaRamTec" class="control-label"></label>
+                <input asp-for="MemoriaRamTec" class="form-control" />
+                <span asp-validation-for="MemoriaRamTec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MicroTecn" class="control-label"></label>
+                <input asp-for="MicroTecn" class="form-control" />
+                <span asp-validation-for="MicroTecn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -77,3 +135,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</div>

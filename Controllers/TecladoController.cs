@@ -36,7 +36,7 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var teclado = await _context.Teclados
-                .FirstOrDefaultAsync(m => m.NumInvId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (teclado == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumInvId,NumSerie,Marca,TipoConexion,estado")] Teclado teclado)
+        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
         {
             if (teclado != null)
             {
@@ -88,9 +88,9 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumInvId,NumSerie,Marca,TipoConexion,estado")] Teclado teclado)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
         {
-            if (id != teclado.NumInvId)
+            if (id != teclado.Id)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TecladoExists(teclado.NumInvId))
+                    if (!TecladoExists(teclado.Id))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var teclado = await _context.Teclados
-                .FirstOrDefaultAsync(m => m.NumInvId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (teclado == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool TecladoExists(string id)
         {
-          return (_context.Teclados?.Any(e => e.NumInvId == id)).GetValueOrDefault();
+          return (_context.Teclados?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

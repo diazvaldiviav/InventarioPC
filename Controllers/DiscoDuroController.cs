@@ -59,7 +59,7 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
         {
-            if (ModelState.IsValid)
+            if (discoDuro != null)
             {
                 _context.Add(discoDuro);
                 await _context.SaveChangesAsync();
@@ -98,7 +98,7 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (discoDuro != null)
             {
                 try
                 {

@@ -15,207 +15,221 @@ public class ComputadoraContext : DbContext
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Impresora> Impresoras { get; set; }
 
-    //cargar una board por cada memoria ram
-
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        List<DiscoDuro> DiscoDuroInit = new List<DiscoDuro>();
-        DiscoDuroInit.Add(new DiscoDuro() { NumSerieId = "2813qwd8q", Marca = "toshiba", TipoConexion = "sata", Capacidad = "256gb", MotherBoardId = "7h7g8f8fke964744t6yac12", estado = Estado.activo });
-        DiscoDuroInit.Add(new DiscoDuro() { NumSerieId = "58523eeee", Marca = "samsung", TipoConexion = "sata", Capacidad = "500gb", MotherBoardId = "67tun7588nd7y7y4t6yrf54", estado = Estado.activo });
-
-
-        modelBuilder.Entity<DiscoDuro>(discoduro =>
-        {
-            discoduro.ToTable("Discos Duro");
-
-            discoduro.HasKey(p => p.NumSerieId);
-
-            discoduro.Property(p => p.Marca).IsRequired().HasMaxLength(150);
-
-            discoduro.Property(p => p.TipoConexion).IsRequired();
-
-            discoduro.Property(p => p.Capacidad);
-
-            discoduro.HasOne(p => p.motherBoard).WithMany(p => p.Discos).HasForeignKey(p => p.MotherBoardId);
-
-            discoduro.Property(p => p.estado);
-
-            discoduro.HasData(DiscoDuroInit);
-
-        });
-
+        base.OnModelCreating(modelBuilder);
         List<MicroProcesador> MicroProcesadorInit = new List<MicroProcesador>();
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c90ac52", Marca = "Intel", Tecnologia = "CoreI3-9", estado = Estado.activo });
-        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = "fe2de405c38e4c9034rt", Marca = "AMD", Tecnologia = "coreI5-4", estado = Estado.activo });
+        MicroProcesadorInit.Add(new MicroProcesador() { NumSerieId = Guid.NewGuid().ToString(), Marca = "Intel", Tecnologia = "CoreI3-9", estado = Estado.activo });
 
-        modelBuilder.Entity<MicroProcesador>(micro =>
+
+        //cargar una board por micro
+        var boards = CargarMicros(MicroProcesadorInit);
+
+        //cargar telcados 
+        var teclados = CargarTeclados();
+
+        //cargar impresora
+        var impresoras = CargarImpresoras();
+
+        //cargar usuario
+        var usuarios = CargarUsuarios();
+
+        //cargar una memoria por motherboard
+
+        var memorias = CargarMemorias(boards);
+
+        //cargar un disco por motherboard
+        var discos = CargarDiscos(boards);
+
+        //cargar una computadora por cada motherboard, teclado,impresora,usuario
+        var computadora = CargarComputadoras(boards, impresoras, usuarios, teclados, discos, memorias, MicroProcesadorInit);
+
+         //cargar monitor por cada computadora
+        var monitores = CargarMonitor(computadora);
+
+
+
+        //Inyeccion de datos
+        modelBuilder.Entity<DiscoDuro>().HasData(discos.ToArray());
+        modelBuilder.Entity<MicroProcesador>().HasData(MicroProcesadorInit);
+        modelBuilder.Entity<Display>().HasData(monitores.ToArray());
+        modelBuilder.Entity<MotherBoard>().HasData(boards.ToArray());
+        modelBuilder.Entity<Teclado>().HasData(teclados.ToArray());
+        modelBuilder.Entity<Computadora>().HasData(computadora.ToArray());
+        modelBuilder.Entity<Usuario>().HasData(usuarios);
+        modelBuilder.Entity<Impresora>().HasData(impresoras.ToArray());
+        modelBuilder.Entity<MemoriaRam>().HasData(memorias.ToArray());
+    }
+
+    private List<Usuario> CargarUsuarios()
+    {
+        List<Usuario> ListaUsuarios = new List<Usuario>();
+        ListaUsuarios.Add(new Usuario() { Id = Guid.NewGuid().ToString(), NombreUsuario = "juan.perez", NombreCompleto = "Juan Perez", NombreArea = "Economia", NombreDepartamento = "Finanzas" });
+        ListaUsuarios.Add(new Usuario() { Id = Guid.NewGuid().ToString(), NombreUsuario = "fernando", NombreCompleto = "Fernando Alonso", NombreArea = "UEB Sancti-Spiritus", NombreDepartamento = "Tecnico" });
+
+        return ListaUsuarios;
+    }
+
+    private List<Impresora> CargarImpresoras()
+    {
+        List<Impresora> ListaImpresora = new List<Impresora>();
+        ListaImpresora.Add(new Impresora() { Id = Guid.NewGuid().ToString(), NumInv = "8919", NumSerie = "jjdj778sk66he4535ef", Marca = "Epson", estado = Estado.activo });
+        ListaImpresora.Add(new Impresora() { Id = Guid.NewGuid().ToString(), NumInv = "2145", NumSerie = "jjdj778skld887f333f", Marca = "HP", estado = Estado.activo });
+
+        return ListaImpresora;
+    }
+
+    private List<Teclado> CargarTeclados()
+    {
+        List<Teclado> ListaTeclados = new List<Teclado>();
+        ListaTeclados.Add(new Teclado() { Id = Guid.NewGuid().ToString(), NumInv = "6312", NumSerie = "7h7g8f8fke9gtr54t6y67uyh", Marca = "DELL", TipoConexion = "usb", estado = Estado.activo });
+        ListaTeclados.Add(new Teclado() { Id = Guid.NewGuid().ToString(), NumInv = "6431", NumSerie = "67tun7588nd7y7y4t6y45rtg", Marca = "Delton", TipoConexion = "usb", estado = Estado.activo });
+
+        return ListaTeclados;
+    }
+
+    private List<Display> CargarMonitor(List<Computadora> computadoras)
+    {
+        List<Display> ListaCompleta = new List<Display>();
+        foreach (var monitor in computadoras)
         {
-            micro.ToTable("Microprocesadores");
-            micro.HasKey(p => p.NumSerieId);
-            micro.Property(p => p.Marca).IsRequired();
-            micro.Property(p => p.Tecnologia).IsRequired();
-            micro.Property(p => p.estado).IsRequired();
+            var ListaTemp = new List<Display>
+            {
+                new Display()
+                {
+                Id = Guid.NewGuid().ToString(),
+                NumInv = "4321",
+                NumSerie = "7h7g8f8fke956rf67uuj43ed",
+                ComputadoraId = monitor.Id,
+                NumInvPc = monitor.NumInv,
+                Marca = "Samsung",
+                estado = Estado.activo
+                }
+            };
 
-            micro.HasData(MicroProcesadorInit);
-        });
+            ListaCompleta.AddRange(ListaTemp);
 
-        List<Display> DisplayInit = new List<Display>();
-        DisplayInit.Add(new Display() { NumInvId = "7843", NumSerie = "7h7g8f8fke9gtr54t6yac52", ComputadoraId = "563411", Marca = "Acer", estado = Estado.activo });
-        DisplayInit.Add(new Display() { NumInvId = "4321", NumSerie = "7h7g8f8fke956rf67uuj43ed", ComputadoraId = "89064", Marca = "Samsung", estado = Estado.activo });
+        }
 
-        modelBuilder.Entity<Display>(display =>
+        return ListaCompleta;
+    }
+
+    private List<MotherBoard> CargarMicros(List<MicroProcesador> microProcesadorInit)
+    {
+        List<MotherBoard> ListaCompleta = new List<MotherBoard>();
+        foreach (var micro in microProcesadorInit)
         {
-            display.ToTable("Monitores");
-            display.HasKey(p => p.NumInvId);
-            display.Property(p => p.Marca).IsRequired();
-            display.Property(p => p.NumSerie).IsRequired();
-            display.Property(p => p.estado).IsRequired();
-            display.HasOne(p => p.Computadora).WithMany(p => p.Display).HasForeignKey(p => p.ComputadoraId);
+            var ListaTemp = new List<MotherBoard>{
+               new MotherBoard() {
+               NumSerieId = Guid.NewGuid().ToString(),
+               Marca = "Asus",
+               MicroProcesadorId = micro.NumSerieId,
+               estado = Estado.activo }
+            };
 
-            display.HasData(DisplayInit);
-        });
+            ListaCompleta.AddRange(ListaTemp);
+        }
+
+        return ListaCompleta;
+    }
+
+    private List<Computadora> CargarComputadoras(List<MotherBoard> boards, List<Impresora> impresoras, List<Usuario> usuarios, List<Teclado> teclados, List<DiscoDuro> discos, List<MemoriaRam> rams, List<MicroProcesador>micros)
+    {
+        List<Computadora> ListaCompleta = new List<Computadora>();
+
+            foreach (var micro in micros)
+            {
+
+                foreach (var disc in discos)
+                {
+                    foreach (var mem in rams)
+                    {
+
+                        foreach (var pc in boards)
+                        {
+                            foreach (var impr in impresoras)
+                            {
+
+                                foreach (var user in usuarios)
+                                {
+                                    foreach (var tecl in teclados)
+                                    {
+
+                                        var ListaTemp = new List<Computadora> {
+
+                                                             new Computadora(){
+                                                             Id = Guid.NewGuid().ToString(),
+                                                             NumInv = "56911",
+                                                             NombreDepartamento = "Finanzas",
+                                                             NombreArea = "UEB Economia",
+                                                             NumIp = "172.19.229.11", 
+                                                             SO = "Win 7 32",
+                                                             Nombre = "OFC-ECO-CAB",
+                                                             Mac = "3c4r55rf4g6622",
+                                                             estado = Estado.activo,
+                                                             MotherBoardId = pc.NumSerieId,
+                                                             MotherBoardMarca = pc.Marca,
+                                                             TecladoId = tecl.Id,
+                                                             TeclNumInv = tecl.NumInv,
+                                                             NombreUsuarioId = user.Id,
+                                                             UserName = user.NombreUsuario,
+                                                             ImpresoraId = impr.Id,
+                                                             ImprNumInv = impr.NumInv,
+                                                             MicroTecn = micro.Tecnologia,
+                                                             MemoriaRamCap = mem.Capacidad,
+                                                             MemoriaRamTec = mem.Tecnologia,
+                                                             DiscoDuroCap = disc.Capacidad,
+                                                             DiscoDuroTipoCon = disc.TipoConexion,
+                                                                                                                    }
+                                                    };
+
+                                        ListaCompleta.AddRange(ListaTemp);
+                                    }
 
 
-        List<MemoriaRam> MemoriaRamInit = new List<MemoriaRam>();
+                                }
 
-        List<MotherBoard> MotherBoardInit = new List<MotherBoard>();
-        MotherBoardInit.Add(new MotherBoard() { NumSerieId = Guid.NewGuid().ToString(), Marca = "Asus", MicroProcesadorId = "fe2de405c38e4c90ac52", estado = Estado.activo });
-        MotherBoardInit.Add(new MotherBoard() { NumSerieId = Guid.NewGuid().ToString(), Marca = "DELL", MicroProcesadorId = "fe2de405c38e4c9034rt", estado = Estado.activo });
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        
 
 
-        modelBuilder.Entity<MotherBoard>(board =>
+        return ListaCompleta;
+
+
+    }
+
+    private List<DiscoDuro> CargarDiscos(List<MotherBoard> boards)
+    {
+        List<DiscoDuro> ListaCompleta = new List<DiscoDuro>();
+
+        foreach (var disco in boards)
         {
-            board.ToTable("MotherBoards");
+            var ListaTemp = new List<DiscoDuro>{
+               new DiscoDuro() {
+                NumSerieId = Guid.NewGuid().ToString(),
+                Marca = "toshiba",
+                TipoConexion = "sata",
+                Capacidad = "256",
+                MotherBoardId = disco.NumSerieId,
+                estado = Estado.activo }
 
-            board.HasKey(p => p.NumSerieId);
-            board.Property(p => p.Marca).IsRequired();
-            board.Property(p => p.estado).IsRequired();
-            board.HasOne(p => p.Micro).WithMany(p => p.MotherBoard).HasForeignKey(p => p.MicroProcesadorId);
+            };
 
-            board.HasData(MotherBoardInit);
-        });
+            ListaCompleta.AddRange(ListaTemp);
+        }
 
-
-        List<Teclado> TecladoInit = new List<Teclado>();
-        TecladoInit.Add(new Teclado() { NumInvId = "6731", NumSerie = "7h7g8f8fke9gtr54t6y67uyh", Marca = "DELL", TipoConexion = "usb", estado = Estado.activo });
-        TecladoInit.Add(new Teclado() { NumInvId = "67344", NumSerie = "67tun7588nd7y7y4t6y45rtg", Marca = "Delton", TipoConexion = "usb", estado = Estado.activo });
-
-        modelBuilder.Entity<Teclado>(teclado =>
-        {
-            teclado.ToTable("Teclados");
-            teclado.HasKey(p => p.NumInvId);
-            teclado.Property(p => p.NumSerie).IsRequired();
-            teclado.Property(p => p.Marca).IsRequired();
-            teclado.Property(p => p.TipoConexion).IsRequired();
-            teclado.Property(p => p.estado).IsRequired();
-            teclado.HasData(TecladoInit);
-        });
-
-
-        List<Computadora> ComputadoraInit = new List<Computadora>();
-        ComputadoraInit.Add(new Computadora()
-        {
-            NumInvId = "563411",
-            NombreDepartamento = "Finanzas",
-            NombreArea = "UEB Economia",
-            MotherBoardId = "7h7g8f8fke964744t6yac12",
-            TecladoId = "6731",
-            Nombre = "OFC-ECO-CAB",
-            NombreUsuarioId = "juan.perez",
-            ImpresoraId = "67854",
-            Mac = "3c4r55rf4g6622",
-            NumIp = "172.19.229.111",
-            estado = Estado.activo
-        });
-
-        ComputadoraInit.Add(new Computadora()
-        {
-            NumInvId = "89064",
-            NombreDepartamento = "Tecnico",
-            NombreArea = "UEB Sancti Spiritus",
-            MotherBoardId = "67tun7588nd7y7y4t6yrf54",
-            TecladoId = "67344",
-            Nombre = "SSP-Tec-IOO",
-            NombreUsuarioId = "fernando",
-            ImpresoraId = "78354",
-            Mac = "3c4f004f4d43d3",
-            NumIp = "172.19.229.111",
-            estado = Estado.activo
-
-        });
-
-
-        modelBuilder.Entity<Computadora>(PC =>
-        {
-            PC.ToTable("Computadoras");
-            PC.HasKey(p => p.NumInvId);
-            PC.Property(p => p.NombreArea).IsRequired().HasMaxLength(250);
-            PC.Property(p => p.Nombre).IsRequired().HasMaxLength(250);
-            PC.Property(p => p.NombreDepartamento).IsRequired().HasMaxLength(250);
-            PC.Property(p => p.Mac).IsRequired();
-            PC.Property(p => p.NumIp).IsRequired();
-            PC.Property(p => p.estado).IsRequired();
-            PC.HasOne(p => p.Teclado).WithMany(p => p.Computadora).HasForeignKey(p => p.TecladoId);
-            PC.HasOne(p => p.Usuario).WithMany(p => p.Computadora).HasForeignKey(p => p.NombreUsuarioId);
-            PC.HasOne(p => p.Impresora).WithMany(p => p.Computadora).HasForeignKey(p => p.ImpresoraId);
-            PC.HasOne(p => p.MotherBoard).WithMany(p => p.Computadora).HasForeignKey(p => p.MotherBoardId);
-
-            PC.HasData(ComputadoraInit);
-        });
-
-
-
-        List<Usuario> UsuarioInit = new List<Usuario>();
-
-        UsuarioInit.Add(new Usuario() { NombreUsuarioId = "juan.perez", NombreCompleto = "Juan Perez", NombreArea = "Economia", NombreDepartamento = "Finanzas" });
-        UsuarioInit.Add(new Usuario() { NombreUsuarioId = "fernando", NombreCompleto = "Fernando Alonso", NombreArea = "UEB Sancti-Spiritus", NombreDepartamento = "Tecnico" });
-
-        modelBuilder.Entity<Usuario>(usuario =>
-        {
-            usuario.ToTable("Usuarios");
-            usuario.HasKey(p => p.NombreUsuarioId);
-            usuario.Property(p => p.NombreCompleto);
-            usuario.Property(p => p.NombreArea).IsRequired().HasMaxLength(250);
-            usuario.Property(p => p.NombreDepartamento).IsRequired().HasMaxLength(250);
-
-            usuario.HasData(UsuarioInit);
-        });
-
-
-        List<Impresora> ImpresoraInit = new List<Impresora>();
-
-        ImpresoraInit.Add(new Impresora() { NumInvId = "67854", NumSerie = "jjdj778sk66he4535ef", Marca = "Epson", estado = Estado.activo });
-        ImpresoraInit.Add(new Impresora() { NumInvId = "78354", NumSerie = "jjdj778skld887f333f", Marca = "HP", estado = Estado.activo });
-
-        modelBuilder.Entity<Impresora>(impresora =>
-        {
-            impresora.ToTable("Impresoras");
-            impresora.HasKey(p => p.NumInvId);
-            impresora.Property(p => p.NumSerie).IsRequired();
-            impresora.Property(p => p.estado).IsRequired();
-            impresora.Property(p => p.Marca).IsRequired().HasMaxLength(250);
-
-            impresora.HasData(ImpresoraInit);
-        });
-
-       var memorias = CargarMemorias(MotherBoardInit);
-
-        modelBuilder.Entity<MemoriaRam>(memoria =>
-        {
-            memoria.ToTable("Memorias Ram");
-
-            memoria.HasKey(p => p.KayNumSerieId);
-            memoria.Property(p => p.Tecnologia).IsRequired();
-            memoria.Property(p => p.Marca).IsRequired();
-            memoria.Property(p => p.Capacidad).IsRequired();
-            memoria.Property(p => p.estado).IsRequired();
-            memoria.HasOne(p => p.MotherBoard).WithMany(p => p.Memorias).HasForeignKey(p => p.MotherBoardId);
-            memoria.HasData(memorias);
-        });
-
-
+        return ListaCompleta;
 
     }
 
@@ -226,16 +240,15 @@ public class ComputadoraContext : DbContext
         {
             var ListaTemp = new List<MemoriaRam>{
                 new MemoriaRam() { KayNumSerieId = Guid.NewGuid().ToString(), Marca = "Kingston", Tecnologia = "DDR4", Capacidad = "4", estado = Estado.activo, MotherBoardId = memoria.NumSerieId },
-                new MemoriaRam() { KayNumSerieId = Guid.NewGuid().ToString(), Marca = "HyperX", Tecnologia = "DDR3", Capacidad = "2", estado = Estado.activo, MotherBoardId = memoria.NumSerieId }
               };
 
 
-         ListaCompleta.AddRange(ListaTemp);
+            ListaCompleta.AddRange(ListaTemp);
 
 
         }
 
-       
+
         return ListaCompleta;
     }
 
