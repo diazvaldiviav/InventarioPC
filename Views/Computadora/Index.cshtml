@@ -42,69 +42,69 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
+                    <tr class="fila">
+                        <td class="filter inv">
                             @Html.DisplayFor(modelItem => item.NumInv)
                         </td>
-                        <td>
+                        <td class="filter dep" id="dep">
                             @Html.DisplayFor(modelItem => item.NombreDepartamento)
                         </td>
-                        <td>
+                        <td class="filter dep" id="area">
                             @Html.DisplayFor(modelItem => item.NombreArea)
                         </td>
-                        <td id="prueba">
+                        <td class="filter inv" id="nombre">
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
-                        <td>
+                        <td class="filter" id="so">
                             @Html.DisplayFor(modelItem => item.SO)
                         </td>
-                        <td>
+                        <td class="filter" id="estado">
                             @Html.DisplayFor(modelItem => item.estado)
                         </td>
-                        <td>
+                        <td class="filter" id="mac">
                             @Html.DisplayFor(modelItem => item.Mac)
                         </td>
-                        <td>
+                        <td class="filter" id="NumIp">
                             @Html.DisplayFor(modelItem => item.NumIp)
                         </td>
-                        <td>
+                        <td class="filter" id="IDusuario">
                             @Html.DisplayFor(modelItem => item.NombreUsuarioId)
                         </td>
-                        <td>
+                        <td class="filter" id="InvImpr">
                             @Html.DisplayFor(modelItem => item.ImprNumInv)
                         </td>
-                        <td>
+                        <td class="filter" id="InvTecl">
                             @Html.DisplayFor(modelItem => item.TeclNumInv)
                         </td>
-                        <td>
+                        <td class="filter" id="UserName">
                             @Html.DisplayFor(modelItem => item.UserName)
                         </td>
-                        <td>
+                        <td class="filter" id="BoardMarca">
                             @Html.DisplayFor(modelItem => item.MotherBoardMarca)
                         </td>
-                        <td>
+                        <td class="filter" id="CapDisc">
                             <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
                             item.DiscoDuroCap)</a>
                         </td>
-                        <td>
+                        <td class="filter" id="TipoConexDisc">
                             @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
                         </td>
-                        <td>
+                        <td class="filter" id="CapMem">
                             @Html.DisplayFor(modelItem => item.MemoriaRamCap)
                         </td>
-                        <td>
+                        <td class="filter" id="TecMem">
                             @Html.DisplayFor(modelItem => item.MemoriaRamTec)
                         </td>
-                        <td>
+                        <td class=filter id="TecnMicro">
                             @Html.DisplayFor(modelItem => item.MicroTecn)
                         </td>
-                        <td>
+                        <td class="filter" id="TeclId">
                             @Html.DisplayFor(modelItem => item.Teclado.Id)
                         </td>
-                        <td>
+                        <td class="filter" id="BoardId">
                             @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
                         </td>
-                        <td>
+                        <td class="filter" id="ImprId">
                             @Html.DisplayFor(modelItem => item.Impresora.Id)
                         </td>
                         <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
