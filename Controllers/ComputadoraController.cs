@@ -1,240 +1,180 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-
-public class ComputadoraController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-
-    ComputadoraContext context;
-
-    public ComputadoraController(ComputadoraContext context)
+    public class ComputadoraController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-
-    public IActionResult Index()
-    {
-        return View(context.Computadoras.FirstOrDefault());
-    }
-
-
-
-    public IActionResult TodasComputadoras()
-    {
-
-        return View("TodasComputadoras", context.Computadoras);
-
-    }
-
-
-
-
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Create(Computadora computadora)
-    {
-        try
+        public ComputadoraController(ComputadoraContext context)
         {
-            context.Computadoras.Add(computadora);
-            context.SaveChanges();
-            return View("Index", computadora);
-
+            _context = context;
         }
 
-        catch (Exception ex)
+        // GET: Computadora
+        public async Task<IActionResult> Index()
         {
-            return View(new ErrorViewModel() { });
+            var computadoraContext = _context.Computadoras.Include(c => c.Impresora).Include(c => c.MotherBoard).Include(c => c.Teclado);
+            return View(await computadoraContext.ToListAsync());
         }
 
-    }
-
-    public IActionResult Delete()
-    {
-
-        return View();
-    }
-
-
-
-
-    [HttpPost]
-    public IActionResult Delete(Computadora computadora)
-    {
-        try
+        // GET: Computadora/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-            context.Computadoras.Remove(computadora);
+            if (id == null || _context.Computadoras == null)
+            {
+                return NotFound();
+            }
 
-            context.SaveChanges();
+            var computadora = await _context.Computadoras
+                .Include(c => c.Impresora)
+                .Include(c => c.MotherBoard)
+                .Include(c => c.Teclado)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (computadora == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodasComputadoras", context.Computadoras);
-
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            return View(computadora);
         }
 
-
-
-
-    }
-
-
-
-    public IActionResult Edit()
-    {
-
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Edit(Computadora PC)
-    {
-        try
+        // GET: Computadora/Create
+        public IActionResult Create()
         {
-            context.Computadoras.UpdateRange(PC);
-            context.SaveChanges();
-            return View("TodasComputadoras", context.Computadoras);
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
+            return View();
         }
 
-    }
-
-
-    public IActionResult BuscarInv()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarInv(Computadora PC)
-    {
-        try
+        // POST: Computadora/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
-            List<Computadora> buscadorPC = new List<Computadora>();
-
-            var BuscarPC = from pc in context.Computadoras
-                           where pc == PC
-                           select pc;
-
-            buscadorPC.AddRange(BuscarPC);
-
-            return View("Index", buscadorPC.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            if (computadora != null)
+            {
+                _context.Add(computadora);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            return View(computadora);
         }
 
-    }
-
-    public IActionResult BuscarUeb()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarUeb(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.Nombre.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
-
-
-    public IActionResult BuscarDep()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarDep(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.NombreDepartamento.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
-
-
-    public IActionResult BuscarUser()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarUser(string nombre)
-    {
-        IEnumerable<Computadora> buscarPc = from pc in context.Computadoras
-                                            where pc.NombreUsuarioId.Substring(0, 3).ToUpper() == nombre.Substring(0, 3).ToUpper()
-                                            select pc;
-
-
-        return View("TodasComputadoras", buscarPc.ToList());
-    }
-
-    public IActionResult BuscarEst()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarEst(Estado estado)
-    {
-        var estadito = Convert.ToInt16(estado);
-        if (estadito == 1)
+        // GET: Computadora/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            IEnumerable<Computadora> buscarPcinact = from pc in context.Computadoras
-                                                     where pc.estado == Estado.inactivo
-                                                     select pc;
+            if (id == null || _context.Computadoras == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodasComputadoras", buscarPcinact.ToList());
+            var computadora = await _context.Computadoras.FindAsync(id);
+            if (computadora == null)
+            {
+                return NotFound();
+            }
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            return View(computadora);
+        }
 
-        }else
+        // POST: Computadora/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
+            if (id != computadora.Id)
+            {
+                return NotFound();
+            }
 
-             IEnumerable<Computadora> buscarPcinact = from pc in context.Computadoras
-                                                     where pc.estado == Estado.activo
-                                                     select pc;
+            if (computadora != null)
+            {
+                try
+                {
+                    _context.Update(computadora);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ComputadoraExists(computadora.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            return View(computadora);
+        }
 
-            return View("TodasComputadoras", buscarPcinact.ToList());
+        // GET: Computadora/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.Computadoras == null)
+            {
+                return NotFound();
+            }
+
+            var computadora = await _context.Computadoras
+                .Include(c => c.Impresora)
+                .Include(c => c.MotherBoard)
+                .Include(c => c.Teclado)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (computadora == null)
+            {
+                return NotFound();
+            }
+
+            return View(computadora);
+        }
+
+        // POST: Computadora/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Computadoras == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.Computadoras'  is null.");
+            }
+            var computadora = await _context.Computadoras.FindAsync(id);
+            if (computadora != null)
+            {
+                _context.Computadoras.Remove(computadora);
+            }
             
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
+        private bool ComputadoraExists(string id)
+        {
+          return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
-
-
-
-
 }
-
-
-
-
-
-
-

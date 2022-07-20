@@ -1,11 +1,18 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 namespace ProyectoInventarioASP.Models
 {
     public class Usuario
     {
-        public string NombreUsuarioId { get; set; }
+        [Key]
+        public string Id { get; set; }
+        [Required]
         public string NombreCompleto { get; set; }
+        [Required]
+        public string NombreUsuario { get; set; }
+        [Required]
         public string NombreDepartamento { get; set; }
+        [Required]
         public string NombreArea { get; set; }
 
         [JsonIgnore]

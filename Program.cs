@@ -9,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ComputadoraContext>(options => options.UseInMemoryDatabase("testDB"));
-
+//builder.Services.AddDbContext<ComputadoraContext>(options => options.UseInMemoryDatabase("testDB"));
+builder.Services.AddSqlServer<ComputadoraContext>(builder.Configuration.GetConnectionString("cnInv"));
 var app = builder.Build();
 
 
@@ -45,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Computadora}/{action=Index}/{id?}");
 
 app.Run();
