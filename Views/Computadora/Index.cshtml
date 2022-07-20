@@ -10,7 +10,7 @@
         <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
     </p>
     <div class="table-responsive">
-        <table class="table table-hover table-border">
+        <table class="table table-hover table-border" id="tabla">
             <thead>
                 <tr>
                     <th>Numero de inventario</th>
@@ -39,11 +39,11 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="CuerpoTabla">
                 @foreach (var item in Model)
                 {
                     <tr class="fila">
-                        <td class="filter inv">
+                        <td class="filter" id="inv">
                             @Html.DisplayFor(modelItem => item.NumInv)
                         </td>
                         <td class="filter dep" id="dep">
