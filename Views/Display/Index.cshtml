@@ -7,9 +7,10 @@
 <h1>Monitores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
 </p>
-<table class="table">
+ <div class="table-responsive">
+    <table class="table table-hover table-border" id="tabla">
     <thead>
         <tr>
             <th>
@@ -31,11 +32,13 @@
                 @Html.DisplayNameFor(model => model.Computadora)
             </th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="CuerpoTablaPc">
 @foreach (var item in Model) {
-        <tr>
+        <tr class="filapc">
             <td>
                 @Html.DisplayFor(modelItem => item.NumInv)
             </td>
@@ -54,11 +57,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Computadora.Id)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
+            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Borrar</a></td>
+            
         </tr>
 }
     </tbody>

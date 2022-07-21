@@ -24,6 +24,7 @@ body {
 
 .margin{
   margin: 10px;
+  width: 100%;
   max-width: 1200px;
 }
 
@@ -33,4 +34,9 @@ body {
   margin: 0, auto;
   width: 100%;
   place-content: center;
+}
+
+.mygrid{
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
 }
