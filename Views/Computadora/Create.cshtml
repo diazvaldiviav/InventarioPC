@@ -3,137 +3,136 @@
 @{
     ViewData["Title"] = "Create";
 }
-<div class="margin">
-<h1>Insertar</h1>
+ 
+    <h1>Insertar</h1>
 
-<h4>Computadora</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+    <h4>Computadora</h4>
+    <hr />
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
                 <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" required/>
+                <input asp-for="Id" class="form-control" required />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="NumInv" class="control-label"></label>
-                <input asp-for="NumInv" class="form-control" required/>
+                <input asp-for="NumInv" class="form-control" required />
                 <span asp-validation-for="NumInv" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="NombreDepartamento" class="control-label"></label>
                 <input asp-for="NombreDepartamento" class="form-control" required />
                 <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="NombreArea" class="control-label"></label>
-                <input asp-for="NombreArea" class="form-control" required/>
+                <input asp-for="NombreArea" class="form-control" required />
                 <span asp-validation-for="NombreArea" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" required/>
+                <input asp-for="Nombre" class="form-control" required />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="SO" class="control-label"></label>
-                <input asp-for="SO" class="form-control" required/>
+                <input asp-for="SO" class="form-control" required />
                 <span asp-validation-for="SO" class="text-danger"></span>
             </div>
-           <div class = "form-group">
-             <label asp-for="estado"></label>
-              @Html.DropDownList(
-              "Estado", Html.GetEnumSelectList<Estado>(),
-              "Seleccione un estado",
-              new{@class = "form-control"}
-              )
-              </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "Estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
+            <div class="form-group col-md-6">
                 <label asp-for="Mac" class="control-label"></label>
-                <input asp-for="Mac" class="form-control" required/>
+                <input asp-for="Mac" class="form-control" required />
                 <span asp-validation-for="Mac" class="text-danger" required></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="NumIp" class="control-label"></label>
-                <input asp-for="NumIp" class="form-control" required/>
+                <input asp-for="NumIp" class="form-control" required />
                 <span asp-validation-for="NumIp" class="text-danger" required></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="ImpresoraId" class="control-label"></label>
-                <select asp-for="ImpresoraId" class ="form-control" asp-items="ViewBag.ImpresoraId"></select>
+                <select asp-for="ImpresoraId" class="form-control" asp-items="ViewBag.ImpresoraId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="NombreUsuarioId" class="control-label"></label>
-                <input asp-for="NombreUsuarioId" class="form-control" required/>
+                <input asp-for="NombreUsuarioId" class="form-control" required />
                 <span asp-validation-for="NombreUsuarioId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="MotherBoardId" class="control-label"></label>
-                <select asp-for="MotherBoardId" class ="form-control" asp-items="ViewBag.MotherBoardId"></select>
+                <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="TecladoId" class="control-label"></label>
-                <select asp-for="TecladoId" class ="form-control" asp-items="ViewBag.TecladoId"></select>
+                <select asp-for="TecladoId" class="form-control" asp-items="ViewBag.TecladoId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="ImprNumInv" class="control-label"></label>
-                <input asp-for="ImprNumInv" class="form-control" required/>
+                <input asp-for="ImprNumInv" class="form-control" required />
                 <span asp-validation-for="ImprNumInv" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="TeclNumInv" class="control-label"></label>
-                <input asp-for="TeclNumInv" class="form-control" required/>
+                <input asp-for="TeclNumInv" class="form-control" required />
                 <span asp-validation-for="TeclNumInv" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" required/>
+                <input asp-for="UserName" class="form-control" required />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="MotherBoardMarca" class="control-label"></label>
-                <input asp-for="MotherBoardMarca" class="form-control" required/>
+                <input asp-for="MotherBoardMarca" class="form-control" required />
                 <span asp-validation-for="MotherBoardMarca" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="DiscoDuroCap" class="control-label"></label>
-                <input asp-for="DiscoDuroCap" class="form-control" required/>
+                <input asp-for="DiscoDuroCap" class="form-control" required />
                 <span asp-validation-for="DiscoDuroCap" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="DiscoDuroTipoCon" class="control-label"></label>
                 <input asp-for="DiscoDuroTipoCon" class="form-control" required />
                 <span asp-validation-for="DiscoDuroTipoCon" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="MemoriaRamCap" class="control-label"></label>
-                <input asp-for="MemoriaRamCap" class="form-control" required/>
+                <input asp-for="MemoriaRamCap" class="form-control" required />
                 <span asp-validation-for="MemoriaRamCap" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="MemoriaRamTec" class="control-label"></label>
-                <input asp-for="MemoriaRamTec" class="form-control" required/>
+                <input asp-for="MemoriaRamTec" class="form-control" required />
                 <span asp-validation-for="MemoriaRamTec" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="MicroTecn" class="control-label"></label>
-                <input asp-for="MicroTecn" class="form-control" required/>
+                <input asp-for="MicroTecn" class="form-control" required />
                 <span asp-validation-for="MicroTecn" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
+    @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-</div>
+    }
+
