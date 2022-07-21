@@ -1,173 +1,163 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-public class MicroController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-
-    ComputadoraContext context;
-
-    public MicroController(ComputadoraContext context)
+    public class MicroController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-    public IActionResult Index()
-    {
-        return View(context.MicroProcesadores);
-    }
-
-    public IActionResult TodosMicros()
-    {
-        return View("TodosMicros", context.MicroProcesadores);
-    }
-
-
-     public IActionResult Crear()
-    {
-      return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Crear(String NumSerieId, string Marca, string Tecnologia, Estado estado)
-    {
-        try
+        public MicroController(ComputadoraContext context)
         {
-
-            List<MicroProcesador> NuevoMicro = new List<MicroProcesador>();
-            NuevoMicro.Add(new MicroProcesador() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), estado = estado });
-
-            context.MicroProcesadores.AddRange(NuevoMicro);
-            context.SaveChanges();
-
-            return View("Index", NuevoMicro.FirstOrDefault());
-
-
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            _context = context;
         }
 
-
-    }
-
-    public IActionResult Editar()
-    {
-
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Editar(String NumSerieId, string Marca, string Tecnologia, Estado estado)
-    {
-        try
+        // GET: Micro
+        public async Task<IActionResult> Index()
         {
-
-            List<MicroProcesador> NuevoMicro = new List<MicroProcesador>();
-            NuevoMicro.Add(new MicroProcesador() { NumSerieId = NumSerieId.ToLower(), Marca = Marca.ToUpper(), Tecnologia = Tecnologia.ToUpper(), estado = estado });
-
-            context.MicroProcesadores.UpdateRange(NuevoMicro);
-            context.SaveChanges();
-
-            return View("TodosMicros", NuevoMicro);
-
-
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+              return _context.MicroProcesadores != null ? 
+                          View(await _context.MicroProcesadores.ToListAsync()) :
+                          Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
         }
 
-
-    }
-
-    public IActionResult Borrar()
-    {
-
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Borrar(MicroProcesador micro)
-    {
-        try
+        // GET: Micro/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-            context.MicroProcesadores.Remove(micro);
+            if (id == null || _context.MicroProcesadores == null)
+            {
+                return NotFound();
+            }
 
-            context.SaveChanges();
+            var microProcesador = await _context.MicroProcesadores
+                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            if (microProcesador == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodosMicros", context.MicroProcesadores);
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            return View(microProcesador);
         }
 
-
-    }
-
-
-    public IActionResult BuscarSerie()
-    {
-        return View("BuscarSerie");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarSerie(string NumSerieId)
-    {
-
-        try
+        // GET: Micro/Create
+        public IActionResult Create()
         {
-            IEnumerable<MicroProcesador>BuscarMicro = from micro in context.MicroProcesadores
-                                                      where micro.NumSerieId == NumSerieId
-                                                      select micro;
-
-            return View("Index", BuscarMicro.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            return View();
         }
 
-    }
-
-
-    public IActionResult BuscarMarca()
-    {
-        return View();
-    }
-
-
-
-    [HttpPost]
-    public IActionResult BuscarMarca(string marca)
-    {
-
-        try
+        // POST: Micro/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
         {
-            IEnumerable<MicroProcesador> buscarMicro = from micro in context.MicroProcesadores
-                                                  where micro.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
-                                                  select micro;
-
-            return View("TodosMicros", buscarMicro.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            if (microProcesador != null)
+            {
+                _context.Add(microProcesador);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(microProcesador);
         }
 
+        // GET: Micro/Edit/5
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null || _context.MicroProcesadores == null)
+            {
+                return NotFound();
+            }
+
+            var microProcesador = await _context.MicroProcesadores.FindAsync(id);
+            if (microProcesador == null)
+            {
+                return NotFound();
+            }
+            return View(microProcesador);
+        }
+
+        // POST: Micro/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
+        {
+            if (id != microProcesador.NumSerieId)
+            {
+                return NotFound();
+            }
+
+            if (microProcesador != null)
+            {
+                try
+                {
+                    _context.Update(microProcesador);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!MicroProcesadorExists(microProcesador.NumSerieId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(microProcesador);
+        }
+
+        // GET: Micro/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.MicroProcesadores == null)
+            {
+                return NotFound();
+            }
+
+            var microProcesador = await _context.MicroProcesadores
+                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            if (microProcesador == null)
+            {
+                return NotFound();
+            }
+
+            return View(microProcesador);
+        }
+
+        // POST: Micro/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.MicroProcesadores == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
+            }
+            var microProcesador = await _context.MicroProcesadores.FindAsync(id);
+            if (microProcesador != null)
+            {
+                _context.MicroProcesadores.Remove(microProcesador);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool MicroProcesadorExists(string id)
+        {
+          return (_context.MicroProcesadores?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+        }
     }
-
-
-
-
 }

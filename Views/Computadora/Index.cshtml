@@ -1,23 +1,119 @@
-﻿@model Computadora
-@{
-    ViewData["Title"] = "Computadora";
-}
+@model IEnumerable<ProyectoInventarioASP.Models.Computadora>
 
-<h1>Computadora</h1>
-<form class="form-inline my-2 my-lg-0" method="post">
-    <input class="form-control mr-sm-2" type="search" asp-for="NumInvId" placeholder="Search" aria-label="Search">
-    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-</form>
-<p>Nombre: @Model.Nombre</p>
-<p>Nombre Area: @Model.NombreArea</p>
-<p>Nombre Departamento:@Model.NombreDepartamento</p>
-<p>Nombre Del usuario: @Model.NombreUsuarioId</p>
-<p>Numero Inventario: @Model.NumInvId</p>
-<p>IP: @Model.NumIp</p>
-<p>MAC: @Model.Mac</p>
-<p>Disco Duro Id: @Model.DiscoDuroId</p>
-<p>Teclado inventario: @Model.TecladoId</p>
-<p>Monitor inventario: @Model.MonitorId</p>
-<p>Numero de serie Ram: @Model.MemoriaRamId</p>
-<p>Numero de serie Micro: @Model.MicroProcesadorId</p>
-<p>Estado: @Model.estado</p>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="margin">
+    <h1>Computadoras</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-hover table-border" id="tabla">
+            <thead>
+                <tr>
+                    <th>Numero de inventario</th>
+                    <th>Departamento</th>
+                    <th>Area</th>
+                    <th>Nombre Pc</th>
+                    <th>Sist Operativo</th>
+                    <th>Estado</th>
+                    <th>Mac</th>
+                    <th>Ip</th>
+                    <th>Usuario No</th>
+                    <th>Inventario Impresora</th>
+                    <th>Inventario Teclado</th>
+                    <th>Nombre de usuario</th>
+                    <th>Marca de Board</th>
+                    <th>Capacidad de disco</th>
+                    <th>Conexion de disco</th>
+                    <th>Capacidad de memoria</th>
+                    <th>Tecnologia de memoria</th>
+                    <th>Tecnologia de micro</th>
+                    <th>Teclado No</th>
+                    <th>MotherBoard No</th>
+                    <th>Impresora No</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="CuerpoTablaPc">
+                @foreach (var item in Model)
+                {
+                    <tr class="filapc">
+                        <td class="filter" id="inv">
+                            @Html.DisplayFor(modelItem => item.NumInv)
+                        </td>
+                        <td class="filter dep" id="dep">
+                            @Html.DisplayFor(modelItem => item.NombreDepartamento)
+                        </td>
+                        <td class="filter dep" id="area">
+                            @Html.DisplayFor(modelItem => item.NombreArea)
+                        </td>
+                        <td class="filter inv" id="nombre">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td class="filter" id="so">
+                            @Html.DisplayFor(modelItem => item.SO)
+                        </td>
+                        <td class="filter" id="estado">
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        <td class="filter" id="mac">
+                            @Html.DisplayFor(modelItem => item.Mac)
+                        </td>
+                        <td class="filter" id="NumIp">
+                            @Html.DisplayFor(modelItem => item.NumIp)
+                        </td>
+                        <td class="filter" id="IDusuario">
+                            @Html.DisplayFor(modelItem => item.NombreUsuarioId)
+                        </td>
+                        <td class="filter" id="InvImpr">
+                            @Html.DisplayFor(modelItem => item.ImprNumInv)
+                        </td>
+                        <td class="filter" id="InvTecl">
+                            @Html.DisplayFor(modelItem => item.TeclNumInv)
+                        </td>
+                        <td class="filter" id="UserName">
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td class="filter" id="BoardMarca">
+                            @Html.DisplayFor(modelItem => item.MotherBoardMarca)
+                        </td>
+                        <td class="filter" id="CapDisc">
+                            <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
+                            item.DiscoDuroCap)</a>
+                        </td>
+                        <td class="filter" id="TipoConexDisc">
+                            @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
+                        </td>
+                        <td class="filter" id="CapMem">
+                            @Html.DisplayFor(modelItem => item.MemoriaRamCap)
+                        </td>
+                        <td class="filter" id="TecMem">
+                            @Html.DisplayFor(modelItem => item.MemoriaRamTec)
+                        </td>
+                        <td class=filter id="TecnMicro">
+                            @Html.DisplayFor(modelItem => item.MicroTecn)
+                        </td>
+                        <td class="filter" id="TeclId">
+                            @Html.DisplayFor(modelItem => item.Teclado.Id)
+                        </td>
+                        <td class="filter" id="BoardId">
+                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
+                        </td>
+                        <td class="filter" id="ImprId">
+                            @Html.DisplayFor(modelItem => item.Impresora.Id)
+                        </td>
+                        <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
+                        <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

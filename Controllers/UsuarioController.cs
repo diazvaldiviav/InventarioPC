@@ -1,182 +1,163 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-public class UsuarioController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-    ComputadoraContext context;
-
-    public UsuarioController(ComputadoraContext context)
+    public class UsuarioController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-    public IActionResult Index()
-    {
-        return View(context.Usuarios);
-    }
-
-    public IActionResult TodosUsuarios()
-    {
-        return View("TodosUsuarios", context.Usuarios);
-    }
-
-    public IActionResult Crear()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Crear(String NombreUsuarioId, String NombreCompleto, String NombreDepartamento, string NombreArea)
-    {
-        try
+        public UsuarioController(ComputadoraContext context)
         {
-            List<Usuario> NuevoUsuario = new List<Usuario>();
-            NuevoUsuario.Add(new Usuario() { NombreUsuarioId = NombreUsuarioId.ToLower(), NombreCompleto = NombreCompleto.ToUpper(), NombreDepartamento = NombreDepartamento.ToUpper(), NombreArea = NombreArea.ToUpper() });
-            context.Usuarios.AddRange(NuevoUsuario);
-            context.SaveChanges();
-            return View("Index", NuevoUsuario.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            _context = context;
         }
 
-    }
-
-     public IActionResult Borrar()
-    {
-
-        return View();
-    }
-
-
-     [HttpPost]
-    public IActionResult Borrar(Usuario usuario)
-    {
-        try
+        // GET: Usuario
+        public async Task<IActionResult> Index()
         {
-            context.Usuarios.Remove(usuario);
-
-            context.SaveChanges();
-
-            return View("TodosUsuarios", context.Usuarios);
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+              return _context.Usuarios != null ? 
+                          View(await _context.Usuarios.ToListAsync()) :
+                          Problem("Entity set 'ComputadoraContext.Usuarios'  is null.");
         }
 
-    }
-
-    public IActionResult Editar()
-    {
-
-        return View();
-    }
-
-    
-    [HttpPost]
-    public IActionResult Editar(String NombreUsuarioId, String NombreCompleto, String NombreDepartamento, string NombreArea)
-    {
-        try
+        // GET: Usuario/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-            List<Usuario> NuevoUsuario = new List<Usuario>();
-            NuevoUsuario.Add(new Usuario() { NombreUsuarioId = NombreUsuarioId.ToLower(), NombreCompleto = NombreCompleto.ToUpper(), NombreDepartamento = NombreDepartamento.ToUpper(), NombreArea = NombreArea.ToUpper() });
-            context.Usuarios.UpdateRange(NuevoUsuario);
-            context.SaveChanges();
-            return View("Index", context.Usuarios.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
+            if (id == null || _context.Usuarios == null)
+            {
+                return NotFound();
+            }
 
-            return View(ex.Message);
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
         }
 
-    }
-
-    public IActionResult BuscarNom()
-    {
-        return View("BuscarNom");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarNom(string NombreUsuarioId)
-    {
-
-        try
+        // GET: Usuario/Create
+        public IActionResult Create()
         {
-            IEnumerable<Usuario> Buscarnombre = from nom in context.Usuarios
-                                                 where nom.NombreUsuarioId == NombreUsuarioId
-                                                 select nom;
-
-
-            return View("Index", Buscarnombre.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            return View();
         }
 
-    }
-
-
-    public IActionResult BuscarDep()
-    {
-        return View("BuscarDep");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarDep(string NombreDepartamento)
-    {
-
-        try
+        // POST: Usuario/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,NombreCompleto,NombreUsuario,NombreDepartamento,NombreArea")] Usuario usuario)
         {
-            IEnumerable<Usuario> Buscarnombre = from nom in context.Usuarios
-                                                 where nom.NombreDepartamento == NombreDepartamento
-                                                 select nom;
-
-
-            return View("TodosUsuarios", Buscarnombre.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            if (usuario != null)
+            {
+                _context.Add(usuario);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(usuario);
         }
 
-    }
-
-
-     public IActionResult BuscarArea()
-    {
-        return View("BuscarArea");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarArea(string NombreArea)
-    {
-
-        try
+        // GET: Usuario/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            IEnumerable<Usuario> Buscarnombre = from nom in context.Usuarios
-                                                 where nom.NombreArea == NombreArea
-                                                 select nom;
+            if (id == null || _context.Usuarios == null)
+            {
+                return NotFound();
+            }
 
-
-            return View("TodosUsuarios", Buscarnombre.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
         }
 
+        // POST: Usuario/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NombreCompleto,NombreUsuario,NombreDepartamento,NombreArea")] Usuario usuario)
+        {
+            if (id != usuario.Id)
+            {
+                return NotFound();
+            }
+
+            if (usuario != null)
+            {
+                try
+                {
+                    _context.Update(usuario);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UsuarioExists(usuario.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(usuario);
+        }
+
+        // GET: Usuario/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null || _context.Usuarios == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+
+        // POST: Usuario/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Usuarios == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.Usuarios'  is null.");
+            }
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario != null)
+            {
+                _context.Usuarios.Remove(usuario);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool UsuarioExists(string id)
+        {
+          return (_context.Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
-
-
 }

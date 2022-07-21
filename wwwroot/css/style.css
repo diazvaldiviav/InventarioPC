@@ -1027,7 +1027,6 @@ body {
 }
 
 .logo {
-  background-image: url(../img/svg/Logo.svg);
   width: 49px;
   height: 49px;
 }
@@ -1045,7 +1044,6 @@ body {
 }
 
 .home {
-  background-image: url(../img/svg/Bulk/Home-white.svg);
   width: 24px;
   height: 24px;
 }

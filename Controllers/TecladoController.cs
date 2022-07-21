@@ -1,217 +1,163 @@
-using Microsoft.AspNetCore.Mvc;
-using ProyectoInventarioASP.Models;
+using System;
 using System.Collections.Generic;
-namespace ProyectoInventarioASP.Models.Models.net.Controllers;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProyectoInventarioASP;
+using ProyectoInventarioASP.Models;
 
-public class TecladoController : Controller
+namespace ProyectoInventarioASP.Controllers
 {
-    ComputadoraContext context;
-
-    public TecladoController(ComputadoraContext context)
+    public class TecladoController : Controller
     {
-        this.context = context;
-    }
+        private readonly ComputadoraContext _context;
 
-    public IActionResult Index()
-    {
-        return View(context.Teclados);
-    }
-
-    public IActionResult TodosTeclados()
-    {
-        return View("TodosTeclados", context.Teclados);
-    }
-
-    public IActionResult Crear()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Crear(String NumInvId, String NumSerie, String Marca, string TipoConexion, Estado estado)
-    {
-        try
+        public TecladoController(ComputadoraContext context)
         {
-            List<Teclado> NuevoTeclado = new List<Teclado>();
-            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToLower(), estado = estado });
-            context.Teclados.AddRange(NuevoTeclado);
-            context.SaveChanges();
-            return View("Index", NuevoTeclado.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(ex.Message);
+            _context = context;
         }
 
-    }
-
-
-    public IActionResult Borrar()
-    {
-
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Borrar(Teclado teclado)
-    {
-        try
+        // GET: Teclado
+        public async Task<IActionResult> Index()
         {
-            context.Teclados.Remove(teclado);
-
-            context.SaveChanges();
-
-            return View("TodosTeclados", context.Teclados);
-        }
-        catch (Exception)
-        {
-
-            return View(new ErrorViewModel() { });
+              return _context.Teclados != null ? 
+                          View(await _context.Teclados.ToListAsync()) :
+                          Problem("Entity set 'ComputadoraContext.Teclados'  is null.");
         }
 
-    }
-
-    public IActionResult Editar()
-    {
-
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult Editar(String NumInvId, String NumSerie, String Marca, string TipoConexion, Estado estado)
-    {
-        try
+        // GET: Teclado/Details/5
+        public async Task<IActionResult> Details(string id)
         {
-             List<Teclado> NuevoTeclado = new List<Teclado>();
-            NuevoTeclado.Add(new Teclado() { NumInvId = NumInvId, NumSerie = NumSerie.ToLower(), Marca = Marca.ToUpper(), TipoConexion = TipoConexion.ToLower(), estado = estado });
-            context.Teclados.UpdateRange(NuevoTeclado);
-            context.SaveChanges();
-            return View("TodosTeclados", context.Teclados);
-        }
-        catch (Exception ex)
-        {
+            if (id == null || _context.Teclados == null)
+            {
+                return NotFound();
+            }
 
-            return View(new ErrorViewModel { });
+            var teclado = await _context.Teclados
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (teclado == null)
+            {
+                return NotFound();
+            }
+
+            return View(teclado);
         }
 
-    }
-
-    public IActionResult BuscarSerie()
-    {
-        return View("BuscarSerie");
-    }
-
-    [HttpPost]
-    public IActionResult BuscarSerie(string numSerie)
-    {
-
-        try
+        // GET: Teclado/Create
+        public IActionResult Create()
         {
-            IEnumerable<Teclado> BuscarTeclado = from tecl in context.Teclados
-                                                 where tecl.NumSerie == numSerie
-                                                 select tecl;
-
-
-            return View("Index", BuscarTeclado.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            return View();
         }
 
-    }
-
-    public IActionResult BuscarMarca()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult BuscarMarca(string marca)
-    {
-
-        try
+        // POST: Teclado/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
         {
-            IEnumerable<Teclado> BuscarTeclado = from tecl in context.Teclados
-                                                 where tecl.Marca.Substring(0, 3).ToUpper() == marca.Substring(0, 3).ToUpper()
-                                                 select tecl;
-
-            return View("TodosTeclados", BuscarTeclado.ToList());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            if (teclado != null)
+            {
+                _context.Add(teclado);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(teclado);
         }
 
-    }
-
-
-    public IActionResult BuscarInv()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult BuscarInv(Teclado teclado)
-    {
-        try
+        // GET: Teclado/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
-            List<Teclado> buscadorTeclado = new List<Teclado>();
+            if (id == null || _context.Teclados == null)
+            {
+                return NotFound();
+            }
 
-            var Buscartecl = from tecl in context.Teclados
-                             where tecl == teclado
-                             select tecl;
-
-            buscadorTeclado.AddRange(Buscartecl);
-
-            return View("Index", buscadorTeclado.FirstOrDefault());
-        }
-        catch (Exception ex)
-        {
-
-            return View(new ErrorViewModel { });
+            var teclado = await _context.Teclados.FindAsync(id);
+            if (teclado == null)
+            {
+                return NotFound();
+            }
+            return View(teclado);
         }
 
-    }
-
-
-
-    public IActionResult BuscarEst()
-    {
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult BuscarEst(Estado estado)
-    {
-        var estadito = Convert.ToInt16(estado);
-        if (estadito == 1)
+        // POST: Teclado/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
         {
-            IEnumerable<Teclado> buscarPcinact = from tecl in context.Teclados
-                                                 where tecl.estado == Estado.inactivo
-                                                 select tecl;
+            if (id != teclado.Id)
+            {
+                return NotFound();
+            }
 
-            return View("TodosTeclados", buscarPcinact.ToList());
-
+            if (teclado != null)
+            {
+                try
+                {
+                    _context.Update(teclado);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TecladoExists(teclado.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(teclado);
         }
-        else
+
+        // GET: Teclado/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
+            if (id == null || _context.Teclados == null)
+            {
+                return NotFound();
+            }
 
-            IEnumerable<Teclado> buscarPcinact = from tecl in context.Teclados
-                                                 where tecl.estado == Estado.activo
-                                                 select tecl;
+            var teclado = await _context.Teclados
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (teclado == null)
+            {
+                return NotFound();
+            }
 
-            return View("TodosTeclados", buscarPcinact.ToList());
-
+            return View(teclado);
         }
 
+        // POST: Teclado/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            if (_context.Teclados == null)
+            {
+                return Problem("Entity set 'ComputadoraContext.Teclados'  is null.");
+            }
+            var teclado = await _context.Teclados.FindAsync(id);
+            if (teclado != null)
+            {
+                _context.Teclados.Remove(teclado);
+            }
+            
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool TecladoExists(string id)
+        {
+          return (_context.Teclados?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
     }
-
-
-
-
 }
