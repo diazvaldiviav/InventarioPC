@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'inventariopc'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0B17AEAE0D06488FAF960163A0AF405E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3A92F19D4CB546548689A605FBE8AEFC }}
           package: .
