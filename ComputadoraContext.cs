@@ -14,6 +14,7 @@ public class ComputadoraContext : DbContext
     public DbSet<Display> Displays { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Impresora> Impresoras { get; set; }
+    public DbSet<User> Users {get; set;}
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
@@ -49,6 +50,10 @@ public class ComputadoraContext : DbContext
          //cargar monitor por cada computadora
         var monitores = CargarMonitor(computadora);
 
+        //cargar usernames
+
+        var users = cargarUserNames();
+
 
 
         //Inyeccion de datos
@@ -61,7 +66,18 @@ public class ComputadoraContext : DbContext
         modelBuilder.Entity<Usuario>().HasData(usuarios);
         modelBuilder.Entity<Impresora>().HasData(impresoras.ToArray());
         modelBuilder.Entity<MemoriaRam>().HasData(memorias.ToArray());
+        modelBuilder.Entity<User>().HasData(users.ToArray());
     }
+
+    private List<User> cargarUserNames()
+    {
+        List<User>ListUser = new List<User>();
+        ListUser.Add(new User(){UserId="1", Nombre="Victor Diaz", password = "123", username = "victor", permisos = "admin" , Email = "juca@ki.com"});
+       
+
+        return ListUser;
+    }
+
 
     private List<Usuario> CargarUsuarios()
     {
