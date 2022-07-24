@@ -341,3 +341,6 @@ G:\ProyectoInventarioASP\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.d
 G:\ProyectoInventarioASP\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa.AspNetCore.dll
 G:\ProyectoInventarioASP\obj\Debug\net6.0\ProyectoInventarioASP.MvcApplicationPartsAssemblyInfo.cs
+G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltoimage.exe
+G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltopdf.exe
+G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltox.dll
