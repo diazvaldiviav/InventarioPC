@@ -19,7 +19,7 @@ body {
 
 .container-flex{
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
 }
 
 .margin{
@@ -40,3 +40,4 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 400px);
 }
+

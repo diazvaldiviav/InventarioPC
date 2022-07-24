@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
+using Microsoft.AspNetCore.Authorization;
 using ProyectoInventarioASP.Models;
 
 namespace ProyectoInventarioASP.Controllers
 {
+    [Authorize]
     public class ImpresoraController : Controller
     {
         private readonly ComputadoraContext _context;

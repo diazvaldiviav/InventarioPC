@@ -7,8 +7,8 @@
 <div class="layer"></div>
 <main class="page-center">
   <article class="sign-up">
-    <h1 class="sign-up__title">Welcome back!</h1>
-    <p class="sign-up__subtitle">Sign in to your account to continue</p>
+    <h1 class="sign-up__title">Inventario</h1>
+    <p class="sign-up__subtitle">Entre su correo y su contraseña</p>
     <form class="sign-up-form form"  method="post">
       <label class="form-label-wrapper" asp-for="Email">
         <p class="form-label">Email</p>
@@ -20,8 +20,7 @@
       </label>
       <a class="link-info forget-link" href="##">Forgot your password?</a>
       <label class="form-checkbox-wrapper">
-        <input class="form-checkbox" type="checkbox" required>
-        <span class="form-checkbox-label">Remember me next time</span>
+        <a class="link-info forget-link" asp-controller="User" asp-action="Register">Registrar</a>
       </label>
       <button class="form-btn primary-default-btn transparent-btn">Sign in</button>
     </form>

@@ -1,0 +1,36 @@
+﻿@model User
+
+@{
+  ViewData["Title"] = "Home Page";
+  Layout = "signin";
+}
+<div class="layer"></div>
+<main class="page-center">
+  <article class="sign-up">
+    <h1 class="sign-up__title">Crea un usuario</h1>
+    <p class="sign-up__subtitle">Emepecemos creando una mejor experiencia de usuario</p>
+    <form class="sign-up-form form"  method="post">
+      <label class="form-label-wrapper" asp-for="Nombre">
+        <p class="form-label">Nombre</p>
+        <input class="form-input" type="text" asp-for="Nombre" placeholder="Ingresa tu nombre" required>
+      </label>
+      <label class="form-label-wrapper" asp-for="Email">
+        <p class="form-label">Correo</p>
+        <input class="form-input" type="email" placeholder="Entre su cooreo" asp-for="Email" required>
+      </label>
+      <label class="form-label-wrapper" asp-for="username">
+        <p class="form-label">Nombre de usuario</p>
+        <input class="form-input" type="text" placeholder="Entre su nombre de usuario" asp-for="username" required>
+      </label>
+      <label class="form-label-wrapper" asp-for="password">
+        <p class="form-label">Password</p>
+        <input class="form-input" type="password" placeholder="Entre su password" asp-for="password" required>
+      </label>
+      <label class="form-checkbox-wrapper">
+        <input class="form-checkbox" type="checkbox" required>
+        <span class="form-checkbox-label">Recordar la proxima vez</span>
+      </label>
+      <button class="form-btn primary-default-btn transparent-btn">Registrar</button>
+    </form>
+  </article>
+</main>

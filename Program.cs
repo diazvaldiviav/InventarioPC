@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using ProyectoInventarioASP.Models;
+
 
 
 
@@ -18,6 +18,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddDbContext<ComputadoraContext>(options => options.UseInMemoryDatabase("testDB"));
 //builder.Services.AddSqlServer<ComputadoraContext>(builder.Configuration.GetConnectionString("cnInv"));
+
 var app = builder.Build();
 
 
@@ -43,6 +44,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -54,6 +57,12 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Computadora}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Index}/{id?}");
+
+
+
+IWebHostEnvironment env = app.Environment;
+Rotativa.AspNetCore.RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env, "../Rotativa");
 
 app.Run();
+

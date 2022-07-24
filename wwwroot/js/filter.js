@@ -4,6 +4,7 @@ let ButtonSearchi = document.querySelector(".buttonSearch");
 ButtonSearchi.addEventListener("click", buscarPc);
 
 function buscarPc() {
+    let TablaImprimir = document.querySelector("#CuerpoTablaPrint")
     let Tabla = document.querySelector("#tabla")
     const CuerpoTabla = document.querySelector("#CuerpoTablaPc")
     let filas = document.querySelectorAll(".filapc");
@@ -17,6 +18,7 @@ function buscarPc() {
             console.log(ArrFilas);
             CuerpoTabla2.append(ArrFilas[i])
             Tabla.append(CuerpoTabla2);
+            TablaImprimir.append(ArrFilas[i]);
         }
     }
 

@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -48,6 +44,69 @@ namespace ProyectoInventarioASP.Controllers
 
             return View(computadora);
         }
+
+        // GET: ImprimirFilter
+
+        public IActionResult ImprimirFilter()
+        {
+            return View();
+        }
+
+        // GET: Customers/ContactPDF
+
+        
+        public async Task<IActionResult> Imprimir(string id)
+        {
+            // var BuscarId = from pc in _context.Computadoras
+            //                where pc.NumInv == id
+            //                select pc;
+
+            // if (BuscarId.Count() >= 0)
+            // {
+                return new ViewAsPdf("Imprimir", await _context.Computadoras.ToListAsync())
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                };
+            // }
+            // return View();
+
+        }
+         
+        public async Task<IActionResult> Print(string id)
+        {
+            if (id == null || _context.Computadoras == null)
+            {
+                return NotFound();
+            }
+
+            var computadora = await _context.Computadoras
+                .Include(c => c.Impresora)
+                .Include(c => c.MotherBoard)
+                .Include(c => c.Teclado)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (computadora == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", computadora)
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+
 
         // GET: Computadora/Create
         public IActionResult Create()
@@ -169,14 +228,14 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.Computadoras.Remove(computadora);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ComputadoraExists(string id)
         {
-          return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

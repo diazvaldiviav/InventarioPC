@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
 
 namespace ProyectoInventarioASP.Controllers
 {
+    [Authorize]
     public class MotherBoardController : Controller
     {
         private readonly ComputadoraContext _context;
