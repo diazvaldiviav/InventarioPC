@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZlhB17Nmngy+eiArdL8hsOo/o5J2kMaiIOvQ/5qwxO4=",
+  "Hash": "4faeiOp72ICCr5sdrSPzdeBX0DG5l7gOAyXhhsr+3/c=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -3143,6 +3143,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\filter.js"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\imprimir.js",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "js/imprimir.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\imprimir.js"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\script.js",

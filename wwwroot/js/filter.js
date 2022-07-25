@@ -1,10 +1,9 @@
 let ButtonSearchi = document.querySelector(".buttonSearch");
-
+let boton = document.querySelector("#tablaImpr")
 
 ButtonSearchi.addEventListener("click", buscarPc);
 
 function buscarPc() {
-    let TablaImprimir = document.querySelector("#CuerpoTablaPrint")
     let Tabla = document.querySelector("#tabla")
     const CuerpoTabla = document.querySelector("#CuerpoTablaPc")
     let filas = document.querySelectorAll(".filapc");
@@ -15,15 +14,23 @@ function buscarPc() {
     //recorrer el  array de filas con un for
     for (let i = 0; i < ArrFilas.length; i++) {
         if (ArrFilas[i].textContent.includes(searchvalor)) {
-            console.log(ArrFilas);
             CuerpoTabla2.append(ArrFilas[i])
             Tabla.append(CuerpoTabla2);
-            TablaImprimir.append(ArrFilas[i]);
         }
     }
 
 }
+
+
+
+boton.addEventListener("mouseover", ()=>{
+    alert("holaaaaa")
+})
+
+
+
     
+
 
 
 

@@ -46,6 +46,10 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: ImprimirFilter
+        public IActionResult Imprimir()
+        {
+            return View();
+        }
 
         public IActionResult ImprimirFilter()
         {
@@ -53,25 +57,39 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Customers/ContactPDF
-
-        
-        public async Task<IActionResult> Imprimir(string id)
+        [HttpPost]
+        public async Task<IActionResult> Imprimir(string Id)
         {
-            // var BuscarId = from pc in _context.Computadoras
-            //                where pc.NumInv == id
-            //                select pc;
 
-            // if (BuscarId.Count() >= 0)
-            // {
-                return new ViewAsPdf("Imprimir", await _context.Computadoras.ToListAsync())
+            var BuscarNombre = from pc in _context.Computadoras
+                               where pc.Nombre == Id
+                               select pc;
+
+            if (BuscarNombre.Count() >= 0)
+            {
+                return new ViewAsPdf("Imprimir", await BuscarNombre.ToListAsync())
                 {
                     PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
                 };
-            // }
-            // return View();
+            }
+            else
+            {
+                var BuscarDep = from pc in _context.Computadoras
+                                where pc.NombreDepartamento == Id
+                                select pc;
+
+                if (BuscarDep.Count() >= 0)
+                {
+                    return new ViewAsPdf("Imprimir", await BuscarDep.ToListAsync())
+                    {
+                        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                    };
+                }
+            }
+            return View();
 
         }
-         
+
         public async Task<IActionResult> Print(string id)
         {
             if (id == null || _context.Computadoras == null)
@@ -90,9 +108,9 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             return new ViewAsPdf("DetailsPrint", computadora)
-                {
-                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-                };
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            };
         }
 
         public ActionResult HeaderPdf()
