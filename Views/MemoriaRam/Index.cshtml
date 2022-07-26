@@ -8,7 +8,10 @@
 <h1>Memorias Ram</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <a asp-action="Create" class="btn btn-primary btn-sm">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -32,35 +35,42 @@
                 @Html.DisplayNameFor(model => model.MotherBoard)
             </th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.KayNumSerieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tecnologia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.KayNumSerieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.KayNumSerieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.KayNumSerieId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KayNumSerieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tecnologia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
+                </td>
+
+                @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                {
+                    <td><a asp-action="Edit" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Edit</a> </td>
+                    <td><a asp-action="Details" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Details</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@item.KayNumSerieId" class="btn btn-danger btn-sm">Delete</a></td>
+                }
+
+
+            </tr>
+        }
     </tbody>
 </table>

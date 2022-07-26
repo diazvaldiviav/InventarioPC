@@ -1,0 +1,51 @@
+@model IEnumerable<User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+<div class="margin">
+    <h1>Usuarios</h1>
+
+    
+        <p>
+            <a asp-action="Register" class="btn btn-primary btn-sm">Insertar</a>
+        </p>
+    
+    <div class="table-responsive">
+        <table class="table table-hover table-border" id="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Nombre de usuario</th>
+                    <th>Correo</th>
+                    <th>Permiso</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="CuerpoTablaPc">
+                @foreach (var item in Model)
+                {
+                    <tr class="filapc">
+                        <td class="filter" id="inv">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td class="filter dep" id="dep">
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td class="filter dep" id="area">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                          <td class="filter dep" id="area">
+                            @Html.DisplayFor(modelItem => item.permisos)
+                        </td>
+                        <td><a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Modificar</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

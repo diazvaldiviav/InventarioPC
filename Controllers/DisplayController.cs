@@ -48,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id");
@@ -57,6 +58,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Display/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
@@ -72,6 +74,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Edit/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Displays == null)
@@ -91,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Display/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
@@ -125,6 +129,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Displays == null)
@@ -144,6 +149,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Display/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

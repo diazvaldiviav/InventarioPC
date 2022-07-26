@@ -48,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: DiscoDuro/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
@@ -57,6 +58,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: DiscoDuro/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
@@ -72,6 +74,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: DiscoDuro/Edit/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.DiscosDuro == null)
@@ -91,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: DiscoDuro/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
@@ -125,6 +129,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: DiscoDuro/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.DiscosDuro == null)
@@ -144,6 +149,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: DiscoDuro/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

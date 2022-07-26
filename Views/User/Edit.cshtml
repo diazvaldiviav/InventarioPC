@@ -1,4 +1,4 @@
-﻿@model User
+@model User
 
 @{
   ViewData["Title"] = "Home Page";
@@ -7,9 +7,9 @@
 <div class="layer"></div>
 <main class="page-center">
   <article class="sign-up">
-    <h1 class="sign-up__title">Crea un usuario</h1>
-    <p class="sign-up__subtitle">Emepecemos creando una mejor experiencia de usuario</p>
+    <h1 class="sign-up__title">Modifica un usuario</h1>
     <form class="sign-up-form form"  method="post">
+        <input class="form-input" type="hidden" asp-for="UserId">
       <label class="form-label-wrapper" asp-for="Nombre">
         <p class="form-label">Nombre</p>
         <input class="form-input" type="text" asp-for="Nombre" placeholder="Ingresa tu nombre" required>

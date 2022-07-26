@@ -48,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Impresora/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +57,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Impresora/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
@@ -70,6 +72,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Impresora/Edit/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Impresoras == null)
@@ -88,6 +91,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Impresora/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
@@ -121,6 +125,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Impresora/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Impresoras == null)
@@ -139,6 +144,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Impresora/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Identity
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,316 +12,242 @@
   <!-- Custom styles -->
   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
-     @* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> *@
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> 
-    @* <link rel="stylesheet" href="~/ProyectoInventarioASP.net.styles.css" asp-append-version="true" /> *@
+  @* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> *@
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  @* <link rel="stylesheet" href="~/ProyectoInventarioASP.net.styles.css" asp-append-version="true" /> *@
 </head>
 
 <body>
   <div class="layer"></div>
-<!-- ! Body -->
-<a class="skip-link sr-only" href="#skip-target">Skip to content</a>
-<div class="page-flex">
-  <!-- ! Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-start">
+  <!-- ! Body -->
+  <a class="skip-link sr-only" href="#skip-target">Skip to content</a>
+  <div class="page-flex">
+    <!-- ! Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-start">
         <div class="sidebar-head">
-            <a asp-controller="Computadora" asp-action="Index" class="logo-wrapper" title="Home">
-                <span class="sr-only">Home</span>
-                <img src="~/Assets/logo.png" class="icon logo"  aria-hidden="true"></span>
-                <div class="logo-text">
-                    <span class="logo-title">Inventario</span>
-                    <span class="logo-subtitle">PC</span>
-                </div>
+          <a asp-controller="Computadora" asp-action="Index" class="logo-wrapper" title="Home">
+            <span class="sr-only">Home</span>
+            <img src="~/Assets/logo.png" class="icon logo" aria-hidden="true"></span>
+            <div class="logo-text">
+              <span class="logo-title">Inventario</span>
+              <span class="logo-subtitle">PC</span>
+            </div>
 
-            </a>
-            <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-                <span class="sr-only">Toggle menu</span>
-                <span class="icon menu-toggle" aria-hidden="true"></span>
-            </button>
+          </a>
+          <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+            <span class="sr-only">Toggle menu</span>
+            <span class="icon menu-toggle" aria-hidden="true"></span>
+          </button>
         </div>
         <div class="sidebar-body">
-            <ul class="sidebar-body-menu">
+          <ul class="sidebar-body-menu">
+            <li>
+              <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
+                  class="icon home">Pc</a>
+            </li>
+            <li>
+              <a asp-controller="Display" asp-action="Index">
+                <img src="~/Assets/monitor.png" class="icon home">Monitor
+                @* <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                  </span> *@
+              </a>
+              @* <ul class="cat-sub-menu">
                 <li>
-                    <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png" class="icon home">Pc</a>
-                </li>
-                <li>
-                    <a  asp-controller="Display" asp-action="Index">
-                        <img src="~/Assets/monitor.png" class="icon home">Monitor
-                        @* <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span> *@
-                    </a>
-                    @* <ul class="cat-sub-menu">
-                        <li>
-                            <a href="posts.html">All Posts</a>
-                        </li>
-                        <li>
-                            <a href="new-post.html">Add new post</a>
-                        </li>
-                    </ul> *@
+                <a href="posts.html">All Posts</a>
                 </li>
                 <li>
-                    <a  asp-controller="Micro" asp-action="Index">
-                        <img src="~/Assets/Micro.png" class="icon home"></span>Micros
-                        @* <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span> *@
-                    </a>
-                    @* <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">All categories</a>
-                        </li>
-                    </ul> *@
+                <a href="new-post.html">Add new post</a>
                 </li>
-                <li>
-                    <a asp-controller="MemoriaRam" asp-action="Index">
-                       <img src="~/Assets/memoryram.png" class="icon home">Memoria
-                        @* <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span> *@
-                    </a>
-                    @* <ul class="cat-sub-menu">
-                        <li>
-                            <a href="media-01.html">Media-01</a>
-                        </li>
-                        <li>
-                            <a href="media-02.html">Media-02</a>
-                        </li>
-                    </ul> *@
-                </li>
-                <li>
-                    <a  asp-controller="Teclado" asp-action="Index">
-                        <img src="~/Assets/keyboard.png" class="icon home">Teclado
-                    </a>
-                    @* <ul class="cat-sub-menu">
-                        <li>
-                            <a href="pages.html">All pages</a>
-                        </li>
-                        <li>
-                            <a href="new-page.html">Add new page</a>
-                        </li>
-                    </ul> *@
-                </li>
-                <li>
-                    <a asp-controller="DiscoDuro" asp-action="Index">
-                        <img src="~/Assets/DiscoDuro.png" class="icon home">
-                        Discos
-                    </a>
-                </li>
-                <li>
-                    <a  asp-controller="Usuario" asp-action="index">
-                         <img src="~/Assets/User.png" class="icon home">Users
-                        
-                    </a>
-                </li>
-                  <li>
-                    <a asp-controller="MotherBoard" asp-action="Index">
-                        <img src="~/Assets/motherboard.png" class="icon home">
-                        Boards
-                    </a>
-                </li>
-                 <li>
-                    <a asp-controller="Impresora" asp-action="Index">
-                        <img src="~/Assets/impresora.png" class="icon home">
-                        Impresoras
-                    </a>
-                </li>
-                
-            </ul>
+                </ul> *@
+            </li>
+            <li>
+              <a asp-controller="Micro" asp-action="Index">
+                <img src="~/Assets/Micro.png" class="icon home"></span>Micros
+              </a>
+            </li>
+            <li>
+              <a asp-controller="MemoriaRam" asp-action="Index">
+                <img src="~/Assets/memoryram.png" class="icon home">Memoria
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Teclado" asp-action="Index">
+                <img src="~/Assets/keyboard.png" class="icon home">Teclado
+              </a>
+            </li>
+            <li>
+              <a asp-controller="DiscoDuro" asp-action="Index">
+                <img src="~/Assets/DiscoDuro.png" class="icon home">
+                Discos
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Usuario" asp-action="index">
+                <img src="~/Assets/User.png" class="icon home">Users
+
+              </a>
+            </li>
+            <li>
+              <a asp-controller="MotherBoard" asp-action="Index">
+                <img src="~/Assets/motherboard.png" class="icon home">
+                Boards
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Impresora" asp-action="Index">
+                <img src="~/Assets/impresora.png" class="icon home">
+                Impresoras
+              </a>
+            </li>
+          </ul>
+          @if (User.IsInRole("admin"))
+          {
             <span class="system-menu__title">system</span>
             <ul class="sidebar-body-menu">
-                <li>
-                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Appearance</a>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon category" aria-hidden="true"></span>Extentions
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="extention-01.html">Extentions-01</a>
-                        </li>
-                        <li>
-                            <a href="extention-02.html">Extentions-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="users-01.html">Users-01</a>
-                        </li>
-                        <li>
-                            <a href="users-02.html">Users-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>
-                </li>
+              <li>
+                <a class="show-cat-btn" href="##">
+                  <span class="icon user-3" aria-hidden="true"></span>Users
+                  <span class="category__btn transparent-btn" title="Open list">
+                    <span class="sr-only">Open list</span>
+                    <span class="icon arrow-down" aria-hidden="true"></span>
+                  </span>
+                </a>
+                <ul class="cat-sub-menu">
+                  <li>
+                    <a asp-controller="User" asp-action="Register">Registrar</a>
+                  </li>
+                  <li>
+                    <a asp-controller="User" asp-action="ListaUser">Registro de usuarios</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
+          }
         </div>
-    </div>
-    <div class="sidebar-footer">
-        <a href="##" class="sidebar-user">
-            <span class="sidebar-user-img">
-                <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
-            </span>
-            <div class="sidebar-user-info">
-                <span class="sidebar-user__title">Nafisa Sh.</span>
-                <span class="sidebar-user__subtitle">Support manager</span>
+      </div>
+    </aside>
+    <div class="main-wrapper">
+      <!-- ! Main nav -->
+      <nav class="main-nav--bg">
+        <div class="container main-nav">
+          <div class="main-nav-start">
+            <div class="search-wrapper">
+              <input type="text" id="search" placeholder="Enter keywords ..." required>
+              <button type="button" class="btn btn-primary buttonSearch">Buscar</button>
             </div>
-        </a>
-    </div>
-</aside>
-  <div class="main-wrapper">
-    <!-- ! Main nav -->
-    <nav class="main-nav--bg">
-  <div class="container main-nav">
-    <div class="main-nav-start">
-      <div class="search-wrapper">
-        <input type="text" id="search" placeholder="Enter keywords ..." required>
-        <button type="button" class="btn btn-primary buttonSearch">Buscar</button>
-      </div>
-      
-    </div>
-    <div class="main-nav-end">
-      <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
-        <span class="sr-only">Toggle menu</span>
-        <span class="icon menu-toggle--gray" aria-hidden="true"></span>
-      </button>
-      <div class="lang-switcher-wrapper">
-        <button class="lang-switcher transparent-btn" type="button">
-          EN
-          <i data-feather="chevron-down" aria-hidden="true"></i>
-        </button>
-        <ul class="lang-menu dropdown">
-          <li><a href="##">English</a></li>
-          <li><a href="##">French</a></li>
-          <li><a href="##">Uzbek</a></li>
-        </ul>
-      </div>
-      <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
-        <span class="sr-only">Switch theme</span>
-        <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
-        <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
-      </button>
-      <div class="notification-wrapper">
-        <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
-          <span class="sr-only">To messages</span>
-          <span class="icon notification active" aria-hidden="true"></span>
-        </button>
-        <ul class="users-item-dropdown notification-dropdown dropdown">
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon info">
-                <i data-feather="check"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">System just updated</span>
-                <span class="notification-dropdown__subtitle">The system has been successfully upgraded. Read more
-                  here.</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon danger">
-                <i data-feather="info" aria-hidden="true"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">The cache is full!</span>
-                <span class="notification-dropdown__subtitle">Unnecessary caches take up a lot of memory space and
-                  interfere ...</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="##">
-              <div class="notification-dropdown-icon info">
-                <i data-feather="check" aria-hidden="true"></i>
-              </div>
-              <div class="notification-dropdown-text">
-                <span class="notification-dropdown__title">New Subscriber here!</span>
-                <span class="notification-dropdown__subtitle">A new subscriber has subscribed.</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="link-to-page" href="##">Go to Notifications page</a>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-user-wrapper">
-        <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
-          <span class="sr-only">My profile</span>
-          <span class="nav-user-img">
-            <picture><source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-02.png" alt="User name"></picture>
-          </span>
-        </button>
-        <ul class="users-item-dropdown nav-user-dropdown dropdown">
-          <li><a href="##">
-              <i data-feather="user" aria-hidden="true"></i>
-              <span>Profile</span>
-            </a></li>
-          <li><a href="##">
-              <i data-feather="settings" aria-hidden="true"></i>
-              <span>Account settings</span>
-            </a></li>
-          <li><a class="danger" asp-controller="User" asp-action="Salir">
-              <i data-feather="log-out" aria-hidden="true"></i>
-              <span>Log out</span>
-            </a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-    <!-- ! Main -->
-    <main class="container main user" id="skip-target">
+          </div>
+          <div class="main-nav-end">
+            <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+              <span class="sr-only">Toggle menu</span>
+              <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+            </button>
+            <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
+              <span class="sr-only">Switch theme</span>
+              <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
+              <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
+            </button>
+            <div class="notification-wrapper">
+              <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
+                <span class="sr-only">To messages</span>
+                <span class="icon notification active" aria-hidden="true"></span>
+              </button>
+              <ul class="users-item-dropdown notification-dropdown dropdown">
+                <li>
+                  <a href="##">
+                    <div class="notification-dropdown-icon info">
+                      <i data-feather="check"></i>
+                    </div>
+                    <div class="notification-dropdown-text">
+                      <span class="notification-dropdown__title">System just updated</span>
+                      <span class="notification-dropdown__subtitle">The system has been successfully upgraded. Read more
+                        here.</span>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="##">
+                    <div class="notification-dropdown-icon danger">
+                      <i data-feather="info" aria-hidden="true"></i>
+                    </div>
+                    <div class="notification-dropdown-text">
+                      <span class="notification-dropdown__title">The cache is full!</span>
+                      <span class="notification-dropdown__subtitle">Unnecessary caches take up a lot of memory space and
+                        interfere ...</span>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="##">
+                    <div class="notification-dropdown-icon info">
+                      <i data-feather="check" aria-hidden="true"></i>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="link-to-page" href="##">Go to Notifications page</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-user-wrapper">
+              <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
+                <span class="sr-only">User</span>
+                <span class="nav-user-img">
+                  <picture>
+                    <source srcset="~/img/avatar/avatar-illustrated-02.webp" type="image/webp"><img
+                      src="~/img/avatar/avatar-illustrated-02.png" alt="User name">
+                  </picture>
+                </span>
+              </button>
+              <ul class="users-item-dropdown nav-user-dropdown dropdown">
+                <li><a href="##">
+                    <i data-feather="user" aria-hidden="true"></i>
+                    <span>@User.Identity.Name</span>
+                  </a></li>
+                <li><a href="##">
+                    <i data-feather="settings" aria-hidden="true"></i>
+                    <span>Cuenta</span>
+                  </a></li>
+                <li><a class="danger" asp-controller="User" asp-action="Salir">
+                    <i data-feather="log-out" aria-hidden="true"></i>
+                    <span>Cerrar sesión</span>
+                  </a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- ! Main -->
+      <main class="container main user" id="skip-target">
         @RenderBody()
-     
-    <!-- ! Footer -->
-    <footer class="footer">
-  <div class="container footer--flex">
-    <div class="footer-start">
-      <p>2021 © Elegant Dashboard - <a href="elegant-dashboard.com" target="_blank"
-          rel="noopener noreferrer">elegant-dashboard.com</a></p>
+        <!-- ! Footer -->
+        <footer class="footer">
+          <div class="container footer--flex">
+            <div class="footer-start">
+              <p>2022 © InventarioPc - <a href="elegant-dashboard.com" target="_blank"
+                  rel="noopener noreferrer">elegant-dashboard.com</a></p>
+            </div>
+            <ul class="footer-end">
+              <li><a href="##">About</a></li>
+              <li><a href="##">Support</a></li>
+              <li><a href="##">Puchase</a></li>
+            </ul>
+          </div>
+        </footer>
     </div>
-    <ul class="footer-end">
-      <li><a href="##">About</a></li>
-      <li><a href="##">Support</a></li>
-      <li><a href="##">Puchase</a></li>
-    </ul>
   </div>
-</footer>
-  </div>
-</div>
-<script type="module" src="~/js/filter.js"></script>
-<!-- Chart library -->
-<script src="~/plugins/chart.min.js"></script>
-<!-- Icons library -->
-<script src="~/plugins/feather.min.js"></script>
-<!-- Custom scripts -->
-<script src="~/js/script.js"></script>
+  <script type="module" src="~/js/filter.js"></script>
+  <!-- Chart library -->
+  <script src="~/plugins/chart.min.js"></script>
+  <!-- Icons library -->
+  <script src="~/plugins/feather.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="~/js/script.js"></script>
 
- @await RenderSectionAsync("Scripts", required: false)
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
