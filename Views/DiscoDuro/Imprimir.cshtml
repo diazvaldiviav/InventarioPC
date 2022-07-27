@@ -1,4 +1,4 @@
-@model IEnumerable<Computadora>
+@model IEnumerable<DiscoDuro>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,120 +7,81 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ContactPDF</title>
-      <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
-  <!-- Custom styles -->
-      <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     <style>
         /* SOLUCIONA PROBLEMA DE SOLAPAMIENTO EN TABLAS <table /> */
-        thead { display: table-header-group }
-        tfoot { display: table-row-group }
-        tr { page-break-inside: avoid }        
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
     </style>
 
 </head>
+
 <body>
-    
-        <table class="table table-hover table-border" id="tabla">
-            <thead>
-                <tr>
-                    <th>Numero de inventario</th>
-                    <th>Departamento</th>
-                    <th>Area</th>
-                    <th>Nombre Pc</th>
-                    <th>Sist Operativo</th>
-                    <th>Estado</th>
-                    <th>Mac</th>
-                    <th>Ip</th>
-                    <th>Usuario No</th>
-                    <th>Inventario Impresora</th>
-                    <th>Inventario Teclado</th>
-                    <th>Nombre de usuario</th>
-                    <th>Marca de Board</th>
-                    <th>Capacidad de disco</th>
-                    <th>Conexion de disco</th>
-                    <th>Capacidad de memoria</th>
-                    <th>Tecnologia de memoria</th>
-                    <th>Tecnologia de micro</th>
-                    <th>Teclado No</th>
-                    <th>MotherBoard No</th>
-                    <th>Impresora No</th>
+    <table class="table table-hover table-border" id="tabla">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumSerieId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoConexion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.motherBoard)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="CuerpoTablaPc">
+            @foreach (var item in Model)
+            {
+                <tr class="filapc">
+                     <td>
+                        @Html.DisplayFor(modelItem => item.NumSerieId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoConexion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.motherBoard.NumSerieId)
+                    </td>
                 </tr>
-            </thead>
-            <tbody id="CuerpoTabla">
-                @foreach (var item in Model)
-                {
-                    <tr class="filapc">
-                        <td class="filter" id="inv">
-                            @Html.DisplayFor(modelItem => item.NumInv)
-                        </td>
-                        <td class="filter dep" id="dep">
-                            @Html.DisplayFor(modelItem => item.NombreDepartamento)
-                        </td>
-                        <td class="filter dep" id="area">
-                            @Html.DisplayFor(modelItem => item.NombreArea)
-                        </td>
-                        <td class="filter inv" id="nombre">
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td class="filter" id="so">
-                            @Html.DisplayFor(modelItem => item.SO)
-                        </td>
-                        <td class="filter" id="estado">
-                            @Html.DisplayFor(modelItem => item.estado)
-                        </td>
-                        <td class="filter" id="mac">
-                            @Html.DisplayFor(modelItem => item.Mac)
-                        </td>
-                        <td class="filter" id="NumIp">
-                            @Html.DisplayFor(modelItem => item.NumIp)
-                        </td>
-                        <td class="filter" id="IDusuario">
-                            @Html.DisplayFor(modelItem => item.NombreUsuarioId)
-                        </td>
-                        <td class="filter" id="InvImpr">
-                            @Html.DisplayFor(modelItem => item.ImprNumInv)
-                        </td>
-                        <td class="filter" id="InvTecl">
-                            @Html.DisplayFor(modelItem => item.TeclNumInv)
-                        </td>
-                        <td class="filter" id="UserName">
-                            @Html.DisplayFor(modelItem => item.UserName)
-                        </td>
-                        <td class="filter" id="BoardMarca">
-                            @Html.DisplayFor(modelItem => item.MotherBoardMarca)
-                        </td>
-                        <td class="filter" id="CapDisc">
-                            <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
-                            item.DiscoDuroCap)</a>
-                        </td>
-                        <td class="filter" id="TipoConexDisc">
-                            @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
-                        </td>
-                        <td class="filter" id="CapMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamCap)
-                        </td>
-                        <td class="filter" id="TecMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamTec)
-                        </td>
-                        <td class=filter id="TecnMicro">
-                            @Html.DisplayFor(modelItem => item.MicroTecn)
-                        </td>
-                        <td class="filter" id="TeclId">
-                            @Html.DisplayFor(modelItem => item.Teclado.Id)
-                        </td>
-                        <td class="filter" id="BoardId">
-                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.Impresora.Id)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 </body>
+
 </html>

@@ -7,9 +7,12 @@
 
 <h1>MotherBoards</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -26,29 +29,34 @@
                 @Html.DisplayNameFor(model => model.Micro)
             </th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumSerieId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Micro.NumSerieId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NumSerieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NumSerieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NumSerieId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumSerieId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Micro.NumSerieId)
+                </td>
+                @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                {
+                    <td><a asp-action="Edit" asp-route-id="@item.NumSerieId">Edit</a></td>
+                    <td><a asp-action="Details" asp-route-id="@item.NumSerieId">Details</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@item.NumSerieId">Delete</a></td>
+                }
+            </tr>
+
+        }
     </tbody>
 </table>

@@ -30,17 +30,17 @@ public class UserController : Controller
         return View();
     }
 
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     public IActionResult ListaUser()
     {
         return View("ListaUser", _context.Users);
     }
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     public IActionResult Register()
     {
         return View();
     }
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Edit(string id)
     {
         if (id == null || _context.Users == null)
@@ -57,7 +57,7 @@ public class UserController : Controller
         return View(user);
     }
 
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> Delete(string id)
     {
         if (id == null || _context.Users == null)
@@ -75,7 +75,7 @@ public class UserController : Controller
         return View(user);
     }
 
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(string id)
@@ -98,7 +98,7 @@ public class UserController : Controller
     }
 
 
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(string id, User _user)
@@ -137,7 +137,7 @@ public class UserController : Controller
 
     }
 
-    [Authorize(Roles = "admin , lecturaYEscritura")]
+    [Authorize(Roles = "admin")]
     [HttpPost]
     public async Task<IActionResult> Register(User _user)
     {

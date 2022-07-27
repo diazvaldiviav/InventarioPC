@@ -14,7 +14,8 @@ public class ComputadoraContext : DbContext
     public DbSet<Display> Displays { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Impresora> Impresoras { get; set; }
-    public DbSet<User> Users {get; set;}
+    public DbSet<User> Users { get; set; }
+    public DbSet<Ups> Upss { get; set; }
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
@@ -31,6 +32,9 @@ public class ComputadoraContext : DbContext
         //cargar telcados 
         var teclados = CargarTeclados();
 
+        //cargar Ups
+        var ups = CargarUps();
+
         //cargar impresora
         var impresoras = CargarImpresoras();
 
@@ -45,9 +49,9 @@ public class ComputadoraContext : DbContext
         var discos = CargarDiscos(boards);
 
         //cargar una computadora por cada motherboard, teclado,impresora,usuario
-        var computadora = CargarComputadoras(boards, impresoras, usuarios, teclados, discos, memorias, MicroProcesadorInit);
+        var computadora = CargarComputadoras(boards, impresoras, usuarios, teclados, discos, memorias, MicroProcesadorInit,ups);
 
-         //cargar monitor por cada computadora
+        //cargar monitor por cada computadora
         var monitores = CargarMonitor(computadora);
 
         //cargar usernames
@@ -67,14 +71,30 @@ public class ComputadoraContext : DbContext
         modelBuilder.Entity<Impresora>().HasData(impresoras.ToArray());
         modelBuilder.Entity<MemoriaRam>().HasData(memorias.ToArray());
         modelBuilder.Entity<User>().HasData(users.ToArray());
+        modelBuilder.Entity<Ups>().HasData(ups.ToArray());
+    }
+
+    private List<Ups> CargarUps()
+    {
+        List<Ups> ListUps = new List<Ups>();
+        ListUps.Add(new Ups()
+        {
+            Id = "1",
+            NumInv = "4321",
+            NumSerie = Guid.NewGuid().ToString(),
+            Marca = "Acer",
+            estado = Estado.activo
+        });
+
+        return ListUps;
     }
 
     private List<User> cargarUserNames()
     {
-        List<User>ListUser = new List<User>();
-        ListUser.Add(new User(){UserId="1", Nombre="Victor Diaz", password = "123", username = "admin", permisos = "admin" , Email = "admin@ki.com"});
-        ListUser.Add(new User(){UserId="2", Nombre="Visitante", password = "123", username = "visit", permisos = "visit" , Email = "visit@ki.com"});
-       
+        List<User> ListUser = new List<User>();
+        ListUser.Add(new User() { UserId = "1", Nombre = "Victor Diaz", password = "123", username = "admin", permisos = "admin", Email = "admin@ki.com" });
+        ListUser.Add(new User() { UserId = "2", Nombre = "Visitante", password = "123", username = "visit", permisos = "visit", Email = "visit@ki.com" });
+
 
         return ListUser;
     }
@@ -152,9 +172,13 @@ public class ComputadoraContext : DbContext
         return ListaCompleta;
     }
 
-    private List<Computadora> CargarComputadoras(List<MotherBoard> boards, List<Impresora> impresoras, List<Usuario> usuarios, List<Teclado> teclados, List<DiscoDuro> discos, List<MemoriaRam> rams, List<MicroProcesador>micros)
+    private List<Computadora> CargarComputadoras(List<MotherBoard> boards, List<Impresora> impresoras, List<Usuario> usuarios, List<Teclado> teclados, List<DiscoDuro> discos, List<MemoriaRam> rams, List<MicroProcesador> micros, List<Ups> ups)
     {
         List<Computadora> ListaCompleta = new List<Computadora>();
+
+        foreach (var Ups in ups)
+        {
+
 
             foreach (var micro in micros)
             {
@@ -181,7 +205,7 @@ public class ComputadoraContext : DbContext
                                                              NumInv = "56911",
                                                              NombreDepartamento = "Finanzas",
                                                              NombreArea = "UEB Economia",
-                                                             NumIp = "172.19.229.11", 
+                                                             NumIp = "172.19.229.11",
                                                              SO = "Win 7 32",
                                                              Nombre = "OFC-ECO-CAB",
                                                              Mac = "3c4r55rf4g6622",
@@ -199,6 +223,8 @@ public class ComputadoraContext : DbContext
                                                              MemoriaRamTec = mem.Tecnologia,
                                                              DiscoDuroCap = disc.Capacidad,
                                                              DiscoDuroTipoCon = disc.TipoConexion,
+                                                             UpsId = Ups.Id,
+                                                             UpsInv = Ups.NumInv
                                                                                                                     }
                                                     };
 
@@ -218,7 +244,9 @@ public class ComputadoraContext : DbContext
 
             }
 
-        
+        }
+
+
 
 
         return ListaCompleta;

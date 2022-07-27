@@ -20,7 +20,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.Computadoras.Include(c => c.Impresora).Include(c => c.MotherBoard).Include(c => c.Teclado);
+            var computadoraContext = _context.Computadoras.Include(c => c.Impresora).Include(c => c.MotherBoard).Include(c => c.Teclado).Include(c => c.Ups);
             return View(await computadoraContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
+                .Include(c => c.Ups)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (computadora == null)
             {
@@ -52,14 +53,14 @@ namespace ProyectoInventarioASP.Controllers
         {
             return View();
         }
-        
+
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult ImprimirFilter()
         {
             return View();
         }
-         
-         [Authorize(Roles = "admin , lecturaYEscritura")]
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         // GET: Customers/ContactPDF
         [HttpPost]
         public async Task<IActionResult> Imprimir(string Id)
@@ -132,7 +133,8 @@ namespace ProyectoInventarioASP.Controllers
                                 };
                             }
                         }
-                        //aqui
+
+
                     }
                 }
             }
@@ -153,6 +155,7 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
+                .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (computadora == null)
             {
@@ -179,12 +182,14 @@ namespace ProyectoInventarioASP.Controllers
 
 
         // GET: Computadora/Create
-         [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
             ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
+            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id");
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
             return View();
         }
 
@@ -194,7 +199,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
+        public async Task<IActionResult> Create([Bind("Id,NumInv,UpsId,UpsInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
             if (computadora != null)
             {
@@ -205,6 +210,8 @@ namespace ProyectoInventarioASP.Controllers
             ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
             ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
             return View(computadora);
         }
 
@@ -225,6 +232,8 @@ namespace ProyectoInventarioASP.Controllers
             ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
             ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
             return View(computadora);
         }
 
@@ -264,6 +273,8 @@ namespace ProyectoInventarioASP.Controllers
             ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
             ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
             return View(computadora);
         }
 
@@ -280,6 +291,8 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
+                .Include(c => c.Ups)
+                .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (computadora == null)
             {

@@ -10,13 +10,23 @@
 <p>
     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
     {
-        <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+    <div class="container-flex">
+        <p>
+            <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+        </p>
+        <p>
+            <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+        </p>
+    </div>
     }
 </p>
 <div class="table-responsive">
     <table class="table table-hover table-border" id="tabla">
         <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumSerieId)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Marca)
                 </th>
@@ -42,6 +52,9 @@
             {
                 <tr class="filapc">
                     <td>
+                        @Html.DisplayFor(modelItem => item.NumSerieId)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Marca)
                     </td>
                     <td>
@@ -58,9 +71,12 @@
                     </td>
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {
-                        <td><a asp-action="Edit" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Modificar</a></td>
-                        <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Detalles</a></td>
+                        <td><a asp-action="Edit" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Modificar</a>
+                        </td>
+                        <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Detalles</a>
+                        </td>
                         <td><a asp-action="Delete" asp-route-id="@item.NumSerieId" class="btn btn-danger btn-sm">Borrar</a></td>
+                        <td><a asp-action="Print" asp-route-id="@item.NumSerieId" class="btn btn-info btn-sm">Imprimir</a></td>
                     }
                 </tr>
             }

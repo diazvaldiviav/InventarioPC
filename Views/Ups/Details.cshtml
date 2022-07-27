@@ -1,0 +1,43 @@
+@model ProyectoInventarioASP.Models.Ups
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Ups No: @Html.DisplayFor(model => model.Id)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumSerie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumSerie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumInv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumInv)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+    </dl>
+</div>
+<div class="container-flex">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a> |
+    <a asp-action="Index">Volver</a>
+</div>

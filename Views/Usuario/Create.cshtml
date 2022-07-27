@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Insertar</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -38,14 +39,14 @@
                 <span asp-validation-for="NombreArea" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {

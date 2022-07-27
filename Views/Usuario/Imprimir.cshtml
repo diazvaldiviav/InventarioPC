@@ -1,0 +1,76 @@
+@model IEnumerable<Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactPDF</title>
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* SOLUCIONA PROBLEMA DE SOLAPAMIENTO EN TABLAS <table /> */
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreCompleto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreDepartamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreArea)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCompleto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreArea)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+</html>

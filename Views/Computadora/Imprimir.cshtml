@@ -45,9 +45,7 @@
                     <th>Capacidad de memoria</th>
                     <th>Tecnologia de memoria</th>
                     <th>Tecnologia de micro</th>
-                    <th>Teclado No</th>
-                    <th>MotherBoard No</th>
-                    <th>Impresora No</th>
+                    <th>Ups NumInv</th>
                 </tr>
             </thead>
             <tbody id="CuerpoTabla">
@@ -109,14 +107,8 @@
                         <td class=filter id="TecnMicro">
                             @Html.DisplayFor(modelItem => item.MicroTecn)
                         </td>
-                        <td class="filter" id="TeclId">
-                            @Html.DisplayFor(modelItem => item.Teclado.Id)
-                        </td>
-                        <td class="filter" id="BoardId">
-                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.Impresora.Id)
+                         <td class="filter" id="ImprId">
+                            @Html.DisplayFor(modelItem => item.UpsInv)
                         </td>
                     </tr>
                 }

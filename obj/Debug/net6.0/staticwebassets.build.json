@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4EaPwA1jw6C3BVHJb2NjlJ2Wck3D6zFZtpHbW+qNyOY=",
+  "Hash": "cXAvS7Ymy2xS1u7lJYUtduMYMwdZpxuMQQ+Sbw68mlo=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -304,6 +304,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\tecladob.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\ups.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/ups.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\ups.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\User.png",

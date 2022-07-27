@@ -10,10 +10,17 @@
 <p>
     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
     {
-        <a asp-action="Create" class="btn btn-primary btn-sm">Create New</a>
+    <div class="container-flex">
+        <p>
+            <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+        </p>
+        <p>
+            <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+        </p>
+    </div>
     }
 </p>
-<table class="table">
+<table class="table table-hover table-border" id="tabla">
     <thead>
         <tr>
             <th>
@@ -31,12 +38,13 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="CuerpoTablaPc">
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="filapc">
                 <td>
                     @Html.DisplayFor(modelItem => item.NumSerie)
                 </td>
@@ -54,6 +62,7 @@
                     <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a> </td>
                     <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
                     <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    <td><a asp-action="Print" asp-route-id="@item.Id" class="btn btn-info btn-sm">Imprimir</a></td>
                 }
             </tr>
         }

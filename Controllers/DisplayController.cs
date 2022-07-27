@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -167,6 +168,124 @@ namespace ProyectoInventarioASP.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        //Controlador de impresion
+
+       [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult Imprimir()
+        {
+            return View();
+        }
+        
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult ImprimirFilter()
+        {
+            return View();
+        }
+         
+         [Authorize(Roles = "admin , lecturaYEscritura")]
+        // GET: Customers/ContactPDF
+        [HttpPost]
+        public async Task<IActionResult> Imprimir(string Id)
+        {
+
+            var BuscarMarc = from mon in _context.Displays
+                            where mon.Marca == Id
+                            select mon;
+
+            var ArrBuscarMarc = BuscarMarc.ToArray();
+
+            if (ArrBuscarMarc.Length != 0)
+            {
+                return new ViewAsPdf("Imprimir", await BuscarMarc.ToListAsync())
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                };
+            }
+            else
+            {
+                    if (Id == "activo" || Id == "inactivo")
+                    {
+                        if (Id == "activo")
+                        {
+                            var BuscarAct = from mon in _context.Displays
+                                            where mon.estado == Estado.activo
+                                            select mon;
+
+
+                            var ArrBuscarAct = BuscarAct.ToArray();
+
+                            if (ArrBuscarAct.Length != 0)
+                            {
+                                return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
+                                {
+                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                                };
+                            }
+                        }
+                        else if (Id == "inactivo")
+                        {
+                            var BuscarInac = from mon in _context.Displays
+                                             where mon.estado == Estado.inactivo
+                                             select mon;
+
+
+                            var ArrBuscarInac = BuscarInac.ToArray();
+
+                            if (ArrBuscarInac.Length != 0)
+                            {
+                                return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
+                                {
+                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                                };
+                            }
+                        }
+                        //aqui
+                    }
+            }
+
+            return View();
+
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public async Task<IActionResult> Print(string id)
+        {
+            if (id == null || _context.Displays == null)
+            {
+                return NotFound();
+            }
+
+            var display = await _context.Displays
+                .Include(d => d.Computadora)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (display == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", display)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+
+
+
+        //Fin del controlador de impresion
 
         private bool DisplayExists(string id)
         {

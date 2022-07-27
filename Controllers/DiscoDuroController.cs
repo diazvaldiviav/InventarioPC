@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -167,6 +168,142 @@ namespace ProyectoInventarioASP.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
+
+      //Controllador de impresion
+     
+
+      [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult Imprimir()
+        {
+            return View();
+        }
+        
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult ImprimirFilter()
+        {
+            return View();
+        }
+         
+         [Authorize(Roles = "admin , lecturaYEscritura")]
+        // GET: Customers/ContactPDF
+        [HttpPost]
+        public async Task<IActionResult> Imprimir(string Id)
+        {
+
+            var BuscarMarc = from disc in _context.DiscosDuro
+                            where disc.Marca == Id
+                            select disc;
+
+            var ArrBuscarMarc = BuscarMarc.ToArray();
+
+            if (ArrBuscarMarc.Length != 0)
+            {
+                return new ViewAsPdf("Imprimir", await BuscarMarc.ToListAsync())
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                };
+            }
+            else
+            {
+                var BuscarCap = from disc in _context.DiscosDuro
+                                 where disc.Capacidad == Id
+                                 select disc;
+
+
+                var ArrBuscarCap = BuscarCap.ToArray();
+
+                if (ArrBuscarCap.Length != 0)
+                {
+                    return new ViewAsPdf("Imprimir", await BuscarCap.ToListAsync())
+                    {
+                        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                    };
+                }
+                else
+                {
+                    if (Id == "activo" || Id == "inactivo")
+                    {
+                        if (Id == "activo")
+                        {
+                            var BuscarAct = from pc in _context.DiscosDuro
+                                            where pc.estado == Estado.activo
+                                            select pc;
+
+
+                            var ArrBuscarAct = BuscarAct.ToArray();
+
+                            if (ArrBuscarAct.Length != 0)
+                            {
+                                return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
+                                {
+                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                                };
+                            }
+                        }
+                        else if (Id == "inactivo")
+                        {
+                            var BuscarInac = from pc in _context.DiscosDuro
+                                             where pc.estado == Estado.inactivo
+                                             select pc;
+
+
+                            var ArrBuscarInac = BuscarInac.ToArray();
+
+                            if (ArrBuscarInac.Length != 0)
+                            {
+                                return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
+                                {
+                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                                };
+                            }
+                        }
+                        //aqui
+                    }
+                }
+            }
+
+            return View();
+
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public async Task<IActionResult> Print(string id)
+        {
+            if (id == null || _context.DiscosDuro == null)
+            {
+                return NotFound();
+            }
+
+            var disco = await _context.DiscosDuro
+                .Include(d => d.motherBoard)
+                .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            if (disco == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", disco)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+      //Fin del controlador de impresion
 
         private bool DiscoDuroExists(string id)
         {

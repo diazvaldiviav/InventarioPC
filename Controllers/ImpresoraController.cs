@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using Microsoft.AspNetCore.Authorization;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -24,9 +25,9 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Impresora
         public async Task<IActionResult> Index()
         {
-              return _context.Impresoras != null ? 
-                          View(await _context.Impresoras.ToListAsync()) :
-                          Problem("Entity set 'ComputadoraContext.Impresoras'  is null.");
+            return _context.Impresoras != null ?
+                        View(await _context.Impresoras.ToListAsync()) :
+                        Problem("Entity set 'ComputadoraContext.Impresoras'  is null.");
         }
 
         // GET: Impresora/Details/5
@@ -64,7 +65,7 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (impresora != null)
             {
-                _context.Add(impresora);
+                _context.Impresoras.Add(impresora);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -105,7 +106,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
-                    _context.Update(impresora);
+                    _context.Impresoras.Update(impresora);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -158,14 +159,135 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.Impresoras.Remove(impresora);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+
+        //Controlador de impresion
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult Imprimir()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult ImprimirFilter()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        // GET: Customers/ContactPDF
+        [HttpPost]
+        public async Task<IActionResult> Imprimir(string Id)
+        {
+
+            var BuscarMarc = from imp in _context.Impresoras
+                             where imp.Marca == Id
+                             select imp;
+
+            var ArrBuscarMarc = BuscarMarc.ToArray();
+
+            if (ArrBuscarMarc.Length != 0)
+            {
+                return new ViewAsPdf("Imprimir", await BuscarMarc.ToListAsync())
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                };
+            }
+            else
+            {
+                if (Id == "activo" || Id == "inactivo")
+                {
+                    if (Id == "activo")
+                    {
+                        var BuscarAct = from imp in _context.Impresoras
+                                        where imp.estado == Estado.activo
+                                        select imp;
+
+
+                        var ArrBuscarAct = BuscarAct.ToArray();
+
+                        if (ArrBuscarAct.Length != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
+                    else if (Id == "inactivo")
+                    {
+                        var BuscarInac = from imp in _context.Impresoras
+                                         where imp.estado == Estado.inactivo
+                                         select imp;
+
+
+                        var ArrBuscarInac = BuscarInac.ToArray();
+
+                        if (ArrBuscarInac.Length != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
+                    //aqui
+                }
+            }
+
+            return View();
+
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public async Task<IActionResult> Print(string id)
+        {
+            if (id == null || _context.Impresoras == null)
+            {
+                return NotFound();
+            }
+
+            var impresora = await _context.Impresoras
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (impresora == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", impresora)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+
+
+
+        //Fin del controlador de impresion
+
+
+
+
+
         private bool ImpresoraExists(string id)
         {
-          return (_context.Impresoras?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Impresoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
