@@ -92,8 +92,8 @@ public class ComputadoraContext : DbContext
     private List<User> cargarUserNames()
     {
         List<User> ListUser = new List<User>();
-        ListUser.Add(new User() { UserId = "1", Nombre = "Victor Diaz", password = "123", username = "admin", permisos = "admin", Email = "admin@ki.com" });
-        ListUser.Add(new User() { UserId = "2", Nombre = "Visitante", password = "123", username = "visit", permisos = "visit", Email = "visit@ki.com" });
+        ListUser.Add(new User() { UserId = "1", Nombre = "Administrador", password = "123", username = "admin", permisos = "admin", Email = "admin@ki.com" });
+        ListUser.Add(new User() { UserId = "2", Nombre = "Visitante", password = "123", username = "visit", permisos = "lectura", Email = "visit@ki.com" });
 
 
         return ListUser;

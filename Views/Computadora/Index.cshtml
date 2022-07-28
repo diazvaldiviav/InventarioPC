@@ -29,23 +29,8 @@
                     <th>Nombre Pc</th>
                     <th>Sist Operativo</th>
                     <th>Estado</th>
-                    <th>Mac</th>
                     <th>Ip</th>
-                    <th>Usuario No</th>
-                    <th>Inventario Impresora</th>
-                    <th>Inventario Teclado</th>
                     <th>Nombre de usuario</th>
-                    <th>Marca de Board</th>
-                    <th>Capacidad de disco</th>
-                    <th>Conexion de disco</th>
-                    <th>Capacidad de memoria</th>
-                    <th>Tecnologia de memoria</th>
-                    <th>Tecnologia de micro</th>
-                    <th>Teclado No</th>
-                    <th>MotherBoard No</th>
-                    <th>Impresora No</th>
-                    <th>Ups Inv</th>
-                    <th>Ups No</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -74,57 +59,11 @@
                         <td class="filter" id="estado">
                             @Html.DisplayFor(modelItem => item.estado)
                         </td>
-                        <td class="filter" id="mac">
-                            @Html.DisplayFor(modelItem => item.Mac)
-                        </td>
                         <td class="filter" id="NumIp">
                             @Html.DisplayFor(modelItem => item.NumIp)
                         </td>
-                        <td class="filter" id="IDusuario">
-                            @Html.DisplayFor(modelItem => item.NombreUsuarioId)
-                        </td>
-                        <td class="filter" id="InvImpr">
-                            @Html.DisplayFor(modelItem => item.ImprNumInv)
-                        </td>
-                        <td class="filter" id="InvTecl">
-                            @Html.DisplayFor(modelItem => item.TeclNumInv)
-                        </td>
                         <td class="filter" id="UserName">
                             @Html.DisplayFor(modelItem => item.UserName)
-                        </td>
-                        <td class="filter" id="BoardMarca">
-                            @Html.DisplayFor(modelItem => item.MotherBoardMarca)
-                        </td>
-                        <td class="filter" id="CapDisc">
-                            <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
-                            item.DiscoDuroCap)</a>
-                        </td>
-                        <td class="filter" id="TipoConexDisc">
-                            @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
-                        </td>
-                        <td class="filter" id="CapMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamCap)
-                        </td>
-                        <td class="filter" id="TecMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamTec)
-                        </td>
-                        <td class=filter id="TecnMicro">
-                            @Html.DisplayFor(modelItem => item.MicroTecn)
-                        </td>
-                        <td class="filter" id="TeclId">
-                            @Html.DisplayFor(modelItem => item.Teclado.Id)
-                        </td>
-                        <td class="filter" id="BoardId">
-                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.Impresora.Id)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.UpsInv)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.UpsId)
                         </td>
                         @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                         {
