@@ -13,7 +13,8 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
-<table class="table">
+<div class="table-responsive">
+<table class="table table-hover table-border" id="tabla">
     <thead>
         <tr>
             <th>
@@ -33,10 +34,10 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="CuerpoTablaPc">
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="filapc">
                 <td>
                     @Html.DisplayFor(modelItem => item.NumSerieId)
                 </td>
@@ -60,3 +61,4 @@
         }
     </tbody>
 </table>
+</div>
