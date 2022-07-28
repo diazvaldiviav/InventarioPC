@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cXAvS7Ymy2xS1u7lJYUtduMYMwdZpxuMQQ+Sbw68mlo=",
+  "Hash": "p3+LQI7OZz0UukUIJtT280ufeuQ5A8ruHPqqpZI+Lq0=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -627,6 +627,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\avatar\\avatar-illustrated-02.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\img\\avatar\\avatar-illustrated-02.webp",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "img/avatar/avatar-illustrated-02.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\avatar\\avatar-illustrated-02.webp"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\img\\categories\\01.jpg",
