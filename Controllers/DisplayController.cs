@@ -27,9 +27,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -70,9 +70,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -91,7 +91,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
         {
             if (id != display.Id)
             {
@@ -123,9 +123,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -160,7 +160,7 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DisplayExists(string id)
+        private bool DisplayExists(int id)
         {
           return (_context.Displays?.Any(e => e.Id == id)).GetValueOrDefault();
         }

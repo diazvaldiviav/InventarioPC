@@ -28,9 +28,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Impresora/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Impresoras == null)
+            if (id == 0 || _context.Impresoras == null)
             {
                 return NotFound();
             }
@@ -56,7 +56,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
+        public async Task<IActionResult> Create([Bind("NumSerie,NumInv,Marca,estado")] Impresora impresora)
         {
             if (impresora != null)
             {
@@ -88,7 +88,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
         {
             if (id != impresora.Id)
             {
@@ -119,9 +119,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Impresora/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Impresoras == null)
+            if (id == 0 || _context.Impresoras == null)
             {
                 return NotFound();
             }
@@ -139,7 +139,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Impresora/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Impresoras == null)
             {
@@ -155,7 +155,7 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ImpresoraExists(string id)
+        private bool ImpresoraExists(int id)
         {
           return (_context.Impresoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }

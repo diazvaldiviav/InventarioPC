@@ -5,7 +5,7 @@ namespace ProyectoInventarioASP.Models
     public class Usuario
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string NombreCompleto { get; set; }
         [Required]

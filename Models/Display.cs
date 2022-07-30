@@ -10,7 +10,7 @@ namespace ProyectoInventarioASP.Models
     public class Display
     {
         [Key]
-        public String Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string NumInv { get; set; }
@@ -22,7 +22,7 @@ namespace ProyectoInventarioASP.Models
         public String Marca { get; set; }
 
         [ForeignKey("ComputadoraId")]
-        public string ComputadoraId { get; set; }
+        public int ComputadoraId { get; set; }
 
         public string NumInvPc { get; set; }
 

@@ -27,9 +27,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Computadora/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Computadoras == null)
+            if (id == 0 || _context.Computadoras == null)
             {
                 return NotFound();
             }
@@ -61,7 +61,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
+        public async Task<IActionResult> Create([Bind("NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
             if (computadora != null)
             {
@@ -76,9 +76,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Computadora/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Computadoras == null)
+            if (id == 0 || _context.Computadoras == null)
             {
                 return NotFound();
             }
@@ -99,7 +99,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
+        public async Task<IActionResult> Edit(int id, [Bind("NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
         {
             if (id != computadora.Id)
             {
@@ -133,9 +133,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Computadora/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Computadoras == null)
+            if (id == 0 || _context.Computadoras == null)
             {
                 return NotFound();
             }
@@ -156,7 +156,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Computadora/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Computadoras == null)
             {
@@ -172,7 +172,7 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ComputadoraExists(string id)
+        private bool ComputadoraExists(int id)
         {
           return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
