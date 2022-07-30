@@ -1,14 +1,24 @@
 @model IEnumerable<ProyectoInventarioASP.Models.Computadora>
+@using Microsoft.AspNetCore.Identity;
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
 }
 <div class="margin">
     <h1>Computadoras</h1>
+    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <div class="container-flex">
+            <p>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+            </p>
+            <p>
+                <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+            </p>
+        </div>
+    }
 
-    <p>
-        <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
-    </p>
     <div class="table-responsive">
         <table class="table table-hover table-border" id="tabla">
             <thead>
@@ -19,21 +29,9 @@
                     <th>Nombre Pc</th>
                     <th>Sist Operativo</th>
                     <th>Estado</th>
-                    <th>Mac</th>
                     <th>Ip</th>
-                    <th>Usuario No</th>
-                    <th>Inventario Impresora</th>
-                    <th>Inventario Teclado</th>
                     <th>Nombre de usuario</th>
-                    <th>Marca de Board</th>
-                    <th>Capacidad de disco</th>
-                    <th>Conexion de disco</th>
-                    <th>Capacidad de memoria</th>
-                    <th>Tecnologia de memoria</th>
-                    <th>Tecnologia de micro</th>
-                    <th>Teclado No</th>
-                    <th>MotherBoard No</th>
-                    <th>Impresora No</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -61,55 +59,27 @@
                         <td class="filter" id="estado">
                             @Html.DisplayFor(modelItem => item.estado)
                         </td>
-                        <td class="filter" id="mac">
-                            @Html.DisplayFor(modelItem => item.Mac)
-                        </td>
                         <td class="filter" id="NumIp">
                             @Html.DisplayFor(modelItem => item.NumIp)
-                        </td>
-                        <td class="filter" id="IDusuario">
-                            @Html.DisplayFor(modelItem => item.NombreUsuarioId)
-                        </td>
-                        <td class="filter" id="InvImpr">
-                            @Html.DisplayFor(modelItem => item.ImprNumInv)
-                        </td>
-                        <td class="filter" id="InvTecl">
-                            @Html.DisplayFor(modelItem => item.TeclNumInv)
                         </td>
                         <td class="filter" id="UserName">
                             @Html.DisplayFor(modelItem => item.UserName)
                         </td>
-                        <td class="filter" id="BoardMarca">
-                            @Html.DisplayFor(modelItem => item.MotherBoardMarca)
-                        </td>
-                        <td class="filter" id="CapDisc">
-                            <a asp-controller="DiscoDuro" asp-route-id="@item.Id"> @Html.DisplayFor(modelItem =>
-                            item.DiscoDuroCap)</a>
-                        </td>
-                        <td class="filter" id="TipoConexDisc">
-                            @Html.DisplayFor(modelItem => item.DiscoDuroTipoCon)
-                        </td>
-                        <td class="filter" id="CapMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamCap)
-                        </td>
-                        <td class="filter" id="TecMem">
-                            @Html.DisplayFor(modelItem => item.MemoriaRamTec)
-                        </td>
-                        <td class=filter id="TecnMicro">
-                            @Html.DisplayFor(modelItem => item.MicroTecn)
-                        </td>
-                        <td class="filter" id="TeclId">
-                            @Html.DisplayFor(modelItem => item.Teclado.Id)
-                        </td>
-                        <td class="filter" id="BoardId">
-                            @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-                        </td>
-                        <td class="filter" id="ImprId">
-                            @Html.DisplayFor(modelItem => item.Impresora.Id)
-                        </td>
-                        <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
-                        <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
-                        <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
+                        @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                        {
+                            <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
+                            <td><a asp-action="Print" asp-route-id="@item.Id" class="btn btn-info btn-sm">Imprimir</a></td>
+                            
+                        }
+
+                        @if (User.IsInRole("lectura"))
+                        {
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                        }
+
+
 
                     </tr>
                 }

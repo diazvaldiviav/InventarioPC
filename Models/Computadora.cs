@@ -23,6 +23,8 @@ public class Computadora
     [Required]
     public string SO { get; set; }
     [Required]
+    public string UpsInv { get; set; }
+    [Required]
     public Estado estado { get; set; }
     [Required]
     public string Mac { get; set; }
@@ -36,6 +38,8 @@ public class Computadora
     public string MotherBoardId { get; set; }
     [ForeignKey("TecladoId")]
     public string TecladoId { get; set; }
+    [ForeignKey("UpsId")]
+    public string UpsId { get; set; }
     [Required]
     public string ImprNumInv {get; set;}
     [Required]
@@ -64,6 +68,7 @@ public class Computadora
     public virtual MotherBoard MotherBoard { get; set; }
     public virtual Impresora Impresora { get; set; }
     public virtual Usuario Usuario { get; set; }
+    public virtual Ups Ups { get; set; }
 
     public virtual ICollection<Display> Display { get; set; }
 

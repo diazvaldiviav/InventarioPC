@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
 
 namespace ProyectoInventarioASP.Controllers
 {
+    [Authorize]
     public class MemoriaRamController : Controller
     {
         private readonly ComputadoraContext _context;
@@ -46,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MemoriaRam/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
@@ -55,6 +58,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: MemoriaRam/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
@@ -70,6 +74,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MemoriaRam/Edit/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.MemoriasRam == null)
@@ -89,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: MemoriaRam/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
@@ -123,6 +129,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MemoriaRam/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.MemoriasRam == null)
@@ -142,6 +149,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: MemoriaRam/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

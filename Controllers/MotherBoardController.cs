@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
 
 namespace ProyectoInventarioASP.Controllers
 {
+    [Authorize]
     public class MotherBoardController : Controller
     {
         private readonly ComputadoraContext _context;
@@ -46,6 +48,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MotherBoard/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId");
@@ -55,6 +58,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: MotherBoard/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
@@ -70,6 +74,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MotherBoard/Edit/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.MotherBoards == null)
@@ -89,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: MotherBoard/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
@@ -123,6 +129,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MotherBoard/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.MotherBoards == null)
@@ -142,6 +149,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: MotherBoard/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

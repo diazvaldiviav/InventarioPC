@@ -14,6 +14,8 @@ public class ComputadoraContext : DbContext
     public DbSet<Display> Displays { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Impresora> Impresoras { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Ups> Upss { get; set; }
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 }
@@ -31,8 +33,11 @@ public class ComputadoraContext : DbContext
 //         //cargar telcados 
 //         var teclados = CargarTeclados();
 
-//         //cargar impresora
-//         var impresoras = CargarImpresoras();
+        //cargar Ups
+        // var ups = CargarUps();
+
+        // //cargar impresora
+        // var impresoras = CargarImpresoras();
 
 //         //cargar usuario
 //         var usuarios = CargarUsuarios();
@@ -49,6 +54,10 @@ public class ComputadoraContext : DbContext
 
 //         //cargar monitor por cada computadora
 //         var monitores = CargarMonitor(computadora);
+
+        //cargar usernames
+
+        // var users = cargarUserNames();
 
 
 

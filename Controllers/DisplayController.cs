@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
+    [Authorize]
     public class DisplayController : Controller
     {
         private readonly ComputadoraContext _context;
@@ -46,6 +49,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Create
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
             ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id");
@@ -55,6 +59,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Display/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
@@ -89,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Display/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
@@ -142,6 +148,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Display/Delete/5
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
-using ProyectoInventarioASP.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 
 
@@ -8,9 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option => {
+        option.LoginPath = "/User/Access";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        option.AccessDeniedPath = "/Home/Privacy";
+    });
 
-//builder.Services.AddDbContext<ComputadoraContext>(options => options.UseInMemoryDatabase("testDB"));
-builder.Services.AddSqlServer<ComputadoraContext>(builder.Configuration.GetConnectionString("cnInv"));
+builder.Services.AddDbContext<ComputadoraContext>(options => options.UseInMemoryDatabase("testDB"));
+//builder.Services.AddSqlServer<ComputadoraContext>(builder.Configuration.GetConnectionString("cnInv"));
+
 var app = builder.Build();
 
 
@@ -36,15 +44,25 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Computadora}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Access}/{id?}");
+
+
+
+IWebHostEnvironment env = app.Environment;
+Rotativa.AspNetCore.RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env, "../Rotativa");
 
 app.Run();
+

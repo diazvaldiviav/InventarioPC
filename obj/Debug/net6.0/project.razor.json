@@ -16303,6 +16303,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\Imprimir.cshtml",
+      "TargetPath": "Views\\Impresora\\Imprimir.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Usuario\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\MemoriaRam\\Privacy.cshtml",
       "TargetPath": "Views\\MemoriaRam\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -16310,6 +16320,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Index.cshtml",
       "TargetPath": "Views\\Teclado\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\Privacy.cshtml",
+      "TargetPath": "Views\\User\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16323,8 +16338,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Display\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Details.cshtml",
       "TargetPath": "Views\\Display\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Computadora\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Ups\\ImprimirFilter.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16333,8 +16363,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Ups\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\Edit.cshtml",
+      "TargetPath": "Views\\User\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Teclado\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Details.cshtml",
       "TargetPath": "Views\\Usuario\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Impresora\\HeaderPdf.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16353,8 +16403,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\Access.cshtml",
+      "TargetPath": "Views\\User\\Access.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Display\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Index.cshtml",
+      "TargetPath": "Views\\Ups\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Privacy.cshtml",
       "TargetPath": "Views\\DiscoDuro\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\DiscoDuro\\ImprimirFilter.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16363,8 +16433,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\DiscoDuro\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\BuscarInv.cshtml",
       "TargetPath": "Views\\Teclado\\BuscarInv.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\DiscoDuro\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Ups\\FooterPdf.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16380,6 +16465,21 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Create.cshtml",
       "TargetPath": "Views\\Usuario\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Ups\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Usuario\\FooterPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Teclado\\ImprimirFilter.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16408,6 +16508,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Imprimir.cshtml",
+      "TargetPath": "Views\\Ups\\Imprimir.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Details.cshtml",
       "TargetPath": "Views\\Computadora\\Details.cshtml",
       "FileKind": "mvc"
@@ -16415,6 +16520,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Details.cshtml",
       "TargetPath": "Views\\Micro\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Computadora\\FooterPdf.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16443,6 +16553,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Display\\FooterPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\Create.cshtml",
       "TargetPath": "Views\\Impresora\\Create.cshtml",
       "FileKind": "mvc"
@@ -16458,6 +16573,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\Register.cshtml",
+      "TargetPath": "Views\\User\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Create.cshtml",
+      "TargetPath": "Views\\Ups\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Edit.cshtml",
       "TargetPath": "Views\\Display\\Edit.cshtml",
       "FileKind": "mvc"
@@ -16468,6 +16593,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Delete.cshtml",
+      "TargetPath": "Views\\Ups\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Index.cshtml",
       "TargetPath": "Views\\DiscoDuro\\Index.cshtml",
       "FileKind": "mvc"
@@ -16475,6 +16605,16 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Create.cshtml",
       "TargetPath": "Views\\Display\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\Imprimir.cshtml",
+      "TargetPath": "Views\\Usuario\\Imprimir.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Shared\\signin.cshtml",
+      "TargetPath": "Views\\Shared\\signin.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16493,8 +16633,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Teclado\\FooterPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Computadora\\ImprimirFilter.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\FooterPdf.cshtml",
+      "TargetPath": "Views\\Impresora\\FooterPdf.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16503,8 +16658,38 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Impresora\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\HeaderPdf.cshtml",
+      "TargetPath": "Views\\Usuario\\HeaderPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Edit.cshtml",
+      "TargetPath": "Views\\Ups\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Privacy.cshtml",
       "TargetPath": "Views\\Teclado\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Impresora\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Impresora\\ImprimirFilter.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\Delete.cshtml",
+      "TargetPath": "Views\\User\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Ups\\Details.cshtml",
+      "TargetPath": "Views\\Ups\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16515,6 +16700,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\MotherBoard\\Delete.cshtml",
       "TargetPath": "Views\\MotherBoard\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Usuario\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Usuario\\ImprimirFilter.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16538,8 +16728,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\ImprimirFilter.cshtml",
+      "TargetPath": "Views\\Display\\ImprimirFilter.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\create.cshtml",
       "TargetPath": "Views\\DiscoDuro\\create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Imprimir.cshtml",
+      "TargetPath": "Views\\DiscoDuro\\Imprimir.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16550,6 +16750,16 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Create.cshtml",
       "TargetPath": "Views\\Computadora\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\FooterPdf.cshtml",
+      "TargetPath": "Views\\DiscoDuro\\FooterPdf.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\Imprimir.cshtml",
+      "TargetPath": "Views\\Teclado\\Imprimir.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16578,6 +16788,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Computadora\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Display\\Imprimir.cshtml",
+      "TargetPath": "Views\\Display\\Imprimir.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -16588,6 +16808,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Computadora\\Imprimir.cshtml",
+      "TargetPath": "Views\\Computadora\\Imprimir.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\Teclado\\DetailsPrint.cshtml",
+      "TargetPath": "Views\\Teclado\\DetailsPrint.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\DiscoDuro\\Delete.cshtml",
       "TargetPath": "Views\\DiscoDuro\\Delete.cshtml",
       "FileKind": "mvc"
@@ -16595,6 +16825,11 @@
     {
       "FilePath": "g:\\ProyectoInventarioASP\\Views\\Micro\\Delete.cshtml",
       "TargetPath": "Views\\Micro\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ProyectoInventarioASP\\Views\\User\\ListaUser.cshtml",
+      "TargetPath": "Views\\User\\ListaUser.cshtml",
       "FileKind": "mvc"
     },
     {

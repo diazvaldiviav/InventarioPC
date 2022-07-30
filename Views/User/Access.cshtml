@@ -1,0 +1,28 @@
+﻿@model User
+
+@{
+  ViewData["Title"] = "Home Page";
+  Layout = "signin";
+}
+<div class="layer"></div>
+<main class="page-center">
+  <article class="sign-up">
+    <h1 class="sign-up__title">Inventario</h1>
+    <p class="sign-up__subtitle">Entre su correo y su contraseña</p>
+    <form class="sign-up-form form"  method="post">
+      <label class="form-label-wrapper" asp-for="username">
+        <p class="form-label">User Name</p>
+        <input class="form-input" type="text" placeholder="Enter your username" asp-for="username" required>
+      </label>
+      <label class="form-label-wrapper" asp-for="password">
+        <p class="form-label">Password</p>
+        <input class="form-input" type="password" asp-for="password" placeholder="Enter your password" required>
+      </label>
+      <a class="link-info forget-link" href="##">Forgot your password?</a>
+      <label class="form-checkbox-wrapper">
+        <a class="link-info forget-link" asp-controller="User" asp-action="Register">Registrar</a>
+      </label>
+      <button class="form-btn primary-default-btn transparent-btn">Sign in</button>
+    </form>
+  </article>
+</main>
