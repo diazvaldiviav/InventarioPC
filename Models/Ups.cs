@@ -6,7 +6,7 @@ namespace ProyectoInventarioASP.Models
     public class Ups
     {
         [Key]
-        public String Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public String NumSerie { get; set; }
         [Required]

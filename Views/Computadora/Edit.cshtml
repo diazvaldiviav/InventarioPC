@@ -4,144 +4,203 @@
     ViewData["Title"] = "Edit";
     Layout = "_Layout";
 }
-<div class="margin">
-    <h1>Modificar</h1>
 
-    <h4>Computadora</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form method="post" asp-controller="Computadora" asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="NumInv" class="control-label"></label>
-                    <input asp-for="NumInv" class="form-control" />
-                    <span asp-validation-for="NumInv" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NombreDepartamento" class="control-label"></label>
-                    <input asp-for="NombreDepartamento" class="form-control" />
-                    <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NombreArea" class="control-label"></label>
-                    <input asp-for="NombreArea" class="form-control" />
-                    <span asp-validation-for="NombreArea" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Nombre" class="control-label"></label>
-                    <input asp-for="Nombre" class="form-control" />
-                    <span asp-validation-for="Nombre" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="SO" class="control-label"></label>
-                    <input asp-for="SO" class="form-control" />
-                    <span asp-validation-for="SO" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="estado"></label>
-                    @Html.DropDownList(
-                    "Estado", Html.GetEnumSelectList<Estado>(),
-                    "Seleccione un estado",
-                    new{@class = "form-control"}
-                    )
-                </div>
-                <div class="form-group">
-                    <label asp-for="Mac" class="control-label"></label>
-                    <input asp-for="Mac" class="form-control" />
-                    <span asp-validation-for="Mac" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NumIp" class="control-label"></label>
-                    <input asp-for="NumIp" class="form-control" />
-                    <span asp-validation-for="NumIp" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ImpresoraId" class="control-label"></label>
-                    <select asp-for="ImpresoraId" class="form-control" asp-items="ViewBag.ImpresoraId"></select>
-                    <span asp-validation-for="ImpresoraId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NombreUsuarioId" class="control-label"></label>
-                    <select asp-for="NombreUsuarioId" class="form-control" asp-items="ViewBag.NombreUsuarioId"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MotherBoardId" class="control-label"></label>
-                    <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
-                    <span asp-validation-for="MotherBoardId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TecladoId" class="control-label"></label>
-                    <select asp-for="TecladoId" class="form-control" asp-items="ViewBag.TecladoId"></select>
-                    <span asp-validation-for="TecladoId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UpsId" class="control-label"></label>
-                    <select asp-for="UpsId" class="form-control" asp-items="ViewBag.UpsId"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ImprNumInv" class="control-label"></label>
-                    <input asp-for="ImprNumInv" class="form-control" />
-                    <span asp-validation-for="ImprNumInv" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TeclNumInv" class="control-label"></label>
-                    <input asp-for="TeclNumInv" class="form-control" />
-                    <span asp-validation-for="TeclNumInv" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UserName" class="control-label"></label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MotherBoardMarca" class="control-label"></label>
-                    <input asp-for="MotherBoardMarca" class="form-control" />
-                    <span asp-validation-for="MotherBoardMarca" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DiscoDuroCap" class="control-label"></label>
-                    <input asp-for="DiscoDuroCap" class="form-control" />
-                    <span asp-validation-for="DiscoDuroCap" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DiscoDuroTipoCon" class="control-label"></label>
-                    <input asp-for="DiscoDuroTipoCon" class="form-control" />
-                    <span asp-validation-for="DiscoDuroTipoCon" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MemoriaRamCap" class="control-label"></label>
-                    <input asp-for="MemoriaRamCap" class="form-control" />
-                    <span asp-validation-for="MemoriaRamCap" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UpsInv" class="control-label"></label>
-                    <input asp-for="UpsInv" class="form-control" required />
-                    <span asp-validation-for="UpsInv" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MemoriaRamTec" class="control-label"></label>
-                    <input asp-for="MemoriaRamTec" class="form-control" />
-                    <span asp-validation-for="MemoriaRamTec" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MicroTecn" class="control-label"></label>
-                    <input asp-for="MicroTecn" class="form-control" />
-                    <span asp-validation-for="MicroTecn" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                </div>
-            </form>
+<h1>Modificar</h1>
+
+<h4>Computadora</h4>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="NumInv" class="control-label"></label>
+            <input asp-for="NumInv" class="form-control" required />
+            <span asp-validation-for="NumInv" class="text-danger"></span>
         </div>
-    </div>
+        <div class="form-group col-md-6">
+            <label asp-for="NombreDepartamento" class="control-label"></label>
+            <select asp-for="NombreDepartamento" class="form-control">
+                <option value="Economia">Economia</option>
+                <option value="Direccion General">Direccion General</option>
+                <option value="Inversiones">Inversiones</option>
+                <option value="Recursos Humanos">Recursos Humanos</option>
+                <option value="Despacho">Comercial</option>
+                <option value="Informatica y Comunicaciones">Informatica y Comunicaciones</option>
+                <option value="Tecnico">Tecnico</option>
+                <option value="Organizacion y control">Organizacion y control</option>
+                <option value="Atencion al cliente">Atencion al cliente</option>
+                <option value="Logistica">Logistica</option>
+                <option value="Generacion de Emergencia">Generacion de Emergencia</option>
+                <option value="Transorte">Transporte</option>
+                <option value="Fre">Fre</option>
+            </select>
+            <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="NombreArea" class="control-label"></label>
+            <select asp-for="NombreArea" class="form-control">
+                <option value="Obe Provincial">Obe</option>
+                <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
+                <option value="UEB Taguasco">UEB Taguasco</option>
+                <option value="UEB Yaguajay">UEB Yaguajay</option>
+                <option value="UEB Trinidad">UEB Trinidad</option>
+                <option value="UEB Cabaiguan">UEB Cabaiguan</option>
+                <option value="UEB La Sierpe">UEB La Sierpe</option>
+                <option value="UEB Jatibonico">UEB Jatibonico</option>
+                <option value="UEB Fomento">UEB Fomento</option>
+            </select>
+            <span asp-validation-for="NombreArea" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Nombre" class="control-label"></label>
+            <input asp-for="Nombre" class="form-control" required />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="SO" class="control-label"></label>
+            <select asp-for="SO" class="form-control">
+                <option value="Win 11 64bit">Win 11 64bit</option>
+                <option value="Win 11 32bit">Win 11 32bit</option>
+                <option value="Win 10 64bit">Win 10 64bit</option>
+                <option value="Win 10 32bit">Win 10 32bit</option>
+                <option value="Win 8 64bit">Win 8 64bit</option>
+                <option value="Win 8 32bit">Win 8 32bit</option>
+                <option value="Win 7 64bit">Win 7 64bit</option>
+                <option value="Win 7 32bit">Win 7 32bit</option>
+                <option value="Win XP">Win XP</option>
+                <option value="Linux">Linux</option>
+            </select>
+            <span asp-validation-for="SO" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="estado"></label>
+            @Html.DropDownList(
+            "Estado", Html.GetEnumSelectList<Estado>(),
+            "Seleccione un estado",
+            new{@class = "form-control"}
+            )
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Mac" class="control-label"></label>
+            <input asp-for="Mac" class="form-control" required />
+            <span asp-validation-for="Mac" class="text-danger" required></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="NumIp" class="control-label"></label>
+            <input asp-for="NumIp" class="form-control" required />
+            <span asp-validation-for="NumIp" class="text-danger" required></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="ImpresoraId" class="control-label"></label>
+            <select asp-for="ImpresoraId" class="form-control" asp-items="ViewBag.ImpresoraId"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="UpsId" class="control-label"></label>
+            <select asp-for="UpsId" class="form-control" asp-items="ViewBag.UpsId"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="UsuarioId" class="control-label"></label>
+            <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.NombreUsuarioId"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MotherBoardId" class="control-label"></label>
+            <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="TecladoId" class="control-label"></label>
+            <select asp-for="TecladoId" class="form-control" asp-items="ViewBag.TecladoId"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="ImprNumInv" class="control-label"></label>
+            <select asp-for="ImprNumInv" class="form-control" asp-items="ViewBag.ImpresoraInv"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="TeclNumInv" class="control-label"></label>
+            <select asp-for="TeclNumInv" class="form-control" asp-items="ViewBag.TecladoNumInv"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="UserName" class="control-label"></label>
+            <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MotherBoardMarca" class="control-label"></label>
+            <select asp-for="MotherBoardMarca" class="form-control" asp-items="ViewBag.MotherBoardMarca"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="UpsInv" class="control-label"></label>
+            <select asp-for="UpsInv" class="form-control" asp-items="ViewBag.UpsInv"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="DiscoDuroCap" class="control-label"></label>
+            <select asp-for="DiscoDuroCap" class="form-control" asp-items="ViewBag.Cap"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="DiscoDuroTipoCon" class="control-label"></label>
+            <select asp-for="DiscoDuroTipoCon" class="form-control">
+                <option value="Sata">SATA</option>
+                <option value="Ide">IDE</option>
+                <option value="Sas">SAS</option>
+                <option value="M2">M2</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MemoriaRamCap" class="control-label"></label>
+            <select asp-for="MemoriaRamCap" class="form-control">
+                <option value="256 MG">256 MG</option>
+                <option value="500 MG">500 MG</option>
+                <option value="1 GB">1 GB</option>
+                <option value="3 GB">3 GB</option>
+                <option value="4 GB">4 GB</option>
+                <option value="6 GB">6 GB</option>
+                <option value="8 GB">8 GB</option>
+                <option value="16 GB">16 GB</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MemoriaRamTec" class="control-label"></label>
+            <select asp-for="MemoriaRamTec" class="form-control">
+                <option value="DDR">DDR</option>
+                <option value="DDR2">DDR2</option>
+                <option value="DDR3">DDR3</option>
+                <option value="DDR4">DDR4</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="MicroTecn" class="control-label"></label>
+            <select asp-for="MicroTecn" class="form-control">
+                <option value="Celeron">Celeron</option>
+                <option value="Core 2 Duo">Core 2 Duo</option>
+                <option value="Centrino">Centrino</option>
+                <option value="Pentium">Pentium</option>
+                <option value="Core I3-4">Core I3-4</option>
+                <option value="Core I3-7">Core I3-7</option>
+                <option value="Core I3-8">Core I3-8</option>
+                <option value="Core I3-9">Core I3-9</option>
+                <option value="Core I5-4">Core I5-4</option>
+                <option value="Core I5-7">Core I5-7</option>
+                <option value="Core I5-8">Core I5-8</option>
+                <option value="Core I5-9">Core I5-9</option>
+                <option value="Core I7-4">Core I7-4</option>
+                <option value="Core I7-7">Core I7-7</option>
+                <option value="Core I7-8">Core I7-8</option>
+                <option value="Core I7-9">Core I7-9</option>
+                <option value="Athlon">Athlon</option>
+                <option value="Athlon 64bits">Athlon 64bits</option>
+                <option value="Sempron">Sempron</option>
+                <option value="Turion">Turion</option>
 
-    <div>
-        <a asp-action="Index">Volver</a>
-    </div>
+            </select>
+        </div>
+        <div class="form-group p-2">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
+</form>
 
-    @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+
+<div class="container-flex">
+    <a asp-action="Index">Volver</a>
 </div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

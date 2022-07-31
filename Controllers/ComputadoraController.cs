@@ -144,9 +144,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Print(string id)
+        public async Task<IActionResult> Print(int id)
         {
-            if (id == null || _context.Computadoras == null)
+            if (id == 0 || _context.Computadoras == null)
             {
                 return NotFound();
             }
@@ -162,9 +162,9 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            return new ViewAsPdf("DetailsPrint", computadora)
+            return new ViewAsPdf("Details", computadora)
             {
-                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
             };
         }
 
@@ -185,11 +185,29 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
+            //Estoy creando una lista de string que almacena los id de las board en las pc
+
+            List<string> ListPc = new List<string>();
+            var BuscarIdBoard = from board in _context.MotherBoards
+                                select board.NumSerieId;
+
+            ListPc.AddRange(BuscarIdBoard);
+
+            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
+            var discosCapacidad = CargarCapacidadDisco(ListPc);
+
+            //tengo que sumar las capacidades de los discos
+
+
+            ViewBag.Cap = new SelectList(discosCapacidad);
+            ViewData["TipoConecDisc"] = new SelectList(_context.DiscosDuro, "TipoConexion", "TipoConexion");
+            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
-            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id");
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca");
+            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
+            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+
             return View();
         }
 
@@ -199,25 +217,85 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
+        public async Task<IActionResult> Create(Computadora computadora)
         {
+            List<string> ListPc = new List<string>();
+            var BuscarIdBoard = from board in _context.Computadoras
+                                select board.MotherBoardId;
+
+            ListPc.AddRange(BuscarIdBoard);
+
+            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
+            var discosCapacidad = CargarCapacidadDisco(ListPc);
+
             if (computadora != null)
             {
+
+                //Cargarlos id de impresoras
+                var BuscarIdImpr = from impr in _context.Impresoras
+                                   where impr.NumInv == computadora.ImprNumInv
+                                   select impr.Id;
+
+                //Cargar los Id de las Ups
+                var BuscarIdUps = from ups in _context.Upss
+                                  where ups.NumInv == computadora.UpsInv
+                                  select ups.Id;
+
+                //Cargar los Id de los teclados
+                var BuscarIdTecl = from tecl in _context.Teclados
+                                   where tecl.NumInv == computadora.TeclNumInv
+                                   select tecl.Id;
+
+                //Cargar los Id de los usuarios
+                var BuscarIdUser = from user in _context.Usuarios
+                                   where user.NombreUsuario == computadora.UserName
+                                   select user.Id;
+                //Importar Ids
+                var idImpr = BuscarIdImpr.ToArray();
+
+                var idUps = BuscarIdUps.ToArray();
+
+                var idTecl = BuscarIdTecl.ToArray();
+
+                var idUser = BuscarIdUser.ToArray();
+
+                computadora.ImpresoraId = idImpr[0];
+                computadora.UpsId = idUps[0];
+                computadora.TecladoId = idTecl[0];
+                computadora.UsuarioId = idUser[0];
                 _context.Add(computadora);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+            ViewData["CapDisc"] = new SelectList(discosCapacidad, "DiscoDuroCap", "DiscoDuroCap", computadora.DiscoDuroCap);
+            ViewData["TipoConecDisc"] = new SelectList(_context.DiscosDuro, "TipoConexion", "TipoConexion", computadora.DiscoDuroTipoCon);
+            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
-            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
+            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca", computadora.MotherBoardMarca);
+            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
             return View(computadora);
         }
 
         // GET: Computadora/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            List<string> ListPc = new List<string>();
+            var BuscarIdBoard = from pc in _context.Computadoras
+                                join board in _context.MotherBoards
+                                on pc.MotherBoardId equals board.NumSerieId
+                                where pc.MotherBoardId == board.NumSerieId
+                                select pc.MotherBoardId;
+
+            ListPc.AddRange(BuscarIdBoard);
+
+            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
+            var discosCapacidad = CargarCapacidadDisco(ListPc);
+
+            //tengo que sumar las capacidades de los discos
+
+
             if (id == 0 || _context.Computadoras == null)
             {
                 return NotFound();
@@ -228,11 +306,17 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
-            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
+            ViewBag.Cap = new SelectList(discosCapacidad);
+            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
+            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
+            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca");
+            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
+            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
+            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id");
+            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(computadora);
         }
 
@@ -242,8 +326,22 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,ImpresoraId,NombreUsuarioId,MotherBoardId,TecladoId,ImprNumInv,TeclNumInv,UserName,MotherBoardMarca,DiscoDuroCap,DiscoDuroTipoCon,MemoriaRamCap,MemoriaRamTec,MicroTecn")] Computadora computadora)
+        public async Task<IActionResult> Edit(int id, Computadora computadora)
         {
+
+            List<string> ListPc = new List<string>();
+            var BuscarIdBoard = from pc in _context.Computadoras
+                                join board in _context.MotherBoards
+                                on pc.MotherBoardId equals board.NumSerieId
+                                where pc.MotherBoardId == board.NumSerieId
+                                select pc.MotherBoardId;
+
+            ListPc.AddRange(BuscarIdBoard);
+
+            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
+            var discosCapacidad = CargarCapacidadDisco(ListPc);
+
+
             if (id != computadora.Id)
             {
                 return NotFound();
@@ -269,11 +367,17 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Cap = new SelectList(discosCapacidad);
             ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca", computadora.MotherBoardMarca);
             ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
+            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "Inv", computadora.TeclNumInv);
             ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.NombreUsuarioId);
+            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "Inv", computadora.UpsInv);
+            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.UsuarioId);
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
             return View(computadora);
         }
 
@@ -324,5 +428,59 @@ namespace ProyectoInventarioASP.Controllers
         {
             return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        private List<float> CargarCapacidadDisco(List<string> idBoards)
+        {
+            List<String> ListDiscos = new List<string>();
+            List<String> ListTemp = new List<string>();
+           
+            foreach (var disco in idBoards)
+            {    
+                
+                if (ListTemp.Any())
+                {
+                    var BuscarCap = from disc in _context.DiscosDuro
+                                    where disc.MotherBoardId == disco
+                                    select disc.Capacidad;
+
+                    ListDiscos.AddRange(BuscarCap);
+
+                }else
+                {
+                     var BuscarCap = from disc in _context.DiscosDuro
+                                    where disc.MotherBoardId == disco
+                                    select disc.Capacidad;
+
+                    ListTemp.AddRange(BuscarCap);
+
+                }
+
+
+            }
+
+            List<float> listSuma = new List<float>();
+
+
+            float suma = 0;
+            foreach (var item in ListDiscos)
+            {
+                var itemConvertToFloat = float.Parse(item);
+
+                suma = suma + itemConvertToFloat;
+
+                listSuma.Add(itemConvertToFloat);
+                listSuma.Add(suma);
+
+            }
+
+            return listSuma;
+
+
+        }
+
+
+
+
     }
 }
+
