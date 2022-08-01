@@ -30,9 +30,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Display/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -52,7 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id");
+             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
             return View();
         }
 
@@ -62,23 +62,25 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
+        public async Task<IActionResult> Create(Display display)
         {
             if (display != null)
             {
+                var idpc = CargarIdPC(display.NumInvPc);
+
+                display.ComputadoraId = idpc;
                 _context.Add(display);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+            ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
             return View(display);
         }
 
         // GET: Display/Edit/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -88,7 +90,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
             return View(display);
         }
 
@@ -98,7 +100,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumInv,NumSerie,Marca,ComputadoraId,NumInvPc,estado")] Display display)
+        public async Task<IActionResult> Edit(int id, Display display)
         {
             if (id != display.Id)
             {
@@ -125,15 +127,14 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ComputadoraId"] = new SelectList(_context.Computadoras, "Id", "Id", display.ComputadoraId);
+            ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
             return View(display);
         }
 
         // GET: Display/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
@@ -170,29 +171,30 @@ namespace ProyectoInventarioASP.Controllers
         }
 
 
+        
         //Controlador de impresion
 
-       [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Imprimir()
         {
             return View();
         }
-        
+
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult ImprimirFilter()
         {
             return View();
         }
-         
-         [Authorize(Roles = "admin , lecturaYEscritura")]
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         // GET: Customers/ContactPDF
         [HttpPost]
-        public async Task<IActionResult> Imprimir(string Id)
+        public async Task<IActionResult> Imprimir(string NumInv)
         {
 
             var BuscarMarc = from mon in _context.Displays
-                            where mon.Marca == Id
-                            select mon;
+                             where mon.Marca == NumInv
+                             select mon;
 
             var ArrBuscarMarc = BuscarMarc.ToArray();
 
@@ -205,44 +207,43 @@ namespace ProyectoInventarioASP.Controllers
             }
             else
             {
-                    if (Id == "activo" || Id == "inactivo")
+                if (NumInv == "activo" || NumInv == "inactivo")
+                {
+                    if (NumInv == "activo")
                     {
-                        if (Id == "activo")
+                        var BuscarAct = from tmon in _context.Displays
+                                        where tmon.estado == Estado.activo
+                                        select tmon;
+
+
+                        var ArrBuscarAct = BuscarAct.ToArray();
+
+                        if (ArrBuscarAct.Length != 0)
                         {
-                            var BuscarAct = from mon in _context.Displays
-                                            where mon.estado == Estado.activo
-                                            select mon;
-
-
-                            var ArrBuscarAct = BuscarAct.ToArray();
-
-                            if (ArrBuscarAct.Length != 0)
+                            return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
                             {
-                                return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
-                                {
-                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
-                                };
-                            }
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
                         }
-                        else if (Id == "inactivo")
-                        {
-                            var BuscarInac = from mon in _context.Displays
-                                             where mon.estado == Estado.inactivo
-                                             select mon;
-
-
-                            var ArrBuscarInac = BuscarInac.ToArray();
-
-                            if (ArrBuscarInac.Length != 0)
-                            {
-                                return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
-                                {
-                                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
-                                };
-                            }
-                        }
-                        //aqui
                     }
+                    else if (NumInv == "inactivo")
+                    {
+                        var BuscarInac = from mon in _context.Displays
+                                         where mon.estado == Estado.inactivo
+                                         select mon;
+
+
+                        var ArrBuscarInac = BuscarInac.ToArray();
+
+                        if (ArrBuscarInac.Length != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
+                }
             }
 
             return View();
@@ -250,22 +251,22 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Print(string id)
+        public async Task<IActionResult> Print(int id)
         {
-            if (id == null || _context.Displays == null)
+            if (id == 0 || _context.Displays == null)
             {
                 return NotFound();
             }
 
-            var display = await _context.Displays
-                .Include(d => d.Computadora)
+            var monitor = await _context.Displays
+                .Include(c => c.Computadora)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (display == null)
+            if (monitor == null)
             {
                 return NotFound();
             }
 
-            return new ViewAsPdf("DetailsPrint", display)
+            return new ViewAsPdf("DetailsPrint", monitor)
             {
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
             };
@@ -282,12 +283,20 @@ namespace ProyectoInventarioASP.Controllers
         }
 
 
-
-
-
         //Fin del controlador de impresion
 
-        private bool DisplayExists(string id)
+        private int CargarIdPC(string inv)
+        {
+           var BuscarPc = from pc in _context.Computadoras
+                          where pc.NumInv == inv
+                          select pc.Id;
+
+            var ArrPc = BuscarPc.ToArray();
+
+            return ArrPc[0];
+        }
+
+        private bool DisplayExists(int id)
         {
           return (_context.Displays?.Any(e => e.Id == id)).GetValueOrDefault();
         }

@@ -31,9 +31,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Ups/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Upss == null)
+            if (id == 0 || _context.Upss == null)
             {
                 return NotFound();
             }
@@ -61,7 +61,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,estado")] Ups ups)
+        public async Task<IActionResult> Create([Bind("NumSerie,NumInv,Marca,estado")] Ups ups)
         {
             if (ups != null)
             {
@@ -74,9 +74,9 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Ups/Edit/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Upss == null)
+            if (id == 0 || _context.Upss == null)
             {
                 return NotFound();
             }
@@ -95,7 +95,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,estado")] Ups ups)
+        public async Task<IActionResult> Edit(int id, Ups ups)
         {
             if (id != ups.Id)
             {
@@ -127,7 +127,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Ups/Delete/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Upss == null)
             {
@@ -148,7 +148,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Upss == null)
             {
@@ -245,7 +245,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Print(string id)
+        public async Task<IActionResult> Print(int id)
         {
             if (id == null || _context.Upss == null)
             {
@@ -283,7 +283,7 @@ namespace ProyectoInventarioASP.Controllers
 
 
 
-        private bool UpsExists(string id)
+        private bool UpsExists(int id)
         {
             return (_context.Upss?.Any(e => e.Id == id)).GetValueOrDefault();
         }

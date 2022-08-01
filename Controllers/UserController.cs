@@ -41,7 +41,7 @@ public class UserController : Controller
         return View();
     }
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> Edit(string id)
+    public async Task<IActionResult> Edit(int id)
     {
         if (id == null || _context.Users == null)
         {
@@ -58,9 +58,9 @@ public class UserController : Controller
     }
 
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> Delete(string id)
+    public async Task<IActionResult> Delete(int id)
     {
-        if (id == null || _context.Users == null)
+        if (id == 0 || _context.Users == null)
         {
             return NotFound();
         }
@@ -78,7 +78,7 @@ public class UserController : Controller
     [Authorize(Roles = "admin")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(string id)
+    public async Task<IActionResult> DeleteConfirmed(int id)
     {
         if (_context.Users == null)
         {
@@ -101,7 +101,7 @@ public class UserController : Controller
     [Authorize(Roles = "admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(string id, User _user)
+    public async Task<IActionResult> Edit(int id, User _user)
     {
         if (id != _user.UserId)
         {
@@ -141,17 +141,7 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(User _user)
     {
-        List<User> nuevoUsuario = new List<User>();
-        nuevoUsuario.Add(new User()
-        {
-            UserId = Guid.NewGuid().ToString(),
-            username = _user.username,
-            Nombre = _user.Nombre,
-            password = _user.password,
-            Email = _user.Email,
-            permisos = _user.permisos
-        });
-        _context.AddRange(nuevoUsuario);
+        _context.Add(_user);
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(ListaUser));
     }
@@ -213,7 +203,7 @@ public class UserController : Controller
     }
 
 
-    private bool UserExists(string id)
+    private bool UserExists(int id)
     {
         return (_context.Users?.Any(e => e.UserId == id)).GetValueOrDefault();
     }

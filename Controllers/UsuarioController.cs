@@ -30,7 +30,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Usuario/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _context.Usuarios == null)
             {
@@ -73,7 +73,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Usuario/Edit/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null || _context.Usuarios == null)
             {
@@ -94,7 +94,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NombreCompleto,NombreUsuario,NombreDepartamento,NombreArea")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreCompleto,NombreUsuario,NombreDepartamento,NombreArea")] Usuario usuario)
         {
             if (id != usuario.Id)
             {
@@ -126,7 +126,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Usuario/Delete/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Usuarios == null)
             {
@@ -147,7 +147,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Usuarios == null)
             {
@@ -163,7 +163,7 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(string id)
+        private bool UsuarioExists(int id)
         {
           return (_context.Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }

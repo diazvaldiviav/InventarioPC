@@ -14,11 +14,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" required  />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="NumInv" class="control-label"></label>
                 <input asp-for="NumInv" class="form-control" required/>
                 <span asp-validation-for="NumInv" class="text-danger"></span>
@@ -34,13 +29,8 @@
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ComputadoraId" class="control-label"></label>
-                <select asp-for="ComputadoraId" class ="form-control" asp-items="ViewBag.ComputadoraId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="NumInvPc" class="control-label"></label>
-                <input asp-for="NumInvPc" class="form-control" required/>
-                <span asp-validation-for="NumInvPc" class="text-danger"></span>
+                <select class = "form-control" asp-for="NumInvPc" asp-items="ViewBag.InvPc"></select>
             </div>
             <div class = "form-group">
              <label asp-for="estado"></label>

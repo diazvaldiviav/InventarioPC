@@ -5,7 +5,7 @@ namespace ProyectoInventarioASP.Models
     public class Impresora
     {
         [Key]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string NumSerie { get; set; }
         

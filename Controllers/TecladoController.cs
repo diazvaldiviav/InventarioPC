@@ -31,7 +31,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Teclado/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null || _context.Teclados == null)
             {
@@ -74,7 +74,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Teclado/Edit/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null || _context.Teclados == null)
             {
@@ -95,7 +95,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
+        public async Task<IActionResult> Edit(int id, Teclado teclado)
         {
             if (id != teclado.Id)
             {
@@ -127,7 +127,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Teclado/Delete/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null || _context.Teclados == null)
             {
@@ -263,9 +263,9 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Print(string id)
+        public async Task<IActionResult> Print(int id)
         {
-            if (id == null || _context.Teclados == null)
+            if (id == 0 || _context.Teclados == null)
             {
                 return NotFound();
             }
@@ -303,7 +303,7 @@ namespace ProyectoInventarioASP.Controllers
 
 
 
-        private bool TecladoExists(string id)
+        private bool TecladoExists(int id)
         {
             return (_context.Teclados?.Any(e => e.Id == id)).GetValueOrDefault();
         }

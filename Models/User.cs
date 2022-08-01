@@ -7,7 +7,7 @@ namespace ProyectoInventarioASP.Models
     public class User
     {
         [Key]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string Nombre { get; set; }
 
         public string username {get; set;}

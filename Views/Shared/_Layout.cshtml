@@ -44,80 +44,123 @@
         <div class="sidebar-body">
           <ul class="sidebar-body-menu">
             <li>
-              <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
-                  class="icon home">Pc</a>
-            </li>
             <li>
-              <a asp-controller="Display" asp-action="Index">
-                <img src="~/Assets/monitor.png" class="icon home">Monitor
+              <a class="show-cat-btn" href="##">
+                <span class="icon document" aria-hidden="true"></span>Pc
+                <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
               </a>
-            </li>
-            <li>
-              <a asp-controller="Micro" asp-action="Index">
-                <img src="~/Assets/Micro.png" class="icon home"></span>Micros
-              </a>
-            </li>
-            <li>
-              <a asp-controller="MemoriaRam" asp-action="Index">
-                <img src="~/Assets/memoryram.png" class="icon home">Memoria
-              </a>
-            </li>
-            <li>
-              <a asp-controller="Teclado" asp-action="Index">
-                <img src="~/Assets/keyboard.png" class="icon home">Teclado
-              </a>
-            </li>
-            <li>
-              <a asp-controller="DiscoDuro" asp-action="Index">
-                <img src="~/Assets/DiscoDuro.png" class="icon home">
-                Discos
-              </a>
-            </li>
-            <li>
-              <a asp-controller="Usuario" asp-action="index">
-                <img src="~/Assets/User.png" class="icon home">Users
+              <ul class="cat-sub-menu">
+                <li>
+                  <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
+                      class="icon home">Pc</a>
+                </li>
+                <li>
+                  <a asp-controller="Micro" asp-action="Index">
+                    <img src="~/Assets/Micro.png" class="icon home"></span>Micros
+                  </a>
+                </li>
+                <li>
+                  <a asp-controller="MemoriaRam" asp-action="Index">
+                    <img src="~/Assets/memoryram.png" class="icon home">Memoria
+                  </a>
+                </li>
+                <li>
+                  <a asp-controller="MotherBoard" asp-action="Index">
+                    <img src="~/Assets/motherboard.png" class="icon home">
+                    Boards
+                  </a>
+                <li>
+                  <a asp-controller="DiscoDuro" asp-action="Index">
+                    <img src="~/Assets/DiscoDuro.png" class="icon home">
+                    Discos
+                  </a>
+                <li>
+                  <a asp-controller="Usuario" asp-action="index">
+                    <img src="~/Assets/User.png" class="icon home">Users
 
-              </a>
+                  </a>
+                </li>
             </li>
-            <li>
-              <a asp-controller="MotherBoard" asp-action="Index">
-                <img src="~/Assets/motherboard.png" class="icon home">
-                Boards
-              </a>
-            </li>
-             <li>
-              <a asp-controller="Ups" asp-action="Index">
-                <img src="~/Assets/ups.png" class="icon home">
-                Ups
-              </a>
-            </li>
-            <li>
-              <a asp-controller="Impresora" asp-action="Index">
-                <img src="~/Assets/impresora.png" class="icon home">
-                Impresoras
-              </a>
             </li>
           </ul>
-            <span class="system-menu__title">system</span>
-            <ul class="sidebar-body-menu">
-              <li>
-                <a class="show-cat-btn" href="##">
-                  <span class="icon user-3" aria-hidden="true"></span>Users
-                  <span class="category__btn transparent-btn" title="Open list">
-                    <span class="sr-only">Open list</span>
-                    <span class="icon arrow-down" aria-hidden="true"></span>
-                  </span>
-                </a>
-                <ul class="cat-sub-menu">
-                  <li>
-                    <a asp-controller="User" asp-action="Register">Registrar</a>
-                  </li>
-                  <li>
-                    <a asp-controller="User" asp-action="ListaUser">Registro de usuarios</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+          </li>
+          @* <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
+            class="icon home">Pc</a>
+            </li> *@
+          <li>
+            <a asp-controller="Display" asp-action="Index">
+              <img src="~/Assets/monitor.png" class="icon home">Monitor
+            </a>
+          </li>
+          @* <li>
+            <a asp-controller="Micro" asp-action="Index">
+            <img src="~/Assets/Micro.png" class="icon home"></span>Micros
+            </a>
+            </li>
+            <li>
+            <a asp-controller="MemoriaRam" asp-action="Index">
+            <img src="~/Assets/memoryram.png" class="icon home">Memoria
+            </a>
+            </li>
+            <li> *@
+          <a asp-controller="Teclado" asp-action="Index">
+            <img src="~/Assets/keyboard.png" class="icon home">Teclado
+          </a>
+          </li>
+          @* <li>
+            <a asp-controller="DiscoDuro" asp-action="Index">
+            <img src="~/Assets/DiscoDuro.png" class="icon home">
+            Discos
+            </a>
+            </li> *@
+          @* <li>
+            <a asp-controller="Usuario" asp-action="index">
+            <img src="~/Assets/User.png" class="icon home">Users
+
+            </a>
+            </li> *@
+          @* <li>
+            <a asp-controller="MotherBoard" asp-action="Index">
+            <img src="~/Assets/motherboard.png" class="icon home">
+            Boards
+            </a>
+            </li> *@
+          <li>
+            <a asp-controller="Ups" asp-action="Index">
+              <img src="~/Assets/ups.png" class="icon home">
+              Ups
+            </a>
+          </li>
+          <li>
+            <a asp-controller="Impresora" asp-action="Index">
+              <img src="~/Assets/impresora.png" class="icon home">
+              Impresoras
+            </a>
+          </li>
+          </ul>
+          <span class="system-menu__title">system</span>
+          <ul class="sidebar-body-menu">
+            <li>
+              <a class="show-cat-btn" href="##">
+                <span class="icon user-3" aria-hidden="true"></span>Users
+                <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+              </a>
+              <ul class="cat-sub-menu">
+                <li>
+                  <a asp-controller="User" asp-action="Register">Registrar</a>
+                </li>
+                <li>
+                  <a asp-controller="User" asp-action="ListaUser">Registro de usuarios</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </aside>
