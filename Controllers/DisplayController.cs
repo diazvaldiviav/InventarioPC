@@ -52,7 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
-             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+            ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
             return View();
         }
 
@@ -66,12 +66,23 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (display != null)
             {
-                var idpc = CargarIdPC(display.NumInvPc);
+                try
+                {
+                    var idpc = CargarIdPC(display.NumInvPc);
 
-                display.ComputadoraId = idpc;
-                _context.Add(display);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    display.ComputadoraId = idpc;
+                    _context.Add(display);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (SystemException)
+                {
+                    return RedirectToAction("Index", "Home");
+
+                }
+
+
             }
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
             return View(display);
@@ -90,7 +101,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+            ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
             return View(display);
         }
 
@@ -111,10 +122,13 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    var idpc = CargarIdPC(display.NumInvPc);
+
+                    display.ComputadoraId = idpc;
                     _context.Update(display);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (SystemException)
                 {
                     if (!DisplayExists(display.Id))
                     {
@@ -122,7 +136,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -165,13 +179,13 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.Displays.Remove(display);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
 
-        
+
         //Controlador de impresion
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
@@ -287,9 +301,9 @@ namespace ProyectoInventarioASP.Controllers
 
         private int CargarIdPC(string inv)
         {
-           var BuscarPc = from pc in _context.Computadoras
-                          where pc.NumInv == inv
-                          select pc.Id;
+            var BuscarPc = from pc in _context.Computadoras
+                           where pc.NumInv == inv
+                           select pc.Id;
 
             var ArrPc = BuscarPc.ToArray();
 
@@ -298,7 +312,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool DisplayExists(int id)
         {
-          return (_context.Displays?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Displays?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

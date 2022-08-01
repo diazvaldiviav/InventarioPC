@@ -8,10 +8,12 @@ public class MotherBoard
 {
 
     [Key]
+    [Display(Name ="Serial")]
     public string NumSerieId { get; set; }
     [Required]
     public string Marca { get; set; }
     [Required]
+     [Display(Name ="Micro Serial")]
     public string MicroProcesadorId { get; set; }   
      
     [Required]

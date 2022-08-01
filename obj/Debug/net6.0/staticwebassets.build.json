@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "p3+LQI7OZz0UukUIJtT280ufeuQ5A8ruHPqqpZI+Lq0=",
+  "Hash": "kKQPUGkVJ13yCq7q4oXqtRPfoAxn4nFnQUHgaLU9aok=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\buscar.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\celular.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/celular.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\celular.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\computadorab.png",
@@ -187,6 +204,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\keyboard.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\laptop.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/laptop.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\laptop.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\logo.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -289,6 +323,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\motherboard.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\scaner.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/scaner.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\scaner.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\tecladob.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -304,6 +355,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\tecladob.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\telefono.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/telefono.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\telefono.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\ups.png",
@@ -2907,12 +2975,12 @@
       "OriginalItemSpec": "wwwroot\\img\\svg\\thumbnail.svg"
     },
     {
-      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\filter.js",
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\filtro.js",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
       "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
       "BasePath": "_content/ProyectoInventarioASP",
-      "RelativePath": "js/filter.js",
+      "RelativePath": "js/filtro.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2921,24 +2989,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\filter.js"
-    },
-    {
-      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\imprimir.js",
-      "SourceId": "ProyectoInventarioASP",
-      "SourceType": "Discovered",
-      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
-      "BasePath": "_content/ProyectoInventarioASP",
-      "RelativePath": "js/imprimir.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\imprimir.js"
+      "OriginalItemSpec": "wwwroot\\js\\filtro.js"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\script.js",

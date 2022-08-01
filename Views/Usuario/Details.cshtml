@@ -8,36 +8,25 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Usuario</h4>
+    <h4>Usuario No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreCompleto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-             Departameto: 
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreDepartamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreArea)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreArea)
-        </dd>
-    </dl>
+     <div class="container">
+        <div class="row">
+            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreCompleto)</div>
+            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreCompleto)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreUsuario)</div>
+            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreUsuario)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreDepartamento)</div>
+            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreDepartamento)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreArea)</div>
+            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreArea)</div>
+        </div>
 </div>
-<div class = "container-flex">
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Modificar</a> |
+<div class = "container-flex p-2">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a> 
+      <td><a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a></td>
     <a asp-action="Index">Volver</a>
 </div>

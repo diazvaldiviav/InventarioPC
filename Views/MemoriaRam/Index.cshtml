@@ -10,7 +10,7 @@
 <p>
     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
     {
-        <a asp-action="Create" class="btn btn-primary btn-sm">Create New</a>
+        <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
     }
 </p>
 <div class="table-responsive">
@@ -31,9 +31,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MotherBoard)
             </th>
             <th></th>
             <th></th>
@@ -59,15 +56,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.estado)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MotherBoard.NumSerieId)
-                </td>
 
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {
-                    <td><a asp-action="Edit" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Edit</a> </td>
-                    <td><a asp-action="Details" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Details</a></td>
-                    <td><a asp-action="Delete" asp-route-id="@item.KayNumSerieId" class="btn btn-danger btn-sm">Delete</a></td>
+                    <td><a asp-action="Edit" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Modificar</a> </td>
+                    <td><a asp-action="Details" asp-route-id="@item.KayNumSerieId" class="btn btn-primary btn-sm">Detalles</a></td>
+                    <td><a asp-action="Delete" asp-route-id="@item.KayNumSerieId" class="btn btn-danger btn-sm">Eliminar</a></td>
                 }
 
 

@@ -17,7 +17,7 @@ namespace ProyectoInventarioASP.Models
         public string NumInv { get; set; }
 
         [Required]
-        [Display(Name="Numero de serie")]
+        [Display(Name="Serial")]
         public String NumSerie { get; set; }
         [Display(Name="Marca")]
         [Required]

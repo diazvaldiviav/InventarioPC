@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 
-<h1>Edit</h1>
+<h1>Modificar</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -25,16 +25,43 @@
                 <span asp-validation-for="NombreUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NombreDepartamento" class="control-label"></label>
-                <input asp-for="NombreDepartamento" class="form-control" />
-                <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
-            </div>
+            <label asp-for="NombreDepartamento" class="control-label"></label>
+            <select asp-for="NombreDepartamento" class="form-control">
+                <option>Seleccione un Departamento de la Empresa</option>
+                <option value="Economia">Economia</option>
+                <option value="Direccion General">Direccion General</option>
+                <option value="Inversiones">Inversiones</option>
+                <option value="Recursos Humanos">Recursos Humanos</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Despacho">Despacho</option>
+                <option value="Informatica y Comunicaciones">Informatica y Comunicaciones</option>
+                <option value="Tecnico">Tecnico</option>
+                <option value="Organizacion y control">Organizacion y control</option>
+                <option value="Atencion al cliente">Atencion al cliente</option>
+                <option value="Logistica">Logistica</option>
+                <option value="Generacion de Emergencia">Generacion de Emergencia</option>
+                <option value="Transorte">Transporte</option>
+                <option value="Fre">Fre</option>
+            </select>
+            <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
+        </div>
             <div class="form-group">
-                <label asp-for="NombreArea" class="control-label"></label>
-                <input asp-for="NombreArea" class="form-control" />
-                <span asp-validation-for="NombreArea" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <label asp-for="NombreArea" class="control-label"></label>
+            <select asp-for="NombreArea" class="form-control">
+                <option>Seleccione un Area de la Empresa</option>
+                <option value="Obe Provincial">Obe</option>
+                <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
+                <option value="UEB Taguasco">UEB Taguasco</option>
+                <option value="UEB Yaguajay">UEB Yaguajay</option>
+                <option value="UEB Trinidad">UEB Trinidad</option>
+                <option value="UEB Cabaiguan">UEB Cabaiguan</option>
+                <option value="UEB La Sierpe">UEB La Sierpe</option>
+                <option value="UEB Jatibonico">UEB Jatibonico</option>
+                <option value="UEB Fomento">UEB Fomento</option>
+            </select>
+            <span asp-validation-for="NombreArea" class="text-danger"></span>
+        </div>
+            <div class="form-group p-2">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>

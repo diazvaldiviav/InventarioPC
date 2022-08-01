@@ -205,60 +205,70 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (computadora != null)
             {
+                try
+                {
 
-                //Cargarlos id de impresoras
-                var BuscarIdImpr = from impr in _context.Impresoras
-                                   where impr.NumInv == computadora.ImprNumInv
-                                   select impr.Id;
+                    //Cargarlos id de impresoras
+                    var BuscarIdImpr = from impr in _context.Impresoras
+                                       where impr.NumInv == computadora.ImprNumInv
+                                       select impr.Id;
 
-                //Cargar los Id de las Ups
-                var BuscarIdUps = from ups in _context.Upss
-                                  where ups.NumInv == computadora.UpsInv
-                                  select ups.Id;
+                    //Cargar los Id de las Ups
+                    var BuscarIdUps = from ups in _context.Upss
+                                      where ups.NumInv == computadora.UpsInv
+                                      select ups.Id;
 
-                //Cargar los Id de los teclados
-                var BuscarIdTecl = from tecl in _context.Teclados
-                                   where tecl.NumInv == computadora.TeclNumInv
-                                   select tecl.Id;
+                    //Cargar los Id de los teclados
+                    var BuscarIdTecl = from tecl in _context.Teclados
+                                       where tecl.NumInv == computadora.TeclNumInv
+                                       select tecl.Id;
 
-                //Cargar los Id de los usuarios
-                var BuscarIdUser = from user in _context.Usuarios
-                                   where user.NombreUsuario == computadora.UserName
-                                   select user.Id;
-                //Importar Ids
-                var idImpr = BuscarIdImpr.ToArray();
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == computadora.UserName
+                                       select user.Id;
+                    //Importar Ids
+                    var idImpr = BuscarIdImpr.ToArray();
 
-                var idUps = BuscarIdUps.ToArray();
+                    var idUps = BuscarIdUps.ToArray();
 
-                var idTecl = BuscarIdTecl.ToArray();
+                    var idTecl = BuscarIdTecl.ToArray();
 
-                var idUser = BuscarIdUser.ToArray();
+                    var idUser = BuscarIdUser.ToArray();
 
-                var marcaBoard = CargarMarca(computadora.MotherBoardId);
+                    var marcaBoard = CargarMarca(computadora.MotherBoardId);
 
-                var CapDisc = CargarCapDisc(computadora.MotherBoardId);
+                    var CapDisc = CargarCapDisc(computadora.MotherBoardId);
 
-                var CapMem = CargarCapMem(computadora.MotherBoardId);
+                    var CapMem = CargarCapMem(computadora.MotherBoardId);
 
-                var cabledisc = CargarCableDisco(computadora.MotherBoardId);
+                    var cabledisc = CargarCableDisco(computadora.MotherBoardId);
 
-                var tecmem = CargarTecnMemo(computadora.MotherBoardId);
+                    var tecmem = CargarTecnMemo(computadora.MotherBoardId);
 
-                var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+                    var tecMicro = CargarTecnMic(computadora.MotherBoardId);
 
-                computadora.ImpresoraId = idImpr[0];
-                computadora.UpsId = idUps[0];
-                computadora.TecladoId = idTecl[0];
-                computadora.UsuarioId = idUser[0];
-                computadora.MotherBoardMarca = marcaBoard;
-                computadora.DiscoDuroCap = CapDisc;
-                computadora.MemoriaRamCap = CapMem;
-                computadora.MemoriaRamTec = tecmem;
-                computadora.DiscoDuroTipoCon = cabledisc;
-                computadora.MicroTecn = tecMicro;
-                _context.Add(computadora);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    computadora.ImpresoraId = idImpr[0];
+                    computadora.UpsId = idUps[0];
+                    computadora.TecladoId = idTecl[0];
+                    computadora.UsuarioId = idUser[0];
+                    computadora.MotherBoardMarca = marcaBoard;
+                    computadora.DiscoDuroCap = CapDisc;
+                    computadora.MemoriaRamCap = CapMem;
+                    computadora.MemoriaRamTec = tecmem;
+                    computadora.DiscoDuroTipoCon = cabledisc;
+                    computadora.MicroTecn = tecMicro;
+                    _context.Add(computadora);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (SystemException)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+
             }
 
 
@@ -365,7 +375,7 @@ namespace ProyectoInventarioASP.Controllers
                     _context.Update(computadora);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (SystemException)
                 {
                     if (!ComputadoraExists(computadora.Id))
                     {
@@ -373,7 +383,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));

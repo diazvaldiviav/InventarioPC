@@ -25,7 +25,7 @@ public class Computadora
     [Display(Name = "Nombre")]
     public string Nombre { get; set; }
     [Required]
-    [Display(Name = "Sistema Operativo")]
+    [Display(Name = "SO")]
     public string SO { get; set; }
     [Required]
     [Display(Name = "Inventario UPS")]

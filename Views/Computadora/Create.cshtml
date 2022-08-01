@@ -9,7 +9,6 @@
 
 <h4>Computadora</h4>
 <hr />
-
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-row">
@@ -20,12 +19,14 @@
         </div>
         <div class="form-group col-md-6">
             <label asp-for="NombreDepartamento" class="control-label"></label>
-            <select asp-for="NombreDepartamento" class = "form-control">
+            <select asp-for="NombreDepartamento" class="form-control">
+                 <option>Seleccione un Departamento de la Empresa</option>
                 <option value="Economia">Economia</option>
                 <option value="Direccion General">Direccion General</option>
                 <option value="Inversiones">Inversiones</option>
                 <option value="Recursos Humanos">Recursos Humanos</option>
-                <option value="Despacho">Comercial</option>
+                <option value="Despacho">Despacho</option>
+                <option value="Comercial">Comercial</option>
                 <option value="Informatica y Comunicaciones">Informatica y Comunicaciones</option>
                 <option value="Tecnico">Tecnico</option>
                 <option value="Organizacion y control">Organizacion y control</option>
@@ -39,8 +40,9 @@
         </div>
         <div class="form-group col-md-6">
             <label asp-for="NombreArea" class="control-label"></label>
-            <select asp-for="NombreArea" class = "form-control">
-                <option value="Obe Provincial">Obe</option>
+            <select asp-for="NombreArea" class="form-control">
+                 <option>Seleccione un Area de la Empresa</option>
+                <option value="Obe Provincial">Obe Provincial</option>
                 <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
                 <option value="UEB Taguasco">UEB Taguasco</option>
                 <option value="UEB Yaguajay">UEB Yaguajay</option>
@@ -59,7 +61,7 @@
         </div>
         <div class="form-group col-md-6">
             <label asp-for="SO" class="control-label"></label>
-            <select asp-for="SO" class = "form-control">
+            <select asp-for="SO" class="form-control">
                 <option value="Win 11 64bit">Win 11 64bit</option>
                 <option value="Win 11 32bit">Win 11 32bit</option>
                 <option value="Win 10 64bit">Win 10 64bit</option>
@@ -111,18 +113,15 @@
             <label asp-for="UpsInv" class="control-label"></label>
             <select asp-for="UpsInv" class="form-control" asp-items="ViewBag.UpsInv"></select>
         </div>
-        
+        <div class="form-group p-2">
+            <input type="submit" value="Crear" class="btn btn-primary" />
         </div>
-        <div class="form-group col-md-6">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </div>
 </form>
 
-<div>
+
+<div class="container-flex">
     <a asp-action="Index">Volver</a>
 </div>
-
 
 @section Scripts {
 @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

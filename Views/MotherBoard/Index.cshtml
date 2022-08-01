@@ -26,9 +26,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.estado)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Micro)
-            </th>
             <th></th>
             <th></th>
             <th></th>
@@ -46,9 +43,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Micro.NumSerieId)
                 </td>
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {

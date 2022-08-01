@@ -7,9 +7,11 @@ namespace ProyectoInventarioASP.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [Display(Name = "Serial")]
         public string NumSerie { get; set; }
-        
+
         [Required]
+        [Display(Name = "Inventario")]
         public string NumInv { get; set; }
         [Required]
         public string Marca { get; set; }
@@ -17,6 +19,6 @@ namespace ProyectoInventarioASP.Models
         public Estado estado { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection <Computadora> Computadora { get; set; }
+        public virtual ICollection<Computadora> Computadora { get; set; }
     }
 }

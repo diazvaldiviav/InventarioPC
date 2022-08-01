@@ -8,12 +8,15 @@ namespace ProyectoInventarioASP.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [Display(Name="Serial")]
         public String NumSerie { get; set; }
         [Required]
+        [Display(Name="Inventario")]
         public String NumInv { get; set; }
         [Required]
         public String Marca { get; set; }
         [Required]
+        [Display(Name="Conexion")]
         public String TipoConexion { get; set; }
         [Required]
         public Estado estado {get; set;}

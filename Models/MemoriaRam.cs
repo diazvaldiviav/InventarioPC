@@ -8,7 +8,9 @@ namespace ProyectoInventarioASP.Models
     public class MemoriaRam
     {
         [Key]
+        [Display(Name="Serial")]
         public string KayNumSerieId { get; set; }
+
         [Required]
         public string Marca { get; set; }
         [Required]
@@ -16,6 +18,7 @@ namespace ProyectoInventarioASP.Models
         [Required]
         public string Tecnologia { get; set; }
         [ForeignKey("MotherBoardId")]
+        [Display(Name="Serial MotherBoard")]
         public string MotherBoardId { get; set; }
         [Required]
         public Estado estado { get; set; }
