@@ -73,7 +73,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Usuario/Edit/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null || _context.Usuarios == null)
             {

@@ -91,24 +91,8 @@
             <span asp-validation-for="NumIp" class="text-danger" required></span>
         </div>
         <div class="form-group col-md-6">
-            <label asp-for="ImpresoraId" class="control-label"></label>
-            <select asp-for="ImpresoraId" class="form-control" asp-items="ViewBag.ImpresoraId"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="UpsId" class="control-label"></label>
-            <select asp-for="UpsId" class="form-control" asp-items="ViewBag.UpsId"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="UsuarioId" class="control-label"></label>
-            <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.NombreUsuarioId"></select>
-        </div>
-        <div class="form-group col-md-6">
             <label asp-for="MotherBoardId" class="control-label"></label>
             <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="TecladoId" class="control-label"></label>
-            <select asp-for="TecladoId" class="form-control" asp-items="ViewBag.TecladoId"></select>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="ImprNumInv" class="control-label"></label>
@@ -123,73 +107,8 @@
             <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
         </div>
         <div class="form-group col-md-6">
-            <label asp-for="MotherBoardMarca" class="control-label"></label>
-            <select asp-for="MotherBoardMarca" class="form-control" asp-items="ViewBag.MotherBoardMarca"></select>
-        </div>
-        <div class="form-group col-md-6">
             <label asp-for="UpsInv" class="control-label"></label>
             <select asp-for="UpsInv" class="form-control" asp-items="ViewBag.UpsInv"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="DiscoDuroCap" class="control-label"></label>
-            <select asp-for="DiscoDuroCap" class="form-control" asp-items="ViewBag.Cap"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="DiscoDuroTipoCon" class="control-label"></label>
-            <select asp-for="DiscoDuroTipoCon" class="form-control">
-                <option value="Sata">SATA</option>
-                <option value="Ide">IDE</option>
-                <option value="Sas">SAS</option>
-                <option value="M2">M2</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="MemoriaRamCap" class="control-label"></label>
-            <select asp-for="MemoriaRamCap" class="form-control">
-                <option value="256 MG">256 MG</option>
-                <option value="500 MG">500 MG</option>
-                <option value="1 GB">1 GB</option>
-                <option value="3 GB">3 GB</option>
-                <option value="4 GB">4 GB</option>
-                <option value="6 GB">6 GB</option>
-                <option value="8 GB">8 GB</option>
-                <option value="16 GB">16 GB</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="MemoriaRamTec" class="control-label"></label>
-            <select asp-for="MemoriaRamTec" class="form-control">
-                <option value="DDR">DDR</option>
-                <option value="DDR2">DDR2</option>
-                <option value="DDR3">DDR3</option>
-                <option value="DDR4">DDR4</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <label asp-for="MicroTecn" class="control-label"></label>
-            <select asp-for="MicroTecn" class="form-control">
-                <option value="Celeron">Celeron</option>
-                <option value="Core 2 Duo">Core 2 Duo</option>
-                <option value="Centrino">Centrino</option>
-                <option value="Pentium">Pentium</option>
-                <option value="Core I3-4">Core I3-4</option>
-                <option value="Core I3-7">Core I3-7</option>
-                <option value="Core I3-8">Core I3-8</option>
-                <option value="Core I3-9">Core I3-9</option>
-                <option value="Core I5-4">Core I5-4</option>
-                <option value="Core I5-7">Core I5-7</option>
-                <option value="Core I5-8">Core I5-8</option>
-                <option value="Core I5-9">Core I5-9</option>
-                <option value="Core I7-4">Core I7-4</option>
-                <option value="Core I7-7">Core I7-7</option>
-                <option value="Core I7-8">Core I7-8</option>
-                <option value="Core I7-9">Core I7-9</option>
-                <option value="Athlon">Athlon</option>
-                <option value="Athlon 64bits">Athlon 64bits</option>
-                <option value="Sempron">Sempron</option>
-                <option value="Turion">Turion</option>
-
-            </select>
         </div>
         <div class="form-group p-2">
             <input type="submit" value="Guardar" class="btn btn-primary" />

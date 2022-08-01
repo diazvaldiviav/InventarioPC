@@ -13,19 +13,22 @@ namespace ProyectoInventarioASP.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name="Inventario")]
         public string NumInv { get; set; }
 
         [Required]
+        [Display(Name="Numero de serie")]
         public String NumSerie { get; set; }
-
+        [Display(Name="Marca")]
         [Required]
         public String Marca { get; set; }
-
+        [Display(Name="Computador No")]
         [ForeignKey("ComputadoraId")]
         public int ComputadoraId { get; set; }
-
+        [Display(Name="Inventario de Pc")]
+        [Required]
         public string NumInvPc { get; set; }
-
+        [Display(Name="Estado")]
         [Required]
         public Estado estado { get; set; }
 

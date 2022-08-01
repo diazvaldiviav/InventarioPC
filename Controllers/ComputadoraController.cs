@@ -63,11 +63,11 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         // GET: Customers/ContactPDF
         [HttpPost]
-        public async Task<IActionResult> Imprimir(string Id)
+        public async Task<IActionResult> Imprimir(string NumInv)
         {
 
             var BuscarDep = from pc in _context.Computadoras
-                            where pc.NombreDepartamento == Id
+                            where pc.NombreDepartamento == NumInv
                             select pc;
 
             var ArrBuscarDep = BuscarDep.ToArray();
@@ -82,7 +82,7 @@ namespace ProyectoInventarioASP.Controllers
             else
             {
                 var BuscarArea = from pc in _context.Computadoras
-                                 where pc.NombreArea == Id
+                                 where pc.NombreArea == NumInv
                                  select pc;
 
 
@@ -97,9 +97,9 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 else
                 {
-                    if (Id == "activo" || Id == "inactivo")
+                    if (NumInv == "activo" || NumInv == "inactivo")
                     {
-                        if (Id == "activo")
+                        if (NumInv == "activo")
                         {
                             var BuscarAct = from pc in _context.Computadoras
                                             where pc.estado == Estado.activo
@@ -116,7 +116,7 @@ namespace ProyectoInventarioASP.Controllers
                                 };
                             }
                         }
-                        else if (Id == "inactivo")
+                        else if (NumInv == "inactivo")
                         {
                             var BuscarInac = from pc in _context.Computadoras
                                              where pc.estado == Estado.inactivo
@@ -162,9 +162,9 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            return new ViewAsPdf("Details", computadora)
+            return new ViewAsPdf("DetailsPrint", computadora)
             {
-                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
             };
         }
 
@@ -185,25 +185,9 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
-            //Estoy creando una lista de string que almacena los id de las board en las pc
 
-            List<string> ListPc = new List<string>();
-            var BuscarIdBoard = from board in _context.MotherBoards
-                                select board.NumSerieId;
-
-            ListPc.AddRange(BuscarIdBoard);
-
-            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
-            var discosCapacidad = CargarCapacidadDisco(ListPc);
-
-            //tengo que sumar las capacidades de los discos
-
-
-            ViewBag.Cap = new SelectList(discosCapacidad);
-            ViewData["TipoConecDisc"] = new SelectList(_context.DiscosDuro, "TipoConexion", "TipoConexion");
             ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca");
             ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
             ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
@@ -219,15 +203,6 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Computadora computadora)
         {
-            List<string> ListPc = new List<string>();
-            var BuscarIdBoard = from board in _context.Computadoras
-                                select board.MotherBoardId;
-
-            ListPc.AddRange(BuscarIdBoard);
-
-            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
-            var discosCapacidad = CargarCapacidadDisco(ListPc);
-
             if (computadora != null)
             {
 
@@ -259,19 +234,36 @@ namespace ProyectoInventarioASP.Controllers
 
                 var idUser = BuscarIdUser.ToArray();
 
+                var marcaBoard = CargarMarca(computadora.MotherBoardId);
+
+                var CapDisc = CargarCapDisc(computadora.MotherBoardId);
+
+                var CapMem = CargarCapMem(computadora.MotherBoardId);
+
+                var cabledisc = CargarCableDisco(computadora.MotherBoardId);
+
+                var tecmem = CargarTecnMemo(computadora.MotherBoardId);
+
+                var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+
                 computadora.ImpresoraId = idImpr[0];
                 computadora.UpsId = idUps[0];
                 computadora.TecladoId = idTecl[0];
                 computadora.UsuarioId = idUser[0];
+                computadora.MotherBoardMarca = marcaBoard;
+                computadora.DiscoDuroCap = CapDisc;
+                computadora.MemoriaRamCap = CapMem;
+                computadora.MemoriaRamTec = tecmem;
+                computadora.DiscoDuroTipoCon = cabledisc;
+                computadora.MicroTecn = tecMicro;
                 _context.Add(computadora);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CapDisc"] = new SelectList(discosCapacidad, "DiscoDuroCap", "DiscoDuroCap", computadora.DiscoDuroCap);
-            ViewData["TipoConecDisc"] = new SelectList(_context.DiscosDuro, "TipoConexion", "TipoConexion", computadora.DiscoDuroTipoCon);
+
+
             ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca", computadora.MotherBoardMarca);
             ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
             ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
@@ -281,19 +273,6 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            List<string> ListPc = new List<string>();
-            var BuscarIdBoard = from pc in _context.Computadoras
-                                join board in _context.MotherBoards
-                                on pc.MotherBoardId equals board.NumSerieId
-                                where pc.MotherBoardId == board.NumSerieId
-                                select pc.MotherBoardId;
-
-            ListPc.AddRange(BuscarIdBoard);
-
-            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
-            var discosCapacidad = CargarCapacidadDisco(ListPc);
-
-            //tengo que sumar las capacidades de los discos
 
 
             if (id == 0 || _context.Computadoras == null)
@@ -306,16 +285,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Cap = new SelectList(discosCapacidad);
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id");
+
             ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca");
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id");
             ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
-            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id");
             ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id");
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(computadora);
         }
@@ -329,19 +303,6 @@ namespace ProyectoInventarioASP.Controllers
         public async Task<IActionResult> Edit(int id, Computadora computadora)
         {
 
-            List<string> ListPc = new List<string>();
-            var BuscarIdBoard = from pc in _context.Computadoras
-                                join board in _context.MotherBoards
-                                on pc.MotherBoardId equals board.NumSerieId
-                                where pc.MotherBoardId == board.NumSerieId
-                                select pc.MotherBoardId;
-
-            ListPc.AddRange(BuscarIdBoard);
-
-            //aqui creo otra lista de string que almacena la capacidad de los discos por cada id de board
-            var discosCapacidad = CargarCapacidadDisco(ListPc);
-
-
             if (id != computadora.Id)
             {
                 return NotFound();
@@ -351,6 +312,56 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargarlos id de impresoras
+                    var BuscarIdImpr = from impr in _context.Impresoras
+                                       where impr.NumInv == computadora.ImprNumInv
+                                       select impr.Id;
+
+                    //Cargar los Id de las Ups
+                    var BuscarIdUps = from ups in _context.Upss
+                                      where ups.NumInv == computadora.UpsInv
+                                      select ups.Id;
+
+                    //Cargar los Id de los teclados
+                    var BuscarIdTecl = from tecl in _context.Teclados
+                                       where tecl.NumInv == computadora.TeclNumInv
+                                       select tecl.Id;
+
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == computadora.UserName
+                                       select user.Id;
+                    //Importar Ids
+                    var idImpr = BuscarIdImpr.ToArray();
+
+                    var idUps = BuscarIdUps.ToArray();
+
+                    var idTecl = BuscarIdTecl.ToArray();
+
+                    var idUser = BuscarIdUser.ToArray();
+
+                    var marcaBoard = CargarMarca(computadora.MotherBoardId);
+
+                    var CapDisc = CargarCapDisc(computadora.MotherBoardId);
+
+                    var CapMem = CargarCapMem(computadora.MotherBoardId);
+
+                    var cabledisc = CargarCableDisco(computadora.MotherBoardId);
+
+                    var tecmem = CargarTecnMemo(computadora.MotherBoardId);
+
+                    var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+
+                    computadora.ImpresoraId = idImpr[0];
+                    computadora.UpsId = idUps[0];
+                    computadora.TecladoId = idTecl[0];
+                    computadora.UsuarioId = idUser[0];
+                    computadora.MotherBoardMarca = marcaBoard;
+                    computadora.DiscoDuroCap = CapDisc;
+                    computadora.MemoriaRamCap = CapMem;
+                    computadora.MemoriaRamTec = tecmem;
+                    computadora.DiscoDuroTipoCon = cabledisc;
+                    computadora.MicroTecn = tecMicro;
                     _context.Update(computadora);
                     await _context.SaveChangesAsync();
                 }
@@ -367,16 +378,12 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Cap = new SelectList(discosCapacidad);
-            ViewData["ImpresoraId"] = new SelectList(_context.Impresoras, "Id", "Id", computadora.ImpresoraId);
+
+
             ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["MotherBoardMarca"] = new SelectList(_context.MotherBoards, "Marca", "Marca", computadora.MotherBoardMarca);
-            ViewData["TecladoId"] = new SelectList(_context.Teclados, "Id", "Id", computadora.TecladoId);
-            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "Inv", computadora.TeclNumInv);
-            ViewData["UpsId"] = new SelectList(_context.Upss, "Id", "Id", computadora.UpsId);
-            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "Inv", computadora.UpsInv);
-            ViewData["NombreUsuarioId"] = new SelectList(_context.Usuarios, "Id", "Id", computadora.UsuarioId);
+            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
             return View(computadora);
         }
@@ -429,54 +436,116 @@ namespace ProyectoInventarioASP.Controllers
             return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        private List<float> CargarCapacidadDisco(List<string> idBoards)
+        private string CargarMarca(string id)
         {
-            List<String> ListDiscos = new List<string>();
-            List<String> ListTemp = new List<string>();
-           
-            foreach (var disco in idBoards)
-            {    
-                
-                if (ListTemp.Any())
-                {
-                    var BuscarCap = from disc in _context.DiscosDuro
-                                    where disc.MotherBoardId == disco
-                                    select disc.Capacidad;
+            var BuscarMarca = from board in _context.MotherBoards
+                              where board.NumSerieId == id
+                              select board.Marca;
 
-                    ListDiscos.AddRange(BuscarCap);
-
-                }else
-                {
-                     var BuscarCap = from disc in _context.DiscosDuro
-                                    where disc.MotherBoardId == disco
-                                    select disc.Capacidad;
-
-                    ListTemp.AddRange(BuscarCap);
-
-                }
+            var Marca = BuscarMarca.ToArray();
 
 
-            }
-
-            List<float> listSuma = new List<float>();
-
-
-            float suma = 0;
-            foreach (var item in ListDiscos)
-            {
-                var itemConvertToFloat = float.Parse(item);
-
-                suma = suma + itemConvertToFloat;
-
-                listSuma.Add(itemConvertToFloat);
-                listSuma.Add(suma);
-
-            }
-
-            return listSuma;
+            return Marca[0];
 
 
         }
+
+
+
+        private string CargarCableDisco(string id)
+        {
+            var BuscarCable = from cable in _context.DiscosDuro
+                              where cable.MotherBoardId == id
+                              select cable.TipoConexion;
+
+            var cableArr = BuscarCable.ToArray();
+
+
+            return cableArr[0];
+
+
+        }
+
+        private string CargarTecnMemo(string id)
+        {
+            var BuscarTec = from tec in _context.MemoriasRam
+                            where tec.MotherBoardId == id
+                            select tec.Tecnologia;
+
+            var tecArr = BuscarTec.ToArray();
+
+
+            return tecArr[0];
+
+        }
+
+        private string CargarTecnMic(string id)
+        {
+            var Buscarboard = from board in _context.MotherBoards
+                              where board.NumSerieId == id
+                              select board.MicroProcesadorId;
+
+            var micrArr = Buscarboard.ToArray();
+
+            var BuscarTecMicro = from micro in _context.MicroProcesadores
+                                 where micro.NumSerieId == micrArr[0]
+                                 select micro.Tecnologia;
+
+            var tecMicro = BuscarTecMicro.ToArray();
+
+
+            return tecMicro[0];
+
+        }
+
+        private string CargarCapDisc(string id)
+        {
+            List<string> ListaDisco = new List<string>();
+            var BuscarDisc = from disc in _context.DiscosDuro
+                             where disc.MotherBoardId == id
+                             select disc.Capacidad;
+
+            ListaDisco.AddRange(BuscarDisc);
+
+            float capacidad = 0;
+            foreach (var item in ListaDisco)
+            {
+                var itemConvertToFloat = float.Parse(item);
+
+                capacidad = capacidad + itemConvertToFloat;
+            }
+
+            var capacidadInString = capacidad.ToString();
+
+            return capacidadInString;
+
+
+        }
+
+        private string CargarCapMem(string id)
+        {
+            List<string> ListaMem = new List<string>();
+            var BuscarMem = from mem in _context.MemoriasRam
+                            where mem.MotherBoardId == id
+                            select mem.Capacidad;
+
+            ListaMem.AddRange(BuscarMem);
+
+            float capacidad = 0;
+            foreach (var item in ListaMem)
+            {
+                var itemConvertToFloat = float.Parse(item);
+
+                capacidad = capacidad + itemConvertToFloat;
+            }
+
+            var capacidadInString = capacidad.ToString();
+
+            return capacidadInString;
+
+
+        }
+
 
 
 

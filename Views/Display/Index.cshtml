@@ -39,9 +39,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.estado)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Computadora)
-                </th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -66,15 +63,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.estado)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Computadora.Id)
-                    </td>
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {
                         <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
                         <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
                         <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Borrar</a></td>
-                        <td><a asp-action="Print" asp-route-id="@item.Id" class="btn btn-info btn-sm">Imprimir</a></td>
                     }
                 </tr>
             }
