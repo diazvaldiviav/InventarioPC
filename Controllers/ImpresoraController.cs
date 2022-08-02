@@ -52,6 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View();
         }
 
@@ -61,22 +62,42 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerie,NumInv,Marca,estado")] Impresora impresora)
+        public async Task<IActionResult> Create(Impresora impresora)
         {
             if (impresora != null)
             {
-                _context.Impresoras.Add(impresora);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == impresora.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    impresora.UsuarioId = idUser[0];
+                    _context.Impresoras.Add(impresora);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+
+                }
+                catch (SystemException)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", impresora.UserName);
             return View(impresora);
+
         }
 
         // GET: Impresora/Edit/5
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Impresoras == null)
+            if (id == 0 || _context.Impresoras == null)
             {
                 return NotFound();
             }
@@ -86,7 +107,9 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(impresora);
+
         }
 
         // POST: Impresora/Edit/5
@@ -95,7 +118,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NumSerie,NumInv,Marca,estado")] Impresora impresora)
+        public async Task<IActionResult> Edit(int id, Impresora impresora)
         {
             if (id != impresora.Id)
             {
@@ -106,6 +129,13 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == impresora.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    impresora.Id = idUser[0];
                     _context.Impresoras.Update(impresora);
                     await _context.SaveChangesAsync();
                 }
@@ -117,11 +147,12 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", impresora.UserName);
             return View(impresora);
         }
 

@@ -37,7 +37,6 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody id="CuerpoTablaPc">
@@ -59,9 +58,7 @@
                         {
                             <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
                             <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
-                            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
-                            <td><a asp-action="Print" asp-route-id="@item.Id" class="btn btn-info btn-sm">Imprimir</a></td>
-                            
+                            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>  
                         }
 
                         @if (User.IsInRole("lectura"))

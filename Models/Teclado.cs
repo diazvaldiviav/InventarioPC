@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace ProyectoInventarioASP.Models
@@ -20,8 +21,17 @@ namespace ProyectoInventarioASP.Models
         public String TipoConexion { get; set; }
         [Required]
         public Estado estado {get; set;}
+        [Display(Name = "Usuario No")]
+        [ForeignKey("UsuarioId")]
+        public int UsuarioId { get; set; }
+        [Display(Name = "Nombre del Usuario")]
+        [Required]
+        public string UserName { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }
+
+        [JsonIgnore]
+        public virtual Usuario Usuario { get; set; }
     }
 }

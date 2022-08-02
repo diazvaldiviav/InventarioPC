@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoInventarioASP;
 
@@ -10,9 +11,10 @@ using ProyectoInventarioASP;
 namespace ProyectoInventarioASP.Migrations
 {
     [DbContext(typeof(ComputadoraContext))]
-    partial class ComputadoraContextModelSnapshot : ModelSnapshot
+    [Migration("20220802151543_InitialCreate1")]
+    partial class InitialCreate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,10 +91,6 @@ namespace ProyectoInventarioASP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SO")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sello")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

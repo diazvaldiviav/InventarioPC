@@ -161,10 +161,19 @@ namespace ProyectoInventarioASP.Controllers
             var motherBoard = await _context.MotherBoards.FindAsync(id);
             if (motherBoard != null)
             {
-                _context.MotherBoards.Remove(motherBoard);
+               
+                try
+                {
+                     _context.MotherBoards.Remove(motherBoard);
+                      await _context.SaveChangesAsync();
+                }
+                 catch (DbUpdateException)
+                {
+                    return RedirectToAction("BdError", "Home");
+                }
             }
             
-            await _context.SaveChangesAsync();
+           
             return RedirectToAction(nameof(Index));
         }
 

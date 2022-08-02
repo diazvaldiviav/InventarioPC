@@ -156,10 +156,19 @@ namespace ProyectoInventarioASP.Controllers
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                try
+                {
+                    _context.Usuarios.Remove(usuario); 
+                     await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    return RedirectToAction("BdError", "Home");
+                }
+               
             }
             
-            await _context.SaveChangesAsync();
+           
             return RedirectToAction(nameof(Index));
         }
 

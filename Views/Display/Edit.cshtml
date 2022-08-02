@@ -29,18 +29,22 @@
                 <input asp-for="Marca" class="form-control" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="NumInvPc" class="control-label"></label>
-                <select class = "form-control" asp-for="NumInvPc" asp-items="ViewBag.InvPc"></select>
+                <select class="form-control" asp-for="NumInvPc" asp-items="ViewBag.InvPc"></select>
             </div>
-            <div class = "form-group">
-             <label asp-for="estado"></label>
-              @Html.DropDownList(
-              "Estado", Html.GetEnumSelectList<Estado>(),
-              "Seleccione un estado",
-              new{@class = "form-control"}
-              )
-              </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "Estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
             <div class="form-group p-2">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
@@ -49,10 +53,10 @@
 </div>
 
 <div>
-    
+
     <a asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

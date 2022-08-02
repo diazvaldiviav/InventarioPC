@@ -53,6 +53,7 @@ namespace ProyectoInventarioASP.Controllers
         public IActionResult Create()
         {
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View();
         }
 
@@ -68,8 +69,15 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == display.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
                     var idpc = CargarIdPC(display.NumInvPc);
 
+                    display.UsuarioId = idUser[0];
                     display.ComputadoraId = idpc;
                     _context.Add(display);
                     await _context.SaveChangesAsync();
@@ -85,6 +93,7 @@ namespace ProyectoInventarioASP.Controllers
 
             }
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", display.UserName);
             return View(display);
         }
 
@@ -101,6 +110,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
             return View(display);
         }
@@ -122,9 +132,16 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == display.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
                     var idpc = CargarIdPC(display.NumInvPc);
 
                     display.ComputadoraId = idpc;
+                    display.UsuarioId = idUser[0];
                     _context.Update(display);
                     await _context.SaveChangesAsync();
                 }
@@ -142,6 +159,7 @@ namespace ProyectoInventarioASP.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", display.UserName);
             return View(display);
         }
 

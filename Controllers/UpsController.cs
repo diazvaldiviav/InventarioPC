@@ -52,6 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View();
         }
 
@@ -61,14 +62,33 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerie,NumInv,Marca,estado")] Ups ups)
+        public async Task<IActionResult> Create(Ups ups)
         {
             if (ups != null)
             {
-                _context.Add(ups);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == ups.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    ups.UsuarioId = idUser[0];
+                    _context.Add(ups);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (SystemException)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+
+
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", ups.UserName);
             return View(ups);
         }
 
@@ -86,6 +106,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(ups);
         }
 
@@ -106,6 +127,13 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == ups.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    ups.UsuarioId = idUser[0];
                     _context.Update(ups);
                     await _context.SaveChangesAsync();
                 }
@@ -117,11 +145,12 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", ups.UserName);
             return View(ups);
         }
 

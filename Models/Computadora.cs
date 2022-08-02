@@ -10,7 +10,7 @@ public class Computadora
 
     [Key]
     public int Id { get; set; }
-    
+
 
     [Required]
     [Display(Name = "Inventario")]
@@ -18,6 +18,9 @@ public class Computadora
     [Required]
     [Display(Name = "Departamento")]
     public string NombreDepartamento { get; set; }
+    [Required]
+    [Display(Name = "Sello")]
+    public string Sello { get; set; }
     [Required]
     [Display(Name = "Area")]
     public string NombreArea { get; set; }
@@ -38,54 +41,68 @@ public class Computadora
     public string Mac { get; set; }
     [Required]
     [Display(Name = "IP")]
-     public string NumIp { get; set; }
-     [Display(Name = "Impresora No")]
+    public string NumIp { get; set; }
+
     [ForeignKey("ImpresoraId")]
+    [Display(Name = "Impresora No")]
     public int ImpresoraId { get; set; }
-    [Display(Name = "Usuario No")]
+
     [ForeignKey("UsuarioId")]
+    [Display(Name = "Usuario No")]
     public int UsuarioId { get; set; }
-    [Display(Name = "Board Serie")]
+
     [ForeignKey("MotherBoardId")]
+    [Display(Name = "Board Serie")]
     public string MotherBoardId { get; set; }
-    [Display(Name = "Teclado No")]
+
     [ForeignKey("TecladoId")]
+    [Display(Name = "Teclado No")]
     public int TecladoId { get; set; }
-    [Display(Name = "UPS No")]
+
     [ForeignKey("UpsId")]
+    [Display(Name = "UPS No")]
     public int UpsId { get; set; }
+
+    [Required]
     [Display(Name = "Inventario Impresora")]
+    public string ImprNumInv { get; set; }
+
     [Required]
-    public string ImprNumInv {get; set;}
     [Display(Name = "Teclado Inventario")]
+    public string TeclNumInv { get; set; }
+
     [Required]
-    public string TeclNumInv {get; set;}
     [Display(Name = "Nombre del Usuario")]
+    public string UserName { get; set; }
+
     [Required]
-    public string UserName {get; set;}
     [Display(Name = "Marca Board")]
+    public string MotherBoardMarca { get; set; }
+
     [Required]
-    public string MotherBoardMarca {get; set;}
     [Display(Name = "Capacidad de disco")]
+    public string DiscoDuroCap { get; set; }
+
     [Required]
-    public string DiscoDuroCap {get; set;}
     [Display(Name = "Cable del disco")]
+    public string DiscoDuroTipoCon { get; set; }
+
     [Required]
-    public string DiscoDuroTipoCon {get; set;}
     [Display(Name = "Capacidad de memoria")]
+    public string MemoriaRamCap { get; set; }
+
     [Required]
-    public string MemoriaRamCap {get; set;}
     [Display(Name = "Tecnologia de memoria")]
+    public string MemoriaRamTec { get; set; }
+
     [Required]
-    public string MemoriaRamTec {get; set;}
     [Display(Name = "Tecnologia de micro")]
-    [Required]
-    public string MicroTecn {get; set;}
+    public string MicroTecn { get; set; }
 
-   
-    
 
-    
+
+
+
 
     public virtual Teclado Teclado { get; set; }
     public virtual MotherBoard MotherBoard { get; set; }

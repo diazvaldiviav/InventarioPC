@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
   @* <link rel="stylesheet" href="~/ProyectoInventarioASP.net.styles.css" asp-append-version="true" /> *@
 </head>
-
 <body>
   <div class="layer"></div>
   <!-- ! Body -->
@@ -46,7 +45,7 @@
             <li>
             <li>
               <a class="show-cat-btn" href="##">
-                <span class="icon document" aria-hidden="true"></span>Pc
+                <img src="~/Assets/compu.png" class="icon home" />Informatica
                 <span class="category__btn transparent-btn" title="Open list">
                   <span class="sr-only">Open list</span>
                   <span class="icon arrow-down" aria-hidden="true"></span>
@@ -77,69 +76,104 @@
                     <img src="~/Assets/DiscoDuro.png" class="icon home">
                     Discos
                   </a>
+                </li>
                 <li>
-                  <a asp-controller="Usuario" asp-action="index">
-                    <img src="~/Assets/User.png" class="icon home">Users
-
+                  <a asp-controller="Impresora" asp-action="Index">
+                    <img src="~/Assets/laptop.png" class="icon home">
+                    Laptop
                   </a>
                 </li>
+            </li>
+          </ul>
+          <ul class="sidebar-body-menu">
+            <li>
+            <li>
+              <a class="show-cat-btn" href="##">
+                <img src="~/Assets/comuni.png" class="icon home" />Comunicaciones
+                <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+              </a>
+              <ul class="cat-sub-menu">
+                <li>
+                  <a asp-controller="Impresora" asp-action="Index">
+                    <img src="~/Assets/celular.png" class="icon home">
+                    Celular
+                  </a>
+                </li>
+                <li>
+                  <a asp-controller="Impresora" asp-action="Index">
+                    <img src="~/Assets/telefono.png" class="icon home">
+                    Telefono
+                  </a>
+                </li>
+            </li>
+          </ul>
+          <ul class="sidebar-body-menu">
+            <li>
+            <li>
+              <a class="show-cat-btn" href="##">
+                <img src="~/Assets/otros.png" class="icon home" />Otros
+                <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="icon arrow-down" aria-hidden="true"></span>
+                </span>
+              </a>
+              <ul class="cat-sub-menu">
+                <li>
+                  <a asp-controller="Display" asp-action="Index">
+                    <img src="~/Assets/monitor.png" class="icon home">Monitor
+                  </a>
+                </li>
+                <a asp-controller="Teclado" asp-action="Index">
+                  <img src="~/Assets/keyboard.png" class="icon home">Teclado
+                </a>
+            </li>
+            <li>
+              <a asp-controller="Usuario" asp-action="index">
+                <img src="~/Assets/User.png" class="icon home">Users
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Ups" asp-action="Index">
+                <img src="~/Assets/ups.png" class="icon home">
+                Ups
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Impresora" asp-action="Index">
+                <img src="~/Assets/impresora.png" class="icon home">
+                Impresoras
+              </a>
+            </li>
+            <li>
+              <a asp-controller="Impresora" asp-action="Index">
+                <img src="~/Assets/scaner.png" class="icon home">
+                Scanner
+              </a>
             </li>
             </li>
           </ul>
           </li>
-          @* <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
-            class="icon home">Pc</a>
-            </li> *@
-          <li>
-            <a asp-controller="Display" asp-action="Index">
-              <img src="~/Assets/monitor.png" class="icon home">Monitor
-            </a>
-          </li>
-          @* <li>
-            <a asp-controller="Micro" asp-action="Index">
-            <img src="~/Assets/Micro.png" class="icon home"></span>Micros
-            </a>
+          <a class="show-cat-btn" href="##">
+            <img src="~/Assets/registro.png" class="icon home" />Libro
+            <span class="category__btn transparent-btn" title="Open list">
+              <span class="sr-only"></span>
+              <span class="icon arrow-down" aria-hidden="true"></span>
+            </span>
+          </a>
+          <ul class="cat-sub-menu">
+            <li>
+              <a class="active" asp-controller="" asp-action=""><img src="~/Assets/entrada.png"
+                  class="icon home">Entradas</a>
             </li>
             <li>
-            <a asp-controller="MemoriaRam" asp-action="Index">
-            <img src="~/Assets/memoryram.png" class="icon home">Memoria
-            </a>
+              <a asp-controller="" asp-action="">
+                <img src="~/Assets/salida.png" class="icon home"></span>Salidas
+              </a>
             </li>
-            <li> *@
-          <a asp-controller="Teclado" asp-action="Index">
-            <img src="~/Assets/keyboard.png" class="icon home">Teclado
-          </a>
-          </li>
-          @* <li>
-            <a asp-controller="DiscoDuro" asp-action="Index">
-            <img src="~/Assets/DiscoDuro.png" class="icon home">
-            Discos
-            </a>
-            </li> *@
-          @* <li>
-            <a asp-controller="Usuario" asp-action="index">
-            <img src="~/Assets/User.png" class="icon home">Users
-
-            </a>
-            </li> *@
-          @* <li>
-            <a asp-controller="MotherBoard" asp-action="Index">
-            <img src="~/Assets/motherboard.png" class="icon home">
-            Boards
-            </a>
-            </li> *@
-          <li>
-            <a asp-controller="Ups" asp-action="Index">
-              <img src="~/Assets/ups.png" class="icon home">
-              Ups
-            </a>
-          </li>
-          <li>
-            <a asp-controller="Impresora" asp-action="Index">
-              <img src="~/Assets/impresora.png" class="icon home">
-              Impresoras
-            </a>
-          </li>
+          </ul>
           </ul>
           <span class="system-menu__title">system</span>
           <ul class="sidebar-body-menu">

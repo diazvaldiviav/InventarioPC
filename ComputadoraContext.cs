@@ -22,10 +22,10 @@ public class ComputadoraContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
         var users = cargarUserNames();
 
         modelBuilder.Entity<User>().HasData(users.ToArray());
+
 
     }
 
@@ -44,6 +44,8 @@ public class ComputadoraContext : DbContext
 
         return ListaUser;
     }
+
+
 
 }
 

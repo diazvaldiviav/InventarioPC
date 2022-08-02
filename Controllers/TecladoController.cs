@@ -52,6 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View();
         }
 
@@ -61,14 +62,32 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,TipoConexion,estado")] Teclado teclado)
+        public async Task<IActionResult> Create(Teclado teclado)
         {
             if (teclado != null)
             {
-                _context.Add(teclado);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == teclado.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    teclado.UsuarioId = idUser[0];
+                    _context.Add(teclado);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (SystemException)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+
+
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", teclado.UserName);
             return View(teclado);
         }
 
@@ -86,6 +105,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(teclado);
         }
 
@@ -106,6 +126,13 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    //Cargar los Id de los usuarios
+                    var BuscarIdUser = from user in _context.Usuarios
+                                       where user.NombreUsuario == teclado.UserName
+                                       select user.Id;
+
+                    var idUser = BuscarIdUser.ToArray();
+                    teclado.UsuarioId = idUser[0];
                     _context.Update(teclado);
                     await _context.SaveChangesAsync();
                 }
@@ -117,11 +144,12 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", teclado.UserName);
             return View(teclado);
         }
 
@@ -239,21 +267,21 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                         var BuscarConec = from tecl in _context.Teclados
-                                        where tecl.TipoConexion == Id
-                                        select tecl;
+                        var BuscarConec = from tecl in _context.Teclados
+                                          where tecl.TipoConexion == Id
+                                          select tecl;
 
                         var ArrBuscarConec = BuscarConec.ToArray();
 
                         if (ArrBuscarConec.Length != 0)
                         {
-                             return new ViewAsPdf("Imprimir", await BuscarConec.ToListAsync())
+                            return new ViewAsPdf("Imprimir", await BuscarConec.ToListAsync())
                             {
                                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
                             };
                         }
 
-                         
+
                     }
                 }
             }

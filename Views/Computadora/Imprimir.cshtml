@@ -46,6 +46,7 @@
                     <th>Tecnologia de memoria</th>
                     <th>Tecnologia de micro</th>
                     <th>Ups NumInv</th>
+                    <th>Sello</th>
                 </tr>
             </thead>
             <tbody id="CuerpoTabla">
@@ -109,6 +110,9 @@
                         </td>
                          <td class="filter" id="ImprId">
                             @Html.DisplayFor(modelItem => item.UpsInv)
+                        </td>
+                         <td class="filter" id="UserName">
+                            @Html.DisplayFor(modelItem => item.Sello)
                         </td>
                     </tr>
                 }

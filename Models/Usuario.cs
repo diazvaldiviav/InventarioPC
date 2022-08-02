@@ -22,6 +22,15 @@ namespace ProyectoInventarioASP.Models
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }
 
+        [JsonIgnore]
+        public virtual ICollection<Teclado> Teclado { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Display> Monitores { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Ups> Ups { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Impresora> Impresora { get; set; }
+
 
     }
 }

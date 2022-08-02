@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Insertar</h1>
 
 <h4>Ups</h4>
 <hr />
@@ -28,7 +28,11 @@
                 <input asp-for="Marca" class="form-control" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="estado"></label>
                 @Html.DropDownList(
                 "Estado", Html.GetEnumSelectList<Estado>(),
@@ -36,7 +40,7 @@
                 new{@class = "form-control"}
                 )
             </div>
-            <div class="form-group">
+            <div class="form-group p-2">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -44,9 +48,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
