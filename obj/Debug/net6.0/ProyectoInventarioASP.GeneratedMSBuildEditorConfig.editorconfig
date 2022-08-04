@@ -67,36 +67,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/DiscoDuro/DetailsPrint.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXERldGFpbHNQcmludC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/ProyectoInventarioASP/Views/DiscoDuro/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/ProyectoInventarioASP/Views/DiscoDuro/FooterPdf.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEZvb3RlclBkZi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/DiscoDuro/HeaderPdf.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEhlYWRlclBkZi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/DiscoDuro/Imprimir.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEltcHJpbWlyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/DiscoDuro/ImprimirFilter.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEltcHJpbWlyRmlsdGVyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/ProyectoInventarioASP/Views/DiscoDuro/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[G:/ProyectoInventarioASP/Views/DiscoDuro/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzY29EdXJvXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Display/Create.cshtml]

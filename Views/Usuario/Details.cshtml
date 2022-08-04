@@ -5,12 +5,12 @@
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
     <h4>Usuario No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
-     <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreCompleto)</div>
             <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreCompleto)</div>
@@ -23,10 +23,46 @@
             <div class="w-100"></div>
             <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreArea)</div>
             <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreArea)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Cargo)</div>
+            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Cargo)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">Responsable de:</div>
+            @foreach (var item in @ViewBag.Monitores)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Monitor Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+             @foreach (var item in @ViewBag.Impresora)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Impresora Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+             @foreach (var item in @ViewBag.Teclado)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Teclado Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+             @foreach (var item in ViewBag.Ups)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Ups Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+              @foreach (var item in ViewBag.Computadora)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Computadora Inv: @item.NumInv</div>
+            }
         </div>
-</div>
-<div class = "container-flex p-2">
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a> 
-      <td><a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a></td>
-    <a asp-action="Index">Volver</a>
-</div>
+
+
+    </div>
+    <div class="container-flex p-2">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
+        <td><a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a></td>
+        <a asp-action="Index">Volver</a>
+    </div>

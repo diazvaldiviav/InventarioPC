@@ -212,11 +212,11 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         // GET: Customers/ContactPDF
         [HttpPost]
-        public async Task<IActionResult> Imprimir(string Id)
+        public async Task<IActionResult> Imprimir(string NumInv)
         {
 
             var BuscarMarc = from ups in _context.Upss
-                             where ups.Marca == Id
+                             where ups.Marca == NumInv
                              select ups;
 
             var ArrBuscarMarc = BuscarMarc.ToArray();
@@ -230,9 +230,9 @@ namespace ProyectoInventarioASP.Controllers
             }
             else
             {
-                if (Id == "activo" || Id == "inactivo")
+                if (NumInv == "activo" || NumInv == "inactivo")
                 {
-                    if (Id == "activo")
+                    if (NumInv == "activo")
                     {
                         var BuscarAct = from ups in _context.Upss
                                         where ups.estado == Estado.activo
@@ -249,7 +249,7 @@ namespace ProyectoInventarioASP.Controllers
                             };
                         }
                     }
-                    else if (Id == "inactivo")
+                    else if (NumInv == "inactivo")
                     {
                         var BuscarInac = from ups in _context.Upss
                                          where ups.estado == Estado.inactivo

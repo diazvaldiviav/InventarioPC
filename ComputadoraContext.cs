@@ -40,6 +40,7 @@ public class ComputadoraContext : DbContext
             Email = "admin@gmail.com",
             password = "123",
             permisos = "admin"
+
         });
 
         return ListaUser;

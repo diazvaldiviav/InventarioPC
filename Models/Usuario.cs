@@ -18,18 +18,20 @@ namespace ProyectoInventarioASP.Models
         [Required]
         [Display(Name="Area")]
         public string NombreArea { get; set; }
+        [Required]
+        public string Cargo { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Computadora> Computadora { get; set; }
+        public virtual List<Computadora> Computadora { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Teclado> Teclado { get; set; }
+        public virtual List<Teclado> Teclado { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Display> Monitores { get; set; }
+        public virtual List<Display> Monitores { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Ups> Ups { get; set; }
+        public virtual List<Ups> Ups { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Impresora> Impresora { get; set; }
+        public virtual List<Impresora> Impresora { get; set; }
 
 
     }

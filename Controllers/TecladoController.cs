@@ -211,11 +211,11 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         // GET: Customers/ContactPDF
         [HttpPost]
-        public async Task<IActionResult> Imprimir(string Id)
+        public async Task<IActionResult> Imprimir(string NumInv)
         {
 
             var BuscarMarc = from tecl in _context.Teclados
-                             where tecl.Marca == Id
+                             where tecl.Marca == NumInv
                              select tecl;
 
             var ArrBuscarMarc = BuscarMarc.ToArray();
@@ -229,9 +229,9 @@ namespace ProyectoInventarioASP.Controllers
             }
             else
             {
-                if (Id == "activo" || Id == "inactivo")
+                if (NumInv == "activo" || NumInv == "inactivo")
                 {
-                    if (Id == "activo")
+                    if (NumInv == "activo")
                     {
                         var BuscarAct = from tecl in _context.Teclados
                                         where tecl.estado == Estado.activo
@@ -248,7 +248,7 @@ namespace ProyectoInventarioASP.Controllers
                             };
                         }
                     }
-                    else if (Id == "inactivo")
+                    else if (NumInv == "inactivo")
                     {
                         var BuscarInac = from tecl in _context.Teclados
                                          where tecl.estado == Estado.inactivo
@@ -268,7 +268,7 @@ namespace ProyectoInventarioASP.Controllers
                     else
                     {
                         var BuscarConec = from tecl in _context.Teclados
-                                          where tecl.TipoConexion == Id
+                                          where tecl.TipoConexion == NumInv
                                           select tecl;
 
                         var ArrBuscarConec = BuscarConec.ToArray();

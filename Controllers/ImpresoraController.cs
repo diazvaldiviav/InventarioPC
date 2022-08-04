@@ -194,6 +194,126 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        
+        //Controlador de impresion
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult Imprimir()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public IActionResult ImprimirFilter()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        // GET: Customers/ContactPDF
+        [HttpPost]
+        public async Task<IActionResult> Imprimir(string NumInv)
+        {
+
+            var BuscarMarc = from impr in _context.Impresoras
+                             where impr.Marca == NumInv
+                             select impr;
+
+            var ArrBuscarMarc = BuscarMarc.ToArray();
+
+            if (ArrBuscarMarc.Length != 0)
+            {
+                return new ViewAsPdf("Imprimir", await BuscarMarc.ToListAsync())
+                {
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                };
+            }
+            else
+            {
+                if (NumInv == "activo" || NumInv == "inactivo")
+                {
+                    if (NumInv == "activo")
+                    {
+                        var BuscarAct = from imp in _context.Impresoras
+                                        where imp.estado == Estado.activo
+                                        select imp;
+
+
+                        var ArrBuscarAct = BuscarAct.ToArray();
+
+                        if (ArrBuscarAct.Length != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", await BuscarAct.ToListAsync())
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
+                    else if (NumInv == "inactivo")
+                    {
+                        var BuscarInac = from imp in _context.Impresoras
+                                         where imp.estado == Estado.inactivo
+                                         select imp;
+
+
+                        var ArrBuscarInac = BuscarInac.ToArray();
+
+                        if (ArrBuscarInac.Length != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", await BuscarInac.ToListAsync())
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
+                }
+            }
+
+            return View();
+
+        }
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public async Task<IActionResult> Print(int id)
+        {
+            if (id == 0 || _context.Displays == null)
+            {
+                return NotFound();
+            }
+
+            var impresora = await _context.Impresoras
+                .Include(c => c.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (impresora == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", impresora)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(40, 10, 10, 10)
+
+            };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+
+
+        //Fin del controlador de impresion
+
         private bool ImpresoraExists(int id)
         {
             return (_context.Impresoras?.Any(e => e.Id == id)).GetValueOrDefault();

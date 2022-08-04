@@ -301,6 +301,9 @@ namespace ProyectoInventarioASP.Controllers
             return new ViewAsPdf("DetailsPrint", monitor)
             {
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(40, 10, 10, 10)
+
             };
         }
 
@@ -313,6 +316,8 @@ namespace ProyectoInventarioASP.Controllers
         {
             return View("FooterPDF");
         }
+
+
 
 
         //Fin del controlador de impresion

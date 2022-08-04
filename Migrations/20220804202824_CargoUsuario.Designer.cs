@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoInventarioASP;
 
@@ -10,9 +11,10 @@ using ProyectoInventarioASP;
 namespace ProyectoInventarioASP.Migrations
 {
     [DbContext(typeof(ComputadoraContext))]
-    partial class ComputadoraContextModelSnapshot : ModelSnapshot
+    [Migration("20220804202824_CargoUsuario")]
+    partial class CargoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
