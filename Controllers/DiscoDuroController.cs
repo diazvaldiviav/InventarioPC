@@ -25,8 +25,8 @@ namespace ProyectoInventarioASP.Controllers
         // GET: DiscoDuro
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.DiscosDuro.Include(d => d.motherBoard);
-            return View(await computadoraContext.ToListAsync());
+            var disco = _context.DiscosDuro.Include(d => d.motherBoard);
+            return View(await disco.ToListAsync());
         }
 
         // GET: DiscoDuro/Details/5

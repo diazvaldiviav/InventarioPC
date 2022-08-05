@@ -80,22 +80,6 @@ public class Computadora
     public string MotherBoardMarca { get; set; }
 
     [Required]
-    [Display(Name = "Capacidad de disco")]
-    public string DiscoDuroCap { get; set; }
-
-    [Required]
-    [Display(Name = "Cable del disco")]
-    public string DiscoDuroTipoCon { get; set; }
-
-    [Required]
-    [Display(Name = "Capacidad de memoria")]
-    public string MemoriaRamCap { get; set; }
-
-    [Required]
-    [Display(Name = "Tecnologia de memoria")]
-    public string MemoriaRamTec { get; set; }
-
-    [Required]
     [Display(Name = "Tecnologia de micro")]
     public string MicroTecn { get; set; }
 
@@ -110,7 +94,15 @@ public class Computadora
     public virtual Usuario Usuario { get; set; }
     public virtual Ups Ups { get; set; }
 
-    public virtual ICollection<Display> Display { get; set; }
+    [JsonIgnore]
+    [NotMapped]
+    public virtual List<Display> Display { get; set; }
+    [JsonIgnore]
+    [NotMapped]
+    public virtual List<DiscoDuro> Discos { get; set; }
+    [JsonIgnore]
+    [NotMapped]
+    public virtual List<MemoriaRam> Memorias { get; set; }
 
 }
 

@@ -5,10 +5,10 @@
     Layout = "_Layout";
 }
 
-<h1>Detalles</h1>
+<h1 class="h1">Detalles</h1>
 
 <div>
-    <h4>Usuario No: @Html.DisplayFor(model => model.Id)</h4>
+    <h4 class="h4">Usuario No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <div class="container">
         <div class="row">
@@ -27,32 +27,57 @@
             <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Cargo)</div>
             <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Cargo)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">Responsable de:</div>
-            @foreach (var item in @ViewBag.Monitores)
+            <div class="col p-2 bg-light border"><h3 class="h3">Responsable de:</h3></div>
+               @if (Model.Monitores.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border">Este trabajador no tiene monitor</div>
+            }
+             @if (Model.Computadora.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border">Este trabajador no tiene Computadora</div>
+            }
+              @if (Model.Impresora.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border">Este trabajador no tiene impresora</div>
+            }
+               @if (Model.Teclado.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border">Este trabajador no tiene Teclado</div>
+            }
+               @if (Model.Ups.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border">Este trabajador no tiene Ups</div>
+            }
+            @foreach (var item in Model.Monitores)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Monitor Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
-             @foreach (var item in @ViewBag.Impresora)
+             @foreach (var item in Model.Impresora)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Impresora Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
-             @foreach (var item in @ViewBag.Teclado)
+             @foreach (var item in Model.Impresora)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Teclado Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
-             @foreach (var item in ViewBag.Ups)
+             @foreach (var item in Model.Ups)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Ups Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
-              @foreach (var item in ViewBag.Computadora)
+              @foreach (var item in Model.Computadora)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Computadora Inv: @item.NumInv</div>

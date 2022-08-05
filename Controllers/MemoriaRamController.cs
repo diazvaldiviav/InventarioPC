@@ -24,8 +24,8 @@ namespace ProyectoInventarioASP.Controllers
         // GET: MemoriaRam
         public async Task<IActionResult> Index()
         {
-            var computadoraContext = _context.MemoriasRam.Include(m => m.MotherBoard);
-            return View(await computadoraContext.ToListAsync());
+            var memoria = _context.MemoriasRam.Include(m => m.MotherBoard);
+            return View(await memoria.ToListAsync());
         }
 
         // GET: MemoriaRam/Details/5

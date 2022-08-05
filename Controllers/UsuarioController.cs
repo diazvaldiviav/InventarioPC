@@ -38,25 +38,23 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
+            var monitores = CargarMonitores(id);
+            var computadoras = CargarComputadoras(id);
+            var teclados = CargarTeclados(id);
+            var upss = CargarUps(id);
+            var impresoras = CargarImpresoras(id);
 
-            var monitoresDelUsuario = CargarMonitores(id);
-            var upsDelUsuario = CargarUps(id);
-            var pcDelUsuario = CargarComputadoras(id);
-            var impresoraDelUsuario = CargarImpresoras(id);
-            var tecladoDelUsuario = CargarTeclados(id);
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss);
 
             if (usuario == null)
             {
                 return NotFound();
             }
-            ViewBag.Monitores = monitoresDelUsuario;
-            ViewBag.Computadora = pcDelUsuario;
-            ViewBag.Ups = upsDelUsuario;
-            ViewBag.Impresora = impresoraDelUsuario;
-            ViewBag.Teclado = tecladoDelUsuario;
-            return View(usuario);
+
+            return View(modelo);
         }
 
         // GET: Usuario/Create
@@ -137,7 +135,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                         return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -340,6 +338,7 @@ namespace ProyectoInventarioASP.Controllers
             var buscarImpr = from user in _context.Impresoras
                              where user.UsuarioId == id
                              select user;
+
             return buscarImpr.ToList();
 
         }

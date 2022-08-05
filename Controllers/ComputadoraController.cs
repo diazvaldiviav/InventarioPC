@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using ProyectoInventarioASP.Models;
 using Rotativa.AspNetCore;
 
@@ -32,12 +33,26 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
+
             var computadora = await _context.Computadoras
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
                 .Include(c => c.Ups)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            var monitores = CargarMonitores(computadora.Id);
+            var memorias = CargarMemorias(computadora.MotherBoardId);
+            var discos = CargarDiscos(computadora.MotherBoardId);
+            computadora.Display = new List<Display>();
+            computadora.Discos = new List<DiscoDuro>();
+            computadora.Memorias = new List<MemoriaRam>();
+
+            computadora.Display.AddRange(monitores);
+            computadora.Discos.AddRange(discos);
+            computadora.Memorias.AddRange(memorias);
+
             if (computadora == null)
             {
                 return NotFound();
@@ -155,8 +170,27 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Impresora)
                 .Include(c => c.MotherBoard)
                 .Include(c => c.Teclado)
-                .Include(c => c.Usuario)
+                .Include(c => c.Ups)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            var BuscarBoardID = from pc in _context.MemoriasRam
+                                where pc.MotherBoardId == computadora.MotherBoardId
+                                select pc.MotherBoardId;
+
+            var boardid = BuscarBoardID.ToArray();
+
+            var monitores = CargarMonitores(computadora.Id);
+
+            var memorias = CargarMemorias(boardid[0]);
+            var discos = CargarDiscos(computadora.MotherBoardId);
+            computadora.Display = new List<Display>();
+            computadora.Discos = new List<DiscoDuro>();
+            computadora.Memorias = new List<MemoriaRam>();
+
+            computadora.Display.AddRange(monitores);
+            computadora.Discos.AddRange(discos);
+            computadora.Memorias.AddRange(memorias);
             if (computadora == null)
             {
                 return NotFound();
@@ -238,25 +272,15 @@ namespace ProyectoInventarioASP.Controllers
 
                     var marcaBoard = CargarMarca(computadora.MotherBoardId);
 
-                    var CapDisc = CargarCapDisc(computadora.MotherBoardId);
-
-                    var CapMem = CargarCapMem(computadora.MotherBoardId);
-
-                    var cabledisc = CargarCableDisco(computadora.MotherBoardId);
-
-                    var tecmem = CargarTecnMemo(computadora.MotherBoardId);
-
                     var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+
+
 
                     computadora.ImpresoraId = idImpr[0];
                     computadora.UpsId = idUps[0];
                     computadora.TecladoId = idTecl[0];
                     computadora.UsuarioId = idUser[0];
                     computadora.MotherBoardMarca = marcaBoard;
-                    computadora.DiscoDuroCap = CapDisc;
-                    computadora.MemoriaRamCap = CapMem;
-                    computadora.MemoriaRamTec = tecmem;
-                    computadora.DiscoDuroTipoCon = cabledisc;
                     computadora.MicroTecn = tecMicro;
                     _context.Add(computadora);
                     await _context.SaveChangesAsync();
@@ -352,12 +376,6 @@ namespace ProyectoInventarioASP.Controllers
 
                     var marcaBoard = CargarMarca(computadora.MotherBoardId);
 
-                    var CapDisc = CargarCapDisc(computadora.MotherBoardId);
-
-                    var CapMem = CargarCapMem(computadora.MotherBoardId);
-
-                    var cabledisc = CargarCableDisco(computadora.MotherBoardId);
-
                     var tecmem = CargarTecnMemo(computadora.MotherBoardId);
 
                     var tecMicro = CargarTecnMic(computadora.MotherBoardId);
@@ -367,10 +385,6 @@ namespace ProyectoInventarioASP.Controllers
                     computadora.TecladoId = idTecl[0];
                     computadora.UsuarioId = idUser[0];
                     computadora.MotherBoardMarca = marcaBoard;
-                    computadora.DiscoDuroCap = CapDisc;
-                    computadora.MemoriaRamCap = CapMem;
-                    computadora.MemoriaRamTec = tecmem;
-                    computadora.DiscoDuroTipoCon = cabledisc;
                     computadora.MicroTecn = tecMicro;
                     _context.Update(computadora);
                     await _context.SaveChangesAsync();
@@ -460,22 +474,6 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-
-
-        private string CargarCableDisco(string id)
-        {
-            var BuscarCable = from cable in _context.DiscosDuro
-                              where cable.MotherBoardId == id
-                              select cable.TipoConexion;
-
-            var cableArr = BuscarCable.ToArray();
-
-
-            return cableArr[0];
-
-
-        }
-
         private string CargarTecnMemo(string id)
         {
             var BuscarTec = from tec in _context.MemoriasRam
@@ -508,56 +506,43 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-        private string CargarCapDisc(string id)
+      
+
+        private List<Display> CargarMonitores(int id)
         {
-            List<string> ListaDisco = new List<string>();
-            var BuscarDisc = from disc in _context.DiscosDuro
-                             where disc.MotherBoardId == id
-                             select disc.Capacidad;
+            var BuscarMon = from mon in _context.Displays
+                            where mon.ComputadoraId == id
+                            select mon;
 
-            ListaDisco.AddRange(BuscarDisc);
-
-            float capacidad = 0;
-            foreach (var item in ListaDisco)
-            {
-                var itemConvertToFloat = float.Parse(item);
-
-                capacidad = capacidad + itemConvertToFloat;
-            }
-
-            var capacidadInString = capacidad.ToString();
-
-            return capacidadInString;
-
-
-        }
-
-        private string CargarCapMem(string id)
-        {
-            List<string> ListaMem = new List<string>();
-            var BuscarMem = from mem in _context.MemoriasRam
-                            where mem.MotherBoardId == id
-                            select mem.Capacidad;
-
-            ListaMem.AddRange(BuscarMem);
-
-            float capacidad = 0;
-            foreach (var item in ListaMem)
-            {
-                var itemConvertToFloat = float.Parse(item);
-
-                capacidad = capacidad + itemConvertToFloat;
-            }
-
-            var capacidadInString = capacidad.ToString();
-
-            return capacidadInString;
-
-
+            return BuscarMon.ToList();
         }
 
 
+        private List<DiscoDuro> CargarDiscos(string id)
+        {
 
+             var ListTemp = from disco in _context.DiscosDuro
+                           where disco.MotherBoardId == id
+                           select disco;
+
+
+            return ListTemp.ToList();
+
+            
+        }
+
+
+        private List<MemoriaRam> CargarMemorias(string id)
+        {
+
+            var ListTemp = from memoria in _context.MemoriasRam
+                           where memoria.MotherBoardId == id
+                           select memoria;
+
+
+            return ListTemp.ToList();
+
+        }
 
 
     }

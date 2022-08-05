@@ -21,6 +21,7 @@ namespace ProyectoInventarioASP.Controllers
             _context = context;
         }
 
+
         // GET: MotherBoard
         public async Task<IActionResult> Index()
         {
@@ -175,6 +176,21 @@ namespace ProyectoInventarioASP.Controllers
             
            
             return RedirectToAction(nameof(Index));
+        }
+
+         public List<MemoriaRam> CargarMemorias(string id)
+        {
+            List<MemoriaRam> ListaFinal = new List<MemoriaRam>();
+
+            var ListTemp = from mem in _context.MemoriasRam
+                           where mem.MotherBoardId == id
+                           select mem;
+            
+
+            ListaFinal.AddRange(ListTemp);
+
+            return ListaFinal;
+
         }
 
         private bool MotherBoardExists(string id)

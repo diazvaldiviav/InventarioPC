@@ -53,34 +53,10 @@
             </div>
             <div class="w-100"></div>
             <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.DiscoDuroCap) : @Html.DisplayFor(model => model.DiscoDuroCap)</p>
+                <p>@Html.DisplayNameFor(model => model.Sello) : @Html.DisplayFor(model => model.Sello)</p>
             </div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.DiscoDuroTipoCon) : @Html.DisplayFor(model =>
-                    model.DiscoDuroTipoCon)</p>
-            </div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.MotherBoardId) : @Html.DisplayFor(model => model.MotherBoardId)
-                </p>
-            </div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.MotherBoardMarca) : @Html.DisplayFor(model =>
-                    model.MotherBoardMarca)</p>
-            </div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.MemoriaRamCap) : @Html.DisplayFor(model => model.MemoriaRamCap)
-                </p>
-            </div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.MemoriaRamTec) : @Html.DisplayFor(model => model.MemoriaRamTec)
-                </p>
-            </div>
-            <div class="w-100"></div>
+            <div class="col p-2 bg-light border"><h3>Detalles de los componentes:</h3></div>
+              <div class="w-100"></div>
             <div class="col p-2 bg-light border">
                 <p>@Html.DisplayNameFor(model => model.MicroTecn) : @Html.DisplayFor(model => model.MicroTecn)</p>
             </div>
@@ -94,8 +70,40 @@
             </div>
             <div class="w-100"></div>
             <div class="col p-2 bg-light border">
-                <p>@Html.DisplayNameFor(model => model.Sello) : @Html.DisplayFor(model => model.Sello)</p>
+                <p>@Html.DisplayNameFor(model => model.MotherBoardId) : @Html.DisplayFor(model => model.MotherBoardId)
+                </p>
             </div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-light border">
+                <p>@Html.DisplayNameFor(model => model.MotherBoardMarca) : @Html.DisplayFor(model =>
+                    model.MotherBoardMarca)</p>
+            </div>
+
+            @foreach (var monitor in Model.Display)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Monitor inv: @monitor.NumInv</div>
+                <div class="col p-2 bg-light border">Monitor Marca: @monitor.Marca</div>
+
+            }
+
+            @foreach (var disco in Model.Discos)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">No Serie Disco: @disco.NumSerieId</div>
+                <div class="col p-2 bg-light border">Marca del Disco: @disco.Marca</div>
+                <div class="col p-2 bg-light border">Capacidad del disco: @disco.Capacidad</div>
+
+            }
+
+            @foreach (var memoria in Model.Memorias)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                <div class="col p-2 bg-light border">Marca de la memora: @memoria.Marca</div>
+                <div class="col p-2 bg-light border">Capacidad de la memoria: @memoria.Capacidad</div>
+
+            }
         </div>
     </div>
     </div>
