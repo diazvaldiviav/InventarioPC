@@ -1,14 +1,14 @@
-@model ProyectoInventarioASP.Models.Teclado
+@model ProyectoInventarioASP.Models.Telefono
 
 @{
     ViewData["Title"] = "Details";
     Layout = "_Layout";
 }
 
-<h1>Details</h1>
+<h1 class="h1">Detalles</h1>
 
 <div>
-    <h4>Teclado No: @Html.DisplayFor(model => model.Id)</h4>
+    <h4 class="h4">Telefono No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <div class="container">
         <div class="row">
@@ -23,9 +23,6 @@
             <div class="w-100"></div>
             <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.estado)</div>
             <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.estado)</div>
-            <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.TipoConexion)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.TipoConexion)</div>
             <div class="w-100"></div>
             <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.UserName)</div>
             <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.UserName)</div>

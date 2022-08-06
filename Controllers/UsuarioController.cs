@@ -43,11 +43,13 @@ namespace ProyectoInventarioASP.Controllers
             var teclados = CargarTeclados(id);
             var upss = CargarUps(id);
             var impresoras = CargarImpresoras(id);
+            var celulares = CargarCelulares(id);
+            var telefonos = CargarTelefono(id);
 
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss);
+            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss , celulares, telefonos);
 
             if (usuario == null)
             {
@@ -260,11 +262,13 @@ namespace ProyectoInventarioASP.Controllers
             var teclados = CargarTeclados(id);
             var upss = CargarUps(id);
             var impresoras = CargarImpresoras(id);
+            var celulares = CargarCelulares(id);
+            var telefonos = CargarTelefono(id);
 
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss);
+            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss, celulares, telefonos);
 
 
             if (usuario == null)
@@ -343,7 +347,27 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-        private Usuario modeloDeUsuario(Usuario usuario, List<Display> monitores, List<Computadora> computadoras, List<Teclado> teclados, List<Impresora> impresoras, List<Ups> upss)
+         private List<Celular> CargarCelulares(int id)
+        {
+            var buscarcel = from user in _context.Celulares
+                             where user.UsuarioId == id
+                             select user;
+
+            return buscarcel.ToList();
+
+        }
+
+         private List<Telefono> CargarTelefono(int id)
+        {
+            var buscartel = from user in _context.Telefonos
+                             where user.UsuarioId == id
+                             select user;
+
+            return buscartel.ToList();
+
+        }
+
+        private Usuario modeloDeUsuario(Usuario usuario, List<Display> monitores, List<Computadora> computadoras, List<Teclado> teclados, List<Impresora> impresoras, List<Ups> upss, List<Celular> celular, List<Telefono> telefono)
         {
             var nuevoUser = new Usuario();
             nuevoUser.Monitores = new List<Display>();
@@ -351,6 +375,8 @@ namespace ProyectoInventarioASP.Controllers
             nuevoUser.Computadora = new List<Computadora>();
             nuevoUser.Teclado = new List<Teclado>();
             nuevoUser.Ups = new List<Ups>();
+            nuevoUser.Celular = new List<Celular>();
+            nuevoUser.Telefono = new List<Telefono>();
             nuevoUser.Id = usuario.Id;
             nuevoUser.NombreUsuario = usuario.NombreUsuario;
             nuevoUser.NombreCompleto = usuario.NombreCompleto;
@@ -362,6 +388,8 @@ namespace ProyectoInventarioASP.Controllers
             nuevoUser.Computadora.AddRange(computadoras);
             nuevoUser.Teclado.AddRange(teclados);
             nuevoUser.Ups.AddRange(upss);
+            nuevoUser.Celular.AddRange(celular);
+            nuevoUser.Telefono.AddRange(telefono);
 
             return nuevoUser;
         }

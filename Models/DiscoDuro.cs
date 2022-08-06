@@ -20,7 +20,7 @@ namespace ProyectoInventarioASP.Models;
         public string MotherBoardId {get; set;}
 
         public Estado estado { get; set; }
-         
+
         public virtual MotherBoard motherBoard{ get; set; }
     }
 

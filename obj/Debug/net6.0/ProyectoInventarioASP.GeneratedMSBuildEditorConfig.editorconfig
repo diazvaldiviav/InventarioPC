@@ -15,6 +15,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = G:\ProyectoInventarioASP
 build_property._RazorSourceGeneratorDebug = 
 
+[G:/ProyectoInventarioASP/Views/Celular/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/DetailsPrint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxEZXRhaWxzUHJpbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/FooterPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxGb290ZXJQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/HeaderPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxIZWFkZXJQZGYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/Imprimir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxJbXByaW1pci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/ImprimirFilter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxJbXByaW1pckZpbHRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Celular/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/ProyectoInventarioASP/Views/Computadora/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcHV0YWRvcmFcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -309,6 +349,46 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/ProyectoInventarioASP/Views/Teclado/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjbGFkb1xQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/DetailsPrint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cRGV0YWlsc1ByaW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/FooterPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cRm9vdGVyUGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/HeaderPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cSGVhZGVyUGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Imprimir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cSW1wcmltaXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/ImprimirFilter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cSW1wcmltaXJGaWx0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Telefono/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVsZWZvbm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/ProyectoInventarioASP/Views/Ups/Create.cshtml]

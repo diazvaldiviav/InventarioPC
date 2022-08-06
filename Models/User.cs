@@ -8,16 +8,18 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public int UserId { get; set; }
+        [Required]
         public string Nombre { get; set; }
-
-        public string username {get; set;}
-
-        public string password{get; set;}
+        [Required]
+        public string username { get; set; }
+        [Required]
+        public string password { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [Required]
         public string Email { get; set; }
-
-        public string permisos {get; set;}
+        [Required]
+        public string permisos { get; set; }
     }
 
 }

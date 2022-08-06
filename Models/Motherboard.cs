@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace ProyectoInventarioASP.Models;
@@ -18,7 +19,8 @@ public class MotherBoard
      
     [Required]
     public Estado estado { get; set; }
-
+    
+    
     public virtual MicroProcesador Micro { get; set; }
 
     [JsonIgnore]

@@ -16,35 +16,47 @@ public class ComputadoraContext : DbContext
     public DbSet<Impresora> Impresoras { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Ups> Upss { get; set; }
+    public DbSet<Celular> Celulares { get; set; }
+    public DbSet<Scanner> Scanners { get; set; }
+    public DbSet<Telefono> Telefonos { get; set; }
+    public DbSet<Laptop> Laptops { get; set; }
+    public DbSet<Entrada> Entradas { get; set; }
+    public DbSet<Salida> Salidas { get; set; }
+
+
+
+
+
+
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
-     protected override void OnModelCreating(ModelBuilder modelBuilder)
-     {
-         base.OnModelCreating(modelBuilder);
-         var users = cargarUserNames();
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        var users = cargarUserNames();
 
-         modelBuilder.Entity<User>().HasData(users.ToArray());
+        modelBuilder.Entity<User>().HasData(users.ToArray());
 
 
-     }
+    }
 
     private List<User> cargarUserNames()
-     {
-         List<User> ListaUser = new List<User>();
-         ListaUser.Add(new User()
-         {
-             UserId = 1,
-             Nombre = "Administrador",
-             username = "admin",
-             Email = "admin@gmail.com",
-             password = "123",
-             permisos = "admin"
+    {
+        List<User> ListaUser = new List<User>();
+        ListaUser.Add(new User()
+        {
+            UserId = 1,
+            Nombre = "Administrador",
+            username = "admin",
+            Email = "admin@gmail.com",
+            password = "123",
+            permisos = "admin"
 
-         });
+        });
 
-         return ListaUser;
-     }
+        return ListaUser;
+    }
 
 
 

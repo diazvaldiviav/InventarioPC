@@ -1,36 +1,24 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json;
 using System.Text.Json.Serialization;
-
-
 namespace ProyectoInventarioASP.Models
 {
-
-    public class Display
+    public class Scanner
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "Serial")]
+        public string NumSerie { get; set; }
 
         [Required]
         [Display(Name = "Inventario")]
         public string NumInv { get; set; }
-
         [Required]
-        [Display(Name = "Serial")]
-        public String NumSerie { get; set; }
-        [Display(Name = "Marca")]
-        [Required]
-        public String Marca { get; set; }
-        [Display(Name = "Computador No")]
-        [ForeignKey("ComputadoraId")]
-        public int ComputadoraId { get; set; }
-        [Display(Name = "Inventario de Pc")]
-        [Required]
-        public string NumInvPc { get; set; }
-        [Display(Name = "Estado")]
+        public string Marca { get; set; }
         [Required]
         public Estado estado { get; set; }
+
         [Display(Name = "Usuario No")]
         [ForeignKey("UsuarioId")]
         public int UsuarioId { get; set; }
@@ -38,10 +26,10 @@ namespace ProyectoInventarioASP.Models
         [Required]
         public string UserName { get; set; }
 
-        
-        public virtual Computadora Computadora { get; set; }
+        [JsonIgnore]
+        [NotMapped]
+        public virtual ICollection<Computadora> Computadora { get; set; }
+    
         public virtual Usuario Usuario { get; set; }
-
     }
-
 }

@@ -23,6 +23,7 @@ namespace ProyectoInventarioASP.Models
         [Required]
         public Estado estado { get; set; }
 
+        
         public virtual MotherBoard MotherBoard { get; set; }
 
 

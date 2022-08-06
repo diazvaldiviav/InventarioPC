@@ -7,16 +7,16 @@ namespace ProyectoInventarioASP.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [Display(Name="Nombre Completo")]
+        [Display(Name = "Nombre Completo")]
         public string NombreCompleto { get; set; }
         [Required]
-        [Display(Name="Usuario")]
+        [Display(Name = "Usuario")]
         public string NombreUsuario { get; set; }
         [Required]
-        [Display(Name="Departamento")]
+        [Display(Name = "Departamento")]
         public string NombreDepartamento { get; set; }
         [Required]
-        [Display(Name="Area")]
+        [Display(Name = "Area")]
         public string NombreArea { get; set; }
         [Required]
         public string Cargo { get; set; }
@@ -32,6 +32,16 @@ namespace ProyectoInventarioASP.Models
         public virtual List<Ups> Ups { get; set; }
         [JsonIgnore]
         public virtual List<Impresora> Impresora { get; set; }
+        [JsonIgnore]
+        public virtual List<Celular> Celular { get; set; }
+        [JsonIgnore]
+        public virtual List<Telefono> Telefono { get; set; }
+
+        [JsonIgnore]
+        public virtual List<Laptop> Laptop { get; set; }
+
+        [JsonIgnore]
+        public virtual List<Scanner> Scanner { get; set; }
 
 
     }

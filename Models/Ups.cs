@@ -27,6 +27,7 @@ namespace ProyectoInventarioASP.Models
         [JsonIgnore]
         public virtual ICollection<Computadora> Computadora { get; set; }
         
+        [NotMapped] 
         public virtual Usuario Usuario { get; set; }
     }
 }
