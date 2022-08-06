@@ -1,0 +1,84 @@
+@model IEnumerable<Laptop>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactPDF</title>
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* SOLUCIONA PROBLEMA DE SOLAPAMIENTO EN TABLAS <table /> */
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table class="table table-hover table-border" id="tabla">
+        <thead>
+            <tr>
+                <th>Numero de inventario</th>
+                <th>Departamento</th>
+                <th>Area</th>
+                <th>Nombre Pc</th>
+                <th>Sist Operativo</th>
+                <th>Estado</th>
+                <th>Mac</th>
+                <th>Ip</th>
+            </tr>
+        </thead>
+        <tbody id="CuerpoTabla">
+            @foreach (var item in Model)
+            {
+                <tr class="filapc">
+                    <td class="filter" id="inv">
+                        @Html.DisplayFor(modelItem => item.NumInv)
+                    </td>
+                    <td class="filter dep" id="dep">
+                        @Html.DisplayFor(modelItem => item.NombreDepartamento)
+                    </td>
+                    <td class="filter dep" id="area">
+                        @Html.DisplayFor(modelItem => item.NombreArea)
+                    </td>
+                    <td class="filter inv" id="nombre">
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td class="filter" id="so">
+                        @Html.DisplayFor(modelItem => item.SO)
+                    </td>
+                    <td class="filter" id="estado">
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td class="filter" id="mac">
+                        @Html.DisplayFor(modelItem => item.Mac)
+                    </td>
+                    <td class="filter" id="NumIp">
+                        @Html.DisplayFor(modelItem => item.NumIp)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+</html>

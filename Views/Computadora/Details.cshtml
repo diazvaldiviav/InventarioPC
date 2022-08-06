@@ -48,6 +48,12 @@
                 <div class="col p-2 bg-danger border d-flex justify-content-between"><div>Esta Pc no tiene Monitor</div><a asp-controller="Display" asp-action="Create"
                     class="text-info">Insertar</a></div>
             }
+              @if (Model.Scanners.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border d-flex justify-content-between"><div>Esta Pc no tiene Scanner</div><a asp-controller="Scanner" asp-action="Create"
+                    class="text-info">Insertar</a></div>
+            }
               @if (Model.Discos.Count() == 0)
             {
                 <div class="w-100"></div>
@@ -79,6 +85,13 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Monitor inv: @monitor.NumInv</div>
                 <div class="col p-2 bg-light border">Monitor Marca: @monitor.Marca</div>
+
+            }
+              @foreach (var scan in Model.Scanners)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Scanner inv: @scan.NumInv</div>
+                <div class="col p-2 bg-light border">Scanner Marca: @scan.Marca</div>
 
             }
 

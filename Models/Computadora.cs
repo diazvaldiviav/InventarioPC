@@ -84,15 +84,15 @@ public class Computadora
     public string MicroTecn { get; set; }
 
 
-    
+
     public virtual Teclado Teclado { get; set; }
 
     public virtual MotherBoard MotherBoard { get; set; }
-    
+
     public virtual Impresora Impresora { get; set; }
-    
+
     public virtual Usuario Usuario { get; set; }
-  
+
     public virtual Ups Ups { get; set; }
 
     [JsonIgnore]
@@ -104,6 +104,9 @@ public class Computadora
     [JsonIgnore]
     [NotMapped]
     public virtual List<MemoriaRam> Memorias { get; set; }
+
+    [NotMapped]
+    public virtual List<Scanner> Scanners { get; set; }
 
 }
 

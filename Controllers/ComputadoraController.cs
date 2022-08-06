@@ -45,13 +45,16 @@ namespace ProyectoInventarioASP.Controllers
             var monitores = CargarMonitores(computadora.Id);
             var memorias = CargarMemorias(computadora.MotherBoardId);
             var discos = CargarDiscos(computadora.MotherBoardId);
+            var scan = CargarScanner(computadora.UserName);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
+            computadora.Scanners = new List<Scanner>();
 
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
+            computadora.Scanners.AddRange(scan);
 
             if (computadora == null)
             {
@@ -184,13 +187,16 @@ namespace ProyectoInventarioASP.Controllers
 
             var memorias = CargarMemorias(boardid[0]);
             var discos = CargarDiscos(computadora.MotherBoardId);
+            var scan = CargarScanner(computadora.UserName);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
+            computadora.Scanners = new List<Scanner>();
 
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
+            computadora.Scanners.AddRange(scan);
             if (computadora == null)
             {
                 return NotFound();
@@ -380,6 +386,7 @@ namespace ProyectoInventarioASP.Controllers
 
                     var tecMicro = CargarTecnMic(computadora.MotherBoardId);
 
+
                     computadora.ImpresoraId = idImpr[0];
                     computadora.UpsId = idUps[0];
                     computadora.TecladoId = idTecl[0];
@@ -506,7 +513,7 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-      
+
 
         private List<Display> CargarMonitores(int id)
         {
@@ -517,18 +524,27 @@ namespace ProyectoInventarioASP.Controllers
             return BuscarMon.ToList();
         }
 
+        private List<Scanner> CargarScanner(string username)
+        {
+            var Buscarscan = from scan in _context.Scanners
+                             where scan.UserName == username
+                             select scan;
+
+            return Buscarscan.ToList();
+        }
+
 
         private List<DiscoDuro> CargarDiscos(string id)
         {
 
-             var ListTemp = from disco in _context.DiscosDuro
+            var ListTemp = from disco in _context.DiscosDuro
                            where disco.MotherBoardId == id
                            select disco;
 
 
             return ListTemp.ToList();
 
-            
+
         }
 
 

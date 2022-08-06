@@ -45,11 +45,13 @@ namespace ProyectoInventarioASP.Controllers
             var impresoras = CargarImpresoras(id);
             var celulares = CargarCelulares(id);
             var telefonos = CargarTelefono(id);
+            var scaners = CargarScanners(id);
+            var laptop = CargarLaptop(id);
 
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss , celulares, telefonos);
+            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss, celulares, telefonos, scaners, laptop);
 
             if (usuario == null)
             {
@@ -264,11 +266,13 @@ namespace ProyectoInventarioASP.Controllers
             var impresoras = CargarImpresoras(id);
             var celulares = CargarCelulares(id);
             var telefonos = CargarTelefono(id);
+            var scaners = CargarScanners(id);
+            var laptop = CargarLaptop(id);
 
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss, celulares, telefonos);
+            var modelo = modeloDeUsuario(usuario, monitores, computadoras, teclados, impresoras, upss, celulares, telefonos, scaners, laptop);
 
 
             if (usuario == null)
@@ -347,27 +351,47 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-         private List<Celular> CargarCelulares(int id)
+        private List<Scanner> CargarScanners(int id)
         {
-            var buscarcel = from user in _context.Celulares
+            var buscarscan = from user in _context.Scanners
                              where user.UsuarioId == id
                              select user;
+
+            return buscarscan.ToList();
+
+        }
+
+        private List<Celular> CargarCelulares(int id)
+        {
+            var buscarcel = from user in _context.Celulares
+                            where user.UsuarioId == id
+                            select user;
 
             return buscarcel.ToList();
 
         }
 
-         private List<Telefono> CargarTelefono(int id)
+        private List<Telefono> CargarTelefono(int id)
         {
             var buscartel = from user in _context.Telefonos
-                             where user.UsuarioId == id
-                             select user;
+                            where user.UsuarioId == id
+                            select user;
 
             return buscartel.ToList();
 
         }
 
-        private Usuario modeloDeUsuario(Usuario usuario, List<Display> monitores, List<Computadora> computadoras, List<Teclado> teclados, List<Impresora> impresoras, List<Ups> upss, List<Celular> celular, List<Telefono> telefono)
+         private List<Laptop> CargarLaptop(int id)
+        {
+            var buscarlap = from user in _context.Laptops
+                            where user.UsuarioId == id
+                            select user;
+
+            return buscarlap.ToList();
+
+        }
+
+        private Usuario modeloDeUsuario(Usuario usuario, List<Display> monitores, List<Computadora> computadoras, List<Teclado> teclados, List<Impresora> impresoras, List<Ups> upss, List<Celular> celular, List<Telefono> telefono, List<Scanner> scan, List<Laptop> laptop)
         {
             var nuevoUser = new Usuario();
             nuevoUser.Monitores = new List<Display>();
@@ -377,6 +401,8 @@ namespace ProyectoInventarioASP.Controllers
             nuevoUser.Ups = new List<Ups>();
             nuevoUser.Celular = new List<Celular>();
             nuevoUser.Telefono = new List<Telefono>();
+            nuevoUser.Scanner = new List<Scanner>();
+            nuevoUser.Laptop = new List<Laptop>();
             nuevoUser.Id = usuario.Id;
             nuevoUser.NombreUsuario = usuario.NombreUsuario;
             nuevoUser.NombreCompleto = usuario.NombreCompleto;
@@ -390,6 +416,8 @@ namespace ProyectoInventarioASP.Controllers
             nuevoUser.Ups.AddRange(upss);
             nuevoUser.Celular.AddRange(celular);
             nuevoUser.Telefono.AddRange(telefono);
+            nuevoUser.Scanner.AddRange(scan);
+            nuevoUser.Laptop.AddRange(laptop);
 
             return nuevoUser;
         }

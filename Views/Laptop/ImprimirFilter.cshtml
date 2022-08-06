@@ -1,4 +1,4 @@
-@model ProyectoInventarioASP.Models.Impresora
+@model ProyectoInventarioASP.Models.Laptop
 
 @{
     ViewData["Title"] = "Create";
@@ -7,10 +7,10 @@
  
     <h1>Imprimir</h1>
 
-    <h4>Ingrese un dato de las impresoras que quieres imprimir</h4>
+    <h4>Ingrese un dato de las laptop que quieres imprimir</h4>
     <hr />
 
-    <form method="post" asp-controller="Impresora", asp-action="Imprimir">
+    <form method="post" asp-controller="Laptop", asp-action="Imprimir">
            <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="NumInv" class="control-label"></label>

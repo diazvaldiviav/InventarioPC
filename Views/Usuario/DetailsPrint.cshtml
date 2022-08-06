@@ -64,6 +64,13 @@
                         <p>Impresora Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
+                @foreach (var item in Model.Scanner)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-light border">
+                        <p>Scanner Inv: @item.NumInv con Marca: @item.Marca</p>
+                    </div>
+                }
                 @foreach (var item in Model.Teclado)
                 {
                     <div class="w-100"></div>
@@ -85,11 +92,18 @@
                         <p>Movil Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
-                     @foreach (var item in Model.Telefono)
+                @foreach (var item in Model.Telefono)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-light border">
                         <p>Telefono Inv: @item.NumInv con Marca: @item.Marca</p>
+                    </div>
+                }
+                @foreach (var item in Model.Laptop)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-light border">
+                        <p>Laptop Inv: @item.NumInv con Nombre: @item.Nombre</p>
                     </div>
                 }
                 @foreach (var item in Model.Computadora)

@@ -1,0 +1,127 @@
+@model ProyectoInventarioASP.Models.Laptop
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+
+<h1 class="h1">Insertar</h1>
+
+<h4 class="h4">Laptop</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NumInv" class="control-label"></label>
+                <input asp-for="NumInv" class="form-control" />
+                <span asp-validation-for="NumInv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreDepartamento" class="control-label"></label>
+                <select asp-for="NombreDepartamento" class="form-control">
+                    <option>Seleccione un Departamento de la Empresa</option>
+                    <option value="Economia">Economia</option>
+                    <option value="Direccion General">Direccion General</option>
+                    <option value="Inversiones">Inversiones</option>
+                    <option value="Recursos Humanos">Recursos Humanos</option>
+                    <option value="Despacho">Despacho</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="Informatica y Comunicaciones">Informatica y Comunicaciones</option>
+                    <option value="Tecnico">Tecnico</option>
+                    <option value="Organizacion y control">Organizacion y control</option>
+                    <option value="Atencion al cliente">Atencion al cliente</option>
+                    <option value="Logistica">Logistica</option>
+                    <option value="Generacion de Emergencia">Generacion de Emergencia</option>
+                    <option value="Transorte">Transporte</option>
+                    <option value="Fre">Fre</option>
+                </select>
+                <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreArea" class="control-label"></label>
+                <select asp-for="NombreArea" class="form-control">
+                    <option>Seleccione un Area de la Empresa</option>
+                    <option value="Obe Provincial">Obe Provincial</option>
+                    <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
+                    <option value="UEB Taguasco">UEB Taguasco</option>
+                    <option value="UEB Yaguajay">UEB Yaguajay</option>
+                    <option value="UEB Trinidad">UEB Trinidad</option>
+                    <option value="UEB Cabaiguan">UEB Cabaiguan</option>
+                    <option value="UEB La Sierpe">UEB La Sierpe</option>
+                    <option value="UEB Jatibonico">UEB Jatibonico</option>
+                    <option value="UEB Fomento">UEB Fomento</option>
+                </select>
+                <span asp-validation-for="NombreArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SO" class="control-label"></label>
+                <select asp-for="SO" class="form-control">
+                    <option value="Win 11 64bit">Win 11 64bit</option>
+                    <option value="Win 11 32bit">Win 11 32bit</option>
+                    <option value="Win 10 64bit">Win 10 64bit</option>
+                    <option value="Win 10 32bit">Win 10 32bit</option>
+                    <option value="Win 8 64bit">Win 8 64bit</option>
+                    <option value="Win 8 32bit">Win 8 32bit</option>
+                    <option value="Win 7 64bit">Win 7 64bit</option>
+                    <option value="Win 7 32bit">Win 7 32bit</option>
+                    <option value="Win XP">Win XP</option>
+                    <option value="Linux">Linux</option>
+                </select>
+                <span asp-validation-for="SO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "Estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SO" class="control-label"></label>
+                <input asp-for="SO" class="form-control" />
+                <span asp-validation-for="SO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "Estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
+            <div class="form-group">
+                <label asp-for="Mac" class="control-label"></label>
+                <input asp-for="Mac" class="form-control" />
+                <span asp-validation-for="Mac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumIp" class="control-label"></label>
+                <input asp-for="NumIp" class="form-control" />
+                <span asp-validation-for="NumIp" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="UserName" class="control-label"></label>
+                <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
+            </div>
+            <div class="form-group p-2">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

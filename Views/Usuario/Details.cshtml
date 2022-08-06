@@ -8,7 +8,7 @@
 <h1 class="h1">Detalles</h1>
 
 <div>
-    <h4 class="h4">Usuario No: @Html.DisplayFor(model => model.Id)</h4>
+    <h4 class="h4">Trabajador No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <div class="container">
         <div class="row">
@@ -54,6 +54,14 @@
                     class="text-info">Insertar</a>
                 </div>
             }
+            @if (Model.Scanner.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border d-flex justify-content-between">
+                    <div>Este trabajador no tiene Scanner</div><a asp-controller="Scanner" asp-action="Create"
+                    class="text-info">Insertar</a>
+                </div>
+            }
             @if (Model.Teclado.Count() == 0)
             {
                 <div class="w-100"></div>
@@ -78,11 +86,19 @@
                     class="text-info">Insertar</a>
                 </div>
             }
-             @if (Model.Telefono.Count() == 0)
+            @if (Model.Telefono.Count() == 0)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <p>Este trabajador no tiene Telefono</p> <a asp-controller="Telefono" asp-action="Create"
+                    class="text-info">Insertar</a>
+                </div>
+            }
+             @if (Model.Laptop.Count() == 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-danger border d-flex justify-content-between">
+                    <p>Este trabajador no tiene Laptop</p> <a asp-controller="Laptop" asp-action="Create"
                     class="text-info">Insertar</a>
                 </div>
             }
@@ -96,6 +112,12 @@
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Impresora Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+            @foreach (var item in Model.Scanner)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Scanner Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Teclado)
@@ -116,11 +138,17 @@
                 <div class="col p-2 bg-light border">Movil Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
             }
-             @foreach (var item in Model.Telefono)
+            @foreach (var item in Model.Telefono)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-light border">Telefono Inv: @item.NumInv</div>
                 <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+            }
+              @foreach (var item in Model.Laptop)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">Laptop Inv: @item.NumInv</div>
+                <div class="col p-2 bg-light border">Nombre: @item.Nombre</div>
             }
             @foreach (var item in Model.Computadora)
             {

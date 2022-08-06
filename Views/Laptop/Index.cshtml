@@ -1,0 +1,102 @@
+@model IEnumerable<ProyectoInventarioASP.Models.Laptop>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1>Laptops</h1>
+
+@if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <div class="container-flex">
+            <p>
+                <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+            </p>
+            <p>
+                <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+            </p>
+        </div>
+    }
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumInv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumIp)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumInv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumIp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+           @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                        {
+                            <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td> 
+                        }
+
+                        @if (User.IsInRole("lectura"))
+                        {
+                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                        }
+        </tr>
+}
+    </tbody>
+</table>
+</div>
