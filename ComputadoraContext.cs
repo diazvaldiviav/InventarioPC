@@ -24,11 +24,6 @@ public class ComputadoraContext : DbContext
     public DbSet<Salida> Salidas { get; set; }
 
 
-
-
-
-
-
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

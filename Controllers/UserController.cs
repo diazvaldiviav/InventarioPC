@@ -156,11 +156,9 @@ public class UserController : Controller
                       where user.username == _user.username && user.password == _user.password
                       select user;
 
-        usuario.AddRange(newuser);
+        
 
-        var usuariofinal = usuario.Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
-
-
+        var usuariofinal = newuser.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
         if (usuariofinal != null)
         {

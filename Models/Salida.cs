@@ -6,8 +6,8 @@ namespace ProyectoInventarioASP.Models
 {
     public class Salida
     {
-        [Key, ForeignKey("Entrada")]
-        public int EntradaId { get; set; }
+        [Key]
+        public string Id { get; set; }
 
 
         [Display(Name = "Quien Se lo lleva")]
@@ -16,11 +16,14 @@ namespace ProyectoInventarioASP.Models
         [Display(Name = "Fecha Entrega")]
 
         public DateTime FechaSalida { get; set; }
+        public int EntradaId { get; set; }
 
         public string observaciones { get; set; }
 
+        public Entrada entradas { get; set; }
 
 
-       
+
+
     }
 }

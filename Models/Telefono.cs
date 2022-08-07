@@ -27,7 +27,6 @@ namespace ProyectoInventarioASP.Models
         public string UserName { get; set; }
 
        
-         [NotMapped]   
         public virtual Usuario Usuario { get; set; }
     }
 }

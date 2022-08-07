@@ -18,11 +18,15 @@ namespace ProyectoInventarioASP.Models
         [Required]
         [Display(Name = "Quien Entrega")]
         public string Entrega { get; set; }
+        [Required]
+        public string Lugar { get; set; }
         [Display(Name = "Fecha Entrega")]
         [Required]
         public DateTime FechaEntrega { get; set; }
 
         public string observaciones { get; set; }
+
+        public Salida salidas { get; set; }
 
 
 

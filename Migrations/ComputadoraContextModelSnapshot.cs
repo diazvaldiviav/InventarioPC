@@ -227,6 +227,8 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ComputadoraId");
+
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Displays");
@@ -250,6 +252,10 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.Property<DateTime>("FechaEntrega")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Lugar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumInvEquipo")
                         .IsRequired()
@@ -431,11 +437,11 @@ namespace ProyectoInventarioASP.Migrations
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Salida", b =>
                 {
-                    b.Property<int>("EntradaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EntradaId"), 1L, 1);
+                    b.Property<int>("EntradaId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaSalida")
                         .HasColumnType("datetime2");
@@ -448,7 +454,10 @@ namespace ProyectoInventarioASP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EntradaId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntradaId")
+                        .IsUnique();
 
                     b.ToTable("Salidas");
                 });
@@ -682,53 +691,75 @@ namespace ProyectoInventarioASP.Migrations
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Computadora", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Impresora", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Impresora", "Impresora")
                         .WithMany("Computadora")
                         .HasForeignKey("ImpresoraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", null)
+                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "MotherBoard")
                         .WithMany("Computadora")
                         .HasForeignKey("MotherBoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoInventarioASP.Models.Teclado", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Teclado", "Teclado")
                         .WithMany("Computadora")
                         .HasForeignKey("TecladoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoInventarioASP.Models.Ups", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Ups", "Ups")
                         .WithMany("Computadora")
                         .HasForeignKey("UpsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Computadora")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Impresora");
+
+                    b.Navigation("MotherBoard");
+
+                    b.Navigation("Teclado");
+
+                    b.Navigation("Ups");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.DiscoDuro", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", null)
+                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "motherBoard")
                         .WithMany("Discos")
                         .HasForeignKey("MotherBoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("motherBoard");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Display", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Computadora", "Computadora")
+                        .WithMany()
+                        .HasForeignKey("ComputadoraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Monitores")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Computadora");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Impresora", b =>
@@ -744,64 +775,95 @@ namespace ProyectoInventarioASP.Migrations
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Laptop", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Laptop")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.MemoriaRam", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", null)
+                    b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "MotherBoard")
                         .WithMany("Memorias")
                         .HasForeignKey("MotherBoardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("MotherBoard");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.MotherBoard", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.MicroProcesador", null)
+                    b.HasOne("ProyectoInventarioASP.Models.MicroProcesador", "Micro")
                         .WithMany("MotherBoard")
                         .HasForeignKey("MicroProcesadorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Micro");
+                });
+
+            modelBuilder.Entity("ProyectoInventarioASP.Models.Salida", b =>
+                {
+                    b.HasOne("ProyectoInventarioASP.Models.Entrada", "entradas")
+                        .WithOne("salidas")
+                        .HasForeignKey("ProyectoInventarioASP.Models.Salida", "EntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("entradas");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Scanner", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Scanner")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Teclado", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Teclado")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Telefono", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Telefono")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Ups", b =>
                 {
-                    b.HasOne("ProyectoInventarioASP.Models.Usuario", null)
+                    b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Ups")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("ProyectoInventarioASP.Models.Entrada", b =>
+                {
+                    b.Navigation("salidas")
                         .IsRequired();
                 });
 

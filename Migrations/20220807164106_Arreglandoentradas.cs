@@ -1,13 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ProyectoInventarioASP.Migrations
 {
-    public partial class InitialCreate1 : Migration
+    public partial class Arreglandoentradas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Entradas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Equipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumInvEquipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Entrega = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lugar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaEntrega = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Entradas", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "MicroProcesadores",
                 columns: table => new
@@ -48,11 +67,32 @@ namespace ProyectoInventarioASP.Migrations
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NombreDepartamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NombreArea = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NombreArea = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cargo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Salidas",
+                columns: table => new
+                {
+                    EntradaId = table.Column<int>(type: "int", nullable: false),
+                    salida = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FechaSalida = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Salidas", x => x.EntradaId);
+                    table.ForeignKey(
+                        name: "FK_Salidas_Entradas_EntradaId",
+                        column: x => x.EntradaId,
+                        principalTable: "Entradas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,7 +112,31 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.MicroProcesadorId,
                         principalTable: "MicroProcesadores",
                         principalColumn: "NumSerieId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Celulares",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumSerie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Celulares", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Celulares_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,7 +160,59 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Laptops",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreDepartamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreArea = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SO = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    Mac = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumIp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Laptops", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Laptops_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Scanners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumSerie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Scanners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Scanners_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,7 +237,31 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Telefonos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NumSerie = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Marca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    estado = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Telefonos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Telefonos_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -145,7 +285,7 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,7 +307,7 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.MotherBoardId,
                         principalTable: "MotherBoards",
                         principalColumn: "NumSerieId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,7 +329,7 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.MotherBoardId,
                         principalTable: "MotherBoards",
                         principalColumn: "NumSerieId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -200,6 +340,7 @@ namespace ProyectoInventarioASP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NombreDepartamento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sello = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NombreArea = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SO = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -216,10 +357,6 @@ namespace ProyectoInventarioASP.Migrations
                     TeclNumInv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MotherBoardMarca = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiscoDuroCap = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiscoDuroTipoCon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MemoriaRamCap = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MemoriaRamTec = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MicroTecn = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -286,8 +423,13 @@ namespace ProyectoInventarioASP.Migrations
                         column: x => x.UsuarioId,
                         principalTable: "Usuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Celulares_UsuarioId",
+                table: "Celulares",
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Computadoras_ImpresoraId",
@@ -335,6 +477,11 @@ namespace ProyectoInventarioASP.Migrations
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Laptops_UsuarioId",
+                table: "Laptops",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MemoriasRam_MotherBoardId",
                 table: "MemoriasRam",
                 column: "MotherBoardId");
@@ -345,8 +492,18 @@ namespace ProyectoInventarioASP.Migrations
                 column: "MicroProcesadorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Scanners_UsuarioId",
+                table: "Scanners",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Teclados_UsuarioId",
                 table: "Teclados",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Telefonos_UsuarioId",
+                table: "Telefonos",
                 column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
@@ -358,19 +515,37 @@ namespace ProyectoInventarioASP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Celulares");
+
+            migrationBuilder.DropTable(
                 name: "DiscosDuro");
 
             migrationBuilder.DropTable(
                 name: "Displays");
 
             migrationBuilder.DropTable(
+                name: "Laptops");
+
+            migrationBuilder.DropTable(
                 name: "MemoriasRam");
+
+            migrationBuilder.DropTable(
+                name: "Salidas");
+
+            migrationBuilder.DropTable(
+                name: "Scanners");
+
+            migrationBuilder.DropTable(
+                name: "Telefonos");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Computadoras");
+
+            migrationBuilder.DropTable(
+                name: "Entradas");
 
             migrationBuilder.DropTable(
                 name: "Impresoras");
