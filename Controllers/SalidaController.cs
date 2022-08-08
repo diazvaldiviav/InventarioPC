@@ -90,7 +90,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.Add(Salida);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Entrada");
+                return RedirectToAction("Details", "Entrada", Salida);
             }
             ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", Salida.EntradaId);
             return View();
