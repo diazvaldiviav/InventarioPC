@@ -158,7 +158,7 @@ public class UserController : Controller
 
         
 
-        var usuariofinal = newuser.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
+        var usuariofinal = _context.Users.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
         if (usuariofinal != null)
         {

@@ -1,11 +1,11 @@
-@model IEnumerable<ProyectoInventarioASP.Models.Salida>
+@model IEnumerable<ProyectoInventarioASP.Models.Celular>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
 
-<h1 class="h1">Salidas</h1>
+<h1>Celulares</h1>
 
 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
 {
@@ -13,42 +13,53 @@
         <p>
             <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
         </p>
+        <p>
+            <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+        </p>
     </div>
 }
 <div class="table-responsive">
-<table class="table table-hover" id="tabla">
+ <table class="table table-hover" id="tabla">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.salida)
+                @Html.DisplayNameFor(model => model.NumSerie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaSalida)
+                @Html.DisplayNameFor(model => model.NumInv)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.observaciones)
+                @Html.DisplayNameFor(model => model.Marca)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.entradas)
+                @Html.DisplayNameFor(model => model.estado)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
-    <tbody id="CuerpoTablaPc">
+     <tbody id="CuerpoTablaPc">
         @foreach (var item in Model)
         {
             <tr class="filapc">
                 <td>
-                    @Html.DisplayFor(modelItem => item.salida)
+                    @Html.DisplayFor(modelItem => item.NumSerie)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaSalida)
+                    @Html.DisplayFor(modelItem => item.NumInv)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.observaciones)
+                    @Html.DisplayFor(modelItem => item.Marca)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.entradas.Entrega)
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {

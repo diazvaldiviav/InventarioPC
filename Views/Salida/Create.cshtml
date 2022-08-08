@@ -30,12 +30,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="EntradaId" class="control-label"></label>
-                <select asp-for="EntradaId" class ="form-control" asp-items="ViewBag.EntradaId"></select>
+                <select asp-for="EntradaId" class="form-control" asp-items="ViewBag.EntradaId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="observaciones" class="control-label"></label>
-                <input asp-for="observaciones" class="form-control" />
-                <span asp-validation-for="observaciones" class="text-danger"></span>
+            <div class="mb-3">
+                <label asp-for="observaciones" class="form-label">Observaciones: </label>
+                <textarea class="form-control" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" value="Insertar" class="btn btn-primary" />
@@ -49,5 +48,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

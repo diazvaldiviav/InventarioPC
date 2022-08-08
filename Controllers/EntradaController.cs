@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoInventarioASP;
 using ProyectoInventarioASP.Models;
+using Rotativa.AspNetCore;
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -177,6 +178,44 @@ namespace ProyectoInventarioASP.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+
+        //Controlador de impresion
+
+        [Authorize(Roles = "admin , lecturaYEscritura")]
+        public async Task<IActionResult> Print(int id)
+        {
+            if (id == 0 || _context.Entradas == null)
+            {
+                return NotFound();
+            }
+
+            var entrada = await _context.Entradas
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (entrada == null)
+            {
+                return NotFound();
+            }
+
+            return new ViewAsPdf("DetailsPrint", entrada)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            };
+        }
+
+        public ActionResult HeaderPdf()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPdf()
+        {
+            return View("FooterPDF");
+        }
+
+
+        //Fin del controlador de impresion
 
         private bool EntradaExists(int id)
         {

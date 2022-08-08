@@ -1,0 +1,71 @@
+@model Entrada
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactPDF</title>
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+    <div>
+        <h4>Entrada No: @Html.DisplayFor(model => model.Id)</h4>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NumInvEquipo)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NumInvEquipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Lugar)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Lugar)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.FechaEntrega)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.FechaEntrega)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Entrega)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Entrega)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.observaciones)</div>
+                <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.observaciones)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-light border">
+                    <h3>Salida: <h3>
+                </div>
+                @if (Model.salidas != null)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.salidas.salida)</div>
+                    <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.salidas.salida)</div>
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.salidas.FechaSalida)</div>
+                    <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.salidas.FechaSalida)</div>
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.salidas.observaciones)</div>
+                    <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.salidas.observaciones)</div>
+                }
+                else
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border">
+                        <p>Este/a @Html.DisplayFor(model => model.Equipo) no se le ha dado salida</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

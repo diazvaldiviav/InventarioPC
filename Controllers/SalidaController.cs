@@ -93,7 +93,7 @@ namespace ProyectoInventarioASP.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", Salida.EntradaId);
-            return View(Salida);
+            return RedirectToAction("Details", "Entrada");
         }
 
         // GET: Salida/Edit/5
