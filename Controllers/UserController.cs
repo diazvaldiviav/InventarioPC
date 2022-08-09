@@ -133,7 +133,7 @@ public class UserController : Controller
         }
 
 
-      return View(_user);
+        return View(_user);
 
     }
 
@@ -156,23 +156,27 @@ public class UserController : Controller
                       where user.username == _user.username && user.password == _user.password
                       select user;
 
-        
 
-        var usuariofinal = _context.Users.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
-        if (usuariofinal != null)
+        //var usuariofinal =  _context.Users.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
+
+        var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
+        usuario.Add(usuariofinal);
+        var usuarioprueba = usuario.Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
+
+        if (usuarioprueba != null)
         {
 
             //2.- CONFIGURACION DE LA AUTENTICACION
             List<Claim> claims1 = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name , usuariofinal.Nombre),
-                    new Claim("UserName", usuariofinal.username),
+                    new Claim(ClaimTypes.Name , usuarioprueba.Nombre),
+                    new Claim("UserName", usuarioprueba.username),
                 };
             #region AUTENTICACTION
             var claims = claims1;
 
-            claims.Add(new Claim(ClaimTypes.Role, usuariofinal.permisos));
+            claims.Add(new Claim(ClaimTypes.Role, usuarioprueba.permisos));
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
