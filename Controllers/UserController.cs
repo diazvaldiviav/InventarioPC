@@ -164,19 +164,19 @@ public class UserController : Controller
         usuario.Add(usuariofinal);
         var usuarioprueba = usuario.Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
-        if (usuarioprueba != null)
+        if (usuariofinal != null)
         {
 
             //2.- CONFIGURACION DE LA AUTENTICACION
             List<Claim> claims1 = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name , usuarioprueba.Nombre),
-                    new Claim("UserName", usuarioprueba.username),
+                    new Claim(ClaimTypes.Name , usuariofinal.Nombre),
+                    new Claim("UserName", usuariofinal.username),
                 };
             #region AUTENTICACTION
             var claims = claims1;
 
-            claims.Add(new Claim(ClaimTypes.Role, usuarioprueba.permisos));
+            claims.Add(new Claim(ClaimTypes.Role, usuariofinal.permisos));
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
