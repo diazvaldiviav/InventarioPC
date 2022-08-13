@@ -30,7 +30,7 @@ public class Computadora
 
     [Required(ErrorMessage = "El nombre es requerido")]
     [Display(Name = "Nombre")]
-    [StringLength(20, ErrorMessage = "El nombre debe tener como maximo 20 caracteres")]
+    [MaxLength(14, ErrorMessage = "El nombre debe tener como maximo 14 caracteres")]
     [MinLength(13, ErrorMessage = "El nombre debe tener como minimo 13 caracteres")]
     public string Nombre { get; set; }
     [Required]

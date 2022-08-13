@@ -50,11 +50,30 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Display/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string NumInv)
         {
-            ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
-            return View();
+            if (NumInv == null)
+            {
+                ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                return View();
+            }
+            else
+            {
+                var esUsuarioOInv = await _context.Computadoras.FirstOrDefaultAsync(m => m.NumInv == NumInv);
+                List<Computadora> ListPc = new List<Computadora>();
+                ListPc.Add(esUsuarioOInv);
+                if (esUsuarioOInv != null)
+                {
+                    // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+                    ViewData["InvPc"] = new SelectList(ListPc , "NumInv", "NumInv");
+                    ViewData["NombreUser"] = new SelectList(ListPc , "UserName", "UserName");
+                    return View();
+                }
+
+                 return View();
+            }
+
         }
 
         // POST: Display/Create

@@ -26,33 +26,33 @@ public class ComputadoraContext : DbContext
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
+    // protected override void OnModelCreating(ModelBuilder modelBuilder)
+    // {
+    //     base.OnModelCreating(modelBuilder);
         
-        var users = cargarUserNames();
+    //     var users = cargarUserNames();
 
-        modelBuilder.Entity<User>().HasData(users.ToArray());
+    //     modelBuilder.Entity<User>().HasData(users.ToArray());
 
 
-    }
+    // }
 
-    private List<User> cargarUserNames()
-    {
-        List<User> ListaUser = new List<User>();
-        ListaUser.Add(new User()
-        {
-            UserId = 1,
-            Nombre = "Administrador",
-            username = "admin",
-            Email = "admin@gmail.com",
-            password = "123",
-            permisos = "admin"
+    // private List<User> cargarUserNames()
+    // {
+    //     List<User> ListaUser = new List<User>();
+    //     ListaUser.Add(new User()
+    //     {
+    //         UserId = 1,
+    //         Nombre = "Administrador",
+    //         username = "admin",
+    //         Email = "admin@gmail.com",
+    //         password = "123",
+    //         permisos = "admin"
 
-        });
+    //     });
 
-        return ListaUser;
-    }
+    //     return ListaUser;
+    // }
 
 
 

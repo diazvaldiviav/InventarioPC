@@ -84,6 +84,10 @@ namespace ProyectoInventarioASP.Controllers
                 {
                     return View(entrada);
                 }
+                if (entrada.observaciones.Length > 250)
+                {
+                   return View(entrada);
+                }
                 _context.Add(entrada);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -247,10 +247,24 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
-                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.MotherBoardId == null)
+                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.MotherBoardId == null || computadora.NumInv == null)
                     {
+                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
                         return View(computadora);
 
+                    }
+                    if (computadora.Nombre.Length < 13 || computadora.Nombre.Length > 15)
+                    {
+                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
+                        return View(computadora);
                     }
 
                     //Cargarlos id de impresoras
@@ -357,6 +371,25 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.MotherBoardId == null)
+                    {
+                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
+                        return View(computadora);
+
+                    }
+                    if (computadora.Nombre.Length < 13 || computadora.Nombre.Length > 15)
+                    {
+                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
+                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
+                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
+                        return View(computadora);
+                    }
                     //Cargarlos id de impresoras
                     var BuscarIdImpr = from impr in _context.Impresoras
                                        where impr.NumInv == computadora.ImprNumInv

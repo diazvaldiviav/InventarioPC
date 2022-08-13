@@ -46,7 +46,7 @@
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between"><div>Esta Pc no tiene Monitor</div><a asp-controller="Display" asp-action="Create"
-                    class="text-info">Insertar</a></div>
+                asp-route-NumInv="@Model.NumInv" class="text-info">Insertar</a></div>
             }
               @if (Model.Scanners.Count() == 0)
             {

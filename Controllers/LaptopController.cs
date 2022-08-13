@@ -62,12 +62,25 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumInv,NombreDepartamento,NombreArea,Nombre,SO,estado,Mac,NumIp,UsuarioId,UserName")] Laptop laptop)
+        public async Task<IActionResult> Create(Laptop laptop)
         {
             if (laptop != null)
             {
                 try
                 {
+                    if (laptop.Nombre == null || laptop.NombreArea == null || laptop.NombreDepartamento == null || laptop.NumInv == null || laptop.NumIp == null || laptop.Mac == null || laptop.SO == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", laptop.UserName);
+                        return View(laptop);
+
+                    }
+
+                    if (laptop.Nombre.Length < 13 || laptop.Nombre.Length > 15)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", laptop.UserName);
+                        return View(laptop);
+
+                    }
 
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
@@ -128,6 +141,19 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                     if (laptop.Nombre == null || laptop.NombreArea == null || laptop.NombreDepartamento == null || laptop.NumInv == null || laptop.NumIp == null || laptop.Mac == null || laptop.SO == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", laptop.UserName);
+                        return View(laptop);
+
+                    }
+
+                    if (laptop.Nombre.Length < 13 || laptop.Nombre.Length > 15)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", laptop.UserName);
+                        return View(laptop);
+
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == laptop.UserName
