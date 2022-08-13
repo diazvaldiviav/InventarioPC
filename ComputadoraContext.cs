@@ -45,7 +45,7 @@ public class ComputadoraContext : DbContext
             Nombre = "Administrador",
             username = "admin",
             Email = "admin@gmail.com",
-            password = "123",
+            password = "1234",
             permisos = "admin"
 
         });
