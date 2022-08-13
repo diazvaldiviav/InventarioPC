@@ -29,6 +29,7 @@ public class ComputadoraContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
         var users = cargarUserNames();
 
         modelBuilder.Entity<User>().HasData(users.ToArray());
@@ -45,7 +46,7 @@ public class ComputadoraContext : DbContext
             Nombre = "Administrador",
             username = "admin",
             Email = "admin@gmail.com",
-            password = "1234",
+            password = "123",
             permisos = "admin"
 
         });
