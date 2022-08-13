@@ -247,6 +247,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.MotherBoardId == null)
+                    {
+                        return View(computadora);
+
+                    }
 
                     //Cargarlos id de impresoras
                     var BuscarIdImpr = from impr in _context.Impresoras

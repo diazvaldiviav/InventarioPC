@@ -52,10 +52,12 @@
             </select>
             <span asp-validation-for="NombreArea" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-6">
+         <div class="form-group col-md-6">
             <label asp-for="Nombre" class="control-label"></label>
-            <input asp-for="Nombre" class="form-control" required />
+            <input asp-for="Nombre"  id="NombrePc" class="form-control" required />
             <span asp-validation-for="Nombre" class="text-danger"></span>
+            <div class="inactive" id="validacionNombreMax">El maximo de caracteres para este campo es de 15</div>
+            <div class="inactive" id="validacionNombreMin">El minimo de caracteres para este campo es de 13</div>
         </div>
         <div class="form-group col-md-6">
             <label asp-for="SO" class="control-label"></label>

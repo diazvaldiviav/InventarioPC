@@ -76,10 +76,14 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Equipo,NumInvEquipo,Entrega,Lugar,FechaEntrega,observaciones")] Entrada entrada)
+        public async Task<IActionResult> Create(Entrada entrada)
         {
             if (entrada != null)
             {
+                if (entrada.Lugar == null || entrada.Equipo == null || entrada.Entrega == null || entrada.FechaEntrega == null || entrada.observaciones == null)
+                {
+                    return View(entrada);
+                }
                 _context.Add(entrada);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

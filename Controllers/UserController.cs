@@ -151,18 +151,11 @@ public class UserController : Controller
     public async Task<IActionResult> Access(User _user)
     {
         //return cargarUserNames().Where(item => item.Email == _correo && item.password == _clave).FirstOrDefault();
-        List<User> usuario = new List<User>();
-        var newuser = from user in _context.Users
-                      where user.username == _user.username && user.password == _user.password
-                      select user;
-
-
 
         //var usuariofinal =  _context.Users.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
         var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
-        usuario.Add(usuariofinal);
-        var usuarioprueba = usuario.Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
+       
 
         if (usuariofinal != null)
         {

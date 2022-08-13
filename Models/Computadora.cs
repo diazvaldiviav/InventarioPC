@@ -15,17 +15,23 @@ public class Computadora
     [Required]
     [Display(Name = "Inventario")]
     public string NumInv { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El departamento es requerido")]
     [Display(Name = "Departamento")]
+    [StringLength(50, ErrorMessage = "El departamento es debe tener 50 caracteres como maximo")]
     public string NombreDepartamento { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El Sello es requerido")]
     [Display(Name = "Sello")]
     public string Sello { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El area es requerida")]
     [Display(Name = "Area")]
+    [StringLength(50)]
     public string NombreArea { get; set; }
-    [Required]
+
+
+    [Required(ErrorMessage = "El nombre es requerido")]
     [Display(Name = "Nombre")]
+    [StringLength(20, ErrorMessage = "El nombre debe tener como maximo 20 caracteres")]
+    [MinLength(13, ErrorMessage = "El nombre debe tener como minimo 13 caracteres")]
     public string Nombre { get; set; }
     [Required]
     [Display(Name = "SO")]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kKqYtoVN4fM0fdeWy4Jtq+KQ1qkeMsUgUCVFuK1h1Xk=",
+  "Hash": "xB6Ihuuz2gM96dGGBM8bczcRQ3VChnuFnJO2texhHrU=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -2939,6 +2939,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\validaciones.js",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "js/validaciones.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\validaciones.js"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

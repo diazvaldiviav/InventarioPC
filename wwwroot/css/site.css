@@ -29,6 +29,10 @@ body {
   max-width: 1200px;
 }
 
+.inactive{
+  display: none;
+}
+
 .container_center{
   display: grid;
   max-width: 1200px;

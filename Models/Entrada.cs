@@ -8,22 +8,24 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required (ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Equipo")]
         public string Equipo { get; set; }
-        [Required]
+        [Required (ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Inventario")]
         public String NumInvEquipo { get; set; }
 
-        [Required]
+        [Required (ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Quien Entrega")]
         public string Entrega { get; set; }
-        [Required]
+        [Required (ErrorMessage ="Este Campo es requerido")]
         public string Lugar { get; set; }
         [Display(Name = "Fecha Entrega")]
-        [Required]
+        [Required (ErrorMessage ="Este Campo es requerido")]
         public DateTime FechaEntrega { get; set; }
 
+        [MaxLength(250, ErrorMessage = "Las observaciones deben tener como maximo 250 caracteres")]
+        
         public string observaciones { get; set; }
 
         public Salida salidas { get; set; }
