@@ -50,9 +50,9 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Display/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Create(string NumInv)
+        public async Task<IActionResult> Create(string NumInv = null, string NombreUsuario = null)
         {
-            if (NumInv == null)
+            if (NumInv == null && NombreUsuario == null)
             {
                 ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
                 ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
@@ -60,18 +60,31 @@ namespace ProyectoInventarioASP.Controllers
             }
             else
             {
-                var esUsuarioOInv = await _context.Computadoras.FirstOrDefaultAsync(m => m.NumInv == NumInv);
+                var esInv = await _context.Computadoras.FirstOrDefaultAsync(m => m.NumInv == NumInv);
+                var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
                 List<Computadora> ListPc = new List<Computadora>();
-                ListPc.Add(esUsuarioOInv);
-                if (esUsuarioOInv != null)
+                List<Usuario> ListUsuario = new List<Usuario>();
+                ListPc.Add(esInv);
+                ListUsuario.Add(esUsuario);
+
+                if (esInv != null)
                 {
                     // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-                    ViewData["InvPc"] = new SelectList(ListPc , "NumInv", "NumInv");
-                    ViewData["NombreUser"] = new SelectList(ListPc , "UserName", "UserName");
+                    ViewData["InvPc"] = new SelectList(ListPc, "NumInv", "NumInv");
+                    ViewData["NombreUser"] = new SelectList(ListPc, "UserName", "UserName");
                     return View();
                 }
 
-                 return View();
+                if (esUsuario != null)
+                {
+                    // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+                    ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+                    ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
+                    return View();
+                }
+
+
+                return View();
             }
 
         }
@@ -88,6 +101,12 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (display.estado == null || display.Id == null || display.Marca == null || display.NumInv == null || display.NumInvPc == null || display.NumSerie == null || display.UserName == null)
+                    {
+                        ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", display.UserName);
+                        return View(display);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == display.UserName
@@ -151,6 +170,12 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (display.estado == null || display.Id == null || display.Marca == null || display.NumInv == null || display.NumInvPc == null || display.NumSerie == null || display.UserName == null)
+                    {
+                        ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv", display.NumInvPc);
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", display.UserName);
+                        return View(display);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == display.UserName
@@ -205,7 +230,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (_context.Displays == null)
             {

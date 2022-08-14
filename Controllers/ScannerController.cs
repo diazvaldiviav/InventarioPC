@@ -50,10 +50,21 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Scanner/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string NombreUsuario)
         {
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            if (NombreUsuario == null)
+            {
+                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                return View();
+            }
+
+            var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
+            List<Usuario> ListUsuario = new List<Usuario>();
+            ListUsuario.Add(esUsuario);
+            // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+            ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
+
         }
 
         // POST: Scanner/Create
@@ -62,12 +73,17 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumSerie,NumInv,Marca,estado,UsuarioId,UserName")] Scanner scanner)
+        public async Task<IActionResult> Create(Scanner scanner)
         {
             if (scanner != null)
             {
                 try
                 {
+                    if (scanner.Marca == null || scanner.NumInv == null || scanner.NumInv == null || scanner.NumSerie == null || scanner.UserName == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", scanner.UserName);
+                        return View(scanner);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == scanner.UserName
@@ -124,6 +140,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (scanner.Marca == null || scanner.NumInv == null || scanner.NumInv == null || scanner.NumSerie == null || scanner.UserName == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", scanner.UserName);
+                        return View(scanner);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == scanner.UserName

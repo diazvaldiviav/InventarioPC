@@ -51,10 +51,20 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Celular/Create
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+         public async Task<IActionResult> Create(string NombreUsuario)
         {
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            if (NombreUsuario == null)
+            {
+                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                return View();
+            }
+            var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
+            List<Usuario> ListUsuario = new List<Usuario>();
+            ListUsuario.Add(esUsuario);
+            // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+            ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
+
         }
 
         // POST: Celular/Create
@@ -70,6 +80,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (celular.estado == null || celular.Id == null || celular.Marca == null || celular.NumInv == null || celular.NumSerie == null || celular.UserName == null || celular.UsuarioId == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", celular.UserName);
+                        return View(celular);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == celular.UserName
@@ -89,8 +104,10 @@ namespace ProyectoInventarioASP.Controllers
                 }
 
             }
+
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", celular.UserName);
             return View(celular);
+
         }
 
         // GET: Celular/Edit/5
@@ -129,6 +146,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (celular.estado == null || celular.Id == null || celular.Marca == null || celular.NumInv == null || celular.NumSerie == null || celular.UserName == null || celular.UsuarioId == null)
+                    {
+                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", celular.UserName);
+                        return View(celular);
+                    }
                     //Cargar los Id de los usuarios
                     var BuscarIdUser = from user in _context.Usuarios
                                        where user.NombreUsuario == celular.UserName

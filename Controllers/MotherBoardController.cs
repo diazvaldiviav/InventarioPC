@@ -66,9 +66,23 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (motherBoard != null)
             {
-                _context.Add(motherBoard);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    if (motherBoard.Marca == null || motherBoard.MicroProcesadorId == null || motherBoard.NumSerieId == null)
+                    {
+                        ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
+                        return View(motherBoard);
+                    }
+                    _context.Add(motherBoard);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (System.Exception)
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
             ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
             return View(motherBoard);
@@ -109,6 +123,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (motherBoard.Marca == null || motherBoard.MicroProcesadorId == null || motherBoard.NumSerieId == null)
+                    {
+                        ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
+                        return View(motherBoard);
+                    }
                     _context.Update(motherBoard);
                     await _context.SaveChangesAsync();
                 }
@@ -120,7 +139,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -162,30 +181,30 @@ namespace ProyectoInventarioASP.Controllers
             var motherBoard = await _context.MotherBoards.FindAsync(id);
             if (motherBoard != null)
             {
-               
+
                 try
                 {
-                     _context.MotherBoards.Remove(motherBoard);
-                      await _context.SaveChangesAsync();
+                    _context.MotherBoards.Remove(motherBoard);
+                    await _context.SaveChangesAsync();
                 }
-                 catch (DbUpdateException)
+                catch (DbUpdateException)
                 {
                     return RedirectToAction("BdError", "Home");
                 }
             }
-            
-           
+
+
             return RedirectToAction(nameof(Index));
         }
 
-         public List<MemoriaRam> CargarMemorias(string id)
+        public List<MemoriaRam> CargarMemorias(string id)
         {
             List<MemoriaRam> ListaFinal = new List<MemoriaRam>();
 
             var ListTemp = from mem in _context.MemoriasRam
                            where mem.MotherBoardId == id
                            select mem;
-            
+
 
             ListaFinal.AddRange(ListTemp);
 
@@ -195,7 +214,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool MotherBoardExists(string id)
         {
-          return (_context.MotherBoards?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+            return (_context.MotherBoards?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
         }
     }
 }

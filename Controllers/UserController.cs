@@ -112,6 +112,10 @@ public class UserController : Controller
         {
             try
             {
+                if (_user.Email == null || _user.Nombre == null || _user.password == null || _user.permisos == null)
+                {
+                    return View(_user);
+                }
                 _context.Update(_user);
                 await _context.SaveChangesAsync();
 
@@ -124,7 +128,7 @@ public class UserController : Controller
                 }
                 else
                 {
-                    throw;
+                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -141,9 +145,22 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(User _user)
     {
-        _context.Add(_user);
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(ListaUser));
+        try
+        {
+            if (_user.Email == null || _user.Nombre == null || _user.password == null || _user.permisos == null)
+            {
+                return View(_user);
+            }
+            _context.Add(_user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ListaUser));
+        }
+        catch (System.Exception)
+        {
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 
     //USAR REFERENCIAS Models y Data
@@ -155,7 +172,7 @@ public class UserController : Controller
         //var usuariofinal =  _context.Users.ToList().Where(item => item.username == _user.username && item.password == _user.password).FirstOrDefault();
 
         var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
-       
+
 
         if (usuariofinal != null)
         {

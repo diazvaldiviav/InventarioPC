@@ -85,12 +85,25 @@ namespace ProyectoInventarioASP.Controllers
             Salida.EntradaId = EntradaId;
             Salida.observaciones = observaciones;
 
-
             if (Salida != null)
             {
-                _context.Add(Salida);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "Entrada", Salida);
+                try
+                {
+                    if (Salida.EntradaId == null || Salida.FechaSalida == null || Salida.Id == null || Salida.observaciones == null || Salida.salida == null)
+                    {
+                        ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", Salida.EntradaId);
+                        return View();
+                    }
+                    _context.Add(Salida);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Entrada", Salida);
+                }
+                catch (System.Exception)
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
             ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", Salida.EntradaId);
             return View();
@@ -131,6 +144,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (salida.EntradaId == null || salida.FechaSalida == null || salida.Id == null || salida.observaciones == null || salida.salida == null)
+                    {
+                        ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", salida.EntradaId);
+                        return View();
+                    }
                     _context.Update(salida);
                     await _context.SaveChangesAsync();
                 }
@@ -142,7 +160,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));

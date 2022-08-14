@@ -12,25 +12,28 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NumInv)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NumInv)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NumInv)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NumInv)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Marca)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Marca)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.Marca)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.Marca)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NumSerie)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NumSerie)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NumSerie)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NumSerie)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.estado)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.estado)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.estado)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.UserName)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.UserName)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.UserName)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.UserName)</div>
         </div>
     </div>
 </div>
-<div class="container-flex">
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a> 
-    <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a><
-    <a asp-action="Index">Volver</a>
-</div>
+<div class="container-flex p-2">
+        @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
+            <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a>
+        }
+        <a asp-action="Index" class="btn btn-info btn-sm">Volver</a>
+    </div>

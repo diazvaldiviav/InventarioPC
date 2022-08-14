@@ -86,7 +86,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 if (entrada.observaciones.Length > 250)
                 {
-                   return View(entrada);
+                    return View(entrada);
                 }
                 _context.Add(entrada);
                 await _context.SaveChangesAsync();
@@ -129,6 +129,15 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+
+                    if (entrada.Lugar == null || entrada.Equipo == null || entrada.Entrega == null || entrada.FechaEntrega == null || entrada.observaciones == null)
+                    {
+                        return View(entrada);
+                    }
+                    if (entrada.observaciones.Length > 250)
+                    {
+                        return View(entrada);
+                    }
                     _context.Update(entrada);
                     await _context.SaveChangesAsync();
                 }

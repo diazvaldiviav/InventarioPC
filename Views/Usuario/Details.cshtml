@@ -12,22 +12,22 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreCompleto)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreCompleto)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NombreCompleto)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NombreCompleto)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreUsuario)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreUsuario)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NombreUsuario)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NombreUsuario)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreDepartamento)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreDepartamento)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NombreDepartamento)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NombreDepartamento)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.NombreArea)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.NombreArea)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NombreArea)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NombreArea)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.Cargo)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.Cargo)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.Cargo)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.Cargo)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <h3 class="h3">Responsable de:</h3>
             </div>
             @if (Model.Monitores.Count() == 0)
@@ -35,7 +35,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene monitor</div><a asp-controller="Display" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Computadora.Count() == 0)
@@ -43,7 +43,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene Computadora</div><a asp-controller="Computadora" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Impresora.Count() == 0)
@@ -51,7 +51,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene impresora</div><a asp-controller="Impresora" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Scanner.Count() == 0)
@@ -59,7 +59,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene Scanner</div><a asp-controller="Scanner" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Teclado.Count() == 0)
@@ -67,7 +67,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene Teclado</div><a asp-controller="Teclado" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Ups.Count() == 0)
@@ -75,7 +75,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Este trabajador no tiene Ups</div><a asp-controller="Ups" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Celular.Count() == 0)
@@ -83,7 +83,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <p>Este trabajador no tiene Celular</p> <a asp-controller="Celular" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Telefono.Count() == 0)
@@ -91,76 +91,79 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <p>Este trabajador no tiene Telefono</p> <a asp-controller="Telefono" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
-             @if (Model.Laptop.Count() == 0)
+            @if (Model.Laptop.Count() == 0)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <p>Este trabajador no tiene Laptop</p> <a asp-controller="Laptop" asp-action="Create"
-                    class="text-info">Insertar</a>
+                    asp-route-NombreUsuario="@Model.NombreUsuario" class="text-info">Insertar</a>
                 </div>
             }
             @foreach (var item in Model.Monitores)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Monitor Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Monitor Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Impresora)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Impresora Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Impresora Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Scanner)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Scanner Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Scanner Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Teclado)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Teclado Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Teclado Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Ups)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Ups Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Ups Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Celular)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Movil Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Movil Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
             @foreach (var item in Model.Telefono)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Telefono Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Marca: @item.Marca</div>
+                <div class="col p-2 bg-secondary border">Telefono Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Marca: @item.Marca</div>
             }
-              @foreach (var item in Model.Laptop)
+            @foreach (var item in Model.Laptop)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Laptop Inv: @item.NumInv</div>
-                <div class="col p-2 bg-light border">Nombre: @item.Nombre</div>
+                <div class="col p-2 bg-secondary border">Laptop Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Nombre: @item.Nombre</div>
             }
             @foreach (var item in Model.Computadora)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">Computadora Inv: @item.NumInv</div>
+                <div class="col p-2 bg-secondary border">Computadora Inv: @item.NumInv</div>
             }
         </div>
 
 
     </div>
     <div class="container-flex p-2">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
-        <td><a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a></td>
-        <a asp-action="Index">Volver</a>
+        @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
+            <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a>
+        }
+        <a asp-action="Index" class="btn btn-info btn-sm">Volver</a>
     </div>

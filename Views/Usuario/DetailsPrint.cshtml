@@ -25,91 +25,91 @@
         <div class="container">
             <div class="row">
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">
+                <div class="col p-2 bg-secondary border">
                     <p>@Html.DisplayNameFor(model => model.NombreCompleto) : @Html.DisplayFor(model =>
                         model.NombreCompleto)</p>
                 </div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">
+                <div class="col p-2 bg-secondary border">
                     <p>@Html.DisplayNameFor(model => model.NombreUsuario) : @Html.DisplayFor(model =>
                         model.NombreUsuario)</p>
                 </div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">
+                <div class="col p-2 bg-secondary border">
                     <p>@Html.DisplayNameFor(model => model.NombreDepartamento) : @Html.DisplayFor(model =>
                         model.NombreDepartamento)</p>
                 </div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">
+                <div class="col p-2 bg-secondary border">
                     <p>@Html.DisplayNameFor(model => model.NombreArea) : @Html.DisplayFor(model => model.NombreUsuario)
                     </p>
                 </div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-light border">
+                <div class="col p-2 bg-secondary border">
                     <p>@Html.DisplayNameFor(model => model.Cargo) : @Html.DisplayFor(model => model.Cargo)
                     </p>
                 </div>
-                <div class="col p-2 bg-light border">Responsable de:</div>
+                <div class="col p-2 bg-secondary border">Responsable de:</div>
                 @foreach (var item in Model.Monitores)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Monitor Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Impresora)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Impresora Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Scanner)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Scanner Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Teclado)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Teclado Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Ups)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Ups Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Celular)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Movil Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Telefono)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Telefono Inv: @item.NumInv con Marca: @item.Marca</p>
                     </div>
                 }
                 @foreach (var item in Model.Laptop)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">
+                    <div class="col p-2 bg-secondary border">
                         <p>Laptop Inv: @item.NumInv con Nombre: @item.Nombre</p>
                     </div>
                 }
                 @foreach (var item in Model.Computadora)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-light border">Computadora Inv: @item.NumInv</div>
+                    <div class="col p-2 bg-secondary border">Computadora Inv: @item.NumInv</div>
                 }
             </div>
         </div>

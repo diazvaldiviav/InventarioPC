@@ -223,15 +223,27 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Computadora/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string NombreUsuario)
         {
+            if (NombreUsuario == null)
+            {
+                ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
+                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+                ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
+                ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
+                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                return View();
+            }
 
+            var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
+            List<Usuario> ListUsuario = new List<Usuario>();
+            ListUsuario.Add(esUsuario);
+            // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
             ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
             ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
             ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
-
+            ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
         }
 
@@ -420,9 +432,8 @@ namespace ProyectoInventarioASP.Controllers
 
                     var marcaBoard = CargarMarca(computadora.MotherBoardId);
 
-                    var tecmem = CargarTecnMemo(computadora.MotherBoardId);
-
                     var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+
 
 
                     computadora.ImpresoraId = idImpr[0];

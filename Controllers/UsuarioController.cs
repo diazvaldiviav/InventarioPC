@@ -80,6 +80,10 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (usuario.NombreArea == null || usuario.NombreCompleto == null || usuario.NombreDepartamento == null || usuario.NombreUsuario == null || usuario.Cargo == null)
+                    {
+                        return View(usuario);
+                    }
                     _context.Add(usuario);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -128,6 +132,10 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (usuario.NombreArea == null || usuario.NombreCompleto == null || usuario.NombreDepartamento == null || usuario.NombreUsuario == null || usuario.Cargo == null)
+                    {
+                        return View(usuario);
+                    }
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
@@ -381,7 +389,7 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
-         private List<Laptop> CargarLaptop(int id)
+        private List<Laptop> CargarLaptop(int id)
         {
             var buscarlap = from user in _context.Laptops
                             where user.UsuarioId == id

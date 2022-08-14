@@ -1,4 +1,4 @@
-@model Laptop
+@model Computadora
 
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,7 @@
 
 <body>
 
-    <h4>Laptop No: @Html.DisplayFor(model => model.Id)</h4>
+    <h4>Computadora No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <div class="container">
         <div class="row">
@@ -27,31 +27,87 @@
                 <p>@Html.DisplayNameFor(model => model.NumInv) : @Html.DisplayFor(model => model.NumInv)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.Nombre) : @Html.DisplayFor(model => model.Nombre)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.NombreDepartamento) : @Html.DisplayFor(model =>
                     model.NombreDepartamento)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.NombreArea) : @Html.DisplayFor(model => model.NombreArea)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.NumIp) : @Html.DisplayFor(model => model.NumIp)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.Mac) : @Html.DisplayFor(model => model.Mac)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">
+            <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.UserName) : @Html.DisplayFor(model => model.UserName)</p>
             </div>
-           
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.Sello) : @Html.DisplayFor(model => model.Sello)</p>
+            </div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border">
+                <h3 class="h3">Detalles de los componentes: </h3>
+            </div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MotherBoardId) : @Html.DisplayFor(model => model.MotherBoardId)</p></div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MotherBoardMarca) : @Html.DisplayFor(model => model.MotherBoardMarca)</p></div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MicroTecn) : @Html.DisplayFor(model => model.MicroTecn)</p></div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.ImprNumInv) : @Html.DisplayFor(model => model.ImprNumInv)</p></div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.UpsInv) : @Html.DisplayFor(model => model.UpsInv)</p></div>
+            <div class="w-100"></div>
+            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.TeclNumInv) : @Html.DisplayFor(model => model.TeclNumInv)</p></div>
+            <div class="w-100"></div>
+
+            @foreach (var monitor in Model.Display)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-secondary border">Monitor inv: @monitor.NumInv</div>
+                <div class="col p-2 bg-secondary border">Monitor Marca: @monitor.Marca</div>
+
+            }
+            @foreach (var scan in Model.Scanners)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-secondary border">Scanner inv: @scan.NumInv</div>
+                <div class="col p-2 bg-secondary border">Scanner Marca: @scan.Marca</div>
+
+            }
+
+            @foreach (var disco in Model.Discos)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-secondary border">No Serie Disco: @disco.NumSerieId</div>
+                <div class="col p-2 bg-secondary border">Marca del Disco: @disco.Marca</div>
+                <div class="col p-2 bg-secondary border">Capacidad del disco: @disco.Capacidad</div>
+
+            }
+
+
+            @foreach (var memoria in Model.Memorias)
+            {
+
+                <div class="w-100"></div>
+                <div class="col p-2 bg-secondary border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                <div class="col p-2 bg-secondary border">Marca de la memoria: @memoria.Marca</div>
+                <div class="col p-2 bg-secondary border">Capacidad de la memoria: @memoria.Capacidad</div>
+
+            }
+        </div>
     </div>
 </body>
 

@@ -10,20 +10,23 @@
 <div>
     <h4>Salida No: @Html.DisplayFor(model => model.Id)</h4>
     <hr />
-   <div class="container">
+    <div class="container">
         <div class="row">
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.salida)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.salida)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.salida)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.salida)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.FechaSalida)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.FechaSalida)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.FechaSalida)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.FechaSalida)</div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-light border">@Html.DisplayNameFor(model => model.observaciones)</div>
-            <div class="col p-2 bg-light border">@Html.DisplayFor(model => model.observaciones)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.observaciones)</div>
+            <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.observaciones)</div>
         </div>
-</div>
-<div class="container-flex">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
-        <a asp-action="Index">Volver</a>
     </div>
-
+    <div class="container-flex p-2">
+        @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
+            <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a>
+        }
+        <a asp-action="Index" class="btn btn-info btn-sm">Volver</a>
+    </div>

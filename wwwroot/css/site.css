@@ -41,8 +41,5 @@ body {
   place-content: center;
 }
 
-.mygrid{
-  display: grid;
-  grid-template-columns: repeat(3, 400px);
-}
+
 

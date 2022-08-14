@@ -24,9 +24,9 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Micro
         public async Task<IActionResult> Index()
         {
-              return _context.MicroProcesadores != null ? 
-                          View(await _context.MicroProcesadores.ToListAsync()) :
-                          Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
+            return _context.MicroProcesadores != null ?
+                        View(await _context.MicroProcesadores.ToListAsync()) :
+                        Problem("Entity set 'ComputadoraContext.MicroProcesadores'  is null.");
         }
 
         // GET: Micro/Details/5
@@ -60,13 +60,26 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
+        public async Task<IActionResult> Create(MicroProcesador microProcesador)
         {
             if (microProcesador != null)
             {
-                _context.Add(microProcesador);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    if (microProcesador.Marca == null || microProcesador.NumSerieId == null || microProcesador.Tecnologia == null)
+                    {
+                        return View(microProcesador);
+                    }
+                    _context.Add(microProcesador);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (System.Exception)
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
             return View(microProcesador);
         }
@@ -105,6 +118,10 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (microProcesador.Marca == null || microProcesador.NumSerieId == null || microProcesador.Tecnologia == null)
+                    {
+                        return View(microProcesador);
+                    }
                     _context.Update(microProcesador);
                     await _context.SaveChangesAsync();
                 }
@@ -116,7 +133,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -158,14 +175,14 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.MicroProcesadores.Remove(microProcesador);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MicroProcesadorExists(string id)
         {
-          return (_context.MicroProcesadores?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+            return (_context.MicroProcesadores?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
         }
     }
 }

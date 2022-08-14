@@ -49,9 +49,18 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: MemoriaRam/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string MotherBoardId)
         {
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+            if (MotherBoardId == null)
+            {
+                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+                return View();
+            }
+
+            List<MotherBoard> board = new List<MotherBoard>();
+            var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
+            board.Add(esBoard);
+            ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
             return View();
         }
 
@@ -61,13 +70,27 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
+        public async Task<IActionResult> Create(MemoriaRam memoriaRam)
         {
             if (memoriaRam != null)
             {
-                _context.Add(memoriaRam);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    if (memoriaRam.Capacidad == null || memoriaRam.KayNumSerieId == null || memoriaRam.Marca == null || memoriaRam.MotherBoardId == null || memoriaRam.Tecnologia == null)
+                    {
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
+                        return View(memoriaRam);
+                    }
+                    _context.Add(memoriaRam);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (System.Exception)
+                {
+
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
             return View(memoriaRam);
@@ -108,6 +131,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (memoriaRam.Capacidad == null || memoriaRam.KayNumSerieId == null || memoriaRam.Marca == null || memoriaRam.MotherBoardId == null || memoriaRam.Tecnologia == null)
+                    {
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
+                        return View(memoriaRam);
+                    }
                     _context.Update(memoriaRam);
                     await _context.SaveChangesAsync();
                 }
@@ -119,7 +147,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -163,14 +191,14 @@ namespace ProyectoInventarioASP.Controllers
             {
                 _context.MemoriasRam.Remove(memoriaRam);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MemoriaRamExists(string id)
         {
-          return (_context.MemoriasRam?.Any(e => e.KayNumSerieId == id)).GetValueOrDefault();
+            return (_context.MemoriasRam?.Any(e => e.KayNumSerieId == id)).GetValueOrDefault();
         }
     }
 }

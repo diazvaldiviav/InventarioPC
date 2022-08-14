@@ -1,5 +1,6 @@
 const NombrePcInput = document.querySelector("#NombrePc");
 
+
 console.log("El script se agrego bien");
 console.log(NombrePcInput);
 

@@ -50,9 +50,17 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: DiscoDuro/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(string MotherBoardId)
         {
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+            if (MotherBoardId == null)
+            {
+                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+                return View();
+            }
+            List<MotherBoard> board = new List<MotherBoard>();
+            var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
+            board.Add(esBoard);
+            ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
             return View();
         }
 
@@ -64,12 +72,26 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
         {
-            if (discoDuro != null)
+            try
             {
-                _context.Add(discoDuro);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (discoDuro != null)
+                {
+                    if (discoDuro.Capacidad == null || discoDuro.Marca == null || discoDuro.MotherBoardId == null || discoDuro.NumSerieId == null || discoDuro.TipoConexion == null || discoDuro.estado == null)
+                    {
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
+                        return View(discoDuro);
+                    }
+                    _context.Add(discoDuro);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
+            catch (System.Exception)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
             return View(discoDuro);
         }
@@ -109,6 +131,11 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    if (discoDuro.Capacidad == null || discoDuro.Marca == null || discoDuro.MotherBoardId == null || discoDuro.NumSerieId == null || discoDuro.TipoConexion == null || discoDuro.estado == null)
+                    {
+                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
+                        return View(discoDuro);
+                    }
                     _context.Update(discoDuro);
                     await _context.SaveChangesAsync();
                 }
@@ -120,7 +147,7 @@ namespace ProyectoInventarioASP.Controllers
                     }
                     else
                     {
-                        throw;
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 return RedirectToAction(nameof(Index));
