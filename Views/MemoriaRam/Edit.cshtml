@@ -10,23 +10,23 @@
 <h4>MemoriaRam</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5 border border-1">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="KayNumSerieId" />
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" class="form-control" />
+                <input asp-for="Marca" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Capacidad" class="control-label"></label>
-                <input asp-for="Capacidad" class="form-control" />
+                <input asp-for="Capacidad" class="form-control border border-5" />
                 <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tecnologia" class="control-label"></label>
-                <input asp-for="Tecnologia" class="form-control" />
+                <input asp-for="Tecnologia" class="form-control border border-5" />
                 <span asp-validation-for="Tecnologia" class="text-danger"></span>
             </div>
             <div class="form-group">

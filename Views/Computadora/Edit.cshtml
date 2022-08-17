@@ -11,13 +11,13 @@
 <hr />
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
+    <div class="form-row col-md-5 border border-1">
+        <div class="form-group">
             <label asp-for="NumInv" class="control-label"></label>
-            <input asp-for="NumInv" class="form-control" required />
+            <input asp-for="NumInv" class="form-control border border-5" required />
             <span asp-validation-for="NumInv" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="NombreDepartamento" class="control-label"></label>
             <select asp-for="NombreDepartamento" class="form-control">
                 <option value="Economia">Economia</option>
@@ -37,7 +37,7 @@
             </select>
             <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="NombreArea" class="control-label"></label>
             <select asp-for="NombreArea" class="form-control">
                 <option value="Obe Provincial">Obe</option>
@@ -52,14 +52,14 @@
             </select>
             <span asp-validation-for="NombreArea" class="text-danger"></span>
         </div>
-         <div class="form-group col-md-6">
+         <div class="form-group">
             <label asp-for="Nombre" class="control-label"></label>
-            <input asp-for="Nombre"  id="NombrePc" class="form-control" required />
+            <input asp-for="Nombre"  id="NombrePc" class="form-control border border-5" required />
             <span asp-validation-for="Nombre" class="text-danger"></span>
             <div class="inactive" id="validacionNombreMax">El maximo de caracteres para este campo es de 15</div>
             <div class="inactive" id="validacionNombreMin">El minimo de caracteres para este campo es de 13</div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="SO" class="control-label"></label>
             <select asp-for="SO" class="form-control">
                 <option value="Win 11 64bit">Win 11 64bit</option>
@@ -75,7 +75,7 @@
             </select>
             <span asp-validation-for="SO" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="estado"></label>
             @Html.DropDownList(
             "Estado", Html.GetEnumSelectList<Estado>(),
@@ -83,38 +83,38 @@
             new{@class = "form-control"}
             )
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="Mac" class="control-label"></label>
-            <input asp-for="Mac" class="form-control" required />
+            <input asp-for="Mac" class="form-control border border-5" required />
             <span asp-validation-for="Mac" class="text-danger" required></span>
         </div>
-         <div class="form-group col-md-6">
+         <div class="form-group">
             <label asp-for="Sello" class="control-label"></label>
-            <input asp-for="Sello" class="form-control" required />
+            <input asp-for="Sello" class="form-control col-md-6 border border-5" required />
             <span asp-validation-for="Sello" class="text-danger" required></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="NumIp" class="control-label"></label>
-            <input asp-for="NumIp" class="form-control" required />
+            <input asp-for="NumIp" class="form-control col-md-6 border border-5" required />
             <span asp-validation-for="NumIp" class="text-danger" required></span>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="MotherBoardId" class="control-label"></label>
             <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="ImprNumInv" class="control-label"></label>
             <select asp-for="ImprNumInv" class="form-control" asp-items="ViewBag.ImpresoraInv"></select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="TeclNumInv" class="control-label"></label>
             <select asp-for="TeclNumInv" class="form-control" asp-items="ViewBag.TecladoNumInv"></select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="UserName" class="control-label"></label>
             <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group">
             <label asp-for="UpsInv" class="control-label"></label>
             <select asp-for="UpsInv" class="form-control" asp-items="ViewBag.UpsInv"></select>
         </div>

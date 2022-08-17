@@ -10,38 +10,38 @@
 <h4 class="h4">Entrada</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5 border border-1">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Equipo" class="control-label"></label>
-                <input asp-for="Equipo" class="form-control" />
+                <input asp-for="Equipo" class="form-control border border-5" />
                 <span asp-validation-for="Equipo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumInvEquipo" class="control-label"></label>
-                <input asp-for="NumInvEquipo" class="form-control" />
+                <input asp-for="NumInvEquipo" class="form-control border border-5" />
                 <span asp-validation-for="NumInvEquipo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Entrega" class="control-label"></label>
-                <input asp-for="Entrega" class="form-control" />
+                <input asp-for="Entrega" class="form-control border border-5" />
                 <span asp-validation-for="Entrega" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Lugar" class="control-label"></label>
-                <input asp-for="Lugar" class="form-control" />
+                <input asp-for="Lugar" class="form-control border border-5" />
                 <span asp-validation-for="Lugar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaEntrega" class="control-label"></label>
-                <input asp-for="FechaEntrega" class="form-control" />
+                <input asp-for="FechaEntrega" class="form-control border border-2" />
                 <span asp-validation-for="FechaEntrega" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="observaciones" class="form-label">Observaciones: </label>
-                <textarea class="form-control" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control border border-5" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />

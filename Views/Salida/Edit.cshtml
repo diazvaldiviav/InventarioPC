@@ -16,12 +16,12 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="salida" class="control-label"></label>
-                <input asp-for="salida" class="form-control" />
+                <input asp-for="salida" class="form-control border border-5" />
                 <span asp-validation-for="salida" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaSalida" class="control-label"></label>
-                <input asp-for="FechaSalida" class="form-control" />
+                <input asp-for="FechaSalida" class="form-control border border-5" />
                 <span asp-validation-for="FechaSalida" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,17 +31,17 @@
             </div>
             <div class="mb-3">
                 <label asp-for="observaciones" class="form-label">Observaciones: </label>
-                <textarea class="form-control" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control border border-2" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver</a>
 </div>
 
 @section Scripts {

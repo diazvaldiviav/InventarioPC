@@ -10,22 +10,22 @@
 <h4>Salida</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5 border border-1">
         <form method="post" asp-controller="Salida" asp-action="Crear">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
+                <input asp-for="Id" class="form-control border border-5" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="salida" class="control-label"></label>
-                <input asp-for="salida" class="form-control" />
+                <input asp-for="salida" class="form-control border border-5" />
                 <span asp-validation-for="salida" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaSalida" class="control-label"></label>
-                <input asp-for="FechaSalida" class="form-control" />
+                <input asp-for="FechaSalida" class="form-control border border-2" />
                 <span asp-validation-for="FechaSalida" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="observaciones" class="form-label">Observaciones: </label>
-                <textarea class="form-control" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control border border-2" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <input type="submit" value="Insertar" class="btn btn-primary" />
