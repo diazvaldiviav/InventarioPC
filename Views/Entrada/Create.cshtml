@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "_Layout";
+    ViewBag.Fecha = DateTime.Now;
 }
 
 <h1 class="h1">Registrar</h1>
@@ -54,7 +55,6 @@
     <a asp-action="Index">Volver</a>
 </div>
 
-<p>Fecha de hoy: @ViewBag.FechaActual</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

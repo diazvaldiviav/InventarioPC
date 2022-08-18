@@ -50,19 +50,29 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Scanner/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Create(string NombreUsuario)
+        public async Task<IActionResult> Create(string NombreUsuario = null, int? UsuarioId = null)
         {
-            if (NombreUsuario == null)
+            if (NombreUsuario == null && UsuarioId == null)
             {
                 ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
                 return View();
             }
 
-            var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
-            List<Usuario> ListUsuario = new List<Usuario>();
-            ListUsuario.Add(esUsuario);
+            if (NombreUsuario != null)
+            {
+                var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
+                List<Usuario> ListUsuario = new List<Usuario>();
+                ListUsuario.Add(esUsuario);
+                // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+                ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
+                return View();
+            }
+
+            var esUsuarioId = await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == UsuarioId);
+            List<Usuario> ListUsuarioPorId = new List<Usuario>();
+            ListUsuarioPorId.Add(esUsuarioId);
             // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-            ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
+            ViewData["NombreUser"] = new SelectList(ListUsuarioPorId, "NombreUsuario", "NombreUsuario");
             return View();
 
         }

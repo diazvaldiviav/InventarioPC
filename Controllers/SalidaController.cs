@@ -67,7 +67,9 @@ namespace ProyectoInventarioASP.Controllers
 
 
             ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-            return View();
+            var FechaSalida = new Salida();
+            FechaSalida.FechaSalida = DateTime.Now;
+            return View(FechaSalida);
         }
 
         // POST: Salida/Create

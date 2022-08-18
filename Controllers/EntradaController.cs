@@ -67,8 +67,9 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
-            ViewBag.FechaActual = DateTime.Now;
-            return View();
+            var entrada = new Entrada();
+            entrada.FechaEntrega = DateTime.Now;
+            return View(entrada);
         }
 
         // POST: Entrada/Create

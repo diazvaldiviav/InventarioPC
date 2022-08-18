@@ -57,7 +57,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Esta Pc no tiene Scanner</div><a asp-controller="Scanner" asp-action="Create"
-                    class="text-info">Insertar</a>
+                   asp-route-UsuarioId = "@Model.UsuarioId" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Discos.Count() == 0)
