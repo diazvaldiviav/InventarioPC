@@ -54,6 +54,8 @@
     <a asp-action="Index">Volver</a>
 </div>
 
+<p>Fecha de hoy: @ViewBag.FechaActual</p>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

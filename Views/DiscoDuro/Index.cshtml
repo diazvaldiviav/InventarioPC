@@ -62,8 +62,6 @@
                     </td>
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {
-                        <td><a asp-action="Edit" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Modificar</a>
-                        </td>
                         <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-primary btn-sm">Detalles</a>
                         </td>
                         <td><a asp-action="Delete" asp-route-id="@item.NumSerieId" class="btn btn-danger btn-sm">Borrar</a></td>

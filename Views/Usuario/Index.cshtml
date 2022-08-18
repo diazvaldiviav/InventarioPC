@@ -45,6 +45,7 @@
             @foreach (var item in Model)
             {
                 <tr class="filapc">
+                   
                     <td>
                         @Html.DisplayFor(modelItem => item.NombreCompleto)
                     </td>
@@ -60,9 +61,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Cargo)
                     </td>
+                  
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {
-                        <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Modificar</a></td>
                         <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
                         <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a></td>
 
@@ -72,6 +73,7 @@
                         <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
                     }
                 </tr>
+                 
             }
         </tbody>
     </table>
