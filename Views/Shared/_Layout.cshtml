@@ -10,7 +10,8 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
   <!-- Custom styles -->
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true"/>
+  @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true"/> *@
+  <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true">
   <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -290,20 +291,20 @@
       <main class="container main user" id="skip-target">
         @RenderBody()
       </main>
-        <!-- ! Footer -->
-        <footer class="footer">
-          <div class="container footer--flex">
-            <div class="footer-start">
-              <p>2022 © InventarioPc - <a href="elegant-dashboard.com" target="_blank"
-                  rel="noopener noreferrer">elegant-dashboard.com</a></p>
-            </div>
-            <ul class="footer-end">
-              <li><a href="##">About</a></li>
-              <li><a href="##">Support</a></li>
-              <li><a href="##">Puchase</a></li>
-            </ul>
+      <!-- ! Footer -->
+      <footer class="footer">
+        <div class="container footer--flex">
+          <div class="footer-start">
+            <p>2022 © InventarioPc - <a href="elegant-dashboard.com" target="_blank"
+                rel="noopener noreferrer">elegant-dashboard.com</a></p>
           </div>
-        </footer>
+          <ul class="footer-end">
+            <li><a href="##">About</a></li>
+            <li><a href="##">Support</a></li>
+            <li><a href="##">Puchase</a></li>
+          </ul>
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -317,6 +318,8 @@
   <!-- Icons library -->
   <script src="~/plugins/feather.min.js"></script>
   <!-- Custom scripts -->
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="~/js/script.js"></script>
 
   @* <script src="~/js/darkmode.js"></script> *@

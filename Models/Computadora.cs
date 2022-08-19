@@ -12,7 +12,7 @@ public class Computadora
     public int Id { get; set; }
 
 
-    [Required]
+    [Required(ErrorMessage = "El inventario es requerido")]
     [Display(Name = "Inventario")]
     public string NumInv { get; set; }
     [Required(ErrorMessage = "El departamento es requerido")]
@@ -33,19 +33,19 @@ public class Computadora
     [MaxLength(14, ErrorMessage = "El nombre debe tener como maximo 14 caracteres")]
     [MinLength(13, ErrorMessage = "El nombre debe tener como minimo 13 caracteres")]
     public string Nombre { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El Sistema operativo es requerido")]
     [Display(Name = "SO")]
     public string SO { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El inventario de la ups es requerido")]
     [Display(Name = "Inventario UPS")]
     public string UpsInv { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El estado es requerido")]
     [Display(Name = "Estado")]
     public Estado estado { get; set; }
-    [Required]
+    [Required(ErrorMessage = "La mac es requerida")]
     [Display(Name = "Mac")]
     public string Mac { get; set; }
-    [Required]
+    [Required(ErrorMessage = "El ip es requerido")]
     [Display(Name = "IP")]
     public string NumIp { get; set; }
 
@@ -69,15 +69,15 @@ public class Computadora
     [Display(Name = "UPS No")]
     public int UpsId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El inventario de la impresora es requerido")]
     [Display(Name = "Inventario Impresora")]
     public string ImprNumInv { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El inventario del teclado es requerido")]
     [Display(Name = "Teclado Inventario")]
     public string TeclNumInv { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "El nombre del usuario es requerido")]
     [Display(Name = "Nombre del Usuario")]
     public string UserName { get; set; }
 

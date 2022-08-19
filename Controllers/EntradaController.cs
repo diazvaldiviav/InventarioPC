@@ -25,9 +25,30 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Entrada
         public async Task<IActionResult> Index()
         {
-            return _context.Entradas != null ?
-                        View(await _context.Entradas.ToListAsync()) :
-                        Problem("Entity set 'ComputadoraContext.Entradas'  is null.");
+            if (_context.Entradas != null)
+            {
+                var ListaEntradas = await _context.Entradas.ToListAsync();
+                List<Entrada> ListaAMostrar = new List<Entrada>();
+
+                foreach (var entrada in ListaEntradas)
+                {
+                    entrada.salidas = new Salida();
+                    var entradaId = entrada.Id;
+                    if (SalidaExists(entradaId))
+                    {
+                        entrada.salidas.EntradaId = entradaId;
+                        ListaAMostrar.Add(entrada);
+                    }
+                    else
+                    {
+                        entrada.salidas.EntradaId = 0;
+                        ListaAMostrar.Add(entrada);
+                    }
+
+                }
+                return View(ListaAMostrar);
+            }
+            return View();
         }
 
         // GET: Entrada/Details/5
@@ -239,6 +260,10 @@ namespace ProyectoInventarioASP.Controllers
         private bool EntradaExists(int id)
         {
             return (_context.Entradas?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+        private bool SalidaExists(int id)
+        {
+            return (_context.Salidas?.Any(e => e.EntradaId == id)).GetValueOrDefault();
         }
     }
 }

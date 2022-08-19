@@ -3,7 +3,6 @@ let ButtonSearchi = document.querySelector(".buttonSearch");
 ButtonSearchi.addEventListener("click", buscarPc);
 
 function buscarPc() {
-  debugger
   let Tabla = document.querySelector("#tabla");
   const CuerpoTabla = document.querySelector("#CuerpoTablaPc");
   let filas = document.querySelectorAll(".filapc");
@@ -35,12 +34,5 @@ function buscarPc() {
     }
   });
 
-  //recorrer el  array de filas con un for
-  //   for (let i = 0; i < ArrFilas.length; i++) {
-  //     if (ArrFilas[i].innerText.includes(searchvalor.toLowerCase())) {
-  //       console.log(ArrFilas[i]);
-  //       CuerpoTabla2.append(ArrFilas[i]);
-  //       Tabla.append(CuerpoTabla2);
-  //     }
-  //   }
+
 }
