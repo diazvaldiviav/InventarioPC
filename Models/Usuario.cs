@@ -6,19 +6,19 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Nombre Completo")]
         public string NombreCompleto { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Usuario")]
         public string NombreUsuario { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Departamento")]
         public string NombreDepartamento { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name = "Area")]
         public string NombreArea { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string Cargo { get; set; }
 
         [JsonIgnore]

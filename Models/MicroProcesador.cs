@@ -9,11 +9,11 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public String NumSerieId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public String Marca { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public String Tecnologia { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public Estado estado { get; set; }
 
         [JsonIgnore]

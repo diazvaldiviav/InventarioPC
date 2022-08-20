@@ -22,6 +22,42 @@ namespace ProyectoInventarioASP.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ProyectoInventarioASP.Models.Bajas", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("Equipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumInv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumSerie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SerieBoard")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("fechaBaja")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Bajas");
+                });
+
             modelBuilder.Entity("ProyectoInventarioASP.Models.Celular", b =>
                 {
                     b.Property<int>("Id")
@@ -92,8 +128,8 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("NombreArea")
                         .IsRequired()
@@ -266,7 +302,8 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.Property<string>("observaciones")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
@@ -324,7 +361,8 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("NombreArea")
                         .IsRequired()
@@ -451,7 +489,8 @@ namespace ProyectoInventarioASP.Migrations
 
                     b.Property<string>("observaciones")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("salida")
                         .IsRequired()
@@ -648,17 +687,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            Email = "admin@gmail.com",
-                            Nombre = "Administrador",
-                            password = "123",
-                            permisos = "admin",
-                            username = "admin"
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Usuario", b =>

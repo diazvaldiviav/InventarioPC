@@ -1,0 +1,60 @@
+@model ProyectoInventarioASP.Models.Bajas
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+
+<h1 class="h1">Modificar</h1>
+
+<h4 class="h4">Bajas</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5 border border-1">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+             <div class="form-group">
+                <label asp-for="Equipo" class="control-label"></label>
+                <input asp-for="Equipo" class="form-control border border-1" />
+                <span asp-validation-for="Equipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumInv" class="control-label"></label>
+                <input asp-for="NumInv" class="form-control border border-1" />
+                <span asp-validation-for="NumInv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumSerie" class="control-label"></label>
+                <input asp-for="NumSerie" class="form-control border border-1" />
+                <span asp-validation-for="NumSerie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control border border-1" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaBaja" class="control-label"></label>
+                <input asp-for="fechaBaja" class="form-control border border-1" />
+                <span asp-validation-for="fechaBaja" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="SerieBoard" class="control-label"></label>
+                <input asp-for="SerieBoard" class="form-control border border-1" />
+                <span asp-validation-for="SerieBoard" class="text-danger"></span>
+            </div>
+            <div class="form-group p-2">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -8,22 +8,22 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name="Serial")]
         public String NumSerie { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         [Display(Name="Inventario")]
         public String NumInv { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public String Marca { get; set; }
     
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public Estado estado {get; set;}
         [Display(Name = "Usuario No")]
         [ForeignKey("UsuarioId")]
         public int UsuarioId { get; set; }
         [Display(Name = "Nombre del Usuario")]
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string UserName { get; set; }
 
        

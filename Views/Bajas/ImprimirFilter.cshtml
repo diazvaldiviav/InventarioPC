@@ -1,0 +1,33 @@
+@model ProyectoInventarioASP.Models.Bajas
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+}
+ 
+    <h1>Imprimir</h1>
+
+    <h4>Ingrese un que equipo de los que se le han dado baja quieres imprimir</h4>
+    <hr />
+
+    <form method="post" asp-controller="Bajas", asp-action="Imprimir">
+           <div class="form-row col-md-5 border border-1">
+            <div class="form-group">
+                <label asp-for="Equipo" class="control-label"></label>
+                <input asp-for="Equipo" class="form-control border border-5" required />
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="Index">Volver</a>
+    </div>
+
+    @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+

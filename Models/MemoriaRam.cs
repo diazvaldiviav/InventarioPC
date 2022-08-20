@@ -11,16 +11,16 @@ namespace ProyectoInventarioASP.Models
         [Display(Name="Serial")]
         public string KayNumSerieId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string Marca { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string Capacidad { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string Tecnologia { get; set; }
         [ForeignKey("MotherBoardId")]
         [Display(Name="Serial MotherBoard")]
         public string MotherBoardId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public Estado estado { get; set; }
 
         

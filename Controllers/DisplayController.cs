@@ -239,6 +239,14 @@ namespace ProyectoInventarioASP.Controllers
             var display = await _context.Displays.FindAsync(id);
             if (display != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = display.NumInv;
+                nuevaBaja.NumSerie = display.NumSerie;
+                nuevaBaja.Marca = display.Marca;
+                nuevaBaja.Equipo = "Monitor";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Displays.Remove(display);
             }
 

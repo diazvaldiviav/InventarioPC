@@ -12,15 +12,15 @@ namespace ProyectoInventarioASP.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         [Display(Name = "Inventario")]
         public string NumInv { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         [Display(Name = "Serial")]
         public String NumSerie { get; set; }
         [Display(Name = "Marca")]
-        [Required]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public String Marca { get; set; }
         [Display(Name = "Computador No")]
         [ForeignKey("ComputadoraId")]
@@ -29,13 +29,13 @@ namespace ProyectoInventarioASP.Models
         [Required]
         public string NumInvPc { get; set; }
         [Display(Name = "Estado")]
-        [Required]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public Estado estado { get; set; }
         [Display(Name = "Usuario No")]
         [ForeignKey("UsuarioId")]
         public int UsuarioId { get; set; }
         [Display(Name = "Nombre del Usuario")]
-        [Required]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public string UserName { get; set; }
 
         

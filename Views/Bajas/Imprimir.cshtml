@@ -1,0 +1,69 @@
+@model IEnumerable<Bajas>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactPDF</title>
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        /* SOLUCIONA PROBLEMA DE SOLAPAMIENTO EN TABLAS <table /> */
+        thead {
+            display: table-header-group
+        }
+
+        tfoot {
+            display: table-row-group
+        }
+
+        tr {
+            page-break-inside: avoid
+        }
+    </style>
+
+</head>
+
+<body>
+    <table class="table table-hover" id="tabla">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Equipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumInv)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaBaja)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="CuerpoTablaPc">
+            @foreach (var item in Model)
+            {
+                <tr class="filapc">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Equipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumInv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaBaja)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+</html>

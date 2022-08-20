@@ -8,12 +8,12 @@ namespace ProyectoInventarioASP.Models;
         [Key]
         [Display(Name ="Serial")]
         public string NumSerieId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Este Campo es requerido")]
         public string Marca { get; set; }
-         [Required]
+         [Required(ErrorMessage ="Este Campo es requerido")]
          [Display(Name ="Tipo de Cable")]
         public string TipoConexion { get; set; }
-         [Required]
+         [Required(ErrorMessage ="Este Campo es requerido")]
         public string Capacidad { get; set; }
         [ForeignKey("MotherBoardId")]
         [Display(Name ="Serial MotherBoard")]

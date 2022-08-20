@@ -50,7 +50,7 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Laptop/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-         public async Task <IActionResult> Create(string NombreUsuario)
+        public async Task<IActionResult> Create(string NombreUsuario)
         {
             if (NombreUsuario == null)
             {
@@ -152,7 +152,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
-                     if (laptop.Nombre == null || laptop.NombreArea == null || laptop.NombreDepartamento == null || laptop.NumInv == null || laptop.NumIp == null || laptop.Mac == null || laptop.SO == null)
+                    if (laptop.Nombre == null || laptop.NombreArea == null || laptop.NombreDepartamento == null || laptop.NumInv == null || laptop.NumIp == null || laptop.Mac == null || laptop.SO == null)
                     {
                         ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", laptop.UserName);
                         return View(laptop);
@@ -224,6 +224,14 @@ namespace ProyectoInventarioASP.Controllers
             var laptop = await _context.Laptops.FindAsync(id);
             if (laptop != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = laptop.NumInv;
+                nuevaBaja.NumSerie = "-";
+                nuevaBaja.Marca = "-";
+                nuevaBaja.Equipo = "Laptop";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Laptops.Remove(laptop);
             }
 

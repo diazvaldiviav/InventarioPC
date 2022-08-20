@@ -1,0 +1,63 @@
+@model IEnumerable<ProyectoInventarioASP.Models.Bajas>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+<h1 class="h1">Bajas</h1>
+
+@if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+{
+    <p>
+        <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+    </p>
+
+}
+<div class="table-responsive">
+    <table class="table table-hover" id="tabla">
+        <thead>
+            <tr>
+                  <th>
+                    @Html.DisplayNameFor(model => model.Equipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumInv)
+                </th>   
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaBaja)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="CuerpoTablaPc">
+            @foreach (var item in Model)
+            {
+                <tr class="filapc">
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Equipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumInv)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaBaja)
+                    </td>
+                    
+                    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+                    {
+                        <td><a asp-action="Details" asp-route-id="@item.id" class="btn btn-primary btn-sm">Detalles</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    }
+
+                    @if (User.IsInRole("lectura"))
+                    {
+                        <td><a asp-action="Details" asp-route-id="@item.id" class="btn btn-primary btn-sm">Detalles</a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

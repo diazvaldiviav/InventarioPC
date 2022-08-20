@@ -51,7 +51,7 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Celular/Create
 
         [Authorize(Roles = "admin , lecturaYEscritura")]
-         public async Task<IActionResult> Create(string NombreUsuario)
+        public async Task<IActionResult> Create(string NombreUsuario)
         {
             if (NombreUsuario == null)
             {
@@ -210,6 +210,14 @@ namespace ProyectoInventarioASP.Controllers
             var celular = await _context.Celulares.FindAsync(id);
             if (celular != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = celular.NumInv;
+                nuevaBaja.NumSerie = celular.NumSerie;
+                nuevaBaja.Marca = celular.Marca;
+                nuevaBaja.Equipo = "Celular";
+                nuevaBaja.SerieBoard = "-";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                _context.Bajas.Add(nuevaBaja);
                 _context.Celulares.Remove(celular);
             }
 

@@ -209,6 +209,14 @@ namespace ProyectoInventarioASP.Controllers
             var telefono = await _context.Telefonos.FindAsync(id);
             if (telefono != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = telefono.NumInv;
+                nuevaBaja.NumSerie = telefono.NumSerie;
+                nuevaBaja.Marca = telefono.Marca;
+                nuevaBaja.Equipo = "Telefono";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Telefonos.Remove(telefono);
             }
 

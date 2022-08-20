@@ -11,13 +11,13 @@ public class MotherBoard
     [Key]
     [Display(Name ="Serial")]
     public string NumSerieId { get; set; }
-    [Required]
+    [Required(ErrorMessage ="Este Campo es requerido")]
     public string Marca { get; set; }
-    [Required]
+    [Required(ErrorMessage ="Este Campo es requerido")]
      [Display(Name ="Micro Serial")]
     public string MicroProcesadorId { get; set; }   
      
-    [Required]
+    [Required(ErrorMessage ="Este Campo es requerido")]
     public Estado estado { get; set; }
     
     

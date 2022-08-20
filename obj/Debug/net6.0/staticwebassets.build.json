@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ql6KYZGpU5/316sEPx1nkKAil14vU3hlzbSnDztXrEc=",
+  "Hash": "SGpoXCsevd3BWkpHb2JKALDmd8NdB45V5h80e3l4Xq0=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "G:\\ProyectoInventarioASP\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\ProyectoInventarioASP.bundle.scp.css"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\bajas.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/bajas.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\bajas.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\buscar.png",

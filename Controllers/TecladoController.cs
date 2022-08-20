@@ -206,6 +206,14 @@ namespace ProyectoInventarioASP.Controllers
             var teclado = await _context.Teclados.FindAsync(id);
             if (teclado != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = teclado.NumInv;
+                nuevaBaja.NumSerie = teclado.NumSerie;
+                nuevaBaja.Marca = teclado.Marca;
+                nuevaBaja.Equipo = "Teclado";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Teclados.Remove(teclado);
             }
 

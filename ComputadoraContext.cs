@@ -22,6 +22,7 @@ public class ComputadoraContext : DbContext
     public DbSet<Laptop> Laptops { get; set; }
     public DbSet<Entrada> Entradas { get; set; }
     public DbSet<Salida> Salidas { get; set; }
+    public DbSet<Bajas> Bajas { get; set; }
 
 
     public ComputadoraContext(DbContextOptions<ComputadoraContext> options) : base(options) { }

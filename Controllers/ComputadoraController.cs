@@ -504,6 +504,14 @@ namespace ProyectoInventarioASP.Controllers
             var computadora = await _context.Computadoras.FindAsync(id);
             if (computadora != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = computadora.NumInv;
+                nuevaBaja.NumSerie = "-";
+                nuevaBaja.Marca = "-";
+                nuevaBaja.Equipo = "Computadora";
+                nuevaBaja.SerieBoard = computadora.MotherBoardId;
+                nuevaBaja.fechaBaja = DateTime.Now;
+                _context.Bajas.Add(nuevaBaja);
                 _context.Computadoras.Remove(computadora);
             }
 

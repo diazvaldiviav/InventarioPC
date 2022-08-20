@@ -1,0 +1,77 @@
+@model Bajas
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ContactPDF</title>
+    <link rel="shortcut icon" href="~/Assets/logo.png" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+   <div>
+    <h4 class="h4">Baja No: @Model.id</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            @if (Model.Equipo == "Computadora")
+            {
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.Equipo) : @Html.DisplayFor(model => model.Equipo)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.NumInv) : @Html.DisplayFor(model => model.NumInv)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>Tecnologia del micro: @Html.DisplayFor(model => model.Micro.Tecnologia)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.SerieBoard) : @Html.DisplayFor(model => model.SerieBoard)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.MotherBoard.Marca) : @Html.DisplayFor(model => model.MotherBoard.Marca)</p></div>
+                <div class="w-100"></div>
+                foreach (var memoria in Model.Memorias)
+                {
+
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-primary text-white border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                    <div class="col p-2 bg-primary text-white border">Marca de la memoria: @memoria.Marca</div>
+                    <div class="col p-2 bg-primary text-white border">Capacidad de la memoria: @memoria.Capacidad</div>
+                }
+
+
+                foreach (var disco in Model.Discos)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-primary text-white border">No Serie Disco: @disco.NumSerieId</div>
+                    <div class="col p-2 bg-primary text-white border">Marca del Disco: @disco.Marca</div>
+                    <div class="col p-2 bg-primary text-white border">Capacidad del disco: @disco.Capacidad</div>
+
+                }
+            }
+            else
+            {
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.Equipo) : @Html.DisplayFor(model => model.Equipo)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.NumInv) : @Html.DisplayFor(model => model.NumInv)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.Marca) : @Html.DisplayFor(model => model.Marca)</p></div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border"><p>@Html.DisplayNameFor(model => model.NumSerie) : @Html.DisplayFor(model => model.NumSerie)</p></div>
+                <div class="w-100"></div>
+
+            }
+
+
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

@@ -27,25 +27,35 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (_context.Entradas != null)
             {
+                //Aqui traigo todas las entradas de la bd
                 var ListaEntradas = await _context.Entradas.ToListAsync();
+                //creo una lista donde guardare las entradas diciendole cuales tienen salida o no
                 List<Entrada> ListaAMostrar = new List<Entrada>();
 
                 foreach (var entrada in ListaEntradas)
                 {
+                    //instancio la salida por cada entrada
                     entrada.salidas = new Salida();
                     var entradaId = entrada.Id;
+                    //valido si existe la salida con una funcion que cree antes
                     if (SalidaExists(entradaId))
                     {
+                        //si existe inicializo mi objeto salida con la el id de la entrada y se 
+                        //lo anado a la lista
                         entrada.salidas.EntradaId = entradaId;
                         ListaAMostrar.Add(entrada);
                     }
                     else
                     {
+                        //si no existe la salida inicializo la entrada en 0 
+                        //y se la anado a la lista
                         entrada.salidas.EntradaId = 0;
                         ListaAMostrar.Add(entrada);
                     }
 
                 }
+                //finalmente retorno la vista con la lista que tiene definido 
+                //si tienen o no salida
                 return View(ListaAMostrar);
             }
             return View();

@@ -15,6 +15,42 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = G:\ProyectoInventarioASP
 build_property._RazorSourceGeneratorDebug = 
 
+[G:/ProyectoInventarioASP/Views/Bajas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/DetailsPrint.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcRGV0YWlsc1ByaW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/FooterPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcRm9vdGVyUGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/HeaderPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcSGVhZGVyUGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/Imprimir.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcSW1wcmltaXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/ImprimirFilter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcSW1wcmltaXJGaWx0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/ProyectoInventarioASP/Views/Bajas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFqYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/ProyectoInventarioASP/Views/Celular/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VsdWxhclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

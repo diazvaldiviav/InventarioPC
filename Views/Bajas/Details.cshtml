@@ -1,0 +1,96 @@
+@model ProyectoInventarioASP.Models.Bajas
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h1 class="h1">Detalles</h1>
+
+<div>
+    <h4 class="h4">Baja No: @Model.id</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            @if (Model.Equipo == "Computadora")
+            {
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.NumInv)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.NumInv)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">Tecnologia del micro</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Micro.Tecnologia)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.SerieBoard)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.SerieBoard)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.MotherBoard.Marca)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.MotherBoard.Marca)</div>
+                <div class="w-100"></div>
+                if (Model.Memorias.Count() == 0)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border d-flex justify-content-between">
+                        <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
+                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                    </div>
+                }
+                if (Model.Discos.Count() == 0)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border d-flex justify-content-between">
+                        <div>Esta Pc no tiene Discos duros</div><a asp-controller="DiscoDuro" asp-action="Create"
+                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                    </div>
+                }
+                foreach (var memoria in Model.Memorias)
+                {
+
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-primary text-white border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                    <div class="col p-2 bg-primary text-white border">Marca de la memoria: @memoria.Marca</div>
+                    <div class="col p-2 bg-primary text-white border">Capacidad de la memoria: @memoria.Capacidad</div>
+                }
+
+
+                foreach (var disco in Model.Discos)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-primary text-white border">No Serie Disco: @disco.NumSerieId</div>
+                    <div class="col p-2 bg-primary text-white border">Marca del Disco: @disco.Marca</div>
+                    <div class="col p-2 bg-primary text-white border">Capacidad del disco: @disco.Capacidad</div>
+
+                }
+            }
+            else
+            {
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.NumInv)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.NumInv)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.Marca)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Marca)</div>
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.NumSerie)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.NumSerie)</div>
+                <div class="w-100"></div>
+
+            }
+
+
+
+        </div>
+    </div>
+</div>
+<div class="container-flex p-2">
+    @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-primary btn-sm">Modificar</a>
+        <a asp-action="Print" asp-route-id="@Model?.id" class="btn btn-info btn-sm">Imprimir</a>
+    }
+    <a asp-action="Index" class="btn btn-info btn-sm">Volver</a>
+</div>

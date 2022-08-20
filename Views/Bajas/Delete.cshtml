@@ -1,0 +1,96 @@
+@model ProyectoInventarioASP.Models.Bajas
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_Layout";
+}
+
+<h1 class="h1 text-danger">Eliminar</h1>
+
+<h3 class="h3">Estas seguro que deseas eliminar esto?</h3>
+<div>
+    <h4 class="h4">Baja No: @Html.DisplayFor(model => model.id)</h4>
+    <hr />
+   <div class="container">
+        <div class="row">
+            @if (Model.Equipo == "Computadora")
+            {
+                <div class="col p-2">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2">@Html.DisplayNameFor(model => model.NumInv)</div>
+                <div class="col p-2">@Html.DisplayFor(model => model.NumInv)</div>
+                <div class="w-100"></div>
+                <div class="col p-2">@Html.DisplayNameFor(model => model.Micro.Tecnologia)
+                </div>
+                <div class="col p-2">@Html.DisplayFor(model => model.Micro.Tecnologia)</div>
+                <div class="w-100"></div>
+                <div class="col p-2">@Html.DisplayNameFor(model => model.SerieBoard)</div>
+                <div class="col p-2">@Html.DisplayFor(model => model.SerieBoard)</div>
+                <div class="w-100"></div>
+                <div class="col p-2">@Html.DisplayNameFor(model => model.MotherBoard.Marca)</div>
+                <div class="col p-2">@Html.DisplayFor(model => model.MotherBoard.Marca)</div>
+                <div class="w-100"></div>
+                if (Model.Memorias.Count() == 0)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border d-flex justify-content-between">
+                        <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
+                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                    </div>
+                }
+                if (Model.Discos.Count() == 0)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border d-flex justify-content-between">
+                        <div>Esta Pc no tiene Discos duros</div><a asp-controller="DiscoDuro" asp-action="Create"
+                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                    </div>
+                }
+                foreach (var memoria in Model.Memorias)
+                {
+
+                    <div class="w-100"></div>
+                    <div class="col p-2  border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                    <div class="col p-2  border">Marca de la memoria: @memoria.Marca</div>
+                    <div class="col p-2  border">Capacidad de la memoria: @memoria.Capacidad</div>
+                }
+
+
+                foreach (var disco in Model.Discos)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2  border">No Serie Disco: @disco.NumSerieId</div>
+                    <div class="col p-2  border">Marca del Disco: @disco.Marca</div>
+                    <div class="col p-2  border">Capacidad del disco: @disco.Capacidad</div>
+
+                }
+            }
+            else
+            {
+                <div class="col p-2  border">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2  border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="w-100"></div>
+                <div class="col p-2  border">@Html.DisplayNameFor(model => model.NumInv)</div>
+                <div class="col p-2  border">@Html.DisplayFor(model => model.NumInv)</div>
+                <div class="w-100"></div>
+                <div class="col p-2  border">@Html.DisplayNameFor(model => model.Marca)</div>
+                <div class="col p-2  border">@Html.DisplayFor(model => model.Marca)</div>
+                <div class="w-100"></div>
+                <div class="col p-2  border">@Html.DisplayNameFor(model => model.NumSerie)</div>
+                <div class="col p-2  border">@Html.DisplayFor(model => model.NumSerie)</div>
+                <div class="w-100"></div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver</a>
+    </form>
+</div>

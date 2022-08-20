@@ -12,6 +12,7 @@
     <hr />
     <div class="container">
         <div class="row">
+            <h3 class="h3">Entrada</h3>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.Equipo)</div>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Equipo)</div>
             <div class="w-100"></div>
@@ -23,7 +24,7 @@
             <div class="w-100"></div>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.FechaEntrega)</div>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.FechaEntrega)</div>
-             <div class="w-100"></div>
+            <div class="w-100"></div>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.Entrega)</div>
             <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.Entrega)</div>
             <div class="w-100"></div>
@@ -39,11 +40,14 @@
                 <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.salidas.salida)</div>
                 <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.salidas.salida)</div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.salidas.FechaSalida)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.salidas.FechaSalida)
+                </div>
                 <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.salidas.FechaSalida)</div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.salidas.observaciones)</div>
-                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.salidas.observaciones)</div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayNameFor(model => model.salidas.observaciones)
+                </div>
+                <div class="col p-2 bg-primary text-white border">@Html.DisplayFor(model => model.salidas.observaciones)
+                </div>
             }
             else
             {
@@ -55,7 +59,7 @@
             }
         </div>
     </div>
-   <div class="container-flex p-2">
+    <div class="container-flex p-2">
         @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>

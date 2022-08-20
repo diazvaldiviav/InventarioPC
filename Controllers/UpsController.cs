@@ -206,6 +206,14 @@ namespace ProyectoInventarioASP.Controllers
             var ups = await _context.Upss.FindAsync(id);
             if (ups != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = ups.NumInv;
+                nuevaBaja.NumSerie = ups.NumSerie;
+                nuevaBaja.Marca = ups.Marca;
+                nuevaBaja.Equipo = "UPS";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Upss.Remove(ups);
             }
 

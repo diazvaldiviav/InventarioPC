@@ -207,6 +207,14 @@ namespace ProyectoInventarioASP.Controllers
             var impresora = await _context.Impresoras.FindAsync(id);
             if (impresora != null)
             {
+                var nuevaBaja = new Bajas();
+                nuevaBaja.NumInv = impresora.NumInv;
+                nuevaBaja.NumSerie = impresora.NumSerie;
+                nuevaBaja.Marca = impresora.Marca;
+                nuevaBaja.Equipo = "Impresora";
+                nuevaBaja.fechaBaja = DateTime.Now;
+                  nuevaBaja.SerieBoard = "-";
+                _context.Bajas.Add(nuevaBaja);
                 _context.Impresoras.Remove(impresora);
             }
 
