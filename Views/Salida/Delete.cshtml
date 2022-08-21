@@ -5,7 +5,7 @@
     Layout = "_Layout";
 }
 
-<h1>Eliminar</h1>
+<h1 class="h1 text danger">Eliminar</h1>
 
 <h3>Estas seguro que deseas eliminar esto?</h3>
 <div>
@@ -40,7 +40,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver</a>
     </form>
 </div>

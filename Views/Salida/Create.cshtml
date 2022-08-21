@@ -14,8 +14,7 @@
         <form method="post" asp-controller="Salida" asp-action="Crear">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control border border-5" />
+                <input asp-for="Id" type="hidden" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,14 +28,13 @@
                 <span asp-validation-for="FechaSalida" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EntradaId" class="control-label"></label>
-                <select asp-for="EntradaId" class="form-control" asp-items="ViewBag.EntradaId"></select>
+                <input asp-for="EntradaId" class="form-control" type="hidden">
             </div>
             <div class="mb-3">
                 <label asp-for="observaciones" class="form-label">Observaciones: </label>
                 <textarea class="form-control border border-2" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group p-2">
                 <input type="submit" value="Dar Salida" class="btn btn-primary" />
             </div>
         </form>

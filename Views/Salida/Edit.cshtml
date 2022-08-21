@@ -13,7 +13,9 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" class="form-control" />
+            </div>
             <div class="form-group">
                 <label asp-for="salida" class="control-label"></label>
                 <input asp-for="salida" class="form-control border border-5" />
@@ -21,20 +23,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="FechaSalida" class="control-label"></label>
-                <input asp-for="FechaSalida" class="form-control border border-5" />
+                <input asp-for="FechaSalida" class="form-control border border-2" />
                 <span asp-validation-for="FechaSalida" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EntradaId" class="control-label"></label>
-                <select asp-for="EntradaId" class="form-control" asp-items="ViewBag.EntradaId"></select>
-                <span asp-validation-for="EntradaId" class="text-danger"></span>
+                <input asp-for="EntradaId" class="form-control" type="hidden">
             </div>
             <div class="mb-3">
                 <label asp-for="observaciones" class="form-label">Observaciones: </label>
                 <textarea class="form-control border border-2" asp-for="observaciones" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+            <div class="form-group p-2">
+                <input type="submit" value="Dar Salida" class="btn btn-primary" />
             </div>
         </form>
     </div>

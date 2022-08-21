@@ -36,6 +36,7 @@ namespace ProyectoInventarioASP.Controllers
                 {
                     //instancio la salida por cada entrada
                     entrada.salidas = new Salida();
+                    //inicializo una variable para verificar si existe la salida
                     var entradaId = entrada.Id;
                     //valido si existe la salida con una funcion que cree antes
                     if (SalidaExists(entradaId))
@@ -236,13 +237,28 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Print(int id)
         {
-            if (id == 0 || _context.Entradas == null)
+            if (id == null || _context.Entradas == null)
             {
                 return NotFound();
             }
 
+            var BuscarSalida = from salida in _context.Salidas
+                               where salida.EntradaId == id
+                               select salida;
+
+            var salidafinal = BuscarSalida.ToList().Where(item => item.EntradaId == id).FirstOrDefault();
+
+
             var entrada = await _context.Entradas
                 .FirstOrDefaultAsync(m => m.Id == id);
+            if (salidafinal != null)
+            {
+                entrada.salidas.Id = salidafinal.Id;
+                entrada.salidas.salida = salidafinal.salida;
+                entrada.salidas.observaciones = salidafinal.observaciones;
+                entrada.salidas.EntradaId = salidafinal.EntradaId;
+            }
+
             if (entrada == null)
             {
                 return NotFound();

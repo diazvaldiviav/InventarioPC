@@ -23,23 +23,17 @@
         <hr />
         <div class="container">
             <div class="row">
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.Equipo)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.Equipo) : @Html.DisplayFor(model => model.Equipo)</p></div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.NumInvEquipo)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.NumInvEquipo)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.NumInvEquipo) : @Html.DisplayFor(model => model.NumInvEquipo)</p></div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.Lugar)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.Lugar)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.Lugar) : @Html.DisplayFor(model => model.Lugar)</p></div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.FechaEntrega)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.FechaEntrega)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.FechaEntrega) : @Html.DisplayFor(model => model.FechaEntrega)</p></div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.Entrega)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.Entrega)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.Entrega) : @Html.DisplayFor(model => model.Entrega)</p></div>
                 <div class="w-100"></div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.observaciones)</div>
-                <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.observaciones)</div>
+                <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.observaciones) : @Html.DisplayFor(model => model.observaciones)</p></div>
                 <div class="w-100"></div>
                 <div class="col p-2 bg-secondary border">
                     <h3>Salida: <h3>
@@ -47,14 +41,12 @@
                 @if (Model.salidas != null)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.salidas.salida)</div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.salidas.salida)</div>
+                    <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.salidas.salida) : @Html.DisplayFor(model => model.salidas.salida)</p></div>
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.salidas.FechaSalida)</div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.salidas.FechaSalida)</div>
+                    <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.salidas.FechaSalida) : @Html.DisplayFor(model => model.salidas.FechaSalida)</p></div>
                     <div class="w-100"></div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayNameFor(model => model.salidas.observaciones)</div>
-                    <div class="col p-2 bg-secondary border">@Html.DisplayFor(model => model.salidas.observaciones)</div>
+                    <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.salidas.observaciones) : @Html.DisplayFor(model => model.salidas.observaciones)</p></div>
+                    
                 }
                 else
                 {

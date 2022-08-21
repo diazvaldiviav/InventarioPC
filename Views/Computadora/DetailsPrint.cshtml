@@ -36,9 +36,10 @@
                     model.NombreDepartamento)</p>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border">
+            <div class="col p-2 bg-primary text-white border">
                 <p>@Html.DisplayNameFor(model => model.NombreArea) : @Html.DisplayFor(model => model.NombreArea)</p>
             </div>
+            <div class="w-100"></div>
             <div class="w-100"></div>
             <div class="col p-2 bg-secondary border">
                 <p>@Html.DisplayNameFor(model => model.NumIp) : @Html.DisplayFor(model => model.NumIp)</p>
@@ -60,17 +61,31 @@
                 <h3 class="h3">Detalles de los componentes: </h3>
             </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MotherBoardId) : @Html.DisplayFor(model => model.MotherBoardId)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.MotherBoardId) : @Html.DisplayFor(model => model.MotherBoardId)
+                </p>
+            </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MotherBoardMarca) : @Html.DisplayFor(model => model.MotherBoardMarca)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.MotherBoardMarca) : @Html.DisplayFor(model =>
+                    model.MotherBoardMarca)</p>
+            </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.MicroTecn) : @Html.DisplayFor(model => model.MicroTecn)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.MicroTecn) : @Html.DisplayFor(model => model.MicroTecn)</p>
+            </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.ImprNumInv) : @Html.DisplayFor(model => model.ImprNumInv)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.ImprNumInv) : @Html.DisplayFor(model => model.ImprNumInv)</p>
+            </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.UpsInv) : @Html.DisplayFor(model => model.UpsInv)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.UpsInv) : @Html.DisplayFor(model => model.UpsInv)</p>
+            </div>
             <div class="w-100"></div>
-            <div class="col p-2 bg-secondary border"><p>@Html.DisplayNameFor(model => model.TeclNumInv) : @Html.DisplayFor(model => model.TeclNumInv)</p></div>
+            <div class="col p-2 bg-secondary border">
+                <p>@Html.DisplayNameFor(model => model.TeclNumInv) : @Html.DisplayFor(model => model.TeclNumInv)</p>
+            </div>
             <div class="w-100"></div>
 
             @foreach (var monitor in Model.Display)

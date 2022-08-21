@@ -49,13 +49,8 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Salida/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create(int? id)
+        public async Task<IActionResult> Create(int? id)
         {
-
-            var entrada = from entr in _context.Entradas
-                          where entr.Id == id
-                          select entr;
-
             var salida = from sali in _context.Salidas
                          where sali.EntradaId == id
                          select sali;
@@ -65,10 +60,15 @@ namespace ProyectoInventarioASP.Controllers
                 return RedirectToAction("RegistroError", "Home");
             }
 
-
-            ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
+            var Entrada = await _context.Entradas.Where(e => e.Id == id).FirstOrDefaultAsync();
+            if (Entrada == null)
+            {
+                return View();
+            }
             var FechaSalida = new Salida();
             FechaSalida.FechaSalida = DateTime.Now;
+            FechaSalida.EntradaId = Entrada.Id;
+            FechaSalida.Id = Entrada.Id.ToString();
             return View(FechaSalida);
         }
 
@@ -107,7 +107,6 @@ namespace ProyectoInventarioASP.Controllers
                 }
 
             }
-            ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", Salida.EntradaId);
             return View();
         }
 
@@ -125,7 +124,6 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", salida.EntradaId);
             return View(salida);
         }
 
@@ -135,28 +133,33 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, Salida salida)
+        public async Task<IActionResult> Edit(string id, string salida, DateTime FechaSalida, int EntradaId, string observaciones)
         {
-            if (id != salida.Id)
+            var Salida = new Salida();
+            Salida.Id = id;
+            Salida.salida = salida;
+            Salida.FechaSalida = FechaSalida;
+            Salida.EntradaId = EntradaId;
+            Salida.observaciones = observaciones;
+            if (id != Salida.Id)
             {
                 return NotFound();
             }
 
-            if (salida != null)
+            if (Salida != null)
             {
                 try
                 {
-                    if (salida.EntradaId == null || salida.FechaSalida == null || salida.Id == null || salida.observaciones == null || salida.salida == null)
+                    if (Salida.salida == null || Salida.FechaSalida == null || Salida.Id == null || Salida.observaciones == null || Salida.EntradaId == null)
                     {
-                        ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", salida.EntradaId);
-                        return View();
+                        return View(Salida);
                     }
-                    _context.Update(salida);
+                    _context.Update(Salida);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SalidaExists(salida.Id))
+                    if (!SalidaExists(Salida.Id))
                     {
                         return NotFound();
                     }
@@ -167,8 +170,7 @@ namespace ProyectoInventarioASP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EntradaId"] = new SelectList(_context.Entradas, "Id", "Id", salida.EntradaId);
-            return View(salida);
+            return View(Salida);
         }
 
         // GET: Salida/Delete/5
