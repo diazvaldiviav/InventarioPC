@@ -344,3 +344,8 @@ G:\ProyectoInventarioASP\obj\Debug\net6.0\ProyectoInventarioASP.MvcApplicationPa
 G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltoimage.exe
 G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltopdf.exe
 G:\ProyectoInventarioASP\bin\Debug\net6.0\Rotativa\wkhtmltox.dll
+G:\ProyectoInventarioASP\bin\Debug\net6.0\publish\web.config
+G:\ProyectoInventarioASP\bin\Debug\net6.0\publish\appsettings.Development.json
+G:\ProyectoInventarioASP\bin\Debug\net6.0\publish\appsettings.json
+G:\ProyectoInventarioASP\bin\Debug\net6.0\publish\ProyectoInventarioASP.deps.json
+G:\ProyectoInventarioASP\bin\Debug\net6.0\publish\ProyectoInventarioASP.runtimeconfig.json

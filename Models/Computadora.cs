@@ -101,9 +101,11 @@ public class Computadora
 
     public virtual Ups Ups { get; set; }
 
-    [JsonIgnore]
-    [NotMapped]
+    // [JsonIgnore]
+    // [NotMapped]
     public virtual List<Display> Display { get; set; }
+
+    //Utiles de navegacion
     [JsonIgnore]
     [NotMapped]
     public virtual List<DiscoDuro> Discos { get; set; }
@@ -113,6 +115,16 @@ public class Computadora
 
     [NotMapped]
     public virtual List<Scanner> Scanners { get; set; }
+    [NotMapped]
+    public virtual List<Usuario> Usuarios { get; set; }
+    [NotMapped]
+    public virtual List<Ups> Upss { get; set; }
+    [NotMapped]
+    public virtual List<Impresora> Impresoras { get; set; }
+    [NotMapped]
+    public virtual List<Teclado> Teclados { get; set; }
+    [NotMapped]
+    public virtual List<MotherBoard> MotherBoards { get; set; }
 
 }
 

@@ -225,26 +225,27 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NombreUsuario)
         {
+            //listas
+            var usuarios = await _context.Usuarios.ToListAsync();
+            var upss = await _context.Upss.ToListAsync();
+            var MotherBoards = await _context.MotherBoards.ToListAsync();
+            var teclados = await _context.Teclados.ToListAsync();
+            var impresoras = await _context.Impresoras.ToListAsync();
+
             if (NombreUsuario == null)
             {
-                ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
-                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-                ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
-                ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
-                return View();
-            }
+                //objetos
+                var modelo = CargarModelo(upss, MotherBoards, teclados, impresoras, usuarios);
 
-            var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
-            List<Usuario> ListUsuario = new List<Usuario>();
-            ListUsuario.Add(esUsuario);
-            // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
-            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-            ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
-            return View();
+                return View(modelo);
+            }
+      
+            var Trabajador = await _context.Usuarios.Where(m => m.NombreUsuario == NombreUsuario).ToListAsync();
+           
+            var ModeloUnTrabajador = CargarModelo(upss, MotherBoards, teclados, impresoras, Trabajador);
+
+            ViewData["NombreUser"] = new SelectList(Trabajador, "NombreUsuario", "NombreUsuario");
+            return View(ModeloUnTrabajador);
         }
 
         // POST: Computadora/Create
@@ -519,6 +520,8 @@ namespace ProyectoInventarioASP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //metodos privados
+
         private bool ComputadoraExists(int id)
         {
             return (_context.Computadoras?.Any(e => e.Id == id)).GetValueOrDefault();
@@ -614,6 +617,28 @@ namespace ProyectoInventarioASP.Controllers
 
 
             return ListTemp.ToList();
+
+        }
+
+        //usuarios, upss, MotherBoards, teclados, impresoras
+        private Computadora CargarModelo(List<Ups> upss, List<MotherBoard> boards, List<Teclado> teclados, List<Impresora> impresoras, List<Usuario> trabajadores = null)
+        {
+            //instancia de objeto
+            var ModeloComputadora = new Computadora();
+
+            //inicializaciones de objeto
+            ModeloComputadora.Usuarios = new List<Usuario>();
+            ModeloComputadora.Upss = new List<Ups>();
+            ModeloComputadora.MotherBoards = new List<MotherBoard>();
+            ModeloComputadora.Teclados = new List<Teclado>();
+            ModeloComputadora.Impresoras = new List<Impresora>();
+            ModeloComputadora.Upss.AddRange(upss);
+            ModeloComputadora.MotherBoards.AddRange(boards);
+            ModeloComputadora.Teclados.AddRange(teclados);
+            ModeloComputadora.Impresoras.AddRange(impresoras);
+            ModeloComputadora.Usuarios.AddRange(trabajadores);
+
+            return ModeloComputadora;
 
         }
 

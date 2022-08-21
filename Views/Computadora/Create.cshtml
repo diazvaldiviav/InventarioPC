@@ -20,7 +20,7 @@
         <div class="form-group">
             <label asp-for="NombreDepartamento" class="control-label"></label>
             <select asp-for="NombreDepartamento" class="form-control">
-                 <option>Seleccione un Departamento de la Empresa</option>
+                <option>Seleccione un Departamento de la Empresa</option>
                 <option value="Economia">Economia</option>
                 <option value="Direccion General">Direccion General</option>
                 <option value="Inversiones">Inversiones</option>
@@ -41,7 +41,7 @@
         <div class="form-group">
             <label asp-for="NombreArea" class="control-label"></label>
             <select asp-for="NombreArea" class="form-control">
-                 <option>Seleccione un Area de la Empresa</option>
+                <option>Seleccione un Area de la Empresa</option>
                 <option value="Obe Provincial">Obe Provincial</option>
                 <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
                 <option value="UEB Taguasco">UEB Taguasco</option>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group">
             <label asp-for="Nombre" class="control-label"></label>
-            <input asp-for="Nombre"  id="NombrePc" class="form-control border border-5" required />
+            <input asp-for="Nombre" id="NombrePc" class="form-control border border-5" required />
             <span asp-validation-for="Nombre" class="text-danger"></span>
             <div class="inactive" id="validacionNombreMax">El maximo de caracteres para este campo es de 15</div>
             <div class="inactive" id="validacionNombreMin">El minimo de caracteres para este campo es de 13</div>
@@ -90,7 +90,7 @@
             <input asp-for="Mac" class="form-control border border-5" required />
             <span asp-validation-for="Mac" class="text-danger" required></span>
         </div>
-         <div class="form-group">
+        <div class="form-group">
             <label asp-for="Sello" class="control-label"></label>
             <input asp-for="Sello" class="form-control border border-5" required />
             <span asp-validation-for="Sello" class="text-danger" required></span>
@@ -100,26 +100,68 @@
             <input asp-for="NumIp" class="form-control border border-5" required />
             <span asp-validation-for="NumIp" class="text-danger" required></span>
         </div>
-        <div class="form-group">
-            <label asp-for="MotherBoardId" class="control-label"></label>
-            <select asp-for="MotherBoardId" class="form-control border border-5" asp-items="ViewBag.MotherBoardId"></select>
-        </div>
+
+
+        <label asp-for="MotherBoardId" class="control-label"></label>
+        <input asp-for="MotherBoardId" list="boards" class="form-control border border-5" />
+        <datalist id="boards">
+            @foreach (var item in Model.MotherBoards)
+            {
+                <option value="@item.NumSerieId">@item.NumSerieId</option>
+            }
+        </datalist>
+
         <div class="form-group">
             <label asp-for="ImprNumInv" class="control-label"></label>
-            <select asp-for="ImprNumInv" class="form-control" asp-items="ViewBag.ImpresoraInv"></select>
+            <input asp-for="ImprNumInv" list="invImp" class="form-control border border-5" />
+            <datalist id="invImp">
+                @foreach (var item in Model.Impresoras)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
         <div class="form-group">
             <label asp-for="TeclNumInv" class="control-label"></label>
-            <select asp-for="TeclNumInv" class="form-control border border-5" asp-items="ViewBag.TecladoNumInv"></select>
+            <input asp-for="TeclNumInv" list="tecladosinv" class="form-control border border-5" />
+            <datalist id="tecladosinv">
+                @foreach (var item in Model.Teclados)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
-        <div class="form-group">
-            <label asp-for="UserName" class="control-label"></label>
-            <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
-        </div>
+        @if (Model.Usuarios.Count() == 1)
+        {
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
+            </div>
+        }
+        @if (Model.Usuarios.Count() > 1)
+        {
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control border border-5" list="usuarios" />
+                <datalist id="usuarios">
+                    @foreach (var item in Model.Usuarios)
+                    {
+                        <option value="@item.NombreUsuario">@item.NombreUsuario</option>
+                    }
+                </datalist>
+            </div>
+        }
         <div class="form-group">
             <label asp-for="UpsInv" class="control-label"></label>
-            <select asp-for="UpsInv" class="form-control border border-5" asp-items="ViewBag.UpsInv"></select>
+            <input asp-for="UpsInv" class="form-control border border-5" list="Ups" />
+            <datalist id="Ups">
+                @foreach (var item in Model.Upss)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
+
         <div class="form-group p-2">
             <input type="submit" value="Crear" class="btn btn-primary" />
         </div>
