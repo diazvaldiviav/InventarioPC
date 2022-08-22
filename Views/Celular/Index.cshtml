@@ -11,10 +11,10 @@
 {
     <div class="container-flex">
         <p>
-            <a asp-action="Create" class="btn btn-primary btn-sm">Insertar</a>
+            <a asp-action="Create" class="btn btn-orange btn-sm">Insertar</a>
         </p>
         <p>
-            <a asp-action="ImprimirFilter" class="btn btn-primary btn-sm" id="guardar">Imprimir Todos</a>
+            <a asp-action="ImprimirFilter" class="btn btn-orange btn-sm" id="guardar">Imprimir Todos</a>
         </p>
     </div>
 }
@@ -63,13 +63,13 @@
                 </td>
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {
-                    <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                    <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-orange btn-sm">Detalles</a></td>
                     <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Dar Baja</a></td>
                 }
 
                 @if (User.IsInRole("lectura"))
                 {
-                    <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Detalles</a></td>
+                    <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-orange btn-sm">Detalles</a></td>
                 }
             </tr>
         }

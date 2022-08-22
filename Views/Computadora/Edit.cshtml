@@ -40,7 +40,7 @@
         <div class="form-group">
             <label asp-for="NombreArea" class="control-label"></label>
             <select asp-for="NombreArea" class="form-control">
-                <option value="Obe Provincial">Obe</option>
+                <option value="Obe Provincial">Obe Provincial</option>
                 <option value="UEB Sancti-Spiritus">UEB Sancti-Spiritus</option>
                 <option value="UEB Taguasco">UEB Taguasco</option>
                 <option value="UEB Yaguajay">UEB Yaguajay</option>
@@ -102,24 +102,48 @@
             <label asp-for="MotherBoardId" class="control-label"></label>
             <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
         </div>
-        <div class="form-group">
+         <div class="form-group">
             <label asp-for="ImprNumInv" class="control-label"></label>
-            <select asp-for="ImprNumInv" class="form-control" asp-items="ViewBag.ImpresoraInv"></select>
+            <input asp-for="ImprNumInv" list="invImp" class="form-control border border-5" />
+            <datalist id="invImp">
+                @foreach (var item in Model.Impresoras)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
         <div class="form-group">
             <label asp-for="TeclNumInv" class="control-label"></label>
-            <select asp-for="TeclNumInv" class="form-control" asp-items="ViewBag.TecladoNumInv"></select>
+            <input asp-for="TeclNumInv" list="tecladosinv" class="form-control border border-5" />
+            <datalist id="tecladosinv">
+                @foreach (var item in Model.Teclados)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
-        <div class="form-group">
-            <label asp-for="UserName" class="control-label"></label>
-            <select asp-for="UserName" class="form-control" asp-items="ViewBag.NombreUser"></select>
-        </div>
+       <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control border border-5" list="usuarios" />
+                <datalist id="usuarios">
+                    @foreach (var item in Model.Usuarios)
+                    {
+                        <option value="@item.NombreUsuario">@item.NombreUsuario</option>
+                    }
+                </datalist>
+            </div>
         <div class="form-group">
             <label asp-for="UpsInv" class="control-label"></label>
-            <select asp-for="UpsInv" class="form-control" asp-items="ViewBag.UpsInv"></select>
+            <input asp-for="UpsInv" class="form-control border border-5" list="Ups" />
+            <datalist id="Ups">
+                @foreach (var item in Model.Upss)
+                {
+                    <option value="@item.NumInv">@item.NumInv</option>
+                }
+            </datalist>
         </div>
         <div class="form-group p-2">
-            <input type="submit" value="Guardar" class="btn btn-primary" />
+            <input type="submit" value="Guardar" class="btn btn-orange btn-sm" />
         </div>
 </form>
 

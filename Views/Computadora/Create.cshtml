@@ -14,7 +14,7 @@
     <div class="form-row col-md-5 border border-1">
         <div class="form-group">
             <label asp-for="NumInv" class="control-label"></label>
-            <input asp-for="NumInv" class="form-control border border-5" id="NumInv" required />
+            <input asp-for="NumInv" placeholder="Introduzca un No de inventario" class="form-control border border-5" id="NumInv" required />
             <span asp-validation-for="NumInv" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -34,7 +34,7 @@
                 <option value="Logistica">Logistica</option>
                 <option value="Generacion de Emergencia">Generacion de Emergencia</option>
                 <option value="Transorte">Transporte</option>
-                <option value="Fre">Fre</option>
+                <option value="Fre">Free</option>
             </select>
             <span asp-validation-for="NombreDepartamento" class="text-danger"></span>
         </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group">
             <label asp-for="Nombre" class="control-label"></label>
-            <input asp-for="Nombre" id="NombrePc" class="form-control border border-5" required />
+            <input asp-for="Nombre" placeholder="Introduzca el nombre de la pc" id="NombrePc" class="form-control border border-5" required />
             <span asp-validation-for="Nombre" class="text-danger"></span>
             <div class="inactive" id="validacionNombreMax">El maximo de caracteres para este campo es de 15</div>
             <div class="inactive" id="validacionNombreMin">El minimo de caracteres para este campo es de 13</div>
@@ -87,33 +87,33 @@
         </div>
         <div class="form-group">
             <label asp-for="Mac" class="control-label"></label>
-            <input asp-for="Mac" class="form-control border border-5" required />
+            <input asp-for="Mac" placeholder="Introduzca una Mac" class="form-control border border-5" required />
             <span asp-validation-for="Mac" class="text-danger" required></span>
         </div>
         <div class="form-group">
             <label asp-for="Sello" class="control-label"></label>
-            <input asp-for="Sello" class="form-control border border-5" required />
+            <input asp-for="Sello" placeholder="Introduzca un No de sello" class="form-control border border-5" required />
             <span asp-validation-for="Sello" class="text-danger" required></span>
         </div>
         <div class="form-group">
             <label asp-for="NumIp" class="control-label"></label>
-            <input asp-for="NumIp" class="form-control border border-5" required />
+            <input asp-for="NumIp" placeholder="Introduzca un ip" class="form-control border border-5" required />
             <span asp-validation-for="NumIp" class="text-danger" required></span>
         </div>
 
-
+     <div class="form-group">
         <label asp-for="MotherBoardId" class="control-label"></label>
-        <input asp-for="MotherBoardId" list="boards" class="form-control border border-5" />
+        <input asp-for="MotherBoardId" list="boards" placeholder="Introduzca un No de Serie de board" class="form-control border border-5" />
         <datalist id="boards">
             @foreach (var item in Model.MotherBoards)
             {
                 <option value="@item.NumSerieId">@item.NumSerieId</option>
             }
         </datalist>
-
+     </div>
         <div class="form-group">
             <label asp-for="ImprNumInv" class="control-label"></label>
-            <input asp-for="ImprNumInv" list="invImp" class="form-control border border-5" />
+            <input asp-for="ImprNumInv" list="invImp" placeholder="Introduzca un inventario de impresora" class="form-control border border-5" />
             <datalist id="invImp">
                 @foreach (var item in Model.Impresoras)
                 {
@@ -123,7 +123,7 @@
         </div>
         <div class="form-group">
             <label asp-for="TeclNumInv" class="control-label"></label>
-            <input asp-for="TeclNumInv" list="tecladosinv" class="form-control border border-5" />
+            <input asp-for="TeclNumInv" list="tecladosinv" placeholder="Introduzca un inventario de teclado" class="form-control border border-5" />
             <datalist id="tecladosinv">
                 @foreach (var item in Model.Teclados)
                 {
@@ -142,7 +142,7 @@
         {
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control border border-5" list="usuarios" />
+                <input asp-for="UserName" placeholder="Introduzca un usuario" class="form-control border border-5" list="usuarios" />
                 <datalist id="usuarios">
                     @foreach (var item in Model.Usuarios)
                     {
@@ -153,7 +153,7 @@
         }
         <div class="form-group">
             <label asp-for="UpsInv" class="control-label"></label>
-            <input asp-for="UpsInv" class="form-control border border-5" list="Ups" />
+            <input asp-for="UpsInv" placeholder="Introduzca un inventario de UPS" class="form-control border border-5" list="Ups" />
             <datalist id="Ups">
                 @foreach (var item in Model.Upss)
                 {
@@ -163,7 +163,7 @@
         </div>
 
         <div class="form-group p-2">
-            <input type="submit" value="Crear" class="btn btn-primary" />
+            <input type="submit" value="Crear" class="btn btn-orange btn-sm" />
         </div>
 </form>
 

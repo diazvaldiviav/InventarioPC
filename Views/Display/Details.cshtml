@@ -34,8 +34,8 @@
      <div class="container-flex p-2">
         @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
         {
-            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary btn-sm">Modificar</a>
-            <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-info btn-sm">Imprimir</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Modificar</a>
+            <a asp-action="Print" asp-route-id="@Model?.Id" class="btn bg-orange btn-sm">Imprimir</a>
         }
-        <a asp-action="Index" class="btn btn-info btn-sm">Volver</a>
+        <a asp-action="Index" class="btn bg-orange btn-sm">Volver</a>
     </div>

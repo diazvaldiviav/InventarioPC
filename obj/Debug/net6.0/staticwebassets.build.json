@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SGpoXCsevd3BWkpHb2JKALDmd8NdB45V5h80e3l4Xq0=",
+  "Hash": "Z5d9tn8CJBjgDLZ18aRKqJZkcxfaIBT6qL1vmTnEwKA=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -204,6 +204,23 @@
       "OriginalItemSpec": "wwwroot\\Assets\\impresora.png"
     },
     {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\invico.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/invico.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\invico.png"
+    },
+    {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\keyboard.png",
       "SourceId": "ProyectoInventarioASP",
       "SourceType": "Discovered",
@@ -253,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\logo.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\logoapp.jpg",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/logoapp.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\logoapp.jpg"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\memoryram.png",

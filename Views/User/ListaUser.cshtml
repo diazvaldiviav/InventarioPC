@@ -9,7 +9,7 @@
 
     
         <p>
-            <a asp-action="Register" class="btn btn-primary btn-sm">Insertar</a>
+            <a asp-action="Register" class="btn btn-orange btn-sm">Insertar</a>
         </p>
     
     <div class="table-responsive">
@@ -41,7 +41,7 @@
                           <td class="filter dep" id="area">
                             @Html.DisplayFor(modelItem => item.permisos)
                         </td>
-                        <td><a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Modificar</a></td>
+                        <td><a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-orange btn-sm">Modificar</a></td>
                         <td><a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger btn-sm">Eliminar</a></td>
                     </tr>
                 }

@@ -1367,12 +1367,24 @@ button.disabled:focus {
   flex-wrap: wrap;
   border-radius: 4px;
   padding: 10px 20px;
-  background-color: #2f49d1;
+  background-color: #e95e28;
   color: #fff;
 }
 
+.btn-orange{
+  color: #fff;
+  background-color: #e95e28 !important;
+  border-color: #e95e28;
+}
+
+.btn-orange:hover{
+  color: #fff;
+  background-color: orange !important;
+  border-color: #e95e28;
+}
+
 .primary-default-btn:hover {
-  background-color: #4661F0;
+  background-color: orange;
   color: #fff;
 }
 
@@ -1991,7 +2003,7 @@ label {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  background-color: #0061f7 !important;
+  background-color: #e95e28 !important;
   width: 253px;
   padding: 20px 15px 37px 20px;
   -webkit-transition: 0.5s all;

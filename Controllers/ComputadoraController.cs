@@ -239,9 +239,9 @@ namespace ProyectoInventarioASP.Controllers
 
                 return View(modelo);
             }
-      
+
             var Trabajador = await _context.Usuarios.Where(m => m.NombreUsuario == NombreUsuario).ToListAsync();
-           
+
             var ModeloUnTrabajador = CargarModelo(upss, MotherBoards, teclados, impresoras, Trabajador);
 
             ViewData["NombreUser"] = new SelectList(Trabajador, "NombreUsuario", "NombreUsuario");
@@ -345,6 +345,12 @@ namespace ProyectoInventarioASP.Controllers
         // GET: Computadora/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            //listas
+            var usuarios = await _context.Usuarios.ToListAsync();
+            var upss = await _context.Upss.ToListAsync();
+            var MotherBoards = await _context.MotherBoards.ToListAsync();
+            var teclados = await _context.Teclados.ToListAsync();
+            var impresoras = await _context.Impresoras.ToListAsync();
 
 
             if (id == 0 || _context.Computadoras == null)
@@ -353,6 +359,9 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var computadora = await _context.Computadoras.FindAsync(id);
+
+            var modelo = CargarModelo(upss, MotherBoards, teclados, impresoras, usuarios, computadora);
+
             if (computadora == null)
             {
                 return NotFound();
@@ -363,7 +372,7 @@ namespace ProyectoInventarioASP.Controllers
             ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
             ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
-            return View(computadora);
+            return View(modelo);
         }
 
         // POST: Computadora/Edit/5
@@ -621,10 +630,26 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         //usuarios, upss, MotherBoards, teclados, impresoras
-        private Computadora CargarModelo(List<Ups> upss, List<MotherBoard> boards, List<Teclado> teclados, List<Impresora> impresoras, List<Usuario> trabajadores = null)
+        private Computadora CargarModelo(List<Ups> upss, List<MotherBoard> boards, List<Teclado> teclados, List<Impresora> impresoras, List<Usuario> trabajadores, Computadora pc = null)
         {
             //instancia de objeto
             var ModeloComputadora = new Computadora();
+
+            if (pc == null)
+            {
+                ModeloComputadora.Usuarios = new List<Usuario>();
+                ModeloComputadora.Upss = new List<Ups>();
+                ModeloComputadora.MotherBoards = new List<MotherBoard>();
+                ModeloComputadora.Teclados = new List<Teclado>();
+                ModeloComputadora.Impresoras = new List<Impresora>();
+                ModeloComputadora.Upss.AddRange(upss);
+                ModeloComputadora.MotherBoards.AddRange(boards);
+                ModeloComputadora.Teclados.AddRange(teclados);
+                ModeloComputadora.Impresoras.AddRange(impresoras);
+                ModeloComputadora.Usuarios.AddRange(trabajadores);
+                
+                return ModeloComputadora;
+            }
 
             //inicializaciones de objeto
             ModeloComputadora.Usuarios = new List<Usuario>();
@@ -637,6 +662,26 @@ namespace ProyectoInventarioASP.Controllers
             ModeloComputadora.Teclados.AddRange(teclados);
             ModeloComputadora.Impresoras.AddRange(impresoras);
             ModeloComputadora.Usuarios.AddRange(trabajadores);
+            ModeloComputadora.Id = pc.Id;
+            ModeloComputadora.ImpresoraId = pc.ImpresoraId;
+            ModeloComputadora.ImprNumInv = pc.ImprNumInv;
+            ModeloComputadora.Mac = pc.Mac;
+            ModeloComputadora.MicroTecn = pc.MicroTecn;
+            ModeloComputadora.MotherBoardId = pc.MotherBoardId;
+            ModeloComputadora.MotherBoardMarca = pc.MotherBoardMarca;
+            ModeloComputadora.Nombre = pc.Nombre;
+            ModeloComputadora.NombreArea = pc.NombreArea;
+            ModeloComputadora.NombreDepartamento = pc.Nombre;
+            ModeloComputadora.NumInv = pc.NumInv;
+            ModeloComputadora.NumIp = pc.NumIp;
+            ModeloComputadora.Sello = pc.Sello;
+            ModeloComputadora.SO = pc.SO;
+            ModeloComputadora.TecladoId = pc.TecladoId;
+            ModeloComputadora.TeclNumInv = pc.TeclNumInv;
+            ModeloComputadora.UpsId = pc.UpsId;
+            ModeloComputadora.UpsInv = pc.UpsInv;
+            ModeloComputadora.UserName = pc.UserName;
+            ModeloComputadora.UsuarioId = pc.UsuarioId;
 
             return ModeloComputadora;
 
