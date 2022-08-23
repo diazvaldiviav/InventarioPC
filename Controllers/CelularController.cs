@@ -55,7 +55,9 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (NombreUsuario == null)
             {
-                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                var Trabajadores = await _context.Usuarios.ToListAsync();
+                ViewBag.Trabajadores = Trabajadores;
+
                 return View();
             }
             var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
@@ -64,7 +66,6 @@ namespace ProyectoInventarioASP.Controllers
             // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
             ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
-
         }
 
         // POST: Celular/Create
@@ -124,7 +125,8 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            var Trabajadores = await _context.Usuarios.ToListAsync();
+            ViewBag.Trabajadores = Trabajadores;
             return View(celular);
         }
 
@@ -134,7 +136,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NumSerie,NumInv,Marca,estado,UsuarioId,UserName")] Celular celular)
+        public async Task<IActionResult> Edit(int id, Celular celular)
         {
 
             if (id != celular.Id)

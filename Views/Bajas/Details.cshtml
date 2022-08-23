@@ -90,7 +90,7 @@
     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
     {
         <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-orange btn-sm">Modificar</a>
-        <a asp-action="Print" asp-route-id="@Model?.id" class="btn bg-orange btn-sm">Imprimir</a>
+        <a asp-action="Print" asp-route-id="@Model?.id" class="btn btn-orange btn-sm">Imprimir</a>
     }
-    <a asp-action="Index" class="btn bg-orange btn-sm">Volver</a>
+    <a asp-action="Index" class="btn btn-orange btn-sm">Volver</a>
 </div>

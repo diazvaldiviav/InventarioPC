@@ -28,7 +28,10 @@ namespace ProyectoInventarioASP.Models
 
        
     
-        [NotMapped]
+        
         public virtual Usuario Usuario { get; set; }
+
+        [NotMapped]
+        public virtual List<Usuario> Trabajadores {get; set;}
     }
 }

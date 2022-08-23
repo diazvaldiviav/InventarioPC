@@ -54,18 +54,19 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (NombreUsuario == null)
             {
-                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                var Trabajadores = await _context.Usuarios.ToListAsync();
+                ViewBag.Trabajadores = Trabajadores;
+
                 return View();
             }
-
             var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
             List<Usuario> ListUsuario = new List<Usuario>();
             ListUsuario.Add(esUsuario);
             // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
             ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
-
         }
+
 
         // POST: Laptop/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -131,7 +132,8 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            var Trabajadores = await _context.Usuarios.ToListAsync();
+            ViewBag.Trabajadores = Trabajadores;
             return View(laptop);
         }
 

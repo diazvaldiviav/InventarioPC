@@ -48,13 +48,14 @@ namespace ProyectoInventarioASP.Controllers
             return View(impresora);
         }
 
-        // GET: Impresora/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NombreUsuario)
         {
             if (NombreUsuario == null)
             {
-                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+                var Trabajadores = await _context.Usuarios.ToListAsync();
+                ViewBag.Trabajadores = Trabajadores;
+
                 return View();
             }
             var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
@@ -63,8 +64,8 @@ namespace ProyectoInventarioASP.Controllers
             // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
             ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
             return View();
-
         }
+
 
         // POST: Impresora/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -122,7 +123,8 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            var Trabajadores = await _context.Usuarios.ToListAsync();
+            ViewBag.Trabajadores = Trabajadores;
             return View(impresora);
 
         }
@@ -213,7 +215,7 @@ namespace ProyectoInventarioASP.Controllers
                 nuevaBaja.Marca = impresora.Marca;
                 nuevaBaja.Equipo = "Impresora";
                 nuevaBaja.fechaBaja = DateTime.Now;
-                  nuevaBaja.SerieBoard = "-";
+                nuevaBaja.SerieBoard = "-";
                 _context.Bajas.Add(nuevaBaja);
                 _context.Impresoras.Remove(impresora);
             }

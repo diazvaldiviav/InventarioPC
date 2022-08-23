@@ -52,16 +52,19 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NumInv = null, string NombreUsuario = null)
         {
+            var Trabajadores = await _context.Usuarios.ToListAsync();
+            var Computadoras = await _context.Computadoras.ToArrayAsync();
+            ViewBag.Computadoras = Computadoras;
+            ViewBag.Trabajadores = Trabajadores;
+
             if (NumInv == null && NombreUsuario == null)
             {
-                ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
-                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
                 return View();
             }
             else
             {
-                var esInv = await _context.Computadoras.FirstOrDefaultAsync(m => m.NumInv == NumInv);
-                var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
+                var esInv = Computadoras.FirstOrDefault(m => m.NumInv == NumInv);
+                var esUsuario = Trabajadores.FirstOrDefault(m => m.NombreUsuario == NombreUsuario);
                 List<Computadora> ListPc = new List<Computadora>();
                 List<Usuario> ListUsuario = new List<Usuario>();
                 ListPc.Add(esInv);
@@ -78,7 +81,7 @@ namespace ProyectoInventarioASP.Controllers
                 if (esUsuario != null)
                 {
                     // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-                    ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+                    ViewData["InvPc"] = new SelectList(Computadoras, "NumInv", "NumInv");
                     ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
                     return View();
                 }
@@ -150,6 +153,10 @@ namespace ProyectoInventarioASP.Controllers
             }
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             ViewData["InvPc"] = new SelectList(_context.Computadoras, "NumInv", "NumInv");
+            var Trabajadores = await _context.Usuarios.ToListAsync();
+            var Computadoras = await _context.Computadoras.ToArrayAsync();
+            ViewBag.Computadoras = Computadoras;
+            ViewBag.Trabajadores = Trabajadores;
             return View(display);
         }
 
