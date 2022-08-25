@@ -66,14 +66,16 @@ namespace ProyectoInventarioASP.Controllers
                 //List<MotherBoard> board = new List<MotherBoard>();
                 //board.Add(esBoard);
                 //ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
-                return View();
+                disco.MotherBoardId = esBoard.NumSerieId;
+                return View(disco);
             }
 
-            List<MotherBoard> boardParaBaja = new List<MotherBoard>();
+            //List<MotherBoard> boardParaBaja = new List<MotherBoard>();
             var esBoardBaja = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == SerieBoard);
-            boardParaBaja.Add(esBoardBaja);
-            ViewData["MotherBoardId"] = new SelectList(boardParaBaja, "NumSerieId", "NumSerieId");
-            return View();
+            //boardParaBaja.Add(esBoardBaja);
+            //ViewData["MotherBoardId"] = new SelectList(boardParaBaja, "NumSerieId", "NumSerieId");
+            disco.MotherBoardId = esBoardBaja.NumSerieId;
+            return View(disco);
 
         }
 
@@ -123,7 +125,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
+            ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
             return View(discoDuro);
         }
 

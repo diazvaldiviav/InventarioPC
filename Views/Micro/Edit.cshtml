@@ -14,14 +14,14 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NumSerieId" />
-            <div class="form-group">
+             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" class="form-control border border-5" />
+                <input asp-for="Marca" placeholder="Introduzca la marca del micro" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tecnologia" class="control-label"></label>
-                <input asp-for="Tecnologia" class="form-control border border-5" />
+                <input asp-for="Tecnologia" placeholder="Introduzca la tecnologia del micro" class="form-control border border-5" />
                 <span asp-validation-for="Tecnologia" class="text-danger"></span>
             </div>
             <div class = "form-group">

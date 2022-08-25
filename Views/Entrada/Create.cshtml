@@ -16,27 +16,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Equipo" class="control-label"></label>
-                <input asp-for="Equipo" class="form-control border border-5" required/>
+                <input asp-for="Equipo" placeholder="Introduzca el equipo" class="form-control border border-5" required/>
                 <span asp-validation-for="Equipo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumInvEquipo" class="control-label"></label>
-                <input asp-for="NumInvEquipo" class="form-control border border-5" />
+                <input asp-for="NumInvEquipo" placeholder="Introduzca el numero de inventario del equipo" class="form-control border border-5" />
                 <span asp-validation-for="NumInvEquipo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Entrega" class="control-label"></label>
-                <input asp-for="Entrega" class="form-control border border-5" required />
+                <input asp-for="Entrega" placeholder="Introduzca quien va a entregar el equipo" class="form-control border border-5" required />
                 <span asp-validation-for="Entrega" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Lugar" class="control-label"></label>
-                <input asp-for="Lugar" class="form-control border border-5" required />
+                <input asp-for="Lugar" placeholder="Introduzca de donde proviene el equipo" class="form-control border border-5" required />
                 <span asp-validation-for="Lugar" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaEntrega" class="control-label"></label>
-                <input asp-for="FechaEntrega" class="form-control border border-2" required />
+                <input asp-for="FechaEntrega" placeholder="Introduzca cuando se entro el elquipo" class="form-control border border-2" required />
                 <span asp-validation-for="FechaEntrega" class="text-danger"></span>
             </div>
             <div class="mb-3">
