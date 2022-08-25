@@ -52,6 +52,8 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NombreUsuario = null, int? UsuarioId = null)
         {
+            var scanner = new Scanner();
+            ViewBag.Trabajadores = await _context.Usuarios.ToListAsync();
             if (NombreUsuario == null && UsuarioId == null)
             {
                 ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
@@ -61,19 +63,21 @@ namespace ProyectoInventarioASP.Controllers
             if (NombreUsuario != null)
             {
                 var esUsuario = await _context.Usuarios.FirstOrDefaultAsync(m => m.NombreUsuario == NombreUsuario);
-                List<Usuario> ListUsuario = new List<Usuario>();
-                ListUsuario.Add(esUsuario);
+                //List<Usuario> ListUsuario = new List<Usuario>();
+                //ListUsuario.Add(esUsuario);
                 // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-                ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
-                return View();
+                //ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
+                scanner.UserName = esUsuario.NombreUsuario;
+                return View(scanner);
             }
 
             var esUsuarioId = await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == UsuarioId);
-            List<Usuario> ListUsuarioPorId = new List<Usuario>();
-            ListUsuarioPorId.Add(esUsuarioId);
+            //List<Usuario> ListUsuarioPorId = new List<Usuario>();
+            //ListUsuarioPorId.Add(esUsuarioId);
             // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-            ViewData["NombreUser"] = new SelectList(ListUsuarioPorId, "NombreUsuario", "NombreUsuario");
-            return View();
+            //ViewData["NombreUser"] = new SelectList(ListUsuarioPorId, "NombreUsuario", "NombreUsuario");
+            scanner.UserName = esUsuarioId.NombreUsuario;
+            return View(scanner);
 
         }
 
@@ -130,7 +134,8 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            //ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            ViewBag.Trabajadores = await _context.Usuarios.ToListAsync();
             return View(scanner);
         }
 

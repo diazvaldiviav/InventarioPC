@@ -52,6 +52,7 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NumInv = null, string NombreUsuario = null)
         {
+            var display = new Display();
             var Trabajadores = await _context.Usuarios.ToListAsync();
             var Computadoras = await _context.Computadoras.ToArrayAsync();
             ViewBag.Computadoras = Computadoras;
@@ -65,25 +66,27 @@ namespace ProyectoInventarioASP.Controllers
             {
                 var esInv = Computadoras.FirstOrDefault(m => m.NumInv == NumInv);
                 var esUsuario = Trabajadores.FirstOrDefault(m => m.NombreUsuario == NombreUsuario);
-                List<Computadora> ListPc = new List<Computadora>();
-                List<Usuario> ListUsuario = new List<Usuario>();
-                ListPc.Add(esInv);
-                ListUsuario.Add(esUsuario);
+                // List<Computadora> ListPc = new List<Computadora>();
+                // List<Usuario> ListUsuario = new List<Usuario>();
+                // ListPc.Add(esInv);
+                // ListUsuario.Add(esUsuario);
 
                 if (esInv != null)
                 {
                     // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-                    ViewData["InvPc"] = new SelectList(ListPc, "NumInv", "NumInv");
-                    ViewData["NombreUser"] = new SelectList(ListPc, "UserName", "UserName");
-                    return View();
+                    //ViewData["InvPc"] = new SelectList(ListPc, "NumInv", "NumInv");
+                    //ViewData["NombreUser"] = new SelectList(ListPc, "UserName", "UserName");
+                    display.NumInvPc = esInv.NumInv;
+                    return View(display);
                 }
 
                 if (esUsuario != null)
                 {
                     // ViewData["EntradaId"] = new SelectList(entrada.ToList(), "Id", "Id");
-                    ViewData["InvPc"] = new SelectList(Computadoras, "NumInv", "NumInv");
-                    ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
-                    return View();
+                    //ViewData["InvPc"] = new SelectList(Computadoras, "NumInv", "NumInv");
+                    //ViewData["NombreUser"] = new SelectList(ListUsuario, "NombreUsuario", "NombreUsuario");
+                    display.UserName = esUsuario.NombreUsuario;
+                    return View(display);
                 }
 
 

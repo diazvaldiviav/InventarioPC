@@ -52,17 +52,20 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string MotherBoardId = null, string SerieBoard = null)
         {
+            ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
+            var disco = new DiscoDuro();
+
             if (MotherBoardId == null && SerieBoard == null)
             {
-                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+                //ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
                 return View();
             }
             if (MotherBoardId != null)
             {
-                List<MotherBoard> board = new List<MotherBoard>();
-                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
-                board.Add(esBoard);
-                ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
+                 var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
+                //List<MotherBoard> board = new List<MotherBoard>();
+                //board.Add(esBoard);
+                //ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
                 return View();
             }
 
