@@ -50,9 +50,10 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: MotherBoard/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId");
+            var micros = await _context.MicroProcesadores.ToListAsync();
+            ViewBag.Micros = micros;
             return View();
         }
 
@@ -68,6 +69,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+
                     if (motherBoard.Marca == null || motherBoard.MicroProcesadorId == null || motherBoard.NumSerieId == null)
                     {
                         ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
@@ -98,6 +100,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var motherBoard = await _context.MotherBoards.FindAsync(id);
+            var micros = await _context.MicroProcesadores.ToListAsync();
+            ViewBag.Micros = micros;
             if (motherBoard == null)
             {
                 return NotFound();

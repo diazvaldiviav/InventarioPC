@@ -14,10 +14,26 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+             <div class="form-group">
                 <label asp-for="Equipo" class="control-label"></label>
-                <input asp-for="Equipo" placeholder="Introduzca el equipo" class="form-control border border-5" />
+                <input asp-for="Equipo" List="equipos" placeholder="Introduzca el equipo"
+                    class="form-control border border-5" required />
                 <span asp-validation-for="Equipo" class="text-danger"></span>
+                <datalist id="equipos">
+                    @foreach (var equipo in Model.equipos)
+                    {
+                        <option value="@equipo.Tipo">@equipo.Tipo</option>
+                    }
+                </datalist>
+                @if (Model.Equipo == ViewBag.Equipo)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 bg-danger border d-flex justify-content-between">
+                        <p>Este/a @Html.DisplayFor(model => model.Equipo) no solemos repararlo. Desea registrarlo como equipo a reparar</p> <a
+                        asp-controller="Equipos" asp-action="Create" asp-route-Tipo="@Model.Equipo" class="text-info">Registrar</a>
+                    </div>
+                }
+
             </div>
             <div class="form-group">
                 <label asp-for="NumInvEquipo" class="control-label"></label>

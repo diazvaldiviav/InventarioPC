@@ -51,25 +51,22 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string MotherBoardId = null, string SerieBoard = null)
         {
+            ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
+            var memoria = new MemoriaRam();
             if (MotherBoardId == null && SerieBoard == null)
             {
-                ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
                 return View();
             }
             if (MotherBoardId != null)
             {
-                List<MotherBoard> board = new List<MotherBoard>();
                 var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
-                board.Add(esBoard);
-                ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
-                return View();
+                memoria.MotherBoardId = esBoard.NumSerieId;
+                return View(memoria);
             }
 
-            List<MotherBoard> boardParaBaja = new List<MotherBoard>();
             var esBoardBaja = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == SerieBoard);
-            boardParaBaja.Add(esBoardBaja);
-            ViewData["MotherBoardId"] = new SelectList(boardParaBaja, "NumSerieId", "NumSerieId");
-            return View();
+            memoria.MotherBoardId = esBoardBaja.NumSerieId;
+            return View(memoria);
 
         }
 
@@ -119,7 +116,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 return NotFound();
             }
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
+            ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
             return View(memoriaRam);
         }
 

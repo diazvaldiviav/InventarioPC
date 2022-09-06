@@ -144,8 +144,8 @@ namespace ProyectoInventarioASP.Controllers
 
             if (impresora != null)
             {
-                try
-                {
+                 try
+                 {
                     if (impresora.estado == null || impresora.Id == null || impresora.Marca == null || impresora.NumInv == null || impresora.NumSerie == null || impresora.UserName == null)
                     {
                         ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", impresora.UserName);
@@ -157,21 +157,21 @@ namespace ProyectoInventarioASP.Controllers
                                        select user.Id;
 
                     var idUser = BuscarIdUser.ToArray();
-                    impresora.Id = idUser[0];
+                    impresora.UsuarioId = idUser[0];
                     _context.Impresoras.Update(impresora);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ImpresoraExists(impresora.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
+                 catch (DbUpdateConcurrencyException)
+                 {
+                     if (!ImpresoraExists(impresora.Id))
+                     {
+                         return NotFound();
+                     }
+                     else
+                     {
+                         return RedirectToAction("Index", "Home");
+                     }
+                 }
                 return RedirectToAction(nameof(Index));
             }
             ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", impresora.UserName);

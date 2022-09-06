@@ -1,0 +1,25 @@
+@model ProyectoInventarioASP.Models.Equipos
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Equipo No: @Model.Id</h4>
+    <hr />
+    <div class="row">
+        <div class="col p-2 border">@Html.DisplayNameFor(model => model.Id)</div>
+        <div class="col p-2 border">@Html.DisplayFor(model => model.Id)</div>
+        <div class="w-100"></div>
+        <div class="col p-2 border">@Html.DisplayNameFor(model => model.Tipo)</div>
+        <div class="col p-2 border">@Html.DisplayFor(model => model.Tipo)</div>
+    </div>
+</div>
+<div class="container-flex p-2">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Modificar</a>
+    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Eliminar</a>
+    <a asp-action="Index" class="btn btn-orange btn-sm">Volver</a>
+</div>

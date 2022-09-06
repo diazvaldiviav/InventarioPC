@@ -14,7 +14,7 @@
     }
 </p>
 <div class="table-responsive">
-<table class="table">
+<table class="table table-hover table-border" id="tabla">
     <thead>
         <tr class="filapc" id="tabla">
             <th>
@@ -37,7 +37,7 @@
     <tbody id="CuerpoTablaPc">
         @foreach (var item in Model)
         {
-            <tr>
+           <tr class="filapc">
                 <td>
                     @Html.DisplayFor(modelItem => item.NumSerieId)
                 </td>

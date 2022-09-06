@@ -29,6 +29,9 @@ namespace ProyectoInventarioASP.Models
         public string observaciones { get; set; }
 
         public Salida salidas { get; set; }
+        
+        [NotMapped]
+        public List<Equipos> equipos{get; set;}
 
 
 

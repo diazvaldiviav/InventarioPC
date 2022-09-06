@@ -97,9 +97,14 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: Entrada/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var equipos = await _context.Equipos.ToListAsync();
             var entrada = new Entrada();
+            entrada.equipos = new List<Equipos>();
+            entrada.Equipo = null;
+            entrada.equipos.AddRange(equipos);
+            ViewBag.Equipo = "";
             entrada.FechaEntrega = DateTime.Now;
             return View(entrada);
         }
@@ -122,6 +127,25 @@ namespace ProyectoInventarioASP.Controllers
                 {
                     return View(entrada);
                 }
+                if (!EquipoExists(entrada.Equipo))
+                {
+                    var equipos = await _context.Equipos.ToListAsync();
+                    var entrada2 = new Entrada();
+                    entrada2.equipos = new List<Equipos>();
+                    entrada2.Equipo = entrada.Equipo;
+                    entrada2.Entrega = entrada.Entrega;
+                    entrada2.FechaEntrega = entrada.FechaEntrega;
+                    entrada2.Id = entrada.Id;
+                    entrada2.Lugar = entrada.Lugar;
+                    entrada2.NumInvEquipo = entrada.NumInvEquipo;
+                    entrada2.observaciones = entrada.observaciones;
+                    entrada2.equipos.AddRange(equipos);
+
+                    ViewBag.Equipo = entrada.Equipo;
+
+                    return View(entrada2);
+
+                }
                 _context.Add(entrada);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -139,6 +163,10 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var entrada = await _context.Entradas.FindAsync(id);
+            var equipos = await _context.Equipos.ToListAsync();
+            entrada.equipos = new List<Equipos>();
+            entrada.equipos.AddRange(equipos);
+            ViewBag.Equipo = "";
             if (entrada == null)
             {
                 return NotFound();
@@ -171,6 +199,25 @@ namespace ProyectoInventarioASP.Controllers
                     if (entrada.observaciones.Length > 250)
                     {
                         return View(entrada);
+                    }
+                    if (!EquipoExists(entrada.Equipo))
+                    {
+                        var equipos = await _context.Equipos.ToListAsync();
+                        var entrada2 = new Entrada();
+                        entrada2.equipos = new List<Equipos>();
+                        entrada2.Equipo = entrada.Equipo;
+                        entrada2.Entrega = entrada.Entrega;
+                        entrada2.FechaEntrega = entrada.FechaEntrega;
+                        entrada2.Id = entrada.Id;
+                        entrada2.Lugar = entrada.Lugar;
+                        entrada2.NumInvEquipo = entrada.NumInvEquipo;
+                        entrada2.observaciones = entrada.observaciones;
+                        entrada2.equipos.AddRange(equipos);
+
+                        ViewBag.Equipo = entrada.Equipo;
+
+                        return View(entrada2);
+
                     }
                     _context.Update(entrada);
                     await _context.SaveChangesAsync();
@@ -290,6 +337,11 @@ namespace ProyectoInventarioASP.Controllers
         private bool SalidaExists(int id)
         {
             return (_context.Salidas?.Any(e => e.EntradaId == id)).GetValueOrDefault();
+        }
+
+        private bool EquipoExists(string Tipo)
+        {
+            return (_context.Equipos?.Any(e => e.Tipo == Tipo)).GetValueOrDefault();
         }
     }
 }
