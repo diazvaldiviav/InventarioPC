@@ -164,7 +164,8 @@ namespace ProyectoInventarioASP.Controllers
             var motherBoard = await _context.MotherBoards
                 .Include(m => m.Micro)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
-            if (motherBoard == null)
+
+            if (motherBoard == null || motherBoard.NumSerieId == "Sin Board")
             {
                 return NotFound();
             }

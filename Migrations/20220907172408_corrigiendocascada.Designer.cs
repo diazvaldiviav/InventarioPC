@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoInventarioASP;
 
@@ -11,9 +12,10 @@ using ProyectoInventarioASP;
 namespace ProyectoInventarioASP.Migrations
 {
     [DbContext(typeof(ComputadoraContext))]
-    partial class ComputadoraContextModelSnapshot : ModelSnapshot
+    [Migration("20220907172408_corrigiendocascada")]
+    partial class corrigiendocascada
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,32 +196,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Computadoras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImprNumInv = "Sin Impresora",
-                            ImpresoraId = 1,
-                            Mac = "-",
-                            MicroTecn = "-",
-                            MotherBoardId = "Sin Board",
-                            MotherBoardMarca = "-",
-                            Nombre = "-",
-                            NombreArea = "-",
-                            NombreDepartamento = "-",
-                            NumInv = "Sin Computadora",
-                            NumIp = "-",
-                            SO = "-",
-                            Sello = "-",
-                            TeclNumInv = "-",
-                            TecladoId = 1,
-                            UpsId = 1,
-                            UpsInv = "Sin Ups",
-                            UserName = "Sin Trabajador",
-                            UsuarioId = 1,
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.DiscoDuro", b =>
@@ -388,18 +364,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Impresoras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Marca = "-",
-                            NumInv = "Sin Impresora",
-                            NumSerie = "-",
-                            UserName = "Sin Trabajador",
-                            UsuarioId = 1,
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Laptop", b =>
@@ -506,15 +470,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasKey("NumSerieId");
 
                     b.ToTable("MicroProcesadores");
-
-                    b.HasData(
-                        new
-                        {
-                            NumSerieId = "Sin Micro",
-                            Marca = "-",
-                            Tecnologia = "-",
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.MotherBoard", b =>
@@ -538,15 +493,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasIndex("MicroProcesadorId");
 
                     b.ToTable("MotherBoards");
-
-                    b.HasData(
-                        new
-                        {
-                            NumSerieId = "Sin Board",
-                            Marca = "-",
-                            MicroProcesadorId = "Sin Micro",
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Salida", b =>
@@ -653,19 +599,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Teclados");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Marca = "-",
-                            NumInv = "-",
-                            NumSerie = "Sin Teclado",
-                            TipoConexion = "-",
-                            UserName = "Sin Trabajador",
-                            UsuarioId = 1,
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Telefono", b =>
@@ -740,18 +673,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Upss");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Marca = "Marca",
-                            NumInv = "Sin Ups",
-                            NumSerie = "-",
-                            UserName = "Sin Trabajador",
-                            UsuarioId = 1,
-                            estado = 1
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.User", b =>
@@ -818,17 +739,6 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Cargo = "-",
-                            NombreArea = "-",
-                            NombreCompleto = "-",
-                            NombreDepartamento = "-",
-                            NombreUsuario = "Sin Trabajador"
-                        });
                 });
 
             modelBuilder.Entity("ProyectoInventarioASP.Models.Celular", b =>
@@ -836,7 +746,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Celular")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -847,31 +757,31 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Impresora", "Impresora")
                         .WithMany("Computadora")
                         .HasForeignKey("ImpresoraId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "MotherBoard")
                         .WithMany("Computadora")
                         .HasForeignKey("MotherBoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProyectoInventarioASP.Models.Teclado", "Teclado")
                         .WithMany("Computadora")
                         .HasForeignKey("TecladoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProyectoInventarioASP.Models.Ups", "Ups")
                         .WithMany("Computadora")
                         .HasForeignKey("UpsId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Computadora")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Impresora");
@@ -890,7 +800,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "motherBoard")
                         .WithMany("Discos")
                         .HasForeignKey("MotherBoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("motherBoard");
@@ -901,13 +811,13 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Computadora", "Computadora")
                         .WithMany("Display")
                         .HasForeignKey("ComputadoraId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Monitores")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Computadora");
@@ -920,7 +830,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Impresora")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -931,7 +841,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Laptop")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -942,7 +852,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.MotherBoard", "MotherBoard")
                         .WithMany("Memorias")
                         .HasForeignKey("MotherBoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("MotherBoard");
@@ -953,7 +863,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.MicroProcesador", "Micro")
                         .WithMany("MotherBoard")
                         .HasForeignKey("MicroProcesadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Micro");
@@ -975,7 +885,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Scanner")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -986,7 +896,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Teclado")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -997,7 +907,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Telefono")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");
@@ -1008,7 +918,7 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasOne("ProyectoInventarioASP.Models.Usuario", "Usuario")
                         .WithMany("Ups")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Usuario");

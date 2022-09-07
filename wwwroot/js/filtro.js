@@ -1,6 +1,19 @@
 let ButtonSearchi = document.querySelector(".buttonSearch");
 
 ButtonSearchi.addEventListener("click", buscarPc);
+console.log("script desde filtro");
+
+function ocultandoFila(){
+  let filas = document.querySelectorAll(".filapc");
+  let ArrFilas = [...filas];
+
+  ArrFilas.forEach((fila) => {
+    if (fila.textContent.includes("Sin")) {
+      fila.classList.add("inactive");
+    }
+   
+  });
+}
 
 function buscarPc() {
   let Tabla = document.querySelector("#tabla");
@@ -11,28 +24,26 @@ function buscarPc() {
   CuerpoTabla.remove();
   let CuerpoTabla2 = document.createElement("tbody");
 
-  ArrFilas.map(fila => {
+  ArrFilas.map((fila) => {
     if (searchvalor == "activo") {
-      ArrFilas.map(fila => {
+      ArrFilas.map((fila) => {
         if (fila.textContent.includes("activo")) {
-          console.log(fila);
           CuerpoTabla2.append(fila);
           Tabla.append(CuerpoTabla2);
-          ArrFilas.map(fila => {
+          ArrFilas.map((fila) => {
             if (fila.textContent.includes("inactivo")) {
-                fila.remove()
+              fila.remove();
             }
-          })
+          });
         }
       });
     } else {
       if (fila.textContent.includes(searchvalor)) {
-        console.log(fila);
         CuerpoTabla2.append(fila);
         Tabla.append(CuerpoTabla2);
       }
     }
   });
-
-
 }
+
+ocultandoFila();

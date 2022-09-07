@@ -15,22 +15,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NumSerie" class="control-label"></label>
-                <input asp-for="NumSerie" class="form-control border border-5" />
+                <input asp-for="NumSerie" placeholder="Introduzca el numero de serie" class="form-control border border-5" />
                 <span asp-validation-for="NumSerie" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumInv" class="control-label"></label>
-                <input asp-for="NumInv" class="form-control border border-5" />
+                <input asp-for="NumInv" placeholder="Introduzca el numero de inventario" class="form-control border border-5" />
                 <span asp-validation-for="NumInv" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" class="form-control border border-5" />
+                <input asp-for="Marca" placeholder="Introduzca la marca" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TipoConexion" class="control-label"></label>
-                <input asp-for="TipoConexion" class="form-control border border-5" />
+                <input asp-for="TipoConexion" placeholder="Introduzca el tipo de conexion Ej: USB" class="form-control border border-5" />
                 <span asp-validation-for="TipoConexion" class="text-danger"></span>
             </div>
              @if (ViewBag.Trabajadores == null)
@@ -44,7 +44,7 @@
             {
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>
-                    <input asp-for="UserName" placeholder="Introduzca un usuario" class="form-control border border-5"
+                    <input asp-for="UserName" placeholder="Introduzca el trabajador responsable" placeholder="Introduzca un usuario" class="form-control border border-5"
                     list="usuarios" />
                     <datalist id="usuarios">
                         @foreach (var item in ViewBag.Trabajadores)

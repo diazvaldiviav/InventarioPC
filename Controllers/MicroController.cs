@@ -152,7 +152,7 @@ namespace ProyectoInventarioASP.Controllers
 
             var microProcesador = await _context.MicroProcesadores
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
-            if (microProcesador == null)
+            if (microProcesador == null || microProcesador.NumSerieId == "Sin Micro")
             {
                 return NotFound();
             }
@@ -173,12 +173,23 @@ namespace ProyectoInventarioASP.Controllers
             var microProcesador = await _context.MicroProcesadores.FindAsync(id);
             if (microProcesador != null)
             {
-                _context.MicroProcesadores.Remove(microProcesador);
+                try
+                {
+                    _context.MicroProcesadores.Remove(microProcesador);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException)
+                {
+                    return RedirectToAction("BdError", "Home");
+                }
+
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return View();
         }
+
+
 
         private bool MicroProcesadorExists(string id)
         {

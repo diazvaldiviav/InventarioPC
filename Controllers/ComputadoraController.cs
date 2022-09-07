@@ -236,7 +236,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 //objetos
                 var modelo = CargarModelo(upss, MotherBoards, teclados, impresoras, usuarios);
-
+                ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
                 return View(modelo);
             }
 

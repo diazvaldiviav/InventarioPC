@@ -15,18 +15,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NumSerieId" class="control-label"></label>
-                <input asp-for="NumSerieId" class="form-control border border-5" />
+                <input asp-for="NumSerieId" placeholder="Introduzca el numero de serie" class="form-control border border-5" />
                 <span asp-validation-for="NumSerieId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" class="form-control border border-5" />
+                <input asp-for="Marca" placeholder="Introduzca la marca" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-                <label asp-for="MicroProcesadorId" class="control-label"></label>
-                <select asp-for="MicroProcesadorId" class ="form-control" asp-items="ViewBag.MicroProcesadorId"></select>
-            </div> *@
               <div class="form-group">
                     <label asp-for="MicroProcesadorId" class="control-label"></label>
                     <input asp-for="MicroProcesadorId" placeholder="Introduzca un serial de micro" class="form-control border border-5"
