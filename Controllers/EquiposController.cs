@@ -69,7 +69,7 @@ namespace ProyectoInventarioASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                 equipos.Tipo.ToLower();
+                equipos.Tipo = equipos.Tipo.ToLower();
                 _context.Add(equipos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -111,6 +111,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
+                    equipos.Tipo = equipos.Tipo.ToLower();
                     _context.Update(equipos);
                     await _context.SaveChangesAsync();
                 }

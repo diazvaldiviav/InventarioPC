@@ -75,6 +75,7 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
                         return View(motherBoard);
                     }
+                    motherBoard.Marca = motherBoard.Marca.ToLower();
                     _context.Add(motherBoard);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -132,6 +133,7 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
                         return View(motherBoard);
                     }
+                     motherBoard.Marca = motherBoard.Marca.ToLower();
                     _context.Update(motherBoard);
                     await _context.SaveChangesAsync();
                 }

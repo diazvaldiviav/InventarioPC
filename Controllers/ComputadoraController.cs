@@ -46,11 +46,13 @@ namespace ProyectoInventarioASP.Controllers
             var memorias = CargarMemorias(computadora.MotherBoardId);
             var discos = CargarDiscos(computadora.MotherBoardId);
             var scan = CargarScanner(computadora.UserName);
+            var micro = CargarTecnMic(computadora.MotherBoardId);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
-
+            
+            computadora.MicroTecn = micro;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
@@ -493,7 +495,7 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Ups)
                 .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (computadora == null)
+            if (computadora == null || computadora.NumInv == "Sin Computadora")
             {
                 return NotFound();
             }

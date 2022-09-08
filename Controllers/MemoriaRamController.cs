@@ -87,6 +87,9 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
                         return View(memoriaRam);
                     }
+                    memoriaRam.Capacidad = memoriaRam.Capacidad.ToLower();
+                    memoriaRam.Marca = memoriaRam.Marca.ToLower();
+                    memoriaRam.Tecnologia = memoriaRam.Tecnologia.ToLower();
                     _context.Add(memoriaRam);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -142,6 +145,9 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
                         return View(memoriaRam);
                     }
+                    memoriaRam.Capacidad = memoriaRam.Capacidad.ToLower();
+                    memoriaRam.Marca = memoriaRam.Marca.ToLower();
+                    memoriaRam.Tecnologia = memoriaRam.Tecnologia.ToLower();
                     _context.Update(memoriaRam);
                     await _context.SaveChangesAsync();
                 }

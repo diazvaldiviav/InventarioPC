@@ -12,22 +12,22 @@
     <hr />
     <div class="container">
         <div class="row">
-            @if (Model.Equipo == "Computadora")
+            @if (Model.Equipo == "computadora")
             {
-                <div class="col p-2     border">@Html.DisplayNameFor(model => model.Equipo)</div>
-                <div class="col p-2     border">@Html.DisplayFor(model => model.Equipo)</div>
+                <div class="col p-2 border">@Html.DisplayNameFor(model => model.Equipo)</div>
+                <div class="col p-2 border">@Html.DisplayFor(model => model.Equipo)</div>
                 <div class="w-100"></div>
-                <div class="col p-2     border">@Html.DisplayNameFor(model => model.NumInv)</div>
-                <div class="col p-2     border">@Html.DisplayFor(model => model.NumInv)</div>
+                <div class="col p-2 border">@Html.DisplayNameFor(model => model.NumInv)</div>
+                <div class="col p-2 border">@Html.DisplayFor(model => model.NumInv)</div>
                 <div class="w-100"></div>
-                <div class="col p-2     border">Tecnologia del micro</div>
-                <div class="col p-2     border">@Html.DisplayFor(model => model.Micro.Tecnologia)</div>
+                <div class="col p-2 border">Tecnologia del micro</div>
+                <div class="col p-2 border">@Html.DisplayFor(model => model.Micro.Tecnologia)</div>
                 <div class="w-100"></div>
-                <div class="col p-2     border">@Html.DisplayNameFor(model => model.SerieBoard)</div>
-                <div class="col p-2     border">@Html.DisplayFor(model => model.SerieBoard)</div>
+                <div class="col p-2 border">@Html.DisplayNameFor(model => model.SerieBoard)</div>
+                <div class="col p-2 border">@Html.DisplayFor(model => model.SerieBoard)</div>
                 <div class="w-100"></div>
-                <div class="col p-2     border">@Html.DisplayNameFor(model => model.MotherBoard.Marca)</div>
-                <div class="col p-2     border">@Html.DisplayFor(model => model.MotherBoard.Marca)</div>
+                <div class="col p-2 border">@Html.DisplayNameFor(model => model.MotherBoard.Marca)</div>
+                <div class="col p-2 border">@Html.DisplayFor(model => model.MotherBoard.Marca)</div>
                 <div class="w-100"></div>
                 if (Model.Memorias.Count() == 0)
                 {

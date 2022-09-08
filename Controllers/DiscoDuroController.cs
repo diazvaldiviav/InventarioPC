@@ -62,7 +62,7 @@ namespace ProyectoInventarioASP.Controllers
             }
             if (MotherBoardId != null)
             {
-                 var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
+                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
                 //List<MotherBoard> board = new List<MotherBoard>();
                 //board.Add(esBoard);
                 //ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
@@ -96,6 +96,9 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
                         return View(discoDuro);
                     }
+                    discoDuro.Marca = discoDuro.Marca.ToLower();
+                    discoDuro.Capacidad = discoDuro.Capacidad.ToLower();
+                    discoDuro.TipoConexion = discoDuro.TipoConexion.ToLower();
                     _context.Add(discoDuro);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -151,6 +154,9 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
                         return View(discoDuro);
                     }
+                    discoDuro.Marca = discoDuro.Marca.ToLower();
+                    discoDuro.Capacidad = discoDuro.Capacidad.ToLower();
+                    discoDuro.TipoConexion = discoDuro.TipoConexion.ToLower();
                     _context.Update(discoDuro);
                     await _context.SaveChangesAsync();
                 }

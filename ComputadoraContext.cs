@@ -51,7 +51,7 @@ public class ComputadoraContext : DbContext
         // modelBuilder.Entity<Escuela>().HasData(escuela);
     }
 
-    private object CargarComputadora(Usuario trabajador, Teclado teclado, Ups ups, Impresora impresora, MotherBoard board)
+    private Computadora CargarComputadora(Usuario trabajador, Teclado teclado, Ups ups, Impresora impresora, MotherBoard board)
     {
         var pc = new Computadora
         {
