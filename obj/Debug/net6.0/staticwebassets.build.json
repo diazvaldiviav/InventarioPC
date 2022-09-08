@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UgIIAfjm0UXyElyRemT9BjRgelpFQCxndP0EWDub8UE=",
+  "Hash": "cGNBrrM4ZVTQeMiVb5yFGFQjfC8LnEMv+svFm1bG2BI=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -185,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Assets\\entrada.png"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\iconopag.png",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "Assets/iconopag.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\iconopag.png"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\Assets\\impresora.png",
