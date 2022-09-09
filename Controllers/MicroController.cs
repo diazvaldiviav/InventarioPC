@@ -70,6 +70,8 @@ namespace ProyectoInventarioASP.Controllers
                     {
                         return View(microProcesador);
                     }
+                    microProcesador.Tecnologia = microProcesador.Tecnologia.ToLower();
+                    microProcesador.Marca = microProcesador.Marca.ToLower();
                     _context.Add(microProcesador);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -122,6 +124,8 @@ namespace ProyectoInventarioASP.Controllers
                     {
                         return View(microProcesador);
                     }
+                    microProcesador.Tecnologia = microProcesador.Tecnologia.ToLower();
+                    microProcesador.Marca = microProcesador.Marca.ToLower();
                     _context.Update(microProcesador);
                     await _context.SaveChangesAsync();
                 }

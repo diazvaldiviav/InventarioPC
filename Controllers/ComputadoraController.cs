@@ -190,11 +190,13 @@ namespace ProyectoInventarioASP.Controllers
             var memorias = CargarMemorias(boardid[0]);
             var discos = CargarDiscos(computadora.MotherBoardId);
             var scan = CargarScanner(computadora.UserName);
+            var micro = CargarTecnMic(computadora.MotherBoardId);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
-
+            
+            computadora.MicroTecn = micro;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
@@ -320,8 +322,8 @@ namespace ProyectoInventarioASP.Controllers
                     computadora.UpsId = idUps[0];
                     computadora.TecladoId = idTecl[0];
                     computadora.UsuarioId = idUser[0];
-                    computadora.MotherBoardMarca = marcaBoard;
-                    computadora.MicroTecn = tecMicro;
+                    computadora.MotherBoardMarca = marcaBoard.ToLower();
+                    computadora.MicroTecn = tecMicro.ToLower();
                     _context.Add(computadora);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));

@@ -36,18 +36,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.estado)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
             <th></th>
             <th></th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="CuerpoTablaPc">
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="filapc">
                 <td>
                     @Html.DisplayFor(modelItem => item.NumSerie)
                 </td>
@@ -59,9 +56,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {

@@ -94,6 +94,7 @@ namespace ProyectoInventarioASP.Controllers
                     var idUser = BuscarIdUser.ToArray();
 
                     celular.UsuarioId = idUser[0];
+                    celular.Marca = celular.Marca.ToLower();
                     _context.Add(celular);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -160,6 +161,7 @@ namespace ProyectoInventarioASP.Controllers
 
                     var idUser = BuscarIdUser.ToArray();
                     celular.UsuarioId = idUser[0];
+                    celular.Marca = celular.Marca.ToLower();
                     _context.Update(celular);
                     await _context.SaveChangesAsync();
                 }

@@ -34,9 +34,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.estado)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
             <th></th>
             <th></th>
             <th></th>
@@ -57,9 +54,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                 {
