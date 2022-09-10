@@ -26,6 +26,23 @@
             <div class="w-100"></div>
             <div class="col p-2     border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
             <div class="col p-2     border">@Html.DisplayFor(model => model.MotherBoardId)</div>
+            @if (Model.computadora.NumInv != "Sin Computadora")
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora: </div>
+                <div class="col p-2 border">@Model.computadora.NumInv</div>
+            }
+            else if (Model.baja.SerieBoard != "-")
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora rota: </div>
+                <div class="col p-2 border">@Model.baja.NumInv</div>
+            }
+            else
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border text-info">Esta memoria no esta conectada a ninguna computadora</div>
+            }
         </div>
     </div>
     <div class="container-flex p-2">

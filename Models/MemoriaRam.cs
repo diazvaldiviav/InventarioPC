@@ -26,6 +26,13 @@ namespace ProyectoInventarioASP.Models
         
         public virtual MotherBoard MotherBoard { get; set; }
 
+        [NotMapped]
+        public virtual Computadora computadora { get; set; }
+
+        [NotMapped]
+        public virtual Bajas baja { get; set; }
+
+
 
 
     }

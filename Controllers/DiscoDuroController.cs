@@ -40,6 +40,26 @@ namespace ProyectoInventarioASP.Controllers
             var discoDuro = await _context.DiscosDuro
                 .Include(d => d.motherBoard)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
+
+             discoDuro.computadora = new Computadora();
+            discoDuro.baja = new Bajas();
+
+            var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == discoDuro.MotherBoardId);
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == discoDuro.MotherBoardId);         
+            if (computadora != null)
+            {
+                discoDuro.computadora.NumInv = computadora.NumInv;
+                discoDuro.baja.SerieBoard = "-"; 
+                return View(discoDuro);
+            }
+            if (baja != null)
+            {
+               discoDuro.baja.SerieBoard = baja.SerieBoard;
+               discoDuro.baja.NumInv = baja.NumInv;   
+               discoDuro.computadora.NumInv = "Sin Computadora";
+               return View(discoDuro);
+            }
+
             if (discoDuro == null)
             {
                 return NotFound();

@@ -39,6 +39,24 @@ namespace ProyectoInventarioASP.Controllers
             var memoriaRam = await _context.MemoriasRam
                 .Include(m => m.MotherBoard)
                 .FirstOrDefaultAsync(m => m.KayNumSerieId == id);
+            memoriaRam.computadora = new Computadora();
+            memoriaRam.baja = new Bajas();
+
+            var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == memoriaRam.MotherBoardId);
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == memoriaRam.MotherBoardId);         
+            if (computadora != null)
+            {
+                memoriaRam.computadora.NumInv = computadora.NumInv;
+                memoriaRam.baja.SerieBoard = "-"; 
+                return View(memoriaRam);
+            }
+            if (baja != null)
+            {
+               memoriaRam.baja.SerieBoard = baja.SerieBoard;
+               memoriaRam.baja.NumInv = baja.NumInv;   
+               memoriaRam.computadora.NumInv = "Sin Computadora";
+               return View(memoriaRam);
+            }
             if (memoriaRam == null)
             {
                 return NotFound();
@@ -207,10 +225,10 @@ namespace ProyectoInventarioASP.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool MemoriaRamExists(string id)
         {
             return (_context.MemoriasRam?.Any(e => e.KayNumSerieId == id)).GetValueOrDefault();
         }
+
     }
 }
