@@ -33,13 +33,16 @@
             <div class="w-100"></div>
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.UserName)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.UserName)</div>
+            <div class="w-100"></div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
         </div>
-</div>
-<div class="container-flex">
+    </div>
+    <div class="container-flex">
         @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Modificar</a>
             <a asp-action="Print" asp-route-id="@Model?.Id" class="btn btn-orange btn-sm">Imprimir</a>
         }
-         <a asp-action="Index" class="btn btn-orange btn-sm">Volver</a>
+        <a asp-action="Index" class="btn btn-orange btn-sm">Volver</a>
     </div>

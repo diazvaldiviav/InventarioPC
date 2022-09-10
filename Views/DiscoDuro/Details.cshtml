@@ -12,36 +12,37 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Marca)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.Marca)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Capacidad)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.Capacidad)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.Capacidad)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.Capacidad)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.TipoConexion)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.TipoConexion)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.TipoConexion)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.TipoConexion)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.estado)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.MotherBoardId)</div>
-            @if (Model.computadora.NumInv != "Sin Computadora")
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.MotherBoardId)</div>
+            
+             @if(Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 border">Esta conectado a la computadora: </div>
-                <div class="col p-2 border">@Model.computadora.NumInv</div>
+                <div class="col p-2 border">@Model.computadora.NumInv y esta: @Model.computadora.estado</div>
             }
-            else if (Model.baja.SerieBoard != "-")
+            else if (Model.baja.SerieBoard != "-" && Model.baja.SerieBoard != null)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 border">Esta conectado a la computadora rota: </div>
+                <div class="col p-2 border">Esta conectado a la computadora que se le dio baja: </div>
                 <div class="col p-2 border">@Model.baja.NumInv</div>
             }
             else
             {
                 <div class="w-100"></div>
-                <div class="col p-2 border text-info">Esta memoria no esta conectada a ninguna computadora</div>
+                <div class="col p-2 border text-info">Este disco no esta conectado a ninguna computadora</div>
             }
         </div>
     </div>

@@ -47,6 +47,7 @@ namespace ProyectoInventarioASP.Controllers
             if (computadora != null)
             {
                 memoriaRam.computadora.NumInv = computadora.NumInv;
+                memoriaRam.computadora.estado = computadora.estado;
                 memoriaRam.baja.SerieBoard = "-"; 
                 return View(memoriaRam);
             }

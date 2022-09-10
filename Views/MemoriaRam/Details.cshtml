@@ -27,16 +27,16 @@
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.MotherBoardId)</div>
 
-            @if (Model.computadora.NumInv != "Sin Computadora")
+            @if(Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 border">Esta conectado a la computadora: </div>
-                <div class="col p-2 border">@Model.computadora.NumInv</div>
+                <div class="col p-2 border">@Model.computadora.NumInv y esta: @Model.computadora.estado</div>
             }
-            else if (Model.baja.SerieBoard != "-")
+            else if (Model.baja.SerieBoard != "-" && Model.baja.SerieBoard != null)
             {
                 <div class="w-100"></div>
-                <div class="col p-2 border">Esta conectado a la computadora rota: </div>
+                <div class="col p-2 border">Esta conectado a la computadora que se le dio baja: </div>
                 <div class="col p-2 border">@Model.baja.NumInv</div>
             }
             else

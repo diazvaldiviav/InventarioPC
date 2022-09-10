@@ -49,6 +49,7 @@ namespace ProyectoInventarioASP.Controllers
             if (computadora != null)
             {
                 discoDuro.computadora.NumInv = computadora.NumInv;
+                discoDuro.computadora.estado = computadora.estado;
                 discoDuro.baja.SerieBoard = "-"; 
                 return View(discoDuro);
             }
