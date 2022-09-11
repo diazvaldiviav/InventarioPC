@@ -18,14 +18,16 @@
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
             <h3 class="h3">Especificaciones</h3>
-             <div class="w-100"></div>
+            <div class="w-100"></div>
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.MicroProcesadorId)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.MicroProcesadorId)</div>
             @if (Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 border">Esta conectado a la computadora: </div>
-                <div class="col p-2 border">@Model.computadora.NumInv y esta: @Model.computadora.estado</div>
+                <div class="col p-2 border d-flex justify-content-between">@Model.computadora.NumInv y esta:
+                    @Model.computadora.estado<a asp-route-Id="@Model.computadora.Id" asp-controller="Computadora"
+                    asp-action="Edit" class="text-info">Modificar</a></div>
                 @foreach (var memoria in Model.Memorias)
                 {
                     <div class="w-100"></div>

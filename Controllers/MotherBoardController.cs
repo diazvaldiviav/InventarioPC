@@ -57,6 +57,7 @@ namespace ProyectoInventarioASP.Controllers
                 {
                     motherBoard.computadora.NumInv = computadora.NumInv;
                     motherBoard.computadora.estado = computadora.estado;
+                    motherBoard.computadora.Id = computadora.Id;
                     motherBoard.Memorias = memorias;
                     motherBoard.Discos = discos;
                     motherBoard.baja.SerieBoard = "-";
@@ -67,6 +68,7 @@ namespace ProyectoInventarioASP.Controllers
                     motherBoard.baja.SerieBoard = baja.SerieBoard;
                     motherBoard.baja.NumInv = baja.NumInv;
                     motherBoard.computadora.NumInv = "Sin Computadora";
+                    motherBoard.computadora.Id = computadora.Id;
                     motherBoard.Memorias = memorias;
                     motherBoard.Discos = discos;
                     return View(motherBoard);
