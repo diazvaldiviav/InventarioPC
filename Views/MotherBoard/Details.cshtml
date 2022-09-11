@@ -17,10 +17,10 @@
             <div class="w-100"></div>
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
-            <div class="w-100"></div>
+            <h3 class="h3">Especificaciones</h3>
+             <div class="w-100"></div>
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.MicroProcesadorId)</div>
             <div class="col p-2 border">@Html.DisplayFor(model => model.MicroProcesadorId)</div>
-            <h3 class="h3">Esta board se encuentra en</h3>
             @if (Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
             {
                 <div class="w-100"></div>
@@ -30,13 +30,17 @@
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 border">Tiene conectada esta memoria: </div>
-                    <div class="col p-2 border">@memoria.KayNumSerieId con @memoria.Capacidad de capacidad y esta: @memoria.estado</div>
+                    <div class="col p-2 border d-flex justify-content-between">@memoria.KayNumSerieId con @memoria.Capacidad de
+                        capacidad y esta: @memoria.estado<a asp-route-Id="@memoria.KayNumSerieId" asp-controller="MemoriaRam"
+                    asp-action="Edit" class="text-info">Modificar</a></div>
                 }
-                 @foreach (var disco in Model.Discos)
+                @foreach (var disco in Model.Discos)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 border">Tiene conectada este disco: </div>
-                    <div class="col p-2 border">@disco.NumSerieId con @disco.Capacidad de capacidad y esta: @disco.estado</div>
+                    <div class="col p-2 border d-flex justify-content-between">@disco.NumSerieId con @disco.Capacidad de
+                        capacidad y esta: @disco.estado<a asp-route-Id="@disco.NumSerieId" asp-controller="DiscoDuro"
+                    asp-action="Edit" class="text-info">Modificar</a></div>
                 }
             }
             else if (Model.baja.SerieBoard != "-" && Model.baja.SerieBoard != null)
@@ -48,13 +52,17 @@
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 border">Tiene conectada esta memoria: </div>
-                    <div class="col p-2 border">@memoria.KayNumSerieId con @memoria.Capacidad de capacidad y esta @memoria.estado</div>
+                    <div class="col p-2 border d-flex justify-content-between">@memoria.KayNumSerieId con @memoria.Capacidad de
+                        capacidad y esta: @memoria.estado<a asp-route-Id="@memoria.KayNumSerieId" asp-controller="MemoriaRam"
+                    asp-action="Edit" class="text-info">Modificar</a></div>
                 }
-                 @foreach (var disco in Model.Discos)
+                @foreach (var disco in Model.Discos)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 border">Tiene conectada esta memoria: </div>
-                    <div class="col p-2 border">@disco.NumSerieId con @disco.Capacidad de capacidad y esta @disco.estado</div>
+                    <div class="col p-2 border">Tiene conectada este disco: </div>
+                    <div class="col p-2 border d-flex justify-content-between">@disco.NumSerieId con @disco.Capacidad de
+                        capacidad y esta: @disco.estado<a asp-route-Id="@disco.NumSerieId" asp-controller="DiscoDuro"
+                    asp-action="Edit" class="text-info">Modificar</a></div>
                 }
             }
             else
