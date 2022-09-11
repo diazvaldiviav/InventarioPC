@@ -52,6 +52,8 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Create(string NombreUsuario)
         {
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
             if (NombreUsuario == null)
             {
                 var Trabajadores = await _context.Usuarios.ToListAsync();
@@ -122,6 +124,8 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
             if (id == null || _context.Laptops == null)
             {
                 return NotFound();

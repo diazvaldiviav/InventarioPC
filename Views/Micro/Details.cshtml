@@ -12,14 +12,38 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Marca)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.Marca)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Tecnologia)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.Tecnologia)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.Tecnologia)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.Tecnologia)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.estado)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
+            <h3 class="h3">Este micro se encuentra en</h3>
+            @if (Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora: </div>
+                <div class="col p-2 border">@Model.computadora.NumInv y esta: @Model.computadora.estado</div>
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la motherboard: </div>
+                <div class="col p-2 border">@Model.computadora.MotherBoardId</div>
+            }
+            else if (Model.baja.SerieBoard != "-" && Model.baja.SerieBoard != null)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora que se le dio baja: </div>
+                <div class="col p-2 border">@Model.baja.NumInv</div>
+                 <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la motherboard rota: </div>
+                <div class="col p-2 border">@Model.baja.SerieBoard</div>
+            }
+            else
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border text-info">Este Micro no esta conectado a ninguna computadora</div>
+            }
         </div>
     </div>
 </div>

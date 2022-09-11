@@ -23,6 +23,12 @@ public class MotherBoard
     
     public virtual MicroProcesador Micro { get; set; }
 
+    [NotMapped]
+    public virtual Computadora computadora { get; set; }
+
+    [NotMapped]
+    public virtual Bajas baja { get; set; }
+
     [JsonIgnore]
     public virtual ICollection<MemoriaRam> Memorias { get; set; }
     [JsonIgnore]

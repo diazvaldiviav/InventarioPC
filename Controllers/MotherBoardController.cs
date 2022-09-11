@@ -40,6 +40,39 @@ namespace ProyectoInventarioASP.Controllers
             var motherBoard = await _context.MotherBoards
                 .Include(m => m.Micro)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
+
+            motherBoard.computadora = new Computadora();
+            motherBoard.Discos = new List<DiscoDuro>();
+            motherBoard.Memorias = new List<MemoriaRam>();
+            motherBoard.baja = new Bajas();
+
+            var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == motherBoard.NumSerieId);
+            var memorias = await _context.MemoriasRam.Where(m => m.MotherBoardId == motherBoard.NumSerieId).ToListAsync();
+            var discos = await _context.DiscosDuro.Where(d => d.MotherBoardId == motherBoard.NumSerieId).ToListAsync();
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == motherBoard.NumSerieId);
+            if (BoardSerieExistsActive(motherBoard.NumSerieId) || BoardSerieExistsBaja(motherBoard.NumSerieId))
+            {
+
+                if (computadora != null)
+                {
+                    motherBoard.computadora.NumInv = computadora.NumInv;
+                    motherBoard.computadora.estado = computadora.estado;
+                    motherBoard.Memorias = memorias;
+                    motherBoard.Discos = discos;
+                    motherBoard.baja.SerieBoard = "-";
+                    return View(motherBoard);
+                }
+                if (baja != null)
+                {
+                    motherBoard.baja.SerieBoard = baja.SerieBoard;
+                    motherBoard.baja.NumInv = baja.NumInv;
+                    motherBoard.computadora.NumInv = "Sin Computadora";
+                    motherBoard.Memorias = memorias;
+                    motherBoard.Discos = discos;
+                    return View(motherBoard);
+                }
+
+            }
             if (motherBoard == null)
             {
                 return NotFound();
@@ -133,7 +166,7 @@ namespace ProyectoInventarioASP.Controllers
                         ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
                         return View(motherBoard);
                     }
-                     motherBoard.Marca = motherBoard.Marca.ToLower();
+                    motherBoard.Marca = motherBoard.Marca.ToLower();
                     _context.Update(motherBoard);
                     await _context.SaveChangesAsync();
                 }
@@ -222,6 +255,16 @@ namespace ProyectoInventarioASP.Controllers
         private bool MotherBoardExists(string id)
         {
             return (_context.MotherBoards?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
+        }
+
+        private bool BoardSerieExistsActive(string numSerieId)
+        {
+            return (_context.Computadoras?.Any(pc => pc.MotherBoardId == numSerieId)).GetValueOrDefault();
+        }
+
+        private bool BoardSerieExistsBaja(string numSerieId)
+        {
+            return (_context.Bajas?.Any(pc => pc.SerieBoard == numSerieId)).GetValueOrDefault();
         }
     }
 }

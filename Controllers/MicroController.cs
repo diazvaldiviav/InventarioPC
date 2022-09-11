@@ -39,6 +39,33 @@ namespace ProyectoInventarioASP.Controllers
 
             var microProcesador = await _context.MicroProcesadores
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
+            microProcesador.computadora = new Computadora();
+            microProcesador.baja = new Bajas();
+            microProcesador.board = new MotherBoard();
+
+            if (MicroSerieExists(microProcesador.NumSerieId))
+            {
+                var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.MicroProcesadorId == microProcesador.NumSerieId);
+                var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == board.NumSerieId);
+                var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == board.NumSerieId);
+                if (computadora != null)
+                {
+                    microProcesador.computadora.NumInv = computadora.NumInv;
+                    microProcesador.computadora.estado = computadora.estado;
+                    microProcesador.computadora.MotherBoardId = computadora.MotherBoardId;
+                    microProcesador.baja.SerieBoard = "-";
+                    return View(microProcesador);
+                }
+                if (baja != null)
+                {
+                    microProcesador.baja.SerieBoard = baja.SerieBoard;
+                    microProcesador.baja.NumInv = baja.NumInv;
+                    microProcesador.baja.SerieBoard = baja.SerieBoard;
+                    microProcesador.computadora.NumInv = "Sin Computadora";
+                    return View(microProcesador);
+                }
+            }
+
             if (microProcesador == null)
             {
                 return NotFound();
@@ -199,5 +226,11 @@ namespace ProyectoInventarioASP.Controllers
         {
             return (_context.MicroProcesadores?.Any(e => e.NumSerieId == id)).GetValueOrDefault();
         }
+
+        private bool MicroSerieExists(string numSerieId)
+        {
+             return (_context.MotherBoards?.Any(b => b.MicroProcesadorId == numSerieId)).GetValueOrDefault();
+        }
+
     }
 }

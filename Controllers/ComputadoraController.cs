@@ -1,3 +1,4 @@
+using ProyectoInventarioASP.AreasDepartamentos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
 using ProyectoInventarioASP.Models;
 using Rotativa.AspNetCore;
+
 
 namespace ProyectoInventarioASP.Controllers
 {
@@ -51,7 +53,7 @@ namespace ProyectoInventarioASP.Controllers
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
-            
+
             computadora.MicroTecn = micro;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
@@ -195,7 +197,7 @@ namespace ProyectoInventarioASP.Controllers
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
-            
+
             computadora.MicroTecn = micro;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
@@ -235,6 +237,8 @@ namespace ProyectoInventarioASP.Controllers
             var MotherBoards = await _context.MotherBoards.ToListAsync();
             var teclados = await _context.Teclados.ToListAsync();
             var impresoras = await _context.Impresoras.ToListAsync();
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
 
             if (NombreUsuario == null)
             {
@@ -356,6 +360,9 @@ namespace ProyectoInventarioASP.Controllers
             var teclados = await _context.Teclados.ToListAsync();
             var impresoras = await _context.Impresoras.ToListAsync();
 
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
+
 
             if (id == 0 || _context.Computadoras == null)
             {
@@ -371,11 +378,11 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
-            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+            // ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
+            // ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
+            // ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
+            // ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
+            // ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
             return View(modelo);
         }
 
@@ -651,7 +658,7 @@ namespace ProyectoInventarioASP.Controllers
                 ModeloComputadora.Teclados.AddRange(teclados);
                 ModeloComputadora.Impresoras.AddRange(impresoras);
                 ModeloComputadora.Usuarios.AddRange(trabajadores);
-                
+
                 return ModeloComputadora;
             }
 
@@ -675,7 +682,7 @@ namespace ProyectoInventarioASP.Controllers
             ModeloComputadora.MotherBoardMarca = pc.MotherBoardMarca;
             ModeloComputadora.Nombre = pc.Nombre;
             ModeloComputadora.NombreArea = pc.NombreArea;
-            ModeloComputadora.NombreDepartamento = pc.Nombre;
+            ModeloComputadora.NombreDepartamento = pc.NombreDepartamento;
             ModeloComputadora.NumInv = pc.NumInv;
             ModeloComputadora.NumIp = pc.NumIp;
             ModeloComputadora.Sello = pc.Sello;
@@ -691,6 +698,7 @@ namespace ProyectoInventarioASP.Controllers
 
         }
 
+        
 
     }
 }

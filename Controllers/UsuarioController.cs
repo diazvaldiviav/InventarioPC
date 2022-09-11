@@ -65,6 +65,8 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public IActionResult Create()
         {
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
             return View();
         }
 
@@ -102,6 +104,8 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
             if (id == null || _context.Usuarios == null)
             {
                 return NotFound();
@@ -123,6 +127,7 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
         {
+
             if (id != usuario.Id)
             {
                 return NotFound();

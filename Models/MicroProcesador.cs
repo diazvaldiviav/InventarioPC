@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 
@@ -9,14 +10,23 @@ namespace ProyectoInventarioASP.Models
     {
         [Key]
         public String NumSerieId { get; set; }
-        [Required(ErrorMessage ="Este Campo es requerido")]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public String Marca { get; set; }
-        [Required(ErrorMessage ="Este Campo es requerido")]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public String Tecnologia { get; set; }
-        [Required(ErrorMessage ="Este Campo es requerido")]
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public Estado estado { get; set; }
 
-        [JsonIgnore]
+
         public virtual ICollection<MotherBoard> MotherBoard { get; set; }
+
+        [NotMapped]
+        public virtual Computadora computadora { get; set; }
+
+        [NotMapped]
+        public virtual Bajas baja { get; set; }
+
+        [NotMapped]
+        public virtual MotherBoard board { get; set; }
     }
 }

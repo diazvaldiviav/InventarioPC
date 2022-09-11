@@ -8,21 +8,63 @@
 <h1>Detalles</h1>
 
 <div>
-   <h4>MotherBoard No: @Html.DisplayFor(model => model.NumSerieId)</h4>
+    <h4>MotherBoard No: @Html.DisplayFor(model => model.NumSerieId)</h4>
     <hr />
-   <div class="container">
+    <div class="container">
         <div class="row">
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.Marca)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.Marca)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.Marca)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.estado)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.estado)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
             <div class="w-100"></div>
-            <div class="col p-2     border">@Html.DisplayNameFor(model => model.MicroProcesadorId)</div>
-            <div class="col p-2     border">@Html.DisplayFor(model => model.MicroProcesadorId)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.MicroProcesadorId)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.MicroProcesadorId)</div>
+            <h3 class="h3">Esta board se encuentra en</h3>
+            @if (Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora: </div>
+                <div class="col p-2 border">@Model.computadora.NumInv y esta: @Model.computadora.estado</div>
+                @foreach (var memoria in Model.Memorias)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 border">Tiene conectada esta memoria: </div>
+                    <div class="col p-2 border">@memoria.KayNumSerieId con @memoria.Capacidad de capacidad y esta: @memoria.estado</div>
+                }
+                 @foreach (var disco in Model.Discos)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 border">Tiene conectada este disco: </div>
+                    <div class="col p-2 border">@disco.NumSerieId con @disco.Capacidad de capacidad y esta: @disco.estado</div>
+                }
+            }
+            else if (Model.baja.SerieBoard != "-" && Model.baja.SerieBoard != null)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border">Esta conectado a la computadora que se le dio baja: </div>
+                <div class="col p-2 border">@Model.baja.NumInv</div>
+                @foreach (var memoria in Model.Memorias)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 border">Tiene conectada esta memoria: </div>
+                    <div class="col p-2 border">@memoria.KayNumSerieId con @memoria.Capacidad de capacidad y esta @memoria.estado</div>
+                }
+                 @foreach (var disco in Model.Discos)
+                {
+                    <div class="w-100"></div>
+                    <div class="col p-2 border">Tiene conectada esta memoria: </div>
+                    <div class="col p-2 border">@disco.NumSerieId con @disco.Capacidad de capacidad y esta @disco.estado</div>
+                }
+            }
+            else
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 border text-info">Esta board no esta conectado a ninguna computadora</div>
+            }
         </div>
-</div>
-<div class="container-flex p-2">
+    </div>
+    <div class="container-flex p-2">
         <a asp-action="Edit" asp-route-id="@Model?.NumSerieId" class="btn btn-orange btn-sm">Modificar</a> |
         <a asp-action="Index" class="btn btn-orange btn-sm">Volver</a>
     </div>
