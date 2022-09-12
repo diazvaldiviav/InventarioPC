@@ -22,19 +22,19 @@ builder.Services.AddSqlServer<ComputadoraContext>(builder.Configuration.GetConne
 var app = builder.Build();
 
 
-using(var scope=app.Services.CreateScope()){
-    var serv=scope.ServiceProvider;
-    try
-    {
-        var contex=serv.GetRequiredService<ComputadoraContext>();
-        contex.Database.EnsureCreated();
-    }
-    catch (System.Exception)
-    {
-        throw;
-    }
+// using(var scope=app.Services.CreateScope()){
+//     var serv=scope.ServiceProvider;
+//     try
+//     {
+//         var contex=serv.GetRequiredService<ComputadoraContext>();
+//         contex.Database.EnsureCreated();
+//     }
+//     catch (System.Exception)
+//     {
+//         throw;
+//     }
 
-}
+// }
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
