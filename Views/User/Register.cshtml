@@ -22,9 +22,14 @@
         <p class="form-label">Nombre de usuario</p>
         <input class="form-input" type="text" placeholder="Entre su nombre de usuario" asp-for="username" required>
       </label>
-      <label class="form-label-wrapper" asp-for="password">
+      <label class="form-label-wrapper" id="PasswordLabel" asp-for="password">
         <p class="form-label">Password</p>
-        <input class="form-input" type="password" placeholder="Entre su password" asp-for="password" required>
+        <input class="form-input" id="password" type="password" placeholder="Entre su password" asp-for="password" required>
+        <p class="text-danger">@ViewBag.Message</p>
+      </label>
+       <label class="form-label-wrapper" asp-for="ConfirmPassword">
+        <p class="form-label">Confirma tu contraseña</p>
+        <input class="form-input" id="ConfirmPassword" type="password" placeholder="Entre su password" asp-for="ConfirmPassword" required>
       </label>
       <label class="form-checkbox-wrapper">
         <select asp-for="permisos" class="form-input">

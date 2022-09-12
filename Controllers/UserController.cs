@@ -108,6 +108,12 @@ public class UserController : Controller
             return NotFound();
         }
 
+        if (_user.password != _user.ConfirmPassword)
+        {
+             ViewBag.Message = "No coincide la contraseña con la confirmacion";
+             return View(_user);
+        }
+
         if (_user != null)
         {
             try
@@ -151,6 +157,12 @@ public class UserController : Controller
             {
                 return View(_user);
             }
+
+            if (_user.password != _user.ConfirmPassword)
+             {
+               ViewBag.Message = "No coincide la contraseña con la confirmacion";
+               return View(_user);
+             }
             _context.Add(_user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ListaUser));
