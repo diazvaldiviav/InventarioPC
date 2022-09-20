@@ -12,8 +12,8 @@ using ProyectoInventarioASP;
 namespace ProyectoInventarioASP.Migrations
 {
     [DbContext(typeof(ComputadoraContext))]
-    [Migration("20220912171449_confirmPassword")]
-    partial class confirmPassword
+    [Migration("20220915152051_InvPcinComp")]
+    partial class InvPcinComp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -205,7 +205,7 @@ namespace ProyectoInventarioASP.Migrations
                             ImpresoraId = 1,
                             Mac = "-",
                             MicroTecn = "-",
-                            MotherBoardId = "Sin Board",
+                            MotherBoardId = "8b818936-a553-49ed-b31a-11bc75330fc1",
                             MotherBoardMarca = "-",
                             Nombre = "-",
                             NombreArea = "-",
@@ -241,12 +241,20 @@ namespace ProyectoInventarioASP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("NumSerieDisco")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TipoConexion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("estado")
                         .HasColumnType("int");
+
+                    b.Property<string>("invPc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NumSerieId");
 
@@ -475,12 +483,20 @@ namespace ProyectoInventarioASP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("NumSerieMemoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Tecnologia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("estado")
                         .HasColumnType("int");
+
+                    b.Property<string>("invPc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("KayNumSerieId");
 
@@ -498,12 +514,20 @@ namespace ProyectoInventarioASP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NumSerieMicro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Tecnologia")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("estado")
                         .HasColumnType("int");
+
+                    b.Property<string>("invPc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NumSerieId");
 
@@ -512,10 +536,12 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasData(
                         new
                         {
-                            NumSerieId = "Sin Micro",
+                            NumSerieId = "7c86e43d-d56c-4523-8139-aaa8db1f65d0",
                             Marca = "-",
+                            NumSerieMicro = "Sin Micro",
                             Tecnologia = "-",
-                            estado = 1
+                            estado = 1,
+                            invPc = "-"
                         });
                 });
 
@@ -532,8 +558,16 @@ namespace ProyectoInventarioASP.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("NumSerieBoard")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("estado")
                         .HasColumnType("int");
+
+                    b.Property<string>("invPc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NumSerieId");
 
@@ -544,10 +578,12 @@ namespace ProyectoInventarioASP.Migrations
                     b.HasData(
                         new
                         {
-                            NumSerieId = "Sin Board",
+                            NumSerieId = "8b818936-a553-49ed-b31a-11bc75330fc1",
                             Marca = "-",
-                            MicroProcesadorId = "Sin Micro",
-                            estado = 1
+                            MicroProcesadorId = "7c86e43d-d56c-4523-8139-aaa8db1f65d0",
+                            NumSerieBoard = "Sin Board",
+                            estado = 1,
+                            invPc = "-"
                         });
                 });
 

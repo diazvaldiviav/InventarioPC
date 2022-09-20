@@ -85,6 +85,7 @@ public class Computadora
     [Display(Name = "Marca Board")]
     public string MotherBoardMarca { get; set; }
 
+
     [Required]
     [Display(Name = "Tecnologia de micro")]
     public string MicroTecn { get; set; }

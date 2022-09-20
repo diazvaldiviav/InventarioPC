@@ -40,6 +40,7 @@ namespace ProyectoInventarioASP.Controllers
             var microProcesador = await _context.MicroProcesadores
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
             microProcesador.computadora = new Computadora();
+            microProcesador.computadora.MotherBoard = new MotherBoard();
             microProcesador.baja = new Bajas();
             microProcesador.board = new MotherBoard();
 
@@ -53,6 +54,7 @@ namespace ProyectoInventarioASP.Controllers
                     microProcesador.computadora.NumInv = computadora.NumInv;
                     microProcesador.computadora.estado = computadora.estado;
                     microProcesador.computadora.MotherBoardId = computadora.MotherBoardId;
+                    microProcesador.computadora.MotherBoard.NumSerieBoard = board.NumSerieBoard;
                     microProcesador.baja.SerieBoard = "-";
                     return View(microProcesador);
                 }
@@ -89,16 +91,19 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MicroProcesador microProcesador)
         {
+            microProcesador.NumSerieId = Guid.NewGuid().ToString();
+            microProcesador.Tecnologia = microProcesador.Tecnologia.ToLower();
+            microProcesador.Marca = microProcesador.Marca.ToLower();
             if (microProcesador != null)
             {
+
                 try
                 {
                     if (microProcesador.Marca == null || microProcesador.NumSerieId == null || microProcesador.Tecnologia == null)
                     {
                         return View(microProcesador);
                     }
-                    microProcesador.Tecnologia = microProcesador.Tecnologia.ToLower();
-                    microProcesador.Marca = microProcesador.Marca.ToLower();
+
                     _context.Add(microProcesador);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -136,8 +141,9 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,Tecnologia,estado")] MicroProcesador microProcesador)
+        public async Task<IActionResult> Edit(string id, MicroProcesador microProcesador)
         {
+            
             if (id != microProcesador.NumSerieId)
             {
                 return NotFound();
@@ -147,7 +153,7 @@ namespace ProyectoInventarioASP.Controllers
             {
                 try
                 {
-                    if (microProcesador.Marca == null || microProcesador.NumSerieId == null || microProcesador.Tecnologia == null)
+                    if (microProcesador.Marca == null || microProcesador.NumSerieId == null || microProcesador.Tecnologia == null || microProcesador.invPc == null)
                     {
                         return View(microProcesador);
                     }
@@ -229,7 +235,7 @@ namespace ProyectoInventarioASP.Controllers
 
         private bool MicroSerieExists(string numSerieId)
         {
-             return (_context.MotherBoards?.Any(b => b.MicroProcesadorId == numSerieId)).GetValueOrDefault();
+            return (_context.MotherBoards?.Any(b => b.MicroProcesadorId == numSerieId)).GetValueOrDefault();
         }
 
     }

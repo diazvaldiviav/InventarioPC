@@ -31,12 +31,12 @@
             <div class="form-group">
                 <label asp-for="estado"></label>
                 @Html.DropDownList(
-                "Estado", Html.GetEnumSelectList<Estado>(),
+                "estado", Html.GetEnumSelectList<Estado>(),
                 "Seleccione un estado",
                 new{@class = "form-control"}
                 )
             </div>
-             @if (ViewBag.Trabajadores == null)
+            @if (ViewBag.Trabajadores == null)
             {
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>

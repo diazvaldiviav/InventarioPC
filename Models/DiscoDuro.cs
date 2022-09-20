@@ -6,8 +6,10 @@ namespace ProyectoInventarioASP.Models;
 public class DiscoDuro
 {
     [Key]
-    [Display(Name = "Serial")]
     public string NumSerieId { get; set; }
+
+    [Required(ErrorMessage = "Este Campo es requerido")]
+    public string NumSerieDisco { get; set; }
     [Required(ErrorMessage = "Este Campo es requerido")]
     public string Marca { get; set; }
     [Required(ErrorMessage = "Este Campo es requerido")]
@@ -20,6 +22,9 @@ public class DiscoDuro
     public string MotherBoardId { get; set; }
 
     public Estado estado { get; set; }
+
+
+    public string invPc {get;set;}
 
     public virtual MotherBoard motherBoard { get; set; }
 

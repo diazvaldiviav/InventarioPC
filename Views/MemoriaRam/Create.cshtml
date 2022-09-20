@@ -14,9 +14,10 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="KayNumSerieId" class="control-label"></label>
-                <input asp-for="KayNumSerieId" placeholder="Introduzca el numero de serie" class="form-control border border-5" />
-                <span asp-validation-for="KayNumSerieId" class="text-danger"></span>
+                <label asp-for="NumSerieMemoria" class="control-label"></label>
+                <input asp-for="NumSerieMemoria" placeholder="Introduzca el numero de serie"
+                    class="form-control border border-5" />
+                <span asp-validation-for="NumSerieMemoria" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
@@ -25,33 +26,40 @@
             </div>
             <div class="form-group">
                 <label asp-for="Capacidad" class="control-label"></label>
-                <input asp-for="Capacidad" placeholder="Introduzca la capacidad Ej: 4 Gb" class="form-control border border-5" />
+                <input asp-for="Capacidad" placeholder="Introduzca la capacidad Ej: 4 Gb"
+                    class="form-control border border-5" />
                 <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tecnologia" class="control-label"></label>
-                <input asp-for="Tecnologia" placeholder="Entroduzca la tecnologia Ej: DDR3" class="form-control border border-5" />
+                <input asp-for="Tecnologia" placeholder="Entroduzca la tecnologia Ej: DDR3"
+                    class="form-control border border-5" />
                 <span asp-validation-for="Tecnologia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label asp-for="MotherBoardId" class="control-label"></label>
-                    <input asp-for="MotherBoardId" list="boards" placeholder="Introduzca un No de Serie de board"
-                        class="form-control border border-5" />
-                    <datalist id="boards">
-                        @foreach (var item in ViewBag.MotherBoards)
-                        {
-                            <option value="@item.NumSerieId">@item.NumSerieId</option>
-                        }
-                    </datalist>
-                </div>
-            <div class = "form-group">
-             <label asp-for="estado"></label>
-              @Html.DropDownList(
-              "Estado", Html.GetEnumSelectList<Estado>(),
-              "Seleccione un estado",
-              new{@class = "form-control"}
-              )
-              </div>
+                <label asp-for="invPc" class="control-label"></label>
+                <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="invPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MotherBoardId" class="control-label"></label>
+                <input asp-for="MotherBoardId" list="boards" placeholder="Introduzca un No de Serie de board"
+                    class="form-control border border-5" />
+                <datalist id="boards">
+                    @foreach (var item in ViewBag.MotherBoards)
+                    {
+                        <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
+                    }
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
             <div class="form-group p-2">
                 <input type="submit" value="Crear" class="btn btn-orange" />
             </div>
@@ -64,5 +72,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

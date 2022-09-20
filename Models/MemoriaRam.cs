@@ -11,6 +11,9 @@ namespace ProyectoInventarioASP.Models
         [Display(Name="Serial")]
         public string KayNumSerieId { get; set; }
 
+        [Required(ErrorMessage = "Este Campo es requerido")]
+        public string NumSerieMemoria { get; set; }
+
         [Required(ErrorMessage ="Este Campo es requerido")]
         public string Marca { get; set; }
         [Required(ErrorMessage ="Este Campo es requerido")]
@@ -22,6 +25,8 @@ namespace ProyectoInventarioASP.Models
         public string MotherBoardId { get; set; }
         [Required(ErrorMessage ="Este Campo es requerido")]
         public Estado estado { get; set; }
+
+        public string invPc {get;set;}
 
         
         public virtual MotherBoard MotherBoard { get; set; }

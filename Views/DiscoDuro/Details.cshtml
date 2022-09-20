@@ -8,7 +8,7 @@
 <h1>Detalles</h1>
 
 <div>
-    <h4>DiscoDuro No: @Html.DisplayFor(model => model.NumSerieId)</h4>
+    <h4>DiscoDuro No: @Html.DisplayFor(model => model.NumSerieDisco)</h4>
     <hr />
     <div class="container">
         <div class="row">
@@ -25,8 +25,8 @@
             <div class="col p-2 border">@Html.DisplayFor(model => model.estado)</div>
              <h3 class="h3">Este disco se encuentra en</h3>
             <div class="w-100"></div>
-            <div class="col p-2 border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
-            <div class="col p-2 border">@Html.DisplayFor(model => model.MotherBoardId)</div>
+            <div class="col p-2 border">@Html.DisplayNameFor(model => model.motherBoard.NumSerieBoard)</div>
+            <div class="col p-2 border">@Html.DisplayFor(model => model.motherBoard.NumSerieBoard)</div>
              @if(Model.computadora.NumInv != "Sin Computadora" && Model.computadora.NumInv != null)
             {
                 <div class="w-100"></div>

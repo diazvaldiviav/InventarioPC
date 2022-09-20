@@ -15,6 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NumSerieId" />
             <div class="form-group">
+                <label asp-for="NumSerieDisco" class="control-label"></label>
+                <input asp-for="NumSerieDisco" placeholder="Introduzca un No de Serie del disco"
+                    class="form-control border border-5" />
+                <span asp-validation-for="NumSerieDisco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
                 <input asp-for="Marca" placeholder="Inserta la marca del disco" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
@@ -31,11 +37,11 @@
                     class="form-control border border-5" />
                 <span asp-validation-for="Capacidad" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-                <label asp-for="MotherBoardId" class="control-label"></label>
-                <select asp-for="MotherBoardId" class="form-control" asp-items="ViewBag.MotherBoardId"></select>
-                <span asp-validation-for="MotherBoardId" class="text-danger"></span>
-                </div> *@
+            <div class="form-group">
+                <label asp-for="invPc" class="control-label"></label>
+                <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="invPc" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="MotherBoardId" class="control-label"></label>
                 <input asp-for="MotherBoardId" list="boards" placeholder="Introduzca un No de Serie de board"
@@ -43,14 +49,14 @@
                 <datalist id="boards">
                     @foreach (var item in ViewBag.MotherBoards)
                     {
-                        <option value="@item.NumSerieId">@item.NumSerieId</option>
+                        <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
                     }
                 </datalist>
             </div>
             <div class="form-group">
                 <label asp-for="estado"></label>
                 @Html.DropDownList(
-                "Estado", Html.GetEnumSelectList<Estado>(),
+                "estado", Html.GetEnumSelectList<Estado>(),
                 "Seleccione un estado",
                 new{@class = "form-control"}
                 )

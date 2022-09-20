@@ -41,16 +41,21 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(m => m.Micro)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
 
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == motherBoard.MicroProcesadorId);
+
             motherBoard.computadora = new Computadora();
             motherBoard.Discos = new List<DiscoDuro>();
             motherBoard.Memorias = new List<MemoriaRam>();
             motherBoard.baja = new Bajas();
+            motherBoard.Micro = new MicroProcesador();
+            motherBoard.Micro.NumSerieMicro = micro.NumSerieMicro;
+            motherBoard.Micro.Marca = micro.Marca;
 
             var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == motherBoard.NumSerieId);
             var memorias = await _context.MemoriasRam.Where(m => m.MotherBoardId == motherBoard.NumSerieId).ToListAsync();
             var discos = await _context.DiscosDuro.Where(d => d.MotherBoardId == motherBoard.NumSerieId).ToListAsync();
-            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == motherBoard.NumSerieId);
-            if (BoardSerieExistsActive(motherBoard.NumSerieId) || BoardSerieExistsBaja(motherBoard.NumSerieId))
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == motherBoard.NumSerieBoard);
+            if (BoardSerieExistsActive(motherBoard.NumSerieId) || BoardSerieExistsBaja(motherBoard.NumSerieBoard))
             {
 
                 if (computadora != null)
@@ -68,7 +73,7 @@ namespace ProyectoInventarioASP.Controllers
                     motherBoard.baja.SerieBoard = baja.SerieBoard;
                     motherBoard.baja.NumInv = baja.NumInv;
                     motherBoard.computadora.NumInv = "Sin Computadora";
-                    motherBoard.computadora.Id = computadora.Id;
+                    // motherBoard.computadora.Id = computadora.Id;
                     motherBoard.Memorias = memorias;
                     motherBoard.Discos = discos;
                     return View(motherBoard);
@@ -98,19 +103,34 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
+        public async Task<IActionResult> Create(MotherBoard motherBoard)
         {
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieMicro == motherBoard.MicroProcesadorId);
+            motherBoard.NumSerieId = Guid.NewGuid().ToString();
+            motherBoard.Marca = motherBoard.Marca.ToLower();
+            motherBoard.MicroProcesadorId = micro.NumSerieId;
+
+
+
+
             if (motherBoard != null)
             {
                 try
                 {
 
-                    if (motherBoard.Marca == null || motherBoard.MicroProcesadorId == null || motherBoard.NumSerieId == null)
+                    if (motherBoard.Marca == null || motherBoard.MicroProcesadorId == null || motherBoard.NumSerieId == null || motherBoard.invPc == null)
                     {
-                        ViewData["MicroProcesadorId"] = new SelectList(_context.MicroProcesadores, "NumSerieId", "NumSerieId", motherBoard.MicroProcesadorId);
                         return View(motherBoard);
                     }
-                    motherBoard.Marca = motherBoard.Marca.ToLower();
+
+                    if (motherBoard.NumSerieBoard == null)
+                    {
+                        motherBoard.NumSerieBoard = "Vacio por ahora";
+                        _context.Add(motherBoard);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+
                     _context.Add(motherBoard);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -137,6 +157,8 @@ namespace ProyectoInventarioASP.Controllers
 
             var motherBoard = await _context.MotherBoards.FindAsync(id);
             var micros = await _context.MicroProcesadores.ToListAsync();
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == motherBoard.MicroProcesadorId);
+            motherBoard.MicroProcesadorId = micro.NumSerieMicro;
             ViewBag.Micros = micros;
             if (motherBoard == null)
             {
@@ -152,8 +174,9 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,MicroProcesadorId,estado")] MotherBoard motherBoard)
+        public async Task<IActionResult> Edit(string id, MotherBoard motherBoard)
         {
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieMicro == motherBoard.MicroProcesadorId);
             if (id != motherBoard.NumSerieId)
             {
                 return NotFound();
@@ -169,6 +192,7 @@ namespace ProyectoInventarioASP.Controllers
                         return View(motherBoard);
                     }
                     motherBoard.Marca = motherBoard.Marca.ToLower();
+                    motherBoard.MicroProcesadorId = micro.NumSerieId;
                     _context.Update(motherBoard);
                     await _context.SaveChangesAsync();
                 }

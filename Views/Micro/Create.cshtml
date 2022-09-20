@@ -14,28 +14,36 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NumSerieId" class="control-label"></label>
-                <input asp-for="NumSerieId" placeholder="Introduzca un No de Serie del micro" class="form-control border border-5" />
-                <span asp-validation-for="NumSerieId" class="text-danger"></span>
+                <label asp-for="NumSerieMicro" class="control-label"></label>
+                <input asp-for="NumSerieMicro" placeholder="Introduzca un No de Serie del micro"
+                    class="form-control border border-5" />
+                <span asp-validation-for="NumSerieMicro" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" placeholder="Introduzca la marca del micro" class="form-control border border-5" />
+                <input asp-for="Marca" placeholder="Introduzca la marca del micro"
+                    class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tecnologia" class="control-label"></label>
-                <input asp-for="Tecnologia" placeholder="Introduzca la tecnologia del micro" class="form-control border border-5" />
+                <input asp-for="Tecnologia" placeholder="Introduzca la tecnologia del micro"
+                    class="form-control border border-5" />
                 <span asp-validation-for="Tecnologia" class="text-danger"></span>
             </div>
-            <div class = "form-group">
-             <label asp-for="estado"></label>
-              @Html.DropDownList(
-              "Estado", Html.GetEnumSelectList<Estado>(),
-              "Seleccione un estado",
-              new{@class = "form-control"}
-              )
-              </div>
+            <div class="form-group">
+                <label asp-for="invPc" class="control-label"></label>
+                <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="invPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
             <div class="form-group p-2">
                 <input type="submit" value="Crear" class="btn btn-orange" />
             </div>
@@ -48,5 +56,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

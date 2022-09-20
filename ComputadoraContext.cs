@@ -84,8 +84,10 @@ public class ComputadoraContext : DbContext
     {
         var board = new MotherBoard
         {
-            NumSerieId = "Sin Board",
+            NumSerieId = Guid.NewGuid().ToString(),
+            NumSerieBoard = "Sin Board",
             Marca = "-",
+            invPc = "-",
             MicroProcesadorId = micro.NumSerieId,
             estado = Estado.inactivo
         };
@@ -96,9 +98,11 @@ public class ComputadoraContext : DbContext
     {
         var micro = new MicroProcesador
         {
-            NumSerieId = "Sin Micro",
+            NumSerieId = Guid.NewGuid().ToString(),
+            NumSerieMicro = "Sin Micro",
             Marca = "-",
             Tecnologia = "-",
+            invPc = "-",
             estado = Estado.inactivo
         };
         return micro;

@@ -15,17 +15,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NumInv" class="control-label"></label>
-                <input asp-for="NumInv" placeholder="Introduzca el inventario del monitor" class="form-control border border-5" />
+                <input asp-for="NumInv" placeholder="Introduzca el inventario del monitor"
+                    class="form-control border border-5" />
                 <span asp-validation-for="NumInv" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NumSerie" class="control-label"></label>
-                <input asp-for="NumSerie" placeholder="Introduzca el numero de serie del monitor" class="form-control border border-5" />
+                <input asp-for="NumSerie" placeholder="Introduzca el numero de serie del monitor"
+                    class="form-control border border-5" />
                 <span asp-validation-for="NumSerie" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
-                <input asp-for="Marca" placeholder="Introduzca la marca del monitor" class="form-control border border-5" />
+                <input asp-for="Marca" placeholder="Introduzca la marca del monitor"
+                    class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,8 +44,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" placeholder="Introduzca un usuario responsable del monitor" class="form-control border border-5"
-                    list="usuarios" />
+                <input asp-for="UserName" placeholder="Introduzca un usuario responsable del monitor"
+                    class="form-control border border-5" list="usuarios" />
                 <datalist id="usuarios">
                     @foreach (var item in ViewBag.Trabajadores)
                     {
@@ -53,7 +56,7 @@
             <div class="form-group">
                 <label asp-for="estado"></label>
                 @Html.DropDownList(
-                "Estado", Html.GetEnumSelectList<Estado>(),
+                "estado", Html.GetEnumSelectList<Estado>(),
                 "Seleccione un estado",
                 new{@class = "form-control"}
                 )

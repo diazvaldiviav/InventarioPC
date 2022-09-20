@@ -68,7 +68,7 @@
         <div class="form-group">
             <label asp-for="estado"></label>
             @Html.DropDownList(
-            "Estado", Html.GetEnumSelectList<Estado>(),
+            "estado", Html.GetEnumSelectList<Estado>(),
             "Seleccione un estado",
             new{@class = "form-control"}
             )
@@ -97,7 +97,7 @@
             <datalist id="boards">
                 @foreach (var item in Model.MotherBoards)
                 {
-                    <option value="@item.NumSerieId">@item.NumSerieId</option>
+                    <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
                 }
             </datalist>
         </div>

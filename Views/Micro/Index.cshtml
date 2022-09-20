@@ -18,7 +18,7 @@
         <thead>
             <tr class="filapc" id="tabla">
                 <th>
-                    @Html.DisplayNameFor(model => model.NumSerieId)
+                    @Html.DisplayNameFor(model => model.NumSerieMicro)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Marca)
@@ -28,6 +28,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.invPc)
                 </th>
                 <th></th>
                 <th></th>
@@ -39,7 +42,7 @@
             {
                 <tr class="filapc">
                     <td>
-                        @Html.DisplayFor(modelItem => item.NumSerieId)
+                        @Html.DisplayFor(modelItem => item.NumSerieMicro)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Marca)
@@ -50,6 +53,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.estado)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.invPc)
+                    </td>
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {
                         <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-orange btn-sm">Detalles</a>
@@ -59,7 +65,8 @@
 
                     @if (User.IsInRole("lectura"))
                     {
-                        <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-orange btn-sm">Detalles</a></td>
+                        <td><a asp-action="Details" asp-route-id="@item.NumSerieId" class="btn btn-orange btn-sm">Detalles</a>
+                        </td>
                     }
 
                 </tr>

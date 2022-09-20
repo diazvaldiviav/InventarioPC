@@ -1,4 +1,7 @@
 const NombrePcInput = document.querySelector("#NombrePc");
+const btnCardInactive = document.getElementById("btn-card-inactive");
+
+btnCardInactive.addEventListener("click" , OcultarCard);
 
 
 console.log("El script se agrego bien");
@@ -30,6 +33,13 @@ function ValidandoNombre() {
     console.log(NombrePc);
 
     
+}
+
+function OcultarCard() {
+    const Card = document.getElementById("cardInactive");
+    Card.classList.add("inactive");
+
+    console.log("EL nuevo script funciona");
 }
 
 

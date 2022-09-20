@@ -42,14 +42,14 @@
           <ul class="sidebar-body-menu">
             <li>
             <li>
-              <a class="show-cat-btn" href="##">
+              <a class="show-cat-btn" id="pcButton" href="##">
                 <img src="~/Assets/compu.png" class="icon home" />Informatica
                 <span class="category__btn transparent-btn" title="Open list">
                   <span class="sr-only">Open list</span>
                   <span class="icon arrow-down" aria-hidden="true"></span>
                 </span>
               </a>
-              <ul class="cat-sub-menu">
+              <ul class="cat-sub-menu" id="pc">
                 <li>
                   <a class="active" asp-controller="Computadora" asp-action="Index"><img src="~/Assets/Computer.png"
                       class="icon home">Pc</a>
@@ -86,14 +86,14 @@
           <ul class="sidebar-body-menu">
             <li>
             <li>
-              <a class="show-cat-btn" href="##">
+              <a class="show-cat-btn" id="ComunicButton" href="##">
                 <img src="~/Assets/comuni.png" class="icon home" />Comunicaciones
                 <span class="category__btn transparent-btn" title="Open list">
                   <span class="sr-only">Open list</span>
                   <span class="icon arrow-down" aria-hidden="true"></span>
                 </span>
               </a>
-              <ul class="cat-sub-menu">
+              <ul class="cat-sub-menu" id="comun">
                 <li>
                   <a asp-controller="Celular" asp-action="Index">
                     <img src="~/Assets/celular.png" class="icon home">
@@ -111,14 +111,14 @@
           <ul class="sidebar-body-menu">
             <li>
             <li>
-              <a class="show-cat-btn" href="##">
+              <a class="show-cat-btn" id="otrosButton" href="##">
                 <img src="~/Assets/otros.png" class="icon home" />Otros
                 <span class="category__btn transparent-btn" title="Open list">
                   <span class="sr-only">Open list</span>
                   <span class="icon arrow-down" aria-hidden="true"></span>
                 </span>
               </a>
-              <ul class="cat-sub-menu">
+              <ul class="cat-sub-menu" id="otros">
                 <li>
                   <a asp-controller="Display" asp-action="Index">
                     <img src="~/Assets/monitor.png" class="icon home">Monitor
@@ -154,14 +154,14 @@
             </li>
           </ul>
           </li>
-          <a class="show-cat-btn" href="##">
+          <a class="show-cat-btn" id="RegistrosButton" href="##">
             <img src="~/Assets/registro.png" class="icon home" />Registros
             <span class="category__btn transparent-btn" title="Open list">
               <span class="sr-only"></span>
               <span class="icon arrow-down" aria-hidden="true"></span>
             </span>
           </a>
-          <ul class="cat-sub-menu">
+          <ul class="cat-sub-menu" id="registro">
             <li>
               <a class="active" asp-controller="Entrada" asp-action="Index"><img src="~/Assets/entrada.png"
                   class="icon home">Entradas</a>
@@ -329,6 +329,7 @@
   <!-- Custom scripts -->
   <script src="~/lib/jquery/dist/jquery.min.js"></script>
   <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  
   <script src="~/js/script.js"></script>
 
   @* <script src="~/js/darkmode.js"></script> *@

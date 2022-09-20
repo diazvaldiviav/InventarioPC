@@ -6,128 +6,139 @@
 }
 
 <div class="margin">
-<h1 class="h1 text-danger">Dar Baja</h1>
-<h3>Estas a punto de dar baja a esta computadora, estas seguro?</h3>
-<div>
-    <h4>Computadora</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumInv)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumInv)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreDepartamento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreDepartamento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreArea)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreArea)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SO)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SO)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mac)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mac)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumIp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NumIp)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UsuarioId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UsuarioId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImprNumInv)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImprNumInv)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TeclNumInv)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TeclNumInv)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MotherBoardMarca)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MotherBoardMarca)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MicroTecn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MicroTecn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Teclado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Teclado.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MotherBoard)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MotherBoard.NumSerieId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Impresora)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Impresora.Id)
-        </dd>
-         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sello)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sello)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <div class="container-flex">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Dar Baja" class="btn btn-danger" /> 
-        <a asp-action="Index">Volver</a>
-        </div>
-    </form>
-</div>
+    <h1 class="h1 text-danger">Dar Baja</h1>
+    <h3>Estas a punto de dar baja a esta computadora, estas seguro?</h3>
+    <div>
+        @if (ViewBag.Message != null)
+        {
+            <div class="card" id="cardInactive">
+                <div class="card-body">
+                    <h5 class="card-title">Advertencia</h5>
+                    <p class="card-text">@ViewBag.Message</p>
+                    <button type="button" class="btn btn-orange" id="btn-card-inactive">Cerrar</button>
+                </div>
+            </div>
+        }
+
+        <h4>Computadora</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumInv)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumInv)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreDepartamento)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NombreArea)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombreArea)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SO)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SO)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.estado)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.estado)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mac)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mac)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumIp)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumIp)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UsuarioId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UsuarioId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ImprNumInv)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ImprNumInv)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TeclNumInv)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TeclNumInv)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MotherBoardMarca)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MotherBoardMarca)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MicroTecn)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MicroTecn)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Teclado)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Teclado.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MotherBoard)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MotherBoard.NumSerieId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Impresora)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Impresora.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sello)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Sello)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <div class="container-flex">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Dar Baja" class="btn btn-danger" />
+                <a asp-action="Index">Volver</a>
+            </div>
+        </form>
+    </div>
 </div>

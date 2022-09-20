@@ -9,18 +9,21 @@ public class MotherBoard
 {
 
     [Key]
-    [Display(Name ="Serial")]
+    [Display(Name = "Serial")]
     public string NumSerieId { get; set; }
-    [Required(ErrorMessage ="Este Campo es requerido")]
+    [Required(ErrorMessage = "Este Campo es requerido")]
+    public string NumSerieBoard { get; set; }
+    [Required(ErrorMessage = "Este Campo es requerido")]
     public string Marca { get; set; }
-    [Required(ErrorMessage ="Este Campo es requerido")]
-     [Display(Name ="Micro Serial")]
-    public string MicroProcesadorId { get; set; }   
-     
-    [Required(ErrorMessage ="Este Campo es requerido")]
+    [Required(ErrorMessage = "Este Campo es requerido")]
+    [Display(Name = "Micro Serial")]
+    public string MicroProcesadorId { get; set; }
+
+    [Required(ErrorMessage = "Este Campo es requerido")]
     public Estado estado { get; set; }
-    
-    
+ 
+    public string invPc {get;set;}
+
     public virtual MicroProcesador Micro { get; set; }
 
     [NotMapped]

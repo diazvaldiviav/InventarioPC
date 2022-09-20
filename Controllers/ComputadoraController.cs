@@ -43,22 +43,25 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Ups)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == board.MicroProcesadorId);
             var monitores = CargarMonitores(computadora.Id);
             var memorias = CargarMemorias(computadora.MotherBoardId);
             var discos = CargarDiscos(computadora.MotherBoardId);
             var scan = CargarScanner(computadora.UserName);
-            var micro = CargarTecnMic(computadora.MotherBoardId);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
+            computadora.MotherBoard = new MotherBoard();
 
-            computadora.MicroTecn = micro;
+            computadora.MicroTecn = micro.Tecnologia;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
             computadora.Scanners.AddRange(scan);
+            computadora.MotherBoard.NumSerieBoard = board.NumSerieBoard;
+            computadora.MotherBoardMarca = board.Marca;
 
             if (computadora == null)
             {
@@ -180,29 +183,25 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Ups)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-
-            var BuscarBoardID = from pc in _context.MemoriasRam
-                                where pc.MotherBoardId == computadora.MotherBoardId
-                                select pc.MotherBoardId;
-
-            var boardid = BuscarBoardID.ToArray();
-
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == board.MicroProcesadorId);
             var monitores = CargarMonitores(computadora.Id);
-
-            var memorias = CargarMemorias(boardid[0]);
+            var memorias = CargarMemorias(computadora.MotherBoardId);
             var discos = CargarDiscos(computadora.MotherBoardId);
             var scan = CargarScanner(computadora.UserName);
-            var micro = CargarTecnMic(computadora.MotherBoardId);
             computadora.Display = new List<Display>();
             computadora.Discos = new List<DiscoDuro>();
             computadora.Memorias = new List<MemoriaRam>();
             computadora.Scanners = new List<Scanner>();
+            computadora.MotherBoard = new MotherBoard();
 
-            computadora.MicroTecn = micro;
+            computadora.MicroTecn = micro.Tecnologia;
             computadora.Display.AddRange(monitores);
             computadora.Discos.AddRange(discos);
             computadora.Memorias.AddRange(memorias);
             computadora.Scanners.AddRange(scan);
+            computadora.MotherBoard.NumSerieBoard = board.NumSerieBoard;
+            computadora.MotherBoardMarca = board.Marca;
             if (computadora == null)
             {
                 return NotFound();
@@ -264,27 +263,25 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Computadora computadora)
         {
+            ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
+            ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
+
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == computadora.MotherBoardId);
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == board.MicroProcesadorId);
+
             if (computadora != null)
             {
                 try
                 {
-                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.MotherBoardId == null || computadora.NumInv == null)
+                    if (computadora.estado == null || computadora.Mac == null || computadora.Nombre == null || computadora.NombreArea == null || computadora.NombreDepartamento == null || computadora.NumIp == null || computadora.NumInv == null)
                     {
-                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
-                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
-                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
-                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
+
                         return View(computadora);
 
                     }
                     if (computadora.Nombre.Length < 13 || computadora.Nombre.Length > 15)
                     {
-                        ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
-                        ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-                        ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
-                        ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
-                        ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
+
                         return View(computadora);
                     }
 
@@ -316,9 +313,9 @@ namespace ProyectoInventarioASP.Controllers
 
                     var idUser = BuscarIdUser.ToArray();
 
-                    var marcaBoard = CargarMarca(computadora.MotherBoardId);
+                    var marcaBoard = board.Marca;
 
-                    var tecMicro = CargarTecnMic(computadora.MotherBoardId);
+                    var tecMicro = micro.Tecnologia;
 
 
 
@@ -328,7 +325,15 @@ namespace ProyectoInventarioASP.Controllers
                     computadora.UsuarioId = idUser[0];
                     computadora.MotherBoardMarca = marcaBoard.ToLower();
                     computadora.MicroTecn = tecMicro.ToLower();
-                    _context.Add(computadora);
+                    computadora.MotherBoardId = board.NumSerieId;
+                    if (computadora.MotherBoardId == null)
+                    {
+                        computadora.MotherBoardId = "Sin Board";
+                        _context.Computadoras.Add(computadora);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    _context.Computadoras.Add(computadora);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
 
@@ -342,11 +347,6 @@ namespace ProyectoInventarioASP.Controllers
             }
 
 
-            ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv", computadora.ImprNumInv);
-            ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", computadora.MotherBoardId);
-            ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv", computadora.TeclNumInv);
-            ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv", computadora.UpsInv);
-            ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario", computadora.UserName);
             return View(computadora);
         }
 
@@ -360,6 +360,7 @@ namespace ProyectoInventarioASP.Controllers
             var teclados = await _context.Teclados.ToListAsync();
             var impresoras = await _context.Impresoras.ToListAsync();
 
+
             ViewBag.Areas = AreasDepartamentos.AreasDepartamentos.Areas();
             ViewBag.Departamentos = AreasDepartamentos.AreasDepartamentos.Departamentos();
 
@@ -370,7 +371,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var computadora = await _context.Computadoras.FindAsync(id);
-
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
+            computadora.MotherBoardId = board.NumSerieBoard;
             var modelo = CargarModelo(upss, MotherBoards, teclados, impresoras, usuarios, computadora);
 
             if (computadora == null)
@@ -378,11 +380,7 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
-            // ViewData["ImpresoraInv"] = new SelectList(_context.Impresoras, "NumInv", "NumInv");
-            // ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
-            // ViewData["TecladoNumInv"] = new SelectList(_context.Teclados, "NumInv", "NumInv");
-            // ViewData["UpsInv"] = new SelectList(_context.Upss, "NumInv", "NumInv");
-            // ViewData["NombreUser"] = new SelectList(_context.Usuarios, "NombreUsuario", "NombreUsuario");
+
             return View(modelo);
         }
 
@@ -394,6 +392,8 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Computadora computadora)
         {
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == computadora.MotherBoardId);
+            var micro = await _context.MicroProcesadores.FirstOrDefaultAsync(m => m.NumSerieId == board.MicroProcesadorId);
 
             if (id != computadora.Id)
             {
@@ -451,20 +451,27 @@ namespace ProyectoInventarioASP.Controllers
 
                     var idUser = BuscarIdUser.ToArray();
 
-                    var marcaBoard = CargarMarca(computadora.MotherBoardId);
+                    var marcaBoard = board.Marca;
 
-                    var tecMicro = CargarTecnMic(computadora.MotherBoardId);
-
-
+                    var tecMicro = micro.Tecnologia;
 
                     computadora.ImpresoraId = idImpr[0];
                     computadora.UpsId = idUps[0];
                     computadora.TecladoId = idTecl[0];
                     computadora.UsuarioId = idUser[0];
-                    computadora.MotherBoardMarca = marcaBoard;
-                    computadora.MicroTecn = tecMicro;
+                    computadora.MotherBoardMarca = marcaBoard.ToLower();
+                    computadora.MicroTecn = tecMicro.ToLower();
+                    computadora.MotherBoardId = board.NumSerieId;
+                    if (computadora.MotherBoardId == null)
+                    {
+                        computadora.MotherBoardId = "Sin Board";
+                        _context.Update(computadora);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
                     _context.Update(computadora);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (SystemException)
                 {
@@ -504,6 +511,23 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Ups)
                 .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
+            var memorias = await _context.MemoriasRam.Where(m => m.MotherBoardId == board.NumSerieId).ToListAsync();
+            var discos = await _context.DiscosDuro.Where(d => d.MotherBoardId == board.NumSerieId).ToListAsync();
+            var isActiveMemory = memorias.Any(m => m.estado == Estado.activo);
+            var isActiveDisk = discos.Any(d => d.estado == Estado.activo);
+
+            if (board.estado == Estado.activo || isActiveMemory || isActiveDisk)
+            {
+                ViewBag.Message = "No se le puede dar baja a una computadora con un componente activo";
+            }
+            else
+            {
+                ViewBag.Message = null;
+            }
+
+
             if (computadora == null || computadora.NumInv == "Sin Computadora")
             {
                 return NotFound();
@@ -523,6 +547,11 @@ namespace ProyectoInventarioASP.Controllers
                 return Problem("Entity set 'ComputadoraContext.Computadoras'  is null.");
             }
             var computadora = await _context.Computadoras.FindAsync(id);
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
+            var memorias = await _context.MemoriasRam.Where(m => m.MotherBoardId == board.NumSerieId).ToListAsync();
+            var discos = await _context.DiscosDuro.Where(d => d.MotherBoardId == board.NumSerieId).ToListAsync();
+            var isActiveMemory = memorias.Any(m => m.estado == Estado.activo);
+            var isActiveDisk = discos.Any(d => d.estado == Estado.activo);
             if (computadora != null)
             {
                 var nuevaBaja = new Bajas();
@@ -530,13 +559,27 @@ namespace ProyectoInventarioASP.Controllers
                 nuevaBaja.NumSerie = "-";
                 nuevaBaja.Marca = "-";
                 nuevaBaja.Equipo = "Computadora";
-                nuevaBaja.SerieBoard = computadora.MotherBoardId;
+                nuevaBaja.SerieBoard = board.NumSerieBoard;
                 nuevaBaja.fechaBaja = DateTime.Now;
+                if (board.estado == Estado.activo || isActiveMemory || isActiveDisk)
+                {
+                    ViewBag.Message = "No se le puede dar baja a una computadora con un componente activo";
+                    return RedirectToAction("Delete");
+                }
+                ViewBag.Message = null;
                 _context.Bajas.Add(nuevaBaja);
-                _context.Computadoras.Remove(computadora);
+                try
+                {
+                    _context.Computadoras.Remove(computadora);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    return RedirectToAction("BdError", "Home");
+                }
             }
 
-            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -693,12 +736,13 @@ namespace ProyectoInventarioASP.Controllers
             ModeloComputadora.UpsInv = pc.UpsInv;
             ModeloComputadora.UserName = pc.UserName;
             ModeloComputadora.UsuarioId = pc.UsuarioId;
+            ModeloComputadora.estado = pc.estado;
 
             return ModeloComputadora;
 
         }
 
-        
+
 
     }
 }

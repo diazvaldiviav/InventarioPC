@@ -35,7 +35,8 @@ namespace ProyectoInventarioASP.AreasDepartamentos
                 "Suc Iguará",
                 "Suc Meneses",
                 "Ueb Fre",
-                "Centro Operaciones"
+                "Centro Operaciones",
+                "Escuela"
             };
 
 

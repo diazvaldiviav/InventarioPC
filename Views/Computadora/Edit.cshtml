@@ -19,7 +19,8 @@
         </div>
         <div class="form-group">
             <label asp-for="NombreArea" class="control-label"></label>
-            <input List="Areas" placeholder="Ingrese un Area" asp-for="NombreArea" class="form-control border border-5" />
+            <input List="Areas" placeholder="Ingrese un Area" asp-for="NombreArea"
+                class="form-control border border-5" />
             <datalist id="Areas">
                 @foreach (var area in ViewBag.Areas)
                 {
@@ -30,7 +31,8 @@
         </div>
         <div class="form-group">
             <label asp-for="NombreDepartamento" class="control-label"></label>
-            <input asp-for="NombreDepartamento" list="departamentos"  placeholder="Ingrese un departamento" class="form-control border border-5" />
+            <input asp-for="NombreDepartamento" list="departamentos" placeholder="Ingrese un departamento"
+                class="form-control border border-5" />
             <datalist id="departamentos">
                 @foreach (var departamento in ViewBag.Departamentos)
                 {
@@ -65,7 +67,7 @@
         <div class="form-group">
             <label asp-for="estado"></label>
             @Html.DropDownList(
-            "Estado", Html.GetEnumSelectList<Estado>(),
+            "estado", Html.GetEnumSelectList<Estado>(),
             "Seleccione un estado",
             new{@class = "form-control"}
             )
@@ -93,7 +95,7 @@
             <datalist id="boards">
                 @foreach (var item in Model.MotherBoards)
                 {
-                    <option value="@item.NumSerieId">@item.NumSerieId</option>
+                    <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
                 }
             </datalist>
         </div>

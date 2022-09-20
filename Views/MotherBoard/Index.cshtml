@@ -18,13 +18,16 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NumSerieId)
+                    @Html.DisplayNameFor(model => model.NumSerieBoard)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Marca)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.estado)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.invPc)
                 </th>
                 <th></th>
                 <th></th>
@@ -36,13 +39,16 @@
             {
                 <tr class="filapc">
                     <td>
-                        @Html.DisplayFor(modelItem => item.NumSerieId)
+                        @Html.DisplayFor(modelItem => item.NumSerieBoard)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Marca)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.invPc)
                     </td>
                     @if (User.IsInRole("admin") || User.IsInRole("lecturaYEscritura"))
                     {

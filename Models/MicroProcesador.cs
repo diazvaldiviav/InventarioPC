@@ -11,11 +11,16 @@ namespace ProyectoInventarioASP.Models
         [Key]
         public String NumSerieId { get; set; }
         [Required(ErrorMessage = "Este Campo es requerido")]
+        public string NumSerieMicro { get; set; }
+        [Required(ErrorMessage = "Este Campo es requerido")]
         public String Marca { get; set; }
         [Required(ErrorMessage = "Este Campo es requerido")]
         public String Tecnologia { get; set; }
         [Required(ErrorMessage = "Este Campo es requerido")]
         public Estado estado { get; set; }
+
+        [Required(ErrorMessage = "Este Campo es requerido")]
+        public String invPc { get; set; }
 
 
         public virtual ICollection<MotherBoard> MotherBoard { get; set; }

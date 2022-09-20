@@ -57,8 +57,8 @@
             }
             <div class="w-100"></div>
             <div class="col p-2 border">@Html.DisplayNameFor(model => model.MotherBoardId)</div>
-            <div class="col p-2 border d-flex justify-content-between">@Html.DisplayFor(model => model.MotherBoardId)
-                @if (Model.MotherBoardId == "Sin Board")
+            <div class="col p-2 border d-flex justify-content-between">@Html.DisplayFor(model => model.MotherBoard.NumSerieBoard)
+                @if (Model.MotherBoard.NumSerieBoard == "Sin Board")
                 {
                     <a asp-route-Id="@Model.Id" asp-action="Edit" class="text-info">Insertar</a>
                 }
@@ -94,8 +94,8 @@
             @foreach (var scan in Model.Scanners)
             {
                 <div class="w-100"></div>
-                <div class="col p-2     border">Scanner inv: @scan.NumInv</div>
-                <div class="col p-2     border">Scanner Marca: @scan.Marca</div>
+                <div class="col p-2 border">Scanner inv: @scan.NumInv</div>
+                <div class="col p-2 border">Scanner Marca: @scan.Marca</div>
 
             }
 
@@ -104,7 +104,7 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
                 </div>
             }
             @if (Model.Discos.Count() == 0)
@@ -112,25 +112,25 @@
                 <div class="w-100"></div>
                 <div class="col p-2 bg-danger border d-flex justify-content-between">
                     <div>Esta Pc no tiene Discos</div><a asp-controller="DiscoDuro" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
                 </div>
             }
 
             @foreach (var disco in Model.Discos)
             {
-                if (disco.MotherBoardId == "Sin Board" || Model.Discos.Count() == 0)
+                if (disco.motherBoard.NumSerieBoard == "Sin Board" || Model.Discos.Count() == 0)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
                         <div>Esta Pc no tiene Discos duros</div><a asp-controller="DiscoDuro" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
                     </div>
                     break;
                 }
                 else
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 border">No Serie Disco: @disco.NumSerieId</div>
+                    <div class="col p-2 border">No Serie Disco: @disco.NumSerieDisco</div>
                     <div class="col p-2 border">Marca del Disco: @disco.Marca</div>
                     <div class="col p-2 border d-flex justify-content-between">Capacidad del disco: @disco.Capacidad
                         <a asp-route-Id="@disco.NumSerieId" asp-controller="DiscoDuro" asp-action="Edit"
@@ -144,19 +144,19 @@
 
             @foreach (var memoria in Model.Memorias)
             {
-                if (memoria.MotherBoardId == "Sin Board" || Model.Memorias.Count() == 0)
+                if (memoria.MotherBoard.NumSerieBoard == "Sin Board" || Model.Memorias.Count() == 0)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
                         <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
                     </div>
                     break;
                 }
                 else
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2 border">No Serie De la memoria: @memoria.KayNumSerieId
+                    <div class="col p-2 border">No Serie De la memoria: @memoria.NumSerieMemoria
                     </div>
                     <div class="col p-2 border">Marca de la memoria: @memoria.Marca</div>
                     <div class="col p-2 border d-flex justify-content-between">Capacidad de la memoria: @memoria.Capacidad
@@ -168,20 +168,28 @@
             }
 
             @* Inserciones de componentes *@
-            @if (Model.MotherBoardId != "Sin Board" && Model.Discos.Count != 0)
+            @if (Model.MotherBoard.NumSerieBoard != "Sin Board" && Model.Discos.Count != 0)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-primary border d-flex justify-content-between">
                     <div>Desea insertar otro disco?</div><a asp-controller="DiscoDuro" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
                 </div>
             }
-            @if (Model.MotherBoardId != "Sin Board" && Model.Memorias.Count() != 0)
+            @if (Model.MotherBoard.NumSerieBoard != "Sin Board" && Model.Memorias.Count() != 0)
             {
                 <div class="w-100"></div>
                 <div class="col p-2 bg-primary border d-flex justify-content-between">
                     <div>Desea insertar otra memoria?</div><a asp-controller="MemoriaRam" asp-action="Create"
-                    asp-route-MotherBoardId="@Model.MotherBoardId" class="text-info">Insertar</a>
+                    asp-route-id="@Model.Id" class="text-info">Insertar</a>
+                </div>
+            }
+            @if (Model.Display.Count() != 0)
+            {
+                <div class="w-100"></div>
+                <div class="col p-2 bg-primary border d-flex justify-content-between">
+                    <div>Desea insertar otro monitor?</div><a asp-controller="Display" asp-action="Create"
+                    asp-route-NumInv="@Model.NumInv" class="text-info">Insertar</a>
                 </div>
             }
         </div>

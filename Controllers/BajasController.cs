@@ -259,19 +259,19 @@ namespace ProyectoInventarioASP.Controllers
         {
             //var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
             var Computadora = _context.Bajas.FirstOrDefault(c => c.NumInv == invPc);
-            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieId == Computadora.SerieBoard);
+            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == Computadora.SerieBoard);
             if (MotherBoard == null)
             {
                 return "-";
             }
 
-            return MotherBoard.NumSerieId.ToString();
+            return MotherBoard.NumSerieBoard.ToString();
         }
 
         private string CargarMotherboardMarca(string idBoard)
         {
             //var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
-            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieId == idBoard);
+            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == idBoard);
             if (MotherBoard == null)
             {
                 return "-";
@@ -285,19 +285,20 @@ namespace ProyectoInventarioASP.Controllers
             //var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
             var Computadora = _context.Bajas.FirstOrDefault(c => c.NumInv == invPc);
 
-            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieId == Computadora.SerieBoard);
+            var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == Computadora.SerieBoard);
+            var micro = _context.MicroProcesadores.FirstOrDefault(m => m.NumSerieId == MotherBoard.MicroProcesadorId);
             if (MotherBoard == null)
             {
                 return "-";
             }
 
-            return MotherBoard.MicroProcesadorId;
+            return micro.NumSerieMicro;
         }
 
         private string CargarTecnMicro(string id)
         {
             //var usuariofinal = await _context.Users.FirstOrDefaultAsync(m => m.username == _user.username && m.password == _user.password);
-            var Micro = _context.MicroProcesadores.FirstOrDefault(c => c.NumSerieId == id);
+            var Micro = _context.MicroProcesadores.FirstOrDefault(c => c.NumSerieMicro == id);
             if (Micro == null)
             {
                 return "-";
@@ -308,15 +309,16 @@ namespace ProyectoInventarioASP.Controllers
 
         private List<DiscoDuro> CargarDisco(string boardSerie)
         {
-            var discos = _context.DiscosDuro.Where(d => d.MotherBoardId == boardSerie);
+            var board = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == boardSerie);
+            var discos = _context.DiscosDuro.Where(d => d.MotherBoardId == board.NumSerieId);
 
             return discos.ToList();
         }
 
         private List<MemoriaRam> CargarMemorias(string boardSerie)
         {
-
-            var memorias = _context.MemoriasRam.Where(d => d.MotherBoardId == boardSerie);
+            var board = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == boardSerie);
+            var memorias = _context.MemoriasRam.Where(d => d.MotherBoardId == board.NumSerieId);
 
             return memorias.ToList();
         }

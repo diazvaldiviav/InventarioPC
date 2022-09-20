@@ -41,22 +41,25 @@ namespace ProyectoInventarioASP.Controllers
                 .FirstOrDefaultAsync(m => m.KayNumSerieId == id);
             memoriaRam.computadora = new Computadora();
             memoriaRam.baja = new Bajas();
+            memoriaRam.MotherBoard = new MotherBoard();
 
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == memoriaRam.MotherBoardId);
+            memoriaRam.MotherBoard.NumSerieBoard = board.NumSerieBoard;
             var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == memoriaRam.MotherBoardId);
-            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == memoriaRam.MotherBoardId);         
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == memoriaRam.MotherBoard.NumSerieBoard);
             if (computadora != null)
             {
                 memoriaRam.computadora.NumInv = computadora.NumInv;
                 memoriaRam.computadora.estado = computadora.estado;
-                memoriaRam.baja.SerieBoard = "-"; 
+                memoriaRam.baja.SerieBoard = "-";
                 return View(memoriaRam);
             }
             if (baja != null)
             {
-               memoriaRam.baja.SerieBoard = baja.SerieBoard;
-               memoriaRam.baja.NumInv = baja.NumInv;   
-               memoriaRam.computadora.NumInv = "Sin Computadora";
-               return View(memoriaRam);
+                memoriaRam.baja.SerieBoard = baja.SerieBoard;
+                memoriaRam.baja.NumInv = baja.NumInv;
+                memoriaRam.computadora.NumInv = "Sin Computadora";
+                return View(memoriaRam);
             }
             if (memoriaRam == null)
             {
@@ -68,23 +71,24 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: DiscoDuro/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Create(string MotherBoardId = null, string SerieBoard = null)
+        public async Task<IActionResult> Create(int? Id = null, string SerieBoard = null)
         {
             ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
             var memoria = new MemoriaRam();
-            if (MotherBoardId == null && SerieBoard == null)
+            if (Id == null && SerieBoard == null)
             {
                 return View();
             }
-            if (MotherBoardId != null)
+            if (Id != null)
             {
-                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
-                memoria.MotherBoardId = esBoard.NumSerieId;
+                 var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.Id == Id);
+                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == computadora.MotherBoardId);
+                memoria.MotherBoardId = esBoard.NumSerieBoard;
                 return View(memoria);
             }
 
             var esBoardBaja = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == SerieBoard);
-            memoria.MotherBoardId = esBoardBaja.NumSerieId;
+            memoria.MotherBoardId = esBoardBaja.NumSerieBoard;
             return View(memoria);
 
         }
@@ -97,18 +101,31 @@ namespace ProyectoInventarioASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MemoriaRam memoriaRam)
         {
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == memoriaRam.MotherBoardId);
+            memoriaRam.KayNumSerieId = Guid.NewGuid().ToString();
+            memoriaRam.Capacidad = memoriaRam.Capacidad.ToLower();
+            memoriaRam.Marca = memoriaRam.Marca.ToLower();
+            memoriaRam.Tecnologia = memoriaRam.Tecnologia.ToLower();
+            memoriaRam.MotherBoardId = board.NumSerieId;
             if (memoriaRam != null)
             {
                 try
                 {
-                    if (memoriaRam.Capacidad == null || memoriaRam.KayNumSerieId == null || memoriaRam.Marca == null || memoriaRam.MotherBoardId == null || memoriaRam.Tecnologia == null)
+                    if (memoriaRam.Capacidad == null || memoriaRam.KayNumSerieId == null || memoriaRam.Marca == null || memoriaRam.MotherBoardId == null || memoriaRam.Tecnologia == null || memoriaRam.invPc == null)
                     {
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", memoriaRam.MotherBoardId);
                         return View(memoriaRam);
                     }
-                    memoriaRam.Capacidad = memoriaRam.Capacidad.ToLower();
-                    memoriaRam.Marca = memoriaRam.Marca.ToLower();
-                    memoriaRam.Tecnologia = memoriaRam.Tecnologia.ToLower();
+
+                    if (memoriaRam.MotherBoardId == null)
+                    {
+                        memoriaRam.MotherBoardId = "Sin Board";
+                        _context.Add(memoriaRam);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+
+                    }
+
                     _context.Add(memoriaRam);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -134,6 +151,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var memoriaRam = await _context.MemoriasRam.FindAsync(id);
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == memoriaRam.MotherBoardId);
+            memoriaRam.MotherBoardId = board.NumSerieBoard;
             if (memoriaRam == null)
             {
                 return NotFound();
@@ -148,8 +167,10 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("KayNumSerieId,Marca,Capacidad,Tecnologia,MotherBoardId,estado")] MemoriaRam memoriaRam)
+        public async Task<IActionResult> Edit(string id,  MemoriaRam memoriaRam)
         {
+             var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == memoriaRam.MotherBoardId);
+
             if (id != memoriaRam.KayNumSerieId)
             {
                 return NotFound();
@@ -167,6 +188,7 @@ namespace ProyectoInventarioASP.Controllers
                     memoriaRam.Capacidad = memoriaRam.Capacidad.ToLower();
                     memoriaRam.Marca = memoriaRam.Marca.ToLower();
                     memoriaRam.Tecnologia = memoriaRam.Tecnologia.ToLower();
+                    memoriaRam.MotherBoardId = board.NumSerieId;
                     _context.Update(memoriaRam);
                     await _context.SaveChangesAsync();
                 }

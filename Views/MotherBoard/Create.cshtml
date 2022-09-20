@@ -14,35 +14,41 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NumSerieId" class="control-label"></label>
-                <input asp-for="NumSerieId" placeholder="Introduzca el numero de serie" class="form-control border border-5" />
-                <span asp-validation-for="NumSerieId" class="text-danger"></span>
+                <label asp-for="NumSerieBoard" class="control-label"></label>
+                <input asp-for="NumSerieBoard" placeholder="Introduzca el numero de serie"
+                    class="form-control border border-5" />
+                <span asp-validation-for="NumSerieBoard" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Marca" class="control-label"></label>
                 <input asp-for="Marca" placeholder="Introduzca la marca" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
-              <div class="form-group">
-                    <label asp-for="MicroProcesadorId" class="control-label"></label>
-                    <input asp-for="MicroProcesadorId" placeholder="Introduzca un serial de micro" class="form-control border border-5"
-                    list="Micros" />
-                    <span asp-validation-for="MicroProcesadorId" class="text-danger"></span>
-                    <datalist id="Micros">
-                        @foreach (var item in ViewBag.Micros)
-                        {
-                            <option value="@item.NumSerieId">@item.NumSerieId</option>
-                        }
-                    </datalist>
-                </div>
-            <div class = "form-group">
-             <label asp-for="estado"></label>
-              @Html.DropDownList(
-              "Estado", Html.GetEnumSelectList<Estado>(),
-              "Seleccione un estado",
-              new{@class = "form-control"}
-              )
-              </div>
+            <div class="form-group">
+                <label asp-for="invPc" class="control-label"></label>
+                <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                <span asp-validation-for="invPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MicroProcesadorId" class="control-label"></label>
+                <input asp-for="MicroProcesadorId" placeholder="Introduzca un serial de micro"
+                    class="form-control border border-5" list="Micros" />
+                <span asp-validation-for="MicroProcesadorId" class="text-danger"></span>
+                <datalist id="Micros">
+                    @foreach (var item in ViewBag.Micros)
+                    {
+                        <option value="@item.NumSerieMicro">@item.NumSerieMicro</option>
+                    }
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label asp-for="estado"></label>
+                @Html.DropDownList(
+                "estado", Html.GetEnumSelectList<Estado>(),
+                "Seleccione un estado",
+                new{@class = "form-control"}
+                )
+            </div>
             <div class="form-group p-2">
                 <input type="submit" value="Crear" class="btn btn-orange" />
             </div>
@@ -57,5 +63,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

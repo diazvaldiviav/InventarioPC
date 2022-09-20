@@ -14,9 +14,10 @@
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="NumSerieId" class="control-label"></label>
-                    <input asp-for="NumSerieId" placeholder="Introduzca un No de Serie del disco" class="form-control border border-5" />
-                    <span asp-validation-for="NumSerieId" class="text-danger"></span>
+                    <label asp-for="NumSerieDisco" class="control-label"></label>
+                    <input asp-for="NumSerieDisco" placeholder="Introduzca un No de Serie del disco"
+                        class="form-control border border-5" />
+                    <span asp-validation-for="NumSerieDisco" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Marca" class="control-label"></label>
@@ -25,13 +26,20 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="TipoConexion" class="control-label"></label>
-                    <input asp-for="TipoConexion" placeholder="Introduzca el tipo de conexion Ej: Sata" class="form-control border border-5" />
+                    <input asp-for="TipoConexion" placeholder="Introduzca el tipo de conexion Ej: Sata"
+                        class="form-control border border-5" />
                     <span asp-validation-for="TipoConexion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Capacidad" class="control-label"></label>
-                    <input asp-for="Capacidad" placeholder="Introduzca la capacidad del disco" class="form-control border border-5" />
+                    <input asp-for="Capacidad" placeholder="Introduzca la capacidad del disco"
+                        class="form-control border border-5" />
                     <span asp-validation-for="Capacidad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="invPc" class="control-label"></label>
+                    <input asp-for="invPc" placeholder="Introduzca la marca" class="form-control border border-5" />
+                    <span asp-validation-for="invPc" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="MotherBoardId" class="control-label"></label>
@@ -40,14 +48,14 @@
                     <datalist id="boards">
                         @foreach (var item in ViewBag.MotherBoards)
                         {
-                            <option value="@item.NumSerieId">@item.NumSerieId</option>
+                            <option value="@item.NumSerieBoard">@item.NumSerieBoard</option>
                         }
                     </datalist>
                 </div>
                 <div class="form-group">
                     <label asp-for="estado"></label>
                     @Html.DropDownList(
-                    "Estado", Html.GetEnumSelectList<Estado>(),
+                    "estado", Html.GetEnumSelectList<Estado>(),
                     "Seleccione un estado",
                     new{@class = "form-control"}
                     )

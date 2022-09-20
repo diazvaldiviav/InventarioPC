@@ -41,24 +41,27 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(d => d.motherBoard)
                 .FirstOrDefaultAsync(m => m.NumSerieId == id);
 
-             discoDuro.computadora = new Computadora();
+            discoDuro.computadora = new Computadora();
             discoDuro.baja = new Bajas();
-
+            discoDuro.motherBoard = new MotherBoard();
+            
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == discoDuro.MotherBoardId);
+            discoDuro.motherBoard.NumSerieBoard = board.NumSerieBoard;
             var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.MotherBoardId == discoDuro.MotherBoardId);
-            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == discoDuro.MotherBoardId);         
+            var baja = await _context.Bajas.FirstOrDefaultAsync(b => b.SerieBoard == discoDuro.motherBoard.NumSerieBoard);
             if (computadora != null)
             {
                 discoDuro.computadora.NumInv = computadora.NumInv;
                 discoDuro.computadora.estado = computadora.estado;
-                discoDuro.baja.SerieBoard = "-"; 
+                discoDuro.baja.SerieBoard = "-";
                 return View(discoDuro);
             }
             if (baja != null)
             {
-               discoDuro.baja.SerieBoard = baja.SerieBoard;
-               discoDuro.baja.NumInv = baja.NumInv;   
-               discoDuro.computadora.NumInv = "Sin Computadora";
-               return View(discoDuro);
+                discoDuro.baja.SerieBoard = baja.SerieBoard;
+                discoDuro.baja.NumInv = baja.NumInv;
+                discoDuro.computadora.NumInv = "Sin Computadora";
+                return View(discoDuro);
             }
 
             if (discoDuro == null)
@@ -71,23 +74,21 @@ namespace ProyectoInventarioASP.Controllers
 
         // GET: DiscoDuro/Create
         [Authorize(Roles = "admin , lecturaYEscritura")]
-        public async Task<IActionResult> Create(string MotherBoardId = null, string SerieBoard = null)
+        public async Task<IActionResult> Create(int? Id = null, string SerieBoard = null)
         {
             ViewBag.MotherBoards = await _context.MotherBoards.ToListAsync();
             var disco = new DiscoDuro();
 
-            if (MotherBoardId == null && SerieBoard == null)
+            if (Id == null && SerieBoard == null)
             {
                 //ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId");
                 return View();
             }
-            if (MotherBoardId != null)
+            if (Id != null)
             {
-                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == MotherBoardId);
-                //List<MotherBoard> board = new List<MotherBoard>();
-                //board.Add(esBoard);
-                //ViewData["MotherBoardId"] = new SelectList(board, "NumSerieId", "NumSerieId");
-                disco.MotherBoardId = esBoard.NumSerieId;
+                var computadora = await _context.Computadoras.FirstOrDefaultAsync(pc => pc.Id == Id);
+                var esBoard = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == computadora.MotherBoardId);
+                disco.MotherBoardId = esBoard.NumSerieBoard;
                 return View(disco);
             }
 
@@ -95,7 +96,7 @@ namespace ProyectoInventarioASP.Controllers
             var esBoardBaja = await _context.MotherBoards.FirstOrDefaultAsync(m => m.NumSerieId == SerieBoard);
             //boardParaBaja.Add(esBoardBaja);
             //ViewData["MotherBoardId"] = new SelectList(boardParaBaja, "NumSerieId", "NumSerieId");
-            disco.MotherBoardId = esBoardBaja.NumSerieId;
+            disco.MotherBoardId = esBoardBaja.NumSerieBoard;
             return View(disco);
 
         }
@@ -106,20 +107,34 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
+        public async Task<IActionResult> Create(DiscoDuro discoDuro)
         {
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == discoDuro.MotherBoardId);
+            discoDuro.NumSerieId = Guid.NewGuid().ToString();
+            discoDuro.Marca = discoDuro.Marca.ToLower();
+            discoDuro.Capacidad = discoDuro.Capacidad.ToLower();
+            discoDuro.TipoConexion = discoDuro.TipoConexion.ToLower();
+            discoDuro.MotherBoardId = board.NumSerieId;
+
             try
             {
                 if (discoDuro != null)
                 {
-                    if (discoDuro.Capacidad == null || discoDuro.Marca == null || discoDuro.MotherBoardId == null || discoDuro.NumSerieId == null || discoDuro.TipoConexion == null || discoDuro.estado == null)
+                    if (discoDuro.Capacidad == null || discoDuro.Marca == null || discoDuro.MotherBoardId == null || discoDuro.NumSerieId == null || discoDuro.TipoConexion == null || discoDuro.estado == null || discoDuro.invPc == null)
                     {
                         ViewData["MotherBoardId"] = new SelectList(_context.MotherBoards, "NumSerieId", "NumSerieId", discoDuro.MotherBoardId);
                         return View(discoDuro);
                     }
-                    discoDuro.Marca = discoDuro.Marca.ToLower();
-                    discoDuro.Capacidad = discoDuro.Capacidad.ToLower();
-                    discoDuro.TipoConexion = discoDuro.TipoConexion.ToLower();
+
+                    if (discoDuro.MotherBoardId == null)
+                    {
+                        discoDuro.MotherBoardId = "Sin Board";
+                        _context.Add(discoDuro);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+
+                    }
+
                     _context.Add(discoDuro);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -145,6 +160,8 @@ namespace ProyectoInventarioASP.Controllers
             }
 
             var discoDuro = await _context.DiscosDuro.FindAsync(id);
+            var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == discoDuro.MotherBoardId);
+            discoDuro.MotherBoardId = board.NumSerieBoard;
             if (discoDuro == null)
             {
                 return NotFound();
@@ -159,8 +176,9 @@ namespace ProyectoInventarioASP.Controllers
         [Authorize(Roles = "admin , lecturaYEscritura")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("NumSerieId,Marca,TipoConexion,Capacidad,MotherBoardId,estado")] DiscoDuro discoDuro)
+        public async Task<IActionResult> Edit(string id, DiscoDuro discoDuro)
         {
+           var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieBoard == discoDuro.MotherBoardId);
             if (id != discoDuro.NumSerieId)
             {
                 return NotFound();
@@ -178,6 +196,7 @@ namespace ProyectoInventarioASP.Controllers
                     discoDuro.Marca = discoDuro.Marca.ToLower();
                     discoDuro.Capacidad = discoDuro.Capacidad.ToLower();
                     discoDuro.TipoConexion = discoDuro.TipoConexion.ToLower();
+                    discoDuro.MotherBoardId = board.NumSerieId;
                     _context.Update(discoDuro);
                     await _context.SaveChangesAsync();
                 }

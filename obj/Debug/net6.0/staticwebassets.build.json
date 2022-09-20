@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cGNBrrM4ZVTQeMiVb5yFGFQjfC8LnEMv+svFm1bG2BI=",
+  "Hash": "NsJiRt6js9UBSxxn/Y6D2soBh/lPvOQSR+pMtnWz/nI=",
   "Source": "ProyectoInventarioASP",
   "BasePath": "_content/ProyectoInventarioASP",
   "Mode": "Default",
@@ -3041,6 +3041,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\filtro.js"
+    },
+    {
+      "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\listaVisible.js",
+      "SourceId": "ProyectoInventarioASP",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\ProyectoInventarioASP\\wwwroot\\",
+      "BasePath": "_content/ProyectoInventarioASP",
+      "RelativePath": "js/listaVisible.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\listaVisible.js"
     },
     {
       "Identity": "G:\\ProyectoInventarioASP\\wwwroot\\js\\script.js",

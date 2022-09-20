@@ -28,7 +28,7 @@
                 <input asp-for="Marca" class="form-control border border-5" />
                 <span asp-validation-for="Marca" class="text-danger"></span>
             </div>
-              @if (ViewBag.Trabajadores == null)
+            @if (ViewBag.Trabajadores == null)
             {
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label asp-for="estado"></label>
                 @Html.DropDownList(
-                "Estado", Html.GetEnumSelectList<Estado>(),
+                "estado", Html.GetEnumSelectList<Estado>(),
                 "Seleccione un estado",
                 new{@class = "form-control"}
                 )
