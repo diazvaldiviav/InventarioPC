@@ -71,7 +71,19 @@ namespace ProyectoInventarioASP.Controllers
                 return NotFound();
             }
 
+            var boards = await _context.MotherBoards.Where(b => b.estado == Estado.inactivo).ToListAsync();
+            ViewBag.Boards = boards;
+
+
             var bajas = await _context.Bajas.FindAsync(id);
+
+            if (bajas.SerieBoard != "-")
+            {
+                var board = boards.FirstOrDefault(b => b.NumSerieBoard == bajas.SerieBoard);
+                bajas.SerieBoard = board.NumSerieBoard;
+                return View(bajas);
+            }
+
             if (bajas == null)
             {
                 return NotFound();
@@ -116,6 +128,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Bajas/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Bajas == null)
@@ -144,7 +157,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Bajas/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -262,7 +275,7 @@ namespace ProyectoInventarioASP.Controllers
             var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == Computadora.SerieBoard);
             if (MotherBoard == null)
             {
-                return "-";
+                return "Sin Board";
             }
 
             return MotherBoard.NumSerieBoard.ToString();
@@ -286,11 +299,12 @@ namespace ProyectoInventarioASP.Controllers
             var Computadora = _context.Bajas.FirstOrDefault(c => c.NumInv == invPc);
 
             var MotherBoard = _context.MotherBoards.FirstOrDefault(b => b.NumSerieBoard == Computadora.SerieBoard);
-            var micro = _context.MicroProcesadores.FirstOrDefault(m => m.NumSerieId == MotherBoard.MicroProcesadorId);
             if (MotherBoard == null)
             {
                 return "-";
             }
+            var micro = _context.MicroProcesadores.FirstOrDefault(m => m.NumSerieId == MotherBoard.MicroProcesadorId);
+
 
             return micro.NumSerieMicro;
         }

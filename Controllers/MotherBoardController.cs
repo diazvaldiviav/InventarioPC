@@ -214,7 +214,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: MotherBoard/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.MotherBoards == null)
@@ -235,7 +235,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: MotherBoard/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

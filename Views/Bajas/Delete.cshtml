@@ -35,23 +35,21 @@
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
-                        <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
-                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                        <div>Esta Pc no tiene memoria Ram</div>
                     </div>
                 }
                 if (Model.Discos.Count() == 0)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
-                        <div>Esta Pc no tiene Discos duros</div><a asp-controller="DiscoDuro" asp-action="Create"
-                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                        <div>Esta Pc no tiene Discos duros</div>
                     </div>
                 }
                 foreach (var memoria in Model.Memorias)
                 {
 
                     <div class="w-100"></div>
-                    <div class="col p-2  border">No Serie De la memoria: @memoria.KayNumSerieId</div>
+                    <div class="col p-2  border">No Serie De la memoria: @memoria.NumSerieMemoria</div>
                     <div class="col p-2  border">Marca de la memoria: @memoria.Marca</div>
                     <div class="col p-2  border">Capacidad de la memoria: @memoria.Capacidad</div>
                 }
@@ -60,7 +58,7 @@
                 foreach (var disco in Model.Discos)
                 {
                     <div class="w-100"></div>
-                    <div class="col p-2  border">No Serie Disco: @disco.NumSerieId</div>
+                    <div class="col p-2  border">No Serie Disco: @disco.NumSerieDisco</div>
                     <div class="col p-2  border">Marca del Disco: @disco.Marca</div>
                     <div class="col p-2  border">Capacidad del disco: @disco.Capacidad</div>
 

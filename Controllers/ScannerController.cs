@@ -144,6 +144,7 @@ namespace ProyectoInventarioASP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin , lecturaYEscritura")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NumSerie,NumInv,Marca,estado,UsuarioId,UserName")] Scanner scanner)
         {
             if (id != scanner.Id)
@@ -188,6 +189,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Scanner/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Scanners == null)
@@ -209,6 +211,7 @@ namespace ProyectoInventarioASP.Controllers
         // POST: Scanner/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Scanners == null)

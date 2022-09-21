@@ -197,7 +197,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Impresora/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

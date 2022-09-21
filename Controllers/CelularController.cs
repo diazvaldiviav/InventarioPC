@@ -183,7 +183,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Celular/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Celulares == null)
@@ -202,7 +202,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Celular/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

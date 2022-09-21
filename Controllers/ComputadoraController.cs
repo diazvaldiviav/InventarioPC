@@ -161,6 +161,18 @@ namespace ProyectoInventarioASP.Controllers
 
 
                     }
+                    else
+                    {
+                        var pc = await _context.Computadoras.Where(pc => pc.SO == NumInv).ToListAsync();
+
+                        if (pc.Count() != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", pc)
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
+                    }
                 }
             }
 
@@ -497,6 +509,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Computadora/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id == 0 || _context.Computadoras == null)
@@ -512,19 +525,29 @@ namespace ProyectoInventarioASP.Controllers
                 .Include(c => c.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
+            computadora.MotherBoard = new MotherBoard();
+
             var board = await _context.MotherBoards.FirstOrDefaultAsync(b => b.NumSerieId == computadora.MotherBoardId);
             var memorias = await _context.MemoriasRam.Where(m => m.MotherBoardId == board.NumSerieId).ToListAsync();
             var discos = await _context.DiscosDuro.Where(d => d.MotherBoardId == board.NumSerieId).ToListAsync();
             var isActiveMemory = memorias.Any(m => m.estado == Estado.activo);
             var isActiveDisk = discos.Any(d => d.estado == Estado.activo);
 
+
+            computadora.MotherBoard.NumSerieBoard = board.NumSerieBoard;
+
             if (board.estado == Estado.activo || isActiveMemory || isActiveDisk)
             {
                 ViewBag.Message = "No se le puede dar baja a una computadora con un componente activo";
             }
+            else if (board.NumSerieBoard == "Sin Board" || memorias.Count() == 0 || discos.Count() == 0)
+            {
+                ViewBag.Message2 = "A esta computadora le falta un componente";
+            }
             else
             {
                 ViewBag.Message = null;
+                ViewBag.Message2 = null;
             }
 
 
@@ -537,7 +560,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // POST: Computadora/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -566,6 +589,12 @@ namespace ProyectoInventarioASP.Controllers
                     ViewBag.Message = "No se le puede dar baja a una computadora con un componente activo";
                     return RedirectToAction("Delete");
                 }
+                else if (board.NumSerieBoard == "Sin Board" || memorias.Count() == 0 || discos.Count() == 0)
+                {
+                    ViewBag.Message2 = "A esta computadora le falta un componente vaya a los detalles para mas informacion";
+                    return RedirectToAction("Delete");
+                }
+
                 ViewBag.Message = null;
                 _context.Bajas.Add(nuevaBaja);
                 try

@@ -33,16 +33,14 @@
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
-                        <div>Esta Pc no tiene memoria Ram</div><a asp-controller="MemoriaRam" asp-action="Create"
-                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                        <div>Esta Pc no tiene memoria Ram</div>
                     </div>
                 }
                 if (Model.Discos.Count() == 0)
                 {
                     <div class="w-100"></div>
                     <div class="col p-2 bg-danger border d-flex justify-content-between">
-                        <div>Esta Pc no tiene Discos duros</div><a asp-controller="DiscoDuro" asp-action="Create"
-                    asp-route-SerieBoard="@Model.SerieBoard" class="text-info">Insertar</a>
+                        <div>Esta Pc no tiene Discos duros</div>
                     </div>
                 }
                 foreach (var memoria in Model.Memorias)

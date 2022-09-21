@@ -200,7 +200,7 @@ namespace ProyectoInventarioASP.Controllers
         }
 
         // GET: Laptop/Delete/5
-        [Authorize(Roles = "admin , lecturaYEscritura")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Laptops == null)
@@ -335,6 +335,17 @@ namespace ProyectoInventarioASP.Controllers
                         }
 
 
+                    }else
+                    {
+                        var pc = await _context.Laptops.Where(pc => pc.SO == NumInv).ToListAsync();
+
+                        if (pc.Count() != 0)
+                        {
+                            return new ViewAsPdf("Imprimir", pc)
+                            {
+                                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                            };
+                        }
                     }
                 }
             }

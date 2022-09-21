@@ -19,6 +19,16 @@
                 </div>
             </div>
         }
+        @if (ViewBag.Message2 != null)
+        {
+            <div class="card" id="cardInactive">
+                <div class="card-body">
+                    <h5 class="card-title">Advertencia</h5>
+                    <p class="card-text">@ViewBag.Message2 vaya a los <a asp-route-id="@Model.Id" class="text-info" asp-action="Details">detalles</a> para mas informacion</p>
+                    <button type="button" class="btn btn-orange" id="btn-card-inactive">Cerrar</button>
+                </div>
+            </div>
+        }
 
         <h4>Computadora</h4>
         <hr />
@@ -117,7 +127,7 @@
                 @Html.DisplayNameFor(model => model.MotherBoard)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.MotherBoard.NumSerieId)
+                @Html.DisplayFor(model => model.MotherBoard.NumSerieBoard)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Impresora)
