@@ -35,7 +35,7 @@ public class UserController : Controller
     {
         return View("ListaUser", _context.Users);
     }
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public IActionResult Register()
     {
         return View();
@@ -147,7 +147,7 @@ public class UserController : Controller
 
     }
 
-    [Authorize(Roles = "admin")]
+   // [Authorize(Roles = "admin")]
     [HttpPost]
     public async Task<IActionResult> Register(User _user)
     {
